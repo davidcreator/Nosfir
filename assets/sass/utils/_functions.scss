@@ -1,0 +1,141 @@
+// ============================================
+// NOSFIR THEME FUNCTIONS
+// ============================================
+
+// --------------------------------------------
+// Color Functions
+// --------------------------------------------
+
+// Gerar cor com opacidade
+@function alpha($color, $opacity) {
+    @return rgba($color, $opacity);
+}
+
+// Clarear cor
+@function tint($color, $percentage) {
+    @return mix(white, $color, $percentage);
+}
+
+// Escurecer cor
+@function shade($color, $percentage) {
+    @return mix(black, $color, $percentage);
+}
+
+// --------------------------------------------
+// Spacing Functions
+// --------------------------------------------
+
+// Obter valor de spacing do mapa
+@function spacing($key) {
+    @if map-has-key($spacings, $key) {
+        @return map-get($spacings, $key);
+    }
+    
+    @warn "Spacing `#{$key}` não encontrado no mapa $spacings.";
+    @return null;
+}
+
+// --------------------------------------------
+// Breakpoint Functions
+// --------------------------------------------
+
+// Obter valor de breakpoint do mapa
+@function breakpoint($key) {
+    @if map-has-key($breakpoints, $key) {
+        @return map-get($breakpoints, $key);
+    }
+    
+    @warn "Breakpoint `#{$key}` não encontrado no mapa $breakpoints.";
+    @return null;
+}
+
+// --------------------------------------------
+// String Functions
+// --------------------------------------------
+
+// Replace substring in string
+@function str-replace($string, $search, $replace: '') {
+    $index: str-index($string, $search);
+    
+    @if $index {
+        @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+    }
+    
+    @return $string;
+}
+
+// --------------------------------------------
+// Unit Functions
+// --------------------------------------------
+
+// Remove unit from number
+@function strip-unit($number) {
+    @if type-of($number) == 'number' and not unitless($number) {
+        @return $number / ($number * 0 + 1);
+    }
+    
+    @return $number;
+}
+
+// Convert px to rem
+@function rem($px, $base: 16) {
+    @return (strip-unit($px) / $base) * 1rem;
+}
+
+// Convert px to em
+@function em($px, $base: 16) {
+    @return (strip-unit($px) / $base) * 1em;
+}
+
+// Convert rem to px
+@function px($rem, $base: 16) {
+    @return strip-unit($rem) * $base * 1px;
+}
+
+// --------------------------------------------
+// Math Functions
+// --------------------------------------------
+
+// Calculate percentage
+@function percent($target, $context) {
+    @return ($target / $context) * 100%;
+}
+
+// Calculate aspect ratio percentage
+@function aspect-ratio-percent($width, $height) {
+    @return ($height / $width) * 100%;
+}
+
+// Fluid typography / spacing
+@function fluid($min-size, $max-size, $min-vw: 320px, $max-vw: 1200px) {
+    $min-size: strip-unit($min-size);
+    $max-size: strip-unit($max-size);
+    $min-vw: strip-unit($min-vw);
+    $max-vw: strip-unit($max-vw);
+    
+    @return calc(#{$min-size}px + (#{$max-size} - #{$min-size}) * ((100vw - #{$min-vw}px) / (#{$max-vw} - #{$min-vw})));
+}
+
+// --------------------------------------------
+// Z-Index Function
+// --------------------------------------------
+
+$z-layers: (
+    'base': 1,
+    'dropdown': $z-index-dropdown,
+    'sticky': $z-index-sticky,
+    'fixed': $z-index-fixed,
+    'modal-backdrop': $z-index-modal-backdrop,
+    'modal': $z-index-modal,
+    'popover': $z-index-popover,
+    'tooltip': $z-index-tooltip
+);
+
+@function z($layer) {
+    @if map-has-key($z-layers, $layer) {
+        @return map-get($z-layers, $layer);
+    }
+    
+    @warn "Z-index `#{$layer}` não encontrado no mapa $z-layers.";
+    @return null;
+}

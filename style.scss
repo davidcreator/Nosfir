@@ -1,0 +1,146 @@
+/*
+Theme Name: Nosfir
+Theme URI: https://davidalmeida.xyz/wp-themes/nosfir
+Author: David L. Almeida
+Author URI: https://davidalmeida.xyz
+Description: Tema WordPress profissional com suporte a WooCommerce
+Version: 1.0.0
+Tested up to: 6.4
+Requires at least: 5.8
+Requires PHP: 7.4
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: nosfir
+Domain Path: /languages
+Tags: e-commerce, two-columns, left-sidebar, right-sidebar, custom-background, custom-colors, custom-header, custom-menu, featured-images, full-width-template, threaded-comments, translation-ready, theme-options, footer-widgets, blog
+
+Nosfir WordPress Theme, Copyright 2024 David L. Almeida
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+
+Nosfir is based on Underscores https://underscores.me/, (C) 2012-2017 Automattic, Inc.
+
+Resetting and rebuilding styles have been helped along thanks to the fine work of
+Eric Meyer https://meyerweb.com/eric/tools/css/reset/index.html
+along with Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
+
+FontAwesome License: SIL Open Font License - https://scripts.sil.org/OFL
+Images License: GNU General Public License v2 or later
+*/
+
+/*
+======================================================================
+ATENÇÃO: Não edite este arquivo diretamente. 
+Para adicionar CSS customizado, vá em Customizer > Additional CSS
+ou crie um tema filho.
+======================================================================
+*/
+
+// ============================================
+// TABLE OF CONTENTS
+// ============================================
+// 1. Vendors      - Bibliotecas externas
+// 2. Utils        - Variáveis, mixins, funções
+// 3. Base         - Reset, tipografia, elementos base
+// 4. Layout       - Grid, containers, estrutura
+// 5. Components   - Componentes reutilizáveis
+// 6. Sections     - Seções específicas do tema
+// 7. Pages        - Estilos específicos de páginas
+// 8. Plugins      - WooCommerce, Jetpack, etc.
+// 9. Utilities    - Classes utilitárias
+// ============================================
+
+// ============================================
+// 1. VENDORS
+// Bibliotecas e frameworks externos
+// ============================================
+@import "assets/sass/vendors/normalize";
+@import "assets/sass/vendors/modular-scale";
+
+// ============================================
+// 2. UTILS
+// Variáveis, mixins e funções Sass
+// ============================================
+@import "assets/sass/utils/variables";
+@import "assets/sass/utils/functions";
+@import "assets/sass/utils/mixins";
+@import "assets/sass/utils/animations";
+
+// ============================================
+// 3. BASE
+// Reset, tipografia e elementos HTML base
+// ============================================
+@import "assets/sass/base/reset";
+@import "assets/sass/base/typography";
+@import "assets/sass/base/elements";
+@import "assets/sass/base/links";
+@import "assets/sass/base/forms";
+@import "assets/sass/base/tables";
+@import "assets/sass/base/media";
+
+// ============================================
+// 4. LAYOUT
+// Grid system, containers e estrutura
+// ============================================
+@import "assets/sass/layout/grid";
+@import "assets/sass/layout/container";
+@import "assets/sass/layout/header";
+@import "assets/sass/layout/footer";
+@import "assets/sass/layout/sidebar";
+@import "assets/sass/layout/content";
+
+// ============================================
+// 5. COMPONENTS
+// Componentes UI reutilizáveis
+// ============================================
+@import "assets/sass/components/buttons";
+@import "assets/sass/components/navigation";
+@import "assets/sass/components/breadcrumbs";
+@import "assets/sass/components/pagination";
+@import "assets/sass/components/cards";
+@import "assets/sass/components/widgets";
+@import "assets/sass/components/search";
+@import "assets/sass/components/social-icons";
+@import "assets/sass/components/modals";
+@import "assets/sass/components/alerts";
+@import "assets/sass/components/icons";
+
+// ============================================
+// 6. SECTIONS
+// Seções específicas do tema
+// ============================================
+@import "assets/sass/sections/hero";
+@import "assets/sass/sections/featured";
+@import "assets/sass/sections/testimonials";
+@import "assets/sass/sections/cta";
+@import "assets/sass/sections/posts";
+@import "assets/sass/sections/comments";
+
+// ============================================
+// 7. PAGES
+// Estilos específicos para páginas
+// ============================================
+@import "assets/sass/pages/home";
+@import "assets/sass/pages/blog";
+@import "assets/sass/pages/single";
+@import "assets/sass/pages/archive";
+@import "assets/sass/pages/page";
+@import "assets/sass/pages/404";
+@import "assets/sass/pages/search";
+
+// ============================================
+// 8. PLUGINS
+// Integrações com plugins
+// ============================================
+@import "assets/sass/plugins/woocommerce/woocommerce";
+@import "assets/sass/plugins/jetpack/jetpack";
+@import "assets/sass/plugins/gutenberg/blocks";
+
+// ============================================
+// 9. UTILITIES
+// Classes utilitárias e helpers
+// ============================================
+@import "assets/sass/utils/utilities";
+@import "assets/sass/utils/accessibility";
+@import "assets/sass/utils/print";

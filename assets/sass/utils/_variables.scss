@@ -1,0 +1,283 @@
+// ============================================
+// NOSFIR THEME VARIABLES
+// ============================================
+
+// --------------------------------------------
+// Colors
+// --------------------------------------------
+
+// Brand Colors
+$color-primary:       #2c3e50 !default;
+$color-primary-light: lighten($color-primary, 15%) !default;
+$color-primary-dark:  darken($color-primary, 15%) !default;
+
+$color-secondary:       #3498db !default;
+$color-secondary-light: lighten($color-secondary, 15%) !default;
+$color-secondary-dark:  darken($color-secondary, 15%) !default;
+
+$color-accent:        #e74c3c !default;
+
+// Grayscale
+$color-white:         #ffffff !default;
+$color-black:         #000000 !default;
+
+$gray-100:            #f8f9fa !default;
+$gray-200:            #e9ecef !default;
+$gray-300:            #dee2e6 !default;
+$gray-400:            #ced4da !default;
+$gray-500:            #adb5bd !default;
+$gray-600:            #6c757d !default;
+$gray-700:            #495057 !default;
+$gray-800:            #343a40 !default;
+$gray-900:            #212529 !default;
+
+// Semantic Colors
+$color-success:       #27ae60 !default;
+$color-warning:       #f39c12 !default;
+$color-error:         #e74c3c !default;
+$color-info:          #3498db !default;
+
+// Background Colors
+$bg-body:             $color-white !default;
+$bg-light:            $gray-100 !default;
+$bg-dark:             $gray-900 !default;
+
+// Text Colors
+$text-color:          $gray-800 !default;
+$text-color-light:    $gray-600 !default;
+$text-color-heading:  $gray-900 !default;
+$text-color-link:     $color-primary !default;
+
+// Border Colors
+$border-color:        $gray-300 !default;
+$border-color-light:  $gray-200 !default;
+$border-color-dark:   $gray-400 !default;
+
+// --------------------------------------------
+// Typography
+// --------------------------------------------
+
+// Font Families
+$font-family-base:    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !default;
+$font-family-heading: $font-family-base !default;
+$font-family-mono:    SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
+
+// Font Sizes (using modular scale)
+$font-size-base:      1rem !default;      // 16px
+$font-size-xs:        0.75rem !default;   // 12px
+$font-size-sm:        0.875rem !default;  // 14px
+$font-size-md:        1rem !default;      // 16px
+$font-size-lg:        1.125rem !default;  // 18px
+$font-size-xl:        1.25rem !default;   // 20px
+$font-size-2xl:       1.5rem !default;    // 24px
+$font-size-3xl:       1.875rem !default;  // 30px
+$font-size-4xl:       2.25rem !default;   // 36px
+$font-size-5xl:       3rem !default;      // 48px
+$font-size-6xl:       3.75rem !default;   // 60px
+
+// Heading Sizes
+$h1-font-size:        $font-size-5xl !default;
+$h2-font-size:        $font-size-4xl !default;
+$h3-font-size:        $font-size-3xl !default;
+$h4-font-size:        $font-size-2xl !default;
+$h5-font-size:        $font-size-xl !default;
+$h6-font-size:        $font-size-lg !default;
+
+// Font Weights
+$font-weight-light:   300 !default;
+$font-weight-normal:  400 !default;
+$font-weight-medium:  500 !default;
+$font-weight-semi:    600 !default;
+$font-weight-bold:    700 !default;
+$font-weight-black:   900 !default;
+
+// Line Heights
+$line-height-base:    1.6 !default;
+$line-height-sm:      1.25 !default;
+$line-height-lg:      1.8 !default;
+$line-height-heading: 1.2 !default;
+
+// Letter Spacing
+$letter-spacing-tight:  -0.025em !default;
+$letter-spacing-normal: 0 !default;
+$letter-spacing-wide:   0.025em !default;
+$letter-spacing-wider:  0.05em !default;
+$letter-spacing-widest: 0.1em !default;
+
+// --------------------------------------------
+// Spacing
+// --------------------------------------------
+
+$spacer:              1rem !default;
+
+$spacing-0:           0 !default;
+$spacing-1:           $spacer * 0.25 !default;   // 4px
+$spacing-2:           $spacer * 0.5 !default;    // 8px
+$spacing-3:           $spacer * 0.75 !default;   // 12px
+$spacing-4:           $spacer !default;          // 16px
+$spacing-5:           $spacer * 1.25 !default;   // 20px
+$spacing-6:           $spacer * 1.5 !default;    // 24px
+$spacing-7:           $spacer * 2 !default;      // 32px
+$spacing-8:           $spacer * 2.5 !default;    // 40px
+$spacing-9:           $spacer * 3 !default;      // 48px
+$spacing-10:          $spacer * 4 !default;      // 64px
+$spacing-11:          $spacer * 5 !default;      // 80px
+$spacing-12:          $spacer * 6 !default;      // 96px
+
+// Spacing Map
+$spacings: (
+    0: $spacing-0,
+    1: $spacing-1,
+    2: $spacing-2,
+    3: $spacing-3,
+    4: $spacing-4,
+    5: $spacing-5,
+    6: $spacing-6,
+    7: $spacing-7,
+    8: $spacing-8,
+    9: $spacing-9,
+    10: $spacing-10,
+    11: $spacing-11,
+    12: $spacing-12
+) !default;
+
+// --------------------------------------------
+// Breakpoints
+// --------------------------------------------
+
+$breakpoint-xs:       0 !default;
+$breakpoint-sm:       576px !default;
+$breakpoint-md:       768px !default;
+$breakpoint-lg:       992px !default;
+$breakpoint-xl:       1200px !default;
+$breakpoint-xxl:      1400px !default;
+
+// Breakpoints Map
+$breakpoints: (
+    xs: $breakpoint-xs,
+    sm: $breakpoint-sm,
+    md: $breakpoint-md,
+    lg: $breakpoint-lg,
+    xl: $breakpoint-xl,
+    xxl: $breakpoint-xxl
+) !default;
+
+// --------------------------------------------
+// Layout
+// --------------------------------------------
+
+// Container
+$container-max-width:     1200px !default;
+$container-padding:       $spacing-4 !default;
+$container-padding-sm:    $spacing-6 !default;
+
+// Grid
+$grid-columns:            12 !default;
+$grid-gutter:             $spacing-6 !default;
+$grid-gutter-sm:          $spacing-4 !default;
+
+// Sidebar
+$sidebar-width:           300px !default;
+$sidebar-gap:             $spacing-8 !default;
+
+// --------------------------------------------
+// Components
+// --------------------------------------------
+
+// Border Radius
+$border-radius-none:      0 !default;
+$border-radius-sm:        0.125rem !default;   // 2px
+$border-radius-base:      0.25rem !default;    // 4px
+$border-radius-md:        0.375rem !default;   // 6px
+$border-radius-lg:        0.5rem !default;     // 8px
+$border-radius-xl:        0.75rem !default;    // 12px
+$border-radius-2xl:       1rem !default;       // 16px
+$border-radius-full:      9999px !default;
+
+// Box Shadow
+$shadow-none:             none !default;
+$shadow-sm:               0 1px 2px 0 rgba($color-black, 0.05) !default;
+$shadow-base:             0 1px 3px 0 rgba($color-black, 0.1), 0 1px 2px 0 rgba($color-black, 0.06) !default;
+$shadow-md:               0 4px 6px -1px rgba($color-black, 0.1), 0 2px 4px -1px rgba($color-black, 0.06) !default;
+$shadow-lg:               0 10px 15px -3px rgba($color-black, 0.1), 0 4px 6px -2px rgba($color-black, 0.05) !default;
+$shadow-xl:               0 20px 25px -5px rgba($color-black, 0.1), 0 10px 10px -5px rgba($color-black, 0.04) !default;
+$shadow-2xl:              0 25px 50px -12px rgba($color-black, 0.25) !default;
+$shadow-inner:            inset 0 2px 4px 0 rgba($color-black, 0.06) !default;
+
+// Transitions
+$transition-duration:     0.3s !default;
+$transition-timing:       ease-in-out !default;
+$transition-base:         all $transition-duration $transition-timing !default;
+$transition-fast:         all 0.15s $transition-timing !default;
+$transition-slow:         all 0.5s $transition-timing !default;
+
+// Z-Index
+$z-index-dropdown:        1000 !default;
+$z-index-sticky:          1020 !default;
+$z-index-fixed:           1030 !default;
+$z-index-modal-backdrop:  1040 !default;
+$z-index-modal:           1050 !default;
+$z-index-popover:         1060 !default;
+$z-index-tooltip:         1070 !default;
+
+// Buttons
+$btn-padding-x:           $spacing-5 !default;
+$btn-padding-y:           $spacing-3 !default;
+$btn-padding-x-sm:        $spacing-4 !default;
+$btn-padding-y-sm:        $spacing-2 !default;
+$btn-padding-x-lg:        $spacing-7 !default;
+$btn-padding-y-lg:        $spacing-4 !default;
+$btn-font-size:           $font-size-base !default;
+$btn-font-weight:         $font-weight-medium !default;
+$btn-border-radius:       $border-radius-base !default;
+$btn-transition:          $transition-base !default;
+
+// Forms
+$input-padding-x:         $spacing-4 !default;
+$input-padding-y:         $spacing-3 !default;
+$input-font-size:         $font-size-base !default;
+$input-border-color:      $border-color !default;
+$input-border-radius:     $border-radius-base !default;
+$input-focus-border:      $color-primary !default;
+$input-focus-shadow:      0 0 0 3px rgba($color-primary, 0.1) !default;
+
+// --------------------------------------------
+// Header
+// --------------------------------------------
+
+$header-height:           80px !default;
+$header-height-mobile:    60px !default;
+$header-bg:               $color-white !default;
+$header-shadow:           $shadow-sm !default;
+$header-z-index:          $z-index-sticky !default;
+
+// Navigation
+$nav-link-color:          $text-color !default;
+$nav-link-hover-color:    $color-primary !default;
+$nav-link-padding:        $spacing-4 !default;
+$nav-dropdown-bg:         $color-white !default;
+$nav-dropdown-shadow:     $shadow-lg !default;
+
+// --------------------------------------------
+// Footer
+// --------------------------------------------
+
+$footer-bg:               $gray-900 !default;
+$footer-text-color:       $gray-400 !default;
+$footer-heading-color:    $color-white !default;
+$footer-link-color:       $gray-400 !default;
+$footer-link-hover-color: $color-white !default;
+$footer-padding:          $spacing-10 !default;
+
+// --------------------------------------------
+// WooCommerce
+// --------------------------------------------
+
+$woo-primary:             $color-primary !default;
+$woo-secondary:           $color-secondary !default;
+$woo-sale-color:          $color-accent !default;
+$woo-price-color:         $color-primary !default;
+$woo-rating-color:        #ffb900 !default;
+$woo-success:             $color-success !default;
+$woo-error:               $color-error !default;
+$woo-info:                $color-info !default;

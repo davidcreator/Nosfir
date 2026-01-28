@@ -1,0 +1,435 @@
+// ============================================
+// NOSFIR THEME MIXINS
+// ============================================
+
+// --------------------------------------------
+// Breakpoint Mixins
+// --------------------------------------------
+
+// Mobile First (min-width)
+@mixin breakpoint-up($breakpoint) {
+    @if map-has-key($breakpoints, $breakpoint) {
+        $value: map-get($breakpoints, $breakpoint);
+        @if $value != 0 {
+            @media (min-width: $value) {
+                @content;
+            }
+        } @else {
+            @content;
+        }
+    } @else {
+        @media (min-width: $breakpoint) {
+            @content;
+        }
+    }
+}
+
+// Desktop First (max-width)
+@mixin breakpoint-down($breakpoint) {
+    @if map-has-key($breakpoints, $breakpoint) {
+        $value: map-get($breakpoints, $breakpoint);
+        @media (max-width: ($value - 0.02px)) {
+            @content;
+        }
+    } @else {
+        @media (max-width: ($breakpoint - 0.02px)) {
+            @content;
+        }
+    }
+}
+
+// Between breakpoints
+@mixin breakpoint-between($lower, $upper) {
+    $min: map-get($breakpoints, $lower);
+    $max: map-get($breakpoints, $upper);
+    
+    @media (min-width: $min) and (max-width: ($max - 0.02px)) {
+        @content;
+    }
+}
+
+// Shorthand aliases
+@mixin sm { @include breakpoint-up(sm) { @content; } }
+@mixin md { @include breakpoint-up(md) { @content; } }
+@mixin lg { @include breakpoint-up(lg) { @content; } }
+@mixin xl { @include breakpoint-up(xl) { @content; } }
+@mixin xxl { @include breakpoint-up(xxl) { @content; } }
+
+// --------------------------------------------
+// Typography Mixins
+// --------------------------------------------
+
+@mixin font-size($size) {
+    font-size: $size;
+    
+    @if $size >= $font-size-3xl {
+        line-height: $line-height-heading;
+    } @else {
+        line-height: $line-height-base;
+    }
+}
+
+@mixin heading-style {
+    font-family: $font-family-heading;
+    font-weight: $font-weight-bold;
+    line-height: $line-height-heading;
+    color: $text-color-heading;
+}
+
+@mixin text-truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+@mixin line-clamp($lines: 2) {
+    display: -webkit-box;
+    -webkit-line-clamp: $lines;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+// --------------------------------------------
+// Flexbox Mixins
+// --------------------------------------------
+
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin flex-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@mixin flex-start {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+@mixin flex-end {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+@mixin flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+@mixin flex-column-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+// --------------------------------------------
+// Grid Mixins
+// --------------------------------------------
+
+@mixin grid($columns: 1, $gap: $grid-gutter) {
+    display: grid;
+    grid-template-columns: repeat($columns, 1fr);
+    gap: $gap;
+}
+
+@mixin grid-auto-fit($min-width: 250px, $gap: $grid-gutter) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax($min-width, 1fr));
+    gap: $gap;
+}
+
+@mixin grid-auto-fill($min-width: 250px, $gap: $grid-gutter) {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax($min-width, 1fr));
+    gap: $gap;
+}
+
+// --------------------------------------------
+// Position Mixins
+// --------------------------------------------
+
+@mixin absolute-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@mixin absolute-fill {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+@mixin fixed-fill {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+// --------------------------------------------
+// Visual Mixins
+// --------------------------------------------
+
+@mixin box-shadow($shadow: $shadow-base) {
+    box-shadow: $shadow;
+}
+
+@mixin transition($transition: $transition-base) {
+    transition: $transition;
+}
+
+@mixin hover-lift($shadow: $shadow-lg, $translate: -2px) {
+    transition: $transition-base;
+    
+    &:hover {
+        transform: translateY($translate);
+        box-shadow: $shadow;
+    }
+}
+
+@mixin hover-scale($scale: 1.02) {
+    transition: $transition-base;
+    
+    &:hover {
+        transform: scale($scale);
+    }
+}
+
+@mixin overlay($color: $color-black, $opacity: 0.5) {
+    position: relative;
+    
+    &::before {
+        content: '';
+        @include absolute-fill;
+        background-color: rgba($color, $opacity);
+        z-index: 1;
+    }
+    
+    > * {
+        position: relative;
+        z-index: 2;
+    }
+}
+
+@mixin gradient-overlay($direction: to bottom, $from: transparent, $to: rgba($color-black, 0.7)) {
+    position: relative;
+    
+    &::before {
+        content: '';
+        @include absolute-fill;
+        background: linear-gradient($direction, $from, $to);
+        z-index: 1;
+    }
+    
+    > * {
+        position: relative;
+        z-index: 2;
+    }
+}
+
+// --------------------------------------------
+// Button Mixins
+// --------------------------------------------
+
+@mixin button-base {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-2;
+    padding: $btn-padding-y $btn-padding-x;
+    font-family: $font-family-base;
+    font-size: $btn-font-size;
+    font-weight: $btn-font-weight;
+    line-height: 1;
+    text-align: center;
+    text-decoration: none;
+    border: 1px solid transparent;
+    border-radius: $btn-border-radius;
+    cursor: pointer;
+    transition: $btn-transition;
+    
+    &:focus {
+        outline: none;
+    }
+    
+    &:disabled,
+    &.disabled {
+        opacity: 0.65;
+        pointer-events: none;
+    }
+}
+
+@mixin button-variant($bg-color, $text-color: $color-white, $hover-darken: 10%) {
+    background-color: $bg-color;
+    color: $text-color;
+    border-color: $bg-color;
+    
+    &:hover,
+    &:focus {
+        background-color: darken($bg-color, $hover-darken);
+        border-color: darken($bg-color, $hover-darken);
+        color: $text-color;
+    }
+    
+    &:focus {
+        box-shadow: 0 0 0 3px rgba($bg-color, 0.3);
+    }
+}
+
+@mixin button-outline($color, $hover-bg: $color) {
+    background-color: transparent;
+    color: $color;
+    border-color: $color;
+    
+    &:hover,
+    &:focus {
+        background-color: $hover-bg;
+        color: $color-white;
+    }
+    
+    &:focus {
+        box-shadow: 0 0 0 3px rgba($color, 0.3);
+    }
+}
+
+// --------------------------------------------
+// Form Mixins
+// --------------------------------------------
+
+@mixin form-input {
+    display: block;
+    width: 100%;
+    padding: $input-padding-y $input-padding-x;
+    font-family: $font-family-base;
+    font-size: $input-font-size;
+    line-height: $line-height-base;
+    color: $text-color;
+    background-color: $color-white;
+    background-clip: padding-box;
+    border: 1px solid $input-border-color;
+    border-radius: $input-border-radius;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    
+    &:focus {
+        border-color: $input-focus-border;
+        outline: 0;
+        box-shadow: $input-focus-shadow;
+    }
+    
+    &::placeholder {
+        color: $gray-500;
+        opacity: 1;
+    }
+    
+    &:disabled {
+        background-color: $gray-100;
+        opacity: 1;
+    }
+}
+
+// --------------------------------------------
+// Accessibility Mixins
+// --------------------------------------------
+
+@mixin visually-hidden {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+@mixin focus-visible {
+    &:focus-visible {
+        outline: 2px solid $color-primary;
+        outline-offset: 2px;
+    }
+}
+
+@mixin skip-link {
+    @include visually-hidden;
+    
+    &:focus {
+        position: fixed !important;
+        top: $spacing-2;
+        left: $spacing-2;
+        z-index: $z-index-tooltip;
+        width: auto !important;
+        height: auto !important;
+        padding: $spacing-3 $spacing-4;
+        margin: 0 !important;
+        overflow: visible !important;
+        clip: auto !important;
+        white-space: normal !important;
+        background-color: $color-white;
+        box-shadow: $shadow-lg;
+    }
+}
+
+// --------------------------------------------
+// Aspect Ratio Mixin
+// --------------------------------------------
+
+@mixin aspect-ratio($width: 16, $height: 9) {
+    aspect-ratio: #{$width} / #{$height};
+    
+    @supports not (aspect-ratio: 1 / 1) {
+        position: relative;
+        
+        &::before {
+            content: '';
+            display: block;
+            padding-top: percentage($height / $width);
+        }
+        
+        > * {
+            @include absolute-fill;
+        }
+    }
+}
+
+// --------------------------------------------
+// Container Mixin
+// --------------------------------------------
+
+@mixin container($max-width: $container-max-width, $padding: $container-padding) {
+    width: 100%;
+    max-width: $max-width;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: $padding;
+    padding-left: $padding;
+    
+    @include breakpoint-up(md) {
+        padding-right: $container-padding-sm;
+        padding-left: $container-padding-sm;
+    }
+}
+
+// --------------------------------------------
+// Clearfix Mixin
+// --------------------------------------------
+
+@mixin clearfix {
+    &::after {
+        content: '';
+        display: table;
+        clear: both;
+    }
+}
