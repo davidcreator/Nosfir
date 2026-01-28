@@ -1,0 +1,1257 @@
+/*!
+ * Nosfir Theme - Admin Styles
+ * 
+ * @package nosfir
+ * @version 1.0.0
+ */
+
+/* ============================================
+   TABLE OF CONTENTS
+   ============================================
+   1.  CSS Variables (Admin)
+   2.  NUX Buttons
+   3.  NUX Notice
+   4.  Welcome Screen
+   5.  Theme Page
+   6.  Customizer Controls
+   7.  Plugin Install
+   8.  Meta Boxes
+   9.  Dashboard Widget
+   10. Responsive Admin
+   ============================================ */
+
+/* ============================================
+   1. CSS VARIABLES (ADMIN)
+   ============================================ */
+
+:root {
+    /* Admin Colors */
+    --nosfir-admin-primary: #2c3e50;
+    --nosfir-admin-primary-hover: #1a252f;
+    --nosfir-admin-secondary: #3498db;
+    --nosfir-admin-secondary-hover: #2980b9;
+    --nosfir-admin-accent: #00aadc;
+    --nosfir-admin-accent-hover: #0087be;
+    --nosfir-admin-accent-focus: #005082;
+    --nosfir-admin-accent-light: #78dcfa;
+    --nosfir-admin-accent-disabled: #bceefd;
+    --nosfir-admin-accent-disabled-border: #8cc9e2;
+    
+    /* Notice Colors */
+    --nosfir-admin-notice-bg: #e7f5f9;
+    --nosfir-admin-notice-success: #46b450;
+    --nosfir-admin-notice-warning: #ffb900;
+    --nosfir-admin-notice-error: #dc3232;
+    --nosfir-admin-notice-info: #00a0d2;
+    
+    /* Text Colors */
+    --nosfir-admin-text-primary: #2e4453;
+    --nosfir-admin-text-secondary: #555d66;
+    --nosfir-admin-text-link: #0073aa;
+    --nosfir-admin-text-link-hover: #00a0d2;
+    
+    /* Backgrounds */
+    --nosfir-admin-bg-white: #ffffff;
+    --nosfir-admin-bg-light: #f1f1f1;
+    --nosfir-admin-bg-card: #fafafa;
+    
+    /* Borders */
+    --nosfir-admin-border-color: #ddd;
+    --nosfir-admin-border-radius: 4px;
+    
+    /* Shadows */
+    --nosfir-admin-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+    --nosfir-admin-shadow-hover: 0 1px 3px rgba(0, 0, 0, 0.1);
+    
+    /* Transitions */
+    --nosfir-admin-transition: 0.2s ease-in-out;
+}
+
+/* ============================================
+   2. NUX BUTTONS
+   ============================================ */
+
+.nosfir-nux .nosfir-nux-button,
+a.nosfir-nux-button,
+button.nosfir-nux-button {
+    display: inline-block;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 7px 14px 9px;
+    height: auto;
+    background: var(--nosfir-admin-accent);
+    border-color: var(--nosfir-admin-accent-hover);
+    border-style: solid;
+    border-width: 1px 1px 2px;
+    border-radius: var(--nosfir-admin-border-radius);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 21px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: none;
+    text-shadow: none;
+    text-overflow: ellipsis;
+    vertical-align: baseline;
+    cursor: pointer;
+    outline: 0;
+    overflow: hidden;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    transition: all var(--nosfir-admin-transition);
+}
+
+.nosfir-nux .nosfir-nux-button:hover,
+.nosfir-nux .nosfir-nux-button:focus,
+a.nosfir-nux-button:hover,
+a.nosfir-nux-button:focus,
+button.nosfir-nux-button:hover,
+button.nosfir-nux-button:focus {
+    background: var(--nosfir-admin-accent-hover);
+    border-color: var(--nosfir-admin-accent-focus);
+    color: #fff;
+}
+
+.nosfir-nux .nosfir-nux-button:focus,
+a.nosfir-nux-button:focus,
+button.nosfir-nux-button:focus {
+    box-shadow: 0 0 0 2px var(--nosfir-admin-accent-light);
+}
+
+.nosfir-nux .nosfir-nux-button:active,
+a.nosfir-nux-button:active,
+button.nosfir-nux-button:active {
+    border-width: 2px 1px 1px;
+    box-shadow: none;
+    vertical-align: baseline;
+}
+
+.nosfir-nux .nosfir-nux-button[disabled],
+.nosfir-nux .nosfir-nux-button:disabled,
+a.nosfir-nux-button[disabled],
+a.nosfir-nux-button:disabled,
+button.nosfir-nux-button[disabled],
+button.nosfir-nux-button:disabled {
+    color: #fff;
+    background: var(--nosfir-admin-accent-disabled);
+    border-color: var(--nosfir-admin-accent-disabled-border);
+    cursor: default;
+    pointer-events: none;
+}
+
+.nosfir-nux .nosfir-nux-button[disabled]:active,
+.nosfir-nux .nosfir-nux-button:disabled:active,
+a.nosfir-nux-button[disabled]:active,
+a.nosfir-nux-button:disabled:active,
+button.nosfir-nux-button[disabled]:active,
+button.nosfir-nux-button:disabled:active {
+    border-width: 1px 1px 2px;
+}
+
+/* Button Variants */
+.nosfir-nux-button.nosfir-button-primary {
+    background: var(--nosfir-admin-primary);
+    border-color: var(--nosfir-admin-primary-hover);
+}
+
+.nosfir-nux-button.nosfir-button-primary:hover,
+.nosfir-nux-button.nosfir-button-primary:focus {
+    background: var(--nosfir-admin-primary-hover);
+    border-color: #0d1318;
+}
+
+.nosfir-nux-button.nosfir-button-secondary {
+    background: var(--nosfir-admin-secondary);
+    border-color: var(--nosfir-admin-secondary-hover);
+}
+
+.nosfir-nux-button.nosfir-button-secondary:hover,
+.nosfir-nux-button.nosfir-button-secondary:focus {
+    background: var(--nosfir-admin-secondary-hover);
+    border-color: #1f618d;
+}
+
+.nosfir-nux-button.nosfir-button-link {
+    border: 0;
+    background: initial;
+    text-decoration: underline;
+    color: var(--nosfir-admin-text-link);
+    margin: 5px 0 0;
+    padding: 0;
+    font-size: inherit;
+    cursor: pointer;
+}
+
+.nosfir-nux-button.nosfir-button-link:hover,
+.nosfir-nux-button.nosfir-button-link:focus {
+    color: var(--nosfir-admin-text-link-hover);
+    background: transparent;
+    box-shadow: none;
+}
+
+/* Button Sizes */
+.nosfir-nux-button.nosfir-button-small {
+    padding: 4px 10px 5px;
+    font-size: 12px;
+    line-height: 18px;
+}
+
+.nosfir-nux-button.nosfir-button-large {
+    padding: 10px 20px 12px;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+/* Loading State */
+.nosfir-nux-button.updating-message::before {
+    display: inline-block;
+    content: "";
+    font: 400 20px/1 dashicons;
+    margin: 3px 5px 0 -2px;
+    vertical-align: bottom;
+    animation: nosfir-rotation 2s infinite linear;
+}
+
+@keyframes nosfir-rotation {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ============================================
+   3. NUX NOTICE
+   ============================================ */
+
+.nosfir-notice-nux {
+    display: flex;
+    align-items: center;
+    background: var(--nosfir-admin-notice-bg);
+    border-left-color: var(--nosfir-admin-accent);
+    padding: 0;
+}
+
+.nosfir-notice-nux::before,
+.nosfir-notice-nux::after {
+    content: "";
+    display: table;
+}
+
+.nosfir-notice-nux::after {
+    clear: both;
+}
+
+/* Notice Icon */
+.nosfir-notice-nux .nosfir-icon {
+    position: relative;
+    display: block;
+    flex-shrink: 0;
+    width: 70px;
+    height: 70px;
+    margin: 20px 17px 20px 5px;
+    background: var(--nosfir-admin-bg-white);
+    border-radius: 100%;
+    box-shadow: var(--nosfir-admin-shadow);
+}
+
+.nosfir-notice-nux .nosfir-icon img {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    padding: 12px;
+    box-sizing: border-box;
+    max-width: 100%;
+}
+
+.nosfir-notice-nux .nosfir-icon svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    fill: var(--nosfir-admin-primary);
+}
+
+/* Notice Content */
+.nosfir-notice-nux .notice-content {
+    flex: 1;
+    margin: 22px 0 23px;
+}
+
+.nosfir-notice-nux h2 {
+    margin: 0 0 10px;
+    padding: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--nosfir-admin-text-primary);
+    line-height: 1.4;
+}
+
+.nosfir-notice-nux p {
+    margin: 0;
+    padding: 0;
+    color: var(--nosfir-admin-text-secondary);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.nosfir-notice-nux p + p {
+    margin-top: 10px;
+}
+
+/* Notice Labels */
+.nosfir-notice-nux label {
+    display: block;
+    margin-top: 0.5em;
+    text-align: left;
+}
+
+.nosfir-notice-nux label:first-of-type {
+    margin-top: 0.8em;
+}
+
+.nosfir-notice-nux label:last-of-type {
+    margin-bottom: 0.2em;
+}
+
+/* Notice Form */
+.nosfir-notice-nux form {
+    margin-top: 15px;
+}
+
+.nosfir-notice-nux input[type="text"],
+.nosfir-notice-nux input[type="email"],
+.nosfir-notice-nux select {
+    margin-right: 10px;
+    min-width: 200px;
+}
+
+/* Plugin Card in Notice */
+.nosfir-notice-nux .nosfir-plugin-card {
+    display: block;
+    margin-top: 15px;
+}
+
+/* Install Now Button (Link Style) */
+.nosfir-notice-nux a.nosfir-install-now.activate-now.button-primary {
+    background: initial;
+    border: none;
+    padding: 0;
+    box-shadow: initial;
+    color: var(--nosfir-admin-text-link);
+    line-height: initial;
+    text-shadow: none;
+    text-decoration: underline;
+    display: initial;
+}
+
+.nosfir-notice-nux a.nosfir-install-now.activate-now.button-primary:hover {
+    color: var(--nosfir-admin-text-link-hover);
+}
+
+/* Notice Button (Link Style) */
+.nosfir-notice-nux .nosfir-nux-button {
+    border: 0;
+    background: initial;
+    text-decoration: underline;
+    color: var(--nosfir-admin-text-link);
+    margin: 5px 0 0;
+    padding: 0;
+    font-size: inherit;
+    cursor: pointer;
+}
+
+.nosfir-notice-nux .nosfir-nux-button:hover,
+.nosfir-notice-nux .nosfir-nux-button:focus {
+    color: var(--nosfir-admin-text-link-hover);
+}
+
+/* Dismiss Button */
+.nosfir-notice-nux .nosfir-nux-dismiss-button {
+    display: none;
+}
+
+/* Notice Actions */
+.nosfir-notice-nux .notice-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.nosfir-notice-nux .notice-actions .nosfir-nux-button {
+    margin: 0;
+}
+
+/* ============================================
+   4. WELCOME SCREEN
+   ============================================ */
+
+.nosfir-welcome-screen {
+    margin: 20px 20px 0 0;
+}
+
+.nosfir-welcome-screen .wrap {
+    max-width: 1200px;
+}
+
+/* Welcome Header */
+.nosfir-welcome-header {
+    position: relative;
+    padding: 40px;
+    background: linear-gradient(135deg, var(--nosfir-admin-primary) 0%, var(--nosfir-admin-primary-hover) 100%);
+    color: #fff;
+    border-radius: var(--nosfir-admin-border-radius);
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+
+.nosfir-welcome-header::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 400px;
+    height: 400px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+}
+
+.nosfir-welcome-header::after {
+    content: "";
+    position: absolute;
+    bottom: -30%;
+    right: 20%;
+    width: 200px;
+    height: 200px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 50%;
+}
+
+.nosfir-welcome-header h1 {
+    position: relative;
+    z-index: 1;
+    margin: 0 0 10px;
+    font-size: 32px;
+    font-weight: 300;
+    color: #fff;
+}
+
+.nosfir-welcome-header h1 strong {
+    font-weight: 600;
+}
+
+.nosfir-welcome-header .nosfir-version {
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.nosfir-welcome-header p {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    font-size: 16px;
+    opacity: 0.9;
+    max-width: 600px;
+}
+
+.nosfir-welcome-header .nosfir-logo {
+    position: absolute;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    width: 120px;
+    height: auto;
+    opacity: 0.9;
+}
+
+/* Welcome Cards Container */
+.nosfir-welcome-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+/* Welcome Card */
+.nosfir-welcome-card {
+    position: relative;
+    background: var(--nosfir-admin-bg-white);
+    border: 1px solid var(--nosfir-admin-border-color);
+    border-radius: var(--nosfir-admin-border-radius);
+    padding: 25px;
+    transition: all var(--nosfir-admin-transition);
+}
+
+.nosfir-welcome-card:hover {
+    border-color: #b4b9be;
+    box-shadow: var(--nosfir-admin-shadow-hover);
+}
+
+.nosfir-welcome-card .card-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background: var(--nosfir-admin-notice-bg);
+    border-radius: 50%;
+    margin-bottom: 15px;
+}
+
+.nosfir-welcome-card .card-icon .dashicons {
+    font-size: 24px;
+    color: var(--nosfir-admin-accent);
+}
+
+.nosfir-welcome-card h3 {
+    margin: 0 0 10px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--nosfir-admin-text-primary);
+}
+
+.nosfir-welcome-card p {
+    margin: 0 0 15px;
+    color: var(--nosfir-admin-text-secondary);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.nosfir-welcome-card .card-link {
+    display: inline-flex;
+    align-items: center;
+    color: var(--nosfir-admin-text-link);
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.nosfir-welcome-card .card-link:hover {
+    color: var(--nosfir-admin-text-link-hover);
+}
+
+.nosfir-welcome-card .card-link .dashicons {
+    font-size: 16px;
+    margin-left: 5px;
+    transition: transform var(--nosfir-admin-transition);
+}
+
+.nosfir-welcome-card .card-link:hover .dashicons {
+    transform: translateX(3px);
+}
+
+/* Welcome Card Featured */
+.nosfir-welcome-card.featured {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    color: #fff;
+}
+
+.nosfir-welcome-card.featured .card-icon {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.nosfir-welcome-card.featured .card-icon .dashicons {
+    color: #fff;
+}
+
+.nosfir-welcome-card.featured h3,
+.nosfir-welcome-card.featured p {
+    color: #fff;
+}
+
+.nosfir-welcome-card.featured p {
+    opacity: 0.9;
+}
+
+.nosfir-welcome-card.featured .card-link {
+    color: #fff;
+    opacity: 0.9;
+}
+
+.nosfir-welcome-card.featured .card-link:hover {
+    opacity: 1;
+}
+
+/* Welcome Features */
+.nosfir-welcome-features {
+    background: var(--nosfir-admin-bg-white);
+    border: 1px solid var(--nosfir-admin-border-color);
+    border-radius: var(--nosfir-admin-border-radius);
+    padding: 30px;
+    margin-bottom: 30px;
+}
+
+.nosfir-welcome-features h2 {
+    margin: 0 0 20px;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--nosfir-admin-text-primary);
+}
+
+.nosfir-welcome-features ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.nosfir-welcome-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.nosfir-welcome-features li .dashicons {
+    flex-shrink: 0;
+    color: var(--nosfir-admin-notice-success);
+    margin-top: 2px;
+}
+
+.nosfir-welcome-features li span {
+    color: var(--nosfir-admin-text-secondary);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* Welcome Footer */
+.nosfir-welcome-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px 0;
+    border-top: 1px solid var(--nosfir-admin-border-color);
+}
+
+.nosfir-welcome-footer .footer-links {
+    display: flex;
+    gap: 20px;
+}
+
+.nosfir-welcome-footer .footer-links a {
+    color: var(--nosfir-admin-text-secondary);
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.nosfir-welcome-footer .footer-links a:hover {
+    color: var(--nosfir-admin-text-link);
+}
+
+.nosfir-welcome-footer .footer-social {
+    display: flex;
+    gap: 10px;
+}
+
+.nosfir-welcome-footer .footer-social a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: var(--nosfir-admin-bg-light);
+    border-radius: 50%;
+    color: var(--nosfir-admin-text-secondary);
+    text-decoration: none;
+    transition: all var(--nosfir-admin-transition);
+}
+
+.nosfir-welcome-footer .footer-social a:hover {
+    background: var(--nosfir-admin-primary);
+    color: #fff;
+}
+
+/* ============================================
+   5. THEME PAGE
+   ============================================ */
+
+.nosfir-theme-page {
+    margin: 20px 20px 0 0;
+}
+
+/* Theme Tabs */
+.nosfir-theme-tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: -1px;
+    border-bottom: 1px solid var(--nosfir-admin-border-color);
+}
+
+.nosfir-theme-tabs .nav-tab {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: transparent;
+    border: 1px solid transparent;
+    border-bottom: none;
+    color: var(--nosfir-admin-text-secondary);
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all var(--nosfir-admin-transition);
+}
+
+.nosfir-theme-tabs .nav-tab:hover {
+    color: var(--nosfir-admin-text-primary);
+}
+
+.nosfir-theme-tabs .nav-tab.nav-tab-active {
+    background: var(--nosfir-admin-bg-white);
+    border-color: var(--nosfir-admin-border-color);
+    border-bottom-color: var(--nosfir-admin-bg-white);
+    color: var(--nosfir-admin-text-primary);
+    margin-bottom: -1px;
+    border-radius: var(--nosfir-admin-border-radius) var(--nosfir-admin-border-radius) 0 0;
+}
+
+.nosfir-theme-tabs .nav-tab .dashicons {
+    font-size: 18px;
+}
+
+/* Tab Content */
+.nosfir-tab-content {
+    display: none;
+    background: var(--nosfir-admin-bg-white);
+    border: 1px solid var(--nosfir-admin-border-color);
+    border-top: none;
+    padding: 30px;
+    border-radius: 0 0 var(--nosfir-admin-border-radius) var(--nosfir-admin-border-radius);
+}
+
+.nosfir-tab-content.active {
+    display: block;
+}
+
+/* ============================================
+   6. CUSTOMIZER CONTROLS
+   ============================================ */
+
+/* Customizer Separator */
+.customize-control-nosfir-separator {
+    margin: 20px 0;
+    padding: 0;
+}
+
+.customize-control-nosfir-separator hr {
+    border: 0;
+    border-top: 1px solid var(--nosfir-admin-border-color);
+    margin: 0;
+}
+
+/* Customizer Heading */
+.customize-control-nosfir-heading {
+    margin: 25px 0 15px;
+}
+
+.customize-control-nosfir-heading span {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--nosfir-admin-text-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Customizer Arbitrary */
+.customize-control-nosfir-arbitrary {
+    margin: 15px 0;
+}
+
+.customize-control-nosfir-arbitrary .description {
+    font-style: normal;
+    color: var(--nosfir-admin-text-secondary);
+}
+
+/* Customizer Radio Image */
+.customize-control-nosfir-radio-image {
+    margin: 15px 0;
+}
+
+.customize-control-nosfir-radio-image .nosfir-radio-images {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.customize-control-nosfir-radio-image .nosfir-radio-image-item {
+    position: relative;
+}
+
+.customize-control-nosfir-radio-image .nosfir-radio-image-item input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.customize-control-nosfir-radio-image .nosfir-radio-image-item label {
+    display: block;
+    cursor: pointer;
+    border: 2px solid var(--nosfir-admin-border-color);
+    border-radius: var(--nosfir-admin-border-radius);
+    overflow: hidden;
+    transition: all var(--nosfir-admin-transition);
+}
+
+.customize-control-nosfir-radio-image .nosfir-radio-image-item label:hover {
+    border-color: var(--nosfir-admin-accent);
+}
+
+.customize-control-nosfir-radio-image .nosfir-radio-image-item input[type="radio"]:checked + label {
+    border-color: var(--nosfir-admin-accent);
+    box-shadow: 0 0 0 2px var(--nosfir-admin-accent-light);
+}
+
+.customize-control-nosfir-radio-image .nosfir-radio-image-item img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* Customizer More Section */
+.customize-control-nosfir-more .nosfir-more-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px;
+    background: var(--nosfir-admin-notice-bg);
+    border-radius: var(--nosfir-admin-border-radius);
+    text-decoration: none;
+    transition: all var(--nosfir-admin-transition);
+}
+
+.customize-control-nosfir-more .nosfir-more-link:hover {
+    background: #d4ecf4;
+}
+
+.customize-control-nosfir-more .nosfir-more-link .dashicons {
+    font-size: 20px;
+    color: var(--nosfir-admin-accent);
+}
+
+.customize-control-nosfir-more .nosfir-more-link span {
+    font-size: 13px;
+    color: var(--nosfir-admin-text-primary);
+}
+
+/* ============================================
+   7. PLUGIN INSTALL
+   ============================================ */
+
+.nosfir-plugin-install {
+    margin: 20px 0;
+}
+
+/* Plugin Card */
+.nosfir-plugin-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px;
+    background: var(--nosfir-admin-bg-white);
+    border: 1px solid var(--nosfir-admin-border-color);
+    border-radius: var(--nosfir-admin-border-radius);
+    margin-bottom: 15px;
+    transition: all var(--nosfir-admin-transition);
+}
+
+.nosfir-plugin-card:hover {
+    box-shadow: var(--nosfir-admin-shadow-hover);
+}
+
+.nosfir-plugin-card .plugin-icon {
+    flex-shrink: 0;
+    width: 64px;
+    height: 64px;
+    border-radius: var(--nosfir-admin-border-radius);
+    overflow: hidden;
+    background: var(--nosfir-admin-bg-light);
+}
+
+.nosfir-plugin-card .plugin-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.nosfir-plugin-card .plugin-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.nosfir-plugin-card .plugin-info h3 {
+    margin: 0 0 5px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--nosfir-admin-text-primary);
+}
+
+.nosfir-plugin-card .plugin-info p {
+    margin: 0 0 10px;
+    font-size: 13px;
+    color: var(--nosfir-admin-text-secondary);
+    line-height: 1.5;
+}
+
+.nosfir-plugin-card .plugin-info .plugin-meta {
+    display: flex;
+    gap: 15px;
+    font-size: 12px;
+    color: #999;
+}
+
+.nosfir-plugin-card .plugin-actions {
+    flex-shrink: 0;
+}
+
+.nosfir-plugin-card .plugin-actions .button {
+    white-space: nowrap;
+}
+
+/* Plugin Status */
+.nosfir-plugin-card.is-active {
+    border-left: 3px solid var(--nosfir-admin-notice-success);
+}
+
+.nosfir-plugin-card.is-active .plugin-status {
+    color: var(--nosfir-admin-notice-success);
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.nosfir-plugin-card.needs-update {
+    border-left: 3px solid var(--nosfir-admin-notice-warning);
+}
+
+/* Recommended Plugins Section */
+.nosfir-recommended-plugins {
+    margin: 30px 0;
+}
+
+.nosfir-recommended-plugins h2 {
+    margin: 0 0 20px;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--nosfir-admin-text-primary);
+}
+
+.nosfir-recommended-plugins .plugins-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 15px;
+}
+
+/* ============================================
+   8. META BOXES
+   ============================================ */
+
+/* Nosfir Meta Box */
+.nosfir-meta-box {
+    padding: 0;
+}
+
+.nosfir-meta-box .inside {
+    padding: 15px;
+    margin: 0;
+}
+
+.nosfir-meta-box .nosfir-field {
+    margin-bottom: 15px;
+}
+
+.nosfir-meta-box .nosfir-field:last-child {
+    margin-bottom: 0;
+}
+
+.nosfir-meta-box .nosfir-field label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: var(--nosfir-admin-text-primary);
+}
+
+.nosfir-meta-box .nosfir-field input[type="text"],
+.nosfir-meta-box .nosfir-field textarea,
+.nosfir-meta-box .nosfir-field select {
+    width: 100%;
+}
+
+.nosfir-meta-box .nosfir-field .description {
+    margin-top: 5px;
+    font-size: 12px;
+    color: #999;
+}
+
+/* Layout Options Meta Box */
+.nosfir-layout-options {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.nosfir-layout-options .layout-option {
+    flex: 1;
+    text-align: center;
+}
+
+.nosfir-layout-options .layout-option input[type="radio"] {
+    display: none;
+}
+
+.nosfir-layout-options .layout-option label {
+    display: block;
+    padding: 10px;
+    border: 2px solid var(--nosfir-admin-border-color);
+    border-radius: var(--nosfir-admin-border-radius);
+    cursor: pointer;
+    transition: all var(--nosfir-admin-transition);
+}
+
+.nosfir-layout-options .layout-option label:hover {
+    border-color: var(--nosfir-admin-accent);
+}
+
+.nosfir-layout-options .layout-option input[type="radio"]:checked + label {
+    border-color: var(--nosfir-admin-accent);
+    background: var(--nosfir-admin-notice-bg);
+}
+
+.nosfir-layout-options .layout-option label img {
+    display: block;
+    width: 100%;
+    max-width: 60px;
+    margin: 0 auto 5px;
+}
+
+.nosfir-layout-options .layout-option label span {
+    display: block;
+    font-size: 12px;
+    color: var(--nosfir-admin-text-secondary);
+}
+
+/* ============================================
+   9. DASHBOARD WIDGET
+   ============================================ */
+
+#nosfir-dashboard-widget .inside {
+    padding: 0;
+    margin: 0;
+}
+
+.nosfir-dashboard-content {
+    padding: 15px;
+}
+
+.nosfir-dashboard-content h3 {
+    margin: 0 0 10px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.nosfir-dashboard-content p {
+    margin: 0 0 15px;
+    color: var(--nosfir-admin-text-secondary);
+    font-size: 13px;
+}
+
+.nosfir-dashboard-content ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.nosfir-dashboard-content ul li {
+    padding: 8px 0;
+    border-bottom: 1px solid var(--nosfir-admin-border-color);
+}
+
+.nosfir-dashboard-content ul li:last-child {
+    border-bottom: none;
+}
+
+.nosfir-dashboard-content ul li a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--nosfir-admin-text-link);
+    text-decoration: none;
+}
+
+.nosfir-dashboard-content ul li a:hover {
+    color: var(--nosfir-admin-text-link-hover);
+}
+
+.nosfir-dashboard-content ul li a .dashicons {
+    font-size: 16px;
+    color: var(--nosfir-admin-text-secondary);
+}
+
+.nosfir-dashboard-footer {
+    padding: 12px 15px;
+    background: var(--nosfir-admin-bg-light);
+    border-top: 1px solid var(--nosfir-admin-border-color);
+}
+
+.nosfir-dashboard-footer a {
+    color: var(--nosfir-admin-text-link);
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.nosfir-dashboard-footer a:hover {
+    color: var(--nosfir-admin-text-link-hover);
+}
+
+/* ============================================
+   10. RESPONSIVE ADMIN
+   ============================================ */
+
+@media only screen and (max-width: 1200px) {
+    .nosfir-welcome-header .nosfir-logo {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 782px) {
+    /* Notice Adjustments */
+    .nosfir-notice-nux {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px;
+    }
+
+    .nosfir-notice-nux .nosfir-icon {
+        width: 50px;
+        height: 50px;
+        margin: 0 0 15px 0;
+    }
+
+    .nosfir-notice-nux .nosfir-icon img {
+        padding: 8px;
+    }
+
+    .nosfir-notice-nux .notice-content {
+        margin: 0;
+    }
+
+    .nosfir-notice-nux h2 {
+        font-size: 16px;
+    }
+
+    .nosfir-notice-nux form {
+        margin-top: 10px;
+    }
+
+    .nosfir-notice-nux label:first-of-type {
+        margin-top: 1.5em;
+    }
+
+    .nosfir-notice-nux label:last-of-type {
+        margin: 20px 0;
+    }
+
+    /* Welcome Screen Adjustments */
+    .nosfir-welcome-header {
+        padding: 25px;
+    }
+
+    .nosfir-welcome-header h1 {
+        font-size: 24px;
+    }
+
+    .nosfir-welcome-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .nosfir-welcome-card {
+        padding: 20px;
+    }
+
+    /* Theme Tabs */
+    .nosfir-theme-tabs {
+        flex-wrap: wrap;
+    }
+
+    .nosfir-theme-tabs .nav-tab {
+        flex: 1;
+        justify-content: center;
+        min-width: 100px;
+    }
+
+    .nosfir-tab-content {
+        padding: 20px;
+    }
+
+    /* Plugin Cards */
+    .nosfir-plugin-card {
+        flex-direction: column;
+    }
+
+    .nosfir-plugin-card .plugin-actions {
+        width: 100%;
+    }
+
+    .nosfir-plugin-card .plugin-actions .button {
+        width: 100%;
+        text-align: center;
+    }
+
+    .nosfir-recommended-plugins .plugins-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Footer */
+    .nosfir-welcome-footer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .nosfir-welcome-header {
+        padding: 20px;
+    }
+
+    .nosfir-welcome-header h1 {
+        font-size: 20px;
+    }
+
+    .nosfir-welcome-header p {
+        font-size: 14px;
+    }
+
+    .nosfir-welcome-features ul {
+        grid-template-columns: 1fr;
+    }
+
+    .customize-control-nosfir-radio-image .nosfir-radio-images {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ============================================
+   END OF NOSFIR ADMIN STYLES
+   ============================================ */

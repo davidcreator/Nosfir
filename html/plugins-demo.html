@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plugins Demo</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/admin/buttons.css">
+    <link rel="stylesheet" href="../assets/css/admin/plugin-install.css">
+</head>
+<!-- Action buttons -->
+<div class="nosfir-actions">
+    <!-- Install button -->
+    <a href="#" class="nosfir-btn nosfir-btn--primary nosfir-install-now">
+        <span class="nosfir-btn__text">Instalar Agora</span>
+    </a>
+
+    <!-- Installing button with spinner -->
+    <a href="#" class="nosfir-btn nosfir-btn--primary nosfir-install-now updating-message" aria-disabled="true">
+        <span class="nosfir-btn__spinner"></span>
+        <span class="nosfir-btn__text">Instalando...</span>
+    </a>
+
+    <!-- Installed button -->
+    <a href="#" class="nosfir-btn nosfir-btn--disabled updated-message" aria-disabled="true">
+        <span class="nosfir-btn__text">Instalado</span>
+    </a>
+
+    <!-- Activate button -->
+    <a href="#" class="nosfir-btn nosfir-btn--success nosfir-activate-now">
+        <span class="nosfir-btn__text">Ativar</span>
+    </a>
+
+    <!-- Update button -->
+    <a href="#" class="nosfir-btn nosfir-btn--secondary nosfir-update-now">
+        <span class="nosfir-btn__text">Atualizar</span>
+    </a>
+</div>
+
+<!-- Plugin Card -->
+<div class="nosfir-plugin-card">
+    <div class="nosfir-plugin-card__header">
+        <div class="nosfir-plugin-card__icon">
+            <img src="plugin-icon.png" alt="Plugin">
+        </div>
+        <div class="nosfir-plugin-card__info">
+            <h3 class="nosfir-plugin-card__name">
+                <a href="#">Nome do Plugin</a>
+                <span class="nosfir-plugin-badge nosfir-plugin-badge--required">Obrigatório</span>
+            </h3>
+            <p class="nosfir-plugin-card__author">Por <a href="#">Autor</a></p>
+        </div>
+    </div>
+    <div class="nosfir-plugin-card__body">
+        <div class="nosfir-plugin-card__description">
+            <p>Descrição do plugin vai aqui.</p>
+        </div>
+        <div class="nosfir-plugin-card__meta">
+            <span class="nosfir-plugin-card__meta-item">
+                <span class="dashicons dashicons-admin-plugins"></span>
+                Versão 1.0.0
+            </span>
+            <span class="nosfir-plugin-card__meta-item">
+                <span class="dashicons dashicons-download"></span>
+                10.000+ instalações
+            </span>
+        </div>
+    </div>
+    <div class="nosfir-plugin-card__footer">
+        <span class="nosfir-plugin-badge nosfir-plugin-badge--active">Ativo</span>
+        <div class="nosfir-plugin-card__actions">
+            <a href="#" class="nosfir-btn nosfir-btn--primary nosfir-install-now">
+                <span class="nosfir-btn__text">Instalar</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Plugin Card Required -->
+<div class="nosfir-plugin-card nosfir-plugin-card--required">
+    <!-- content -->
+</div>
+
+<!-- Plugin Card Featured -->
+<div class="nosfir-plugin-card nosfir-plugin-card--featured">
+    <!-- content -->
+</div>
+
+<!-- Message: Success -->
+<div class="nosfir-notice nosfir-notice--success" role="alert">
+    <div class="nosfir-notice__icon">
+        <span class="dashicons dashicons-yes-alt"></span>
+    </div>
+    <div class="nosfir-notice__content">
+        <p>Plugin instalado e ativado com sucesso!</p>
+    </div>
+</div>
+
+<!-- Message: Error -->
+<div class="nosfir-notice nosfir-notice--error" role="alert">
+    <div class="nosfir-notice__icon">
+        <span class="dashicons dashicons-warning"></span>
+    </div>
+    <div class="nosfir-notice__content">
+        <p>Erro ao instalar o plugin. Por favor, tente novamente.</p>
+    </div>
+</div>
+
+<!-- Progress Bar -->
+<div class="nosfir-progress">
+    <div class="nosfir-progress__bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
+        <div class="nosfir-progress__fill" style="width: 60%;"></div>
+    </div>
+    <div class="nosfir-progress__text">
+        <span class="nosfir-progress__status">
+            <span class="dashicons dashicons-update"></span>
+            Instalando plugin 3 de 5...
+        </span>
+        <span class="nosfir-progress__percent">60%</span>
+    </div>
+</div>
+
+<!-- Notice: Required Plugins -->
+<div class="nosfir-notice nosfir-notice--info">
+    <div class="nosfir-notice__icon">
+        <span class="dashicons dashicons-info"></span>
+    </div>
+    <div class="nosfir-notice__content">
+        <h4 class="nosfir-notice__title">Plugins Obrigatórios</h4>
+        <p class="nosfir-notice__message">
+            Este tema requer os seguintes plugins para funcionar corretamente.
+        </p>
+        <div class="nosfir-notice__actions">
+            <a href="#" class="nosfir-btn nosfir-btn--primary">Instalar Plugins</a>
+        </div>
+    </div>
+</div>
+
+<!-- Recommended Plugins Grid -->
+<section class="nosfir-recommended-plugins">
+    <header class="nosfir-recommended-plugins__header">
+        <div class="nosfir-recommended-plugins__titles">
+            <h2 class="nosfir-recommended-plugins__title">Plugins Recomendados</h2>
+            <p class="nosfir-recommended-plugins__subtitle">
+                Plugins que funcionam perfeitamente com o tema Nosfir.
+            </p>
+        </div>
+        <div class="nosfir-recommended-plugins__actions">
+            <a href="#" class="nosfir-btn nosfir-btn--secondary">Instalar Todos</a>
+        </div>
+    </header>
+    <div class="nosfir-recommended-plugins__grid">
+        <!-- Plugin cards here -->
+    </div>
+</section>

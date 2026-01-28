@@ -1,0 +1,1378 @@
+/*!
+ * Nosfir Theme - Button Styles
+ * 
+ * @package nosfir
+ * @version 1.0.0
+ * 
+ * TABLE OF CONTENTS
+ * ============================================
+ * 1.  CSS Variables (Buttons)
+ * 2.  Base Button Styles
+ * 3.  Button Variants
+ * 4.  Button Sizes
+ * 5.  Button States
+ * 6.  Button with Icons
+ * 7.  Button Groups
+ * 8.  Link Buttons
+ * 9.  Block Buttons
+ * 10. Loading Buttons
+ * 11. Social Buttons
+ * 12. WooCommerce Buttons
+ * 13. WordPress Block Buttons
+ * 14. Responsive Buttons
+ * ============================================
+ */
+
+/* ============================================
+   1. CSS VARIABLES (BUTTONS)
+   ============================================ */
+
+:root {
+    /* Primary Button */
+    --nosfir-btn-primary-bg: #2c3e50;
+    --nosfir-btn-primary-bg-hover: #1a252f;
+    --nosfir-btn-primary-border: #1a252f;
+    --nosfir-btn-primary-border-hover: #0d1318;
+    --nosfir-btn-primary-text: #ffffff;
+    
+    /* Secondary Button */
+    --nosfir-btn-secondary-bg: #6c757d;
+    --nosfir-btn-secondary-bg-hover: #5a6268;
+    --nosfir-btn-secondary-border: #5a6268;
+    --nosfir-btn-secondary-border-hover: #4e555b;
+    --nosfir-btn-secondary-text: #ffffff;
+    
+    /* Accent Button */
+    --nosfir-btn-accent-bg: #00aadc;
+    --nosfir-btn-accent-bg-hover: #0087be;
+    --nosfir-btn-accent-border: #0087be;
+    --nosfir-btn-accent-border-hover: #005082;
+    --nosfir-btn-accent-text: #ffffff;
+    --nosfir-btn-accent-focus-shadow: #78dcfa;
+    --nosfir-btn-accent-disabled-bg: #bceefd;
+    --nosfir-btn-accent-disabled-border: #8cc9e2;
+    
+    /* Success Button */
+    --nosfir-btn-success-bg: #27ae60;
+    --nosfir-btn-success-bg-hover: #219a52;
+    --nosfir-btn-success-border: #219a52;
+    --nosfir-btn-success-border-hover: #1e8449;
+    --nosfir-btn-success-text: #ffffff;
+    
+    /* Warning Button */
+    --nosfir-btn-warning-bg: #f39c12;
+    --nosfir-btn-warning-bg-hover: #d68910;
+    --nosfir-btn-warning-border: #d68910;
+    --nosfir-btn-warning-border-hover: #b9770e;
+    --nosfir-btn-warning-text: #ffffff;
+    
+    /* Danger/Error Button */
+    --nosfir-btn-danger-bg: #e74c3c;
+    --nosfir-btn-danger-bg-hover: #c0392b;
+    --nosfir-btn-danger-border: #c0392b;
+    --nosfir-btn-danger-border-hover: #a93226;
+    --nosfir-btn-danger-text: #ffffff;
+    
+    /* Info Button */
+    --nosfir-btn-info-bg: #3498db;
+    --nosfir-btn-info-bg-hover: #2980b9;
+    --nosfir-btn-info-border: #2980b9;
+    --nosfir-btn-info-border-hover: #1f618d;
+    --nosfir-btn-info-text: #ffffff;
+    
+    /* Light Button */
+    --nosfir-btn-light-bg: #f8f9fa;
+    --nosfir-btn-light-bg-hover: #e2e6ea;
+    --nosfir-btn-light-border: #dae0e5;
+    --nosfir-btn-light-border-hover: #d3d9df;
+    --nosfir-btn-light-text: #212529;
+    
+    /* Dark Button */
+    --nosfir-btn-dark-bg: #343a40;
+    --nosfir-btn-dark-bg-hover: #23272b;
+    --nosfir-btn-dark-border: #1d2124;
+    --nosfir-btn-dark-border-hover: #171a1d;
+    --nosfir-btn-dark-text: #ffffff;
+    
+    /* Button Base Properties */
+    --nosfir-btn-font-family: inherit;
+    --nosfir-btn-font-size: 14px;
+    --nosfir-btn-font-size-sm: 12px;
+    --nosfir-btn-font-size-lg: 16px;
+    --nosfir-btn-font-weight: 500;
+    --nosfir-btn-line-height: 21px;
+    --nosfir-btn-line-height-sm: 18px;
+    --nosfir-btn-line-height-lg: 24px;
+    --nosfir-btn-padding-y: 7px;
+    --nosfir-btn-padding-x: 14px;
+    --nosfir-btn-padding-y-sm: 4px;
+    --nosfir-btn-padding-x-sm: 10px;
+    --nosfir-btn-padding-y-lg: 10px;
+    --nosfir-btn-padding-x-lg: 20px;
+    --nosfir-btn-border-width: 1px;
+    --nosfir-btn-border-width-bottom: 2px;
+    --nosfir-btn-border-radius: 4px;
+    --nosfir-btn-border-radius-sm: 3px;
+    --nosfir-btn-border-radius-lg: 6px;
+    --nosfir-btn-border-radius-pill: 50px;
+    --nosfir-btn-transition: all 0.2s ease-in-out;
+    --nosfir-btn-focus-shadow-width: 2px;
+    --nosfir-btn-disabled-opacity: 0.65;
+}
+
+/* ============================================
+   2. BASE BUTTON STYLES
+   ============================================ */
+
+/* Base Button Reset & Styles */
+.nosfir-btn,
+.nosfir-nux .nosfir-nux-button,
+a.nosfir-nux-button,
+button.nosfir-nux-button,
+.nosfir-button,
+button.nosfir-button,
+a.nosfir-button,
+input[type="button"].nosfir-button,
+input[type="submit"].nosfir-button,
+input[type="reset"].nosfir-button {
+    /* Display */
+    display: inline-block;
+    vertical-align: baseline;
+    
+    /* Box Model */
+    box-sizing: border-box;
+    margin: 0;
+    padding: var(--nosfir-btn-padding-y) var(--nosfir-btn-padding-x) calc(var(--nosfir-btn-padding-y) + 2px);
+    height: auto;
+    
+    /* Typography */
+    font-family: var(--nosfir-btn-font-family);
+    font-size: var(--nosfir-btn-font-size);
+    font-weight: var(--nosfir-btn-font-weight);
+    line-height: var(--nosfir-btn-line-height);
+    text-align: center;
+    text-decoration: none;
+    text-transform: none;
+    text-shadow: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    
+    /* Visual */
+    color: var(--nosfir-btn-accent-text);
+    background: var(--nosfir-btn-accent-bg);
+    border-style: solid;
+    border-color: var(--nosfir-btn-accent-border);
+    border-width: var(--nosfir-btn-border-width) var(--nosfir-btn-border-width) var(--nosfir-btn-border-width-bottom);
+    border-radius: var(--nosfir-btn-border-radius);
+    
+    /* Behavior */
+    cursor: pointer;
+    outline: 0;
+    overflow: hidden;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    touch-action: manipulation;
+    
+    /* Transitions */
+    transition: var(--nosfir-btn-transition);
+}
+
+/* Hover State */
+.nosfir-btn:hover,
+.nosfir-nux .nosfir-nux-button:hover,
+a.nosfir-nux-button:hover,
+button.nosfir-nux-button:hover,
+.nosfir-button:hover,
+button.nosfir-button:hover,
+a.nosfir-button:hover {
+    color: var(--nosfir-btn-accent-text);
+    background: var(--nosfir-btn-accent-bg-hover);
+    border-color: var(--nosfir-btn-accent-border-hover);
+    text-decoration: none;
+}
+
+/* Focus State */
+.nosfir-btn:focus,
+.nosfir-nux .nosfir-nux-button:focus,
+a.nosfir-nux-button:focus,
+button.nosfir-nux-button:focus,
+.nosfir-button:focus,
+button.nosfir-button:focus,
+a.nosfir-button:focus {
+    color: var(--nosfir-btn-accent-text);
+    background: var(--nosfir-btn-accent-bg-hover);
+    border-color: var(--nosfir-btn-accent-border-hover);
+    outline: 0;
+    box-shadow: 0 0 0 var(--nosfir-btn-focus-shadow-width) var(--nosfir-btn-accent-focus-shadow);
+}
+
+/* Focus Visible (Modern Browsers) */
+.nosfir-btn:focus-visible,
+.nosfir-button:focus-visible {
+    box-shadow: 0 0 0 var(--nosfir-btn-focus-shadow-width) var(--nosfir-btn-accent-focus-shadow);
+}
+
+/* Active/Pressed State */
+.nosfir-btn:active,
+.nosfir-nux .nosfir-nux-button:active,
+a.nosfir-nux-button:active,
+button.nosfir-nux-button:active,
+.nosfir-button:active,
+button.nosfir-button:active,
+a.nosfir-button:active {
+    border-width: var(--nosfir-btn-border-width-bottom) var(--nosfir-btn-border-width) var(--nosfir-btn-border-width);
+    box-shadow: none;
+    vertical-align: baseline;
+    transform: translateY(1px);
+}
+
+/* ============================================
+   3. BUTTON VARIANTS
+   ============================================ */
+
+/* Primary Button */
+.nosfir-btn--primary,
+.nosfir-button--primary,
+.nosfir-nux-button--primary {
+    color: var(--nosfir-btn-primary-text);
+    background: var(--nosfir-btn-primary-bg);
+    border-color: var(--nosfir-btn-primary-border);
+}
+
+.nosfir-btn--primary:hover,
+.nosfir-btn--primary:focus,
+.nosfir-button--primary:hover,
+.nosfir-button--primary:focus {
+    color: var(--nosfir-btn-primary-text);
+    background: var(--nosfir-btn-primary-bg-hover);
+    border-color: var(--nosfir-btn-primary-border-hover);
+}
+
+.nosfir-btn--primary:focus {
+    box-shadow: 0 0 0 var(--nosfir-btn-focus-shadow-width) rgba(44, 62, 80, 0.4);
+}
+
+/* Secondary Button */
+.nosfir-btn--secondary,
+.nosfir-button--secondary,
+.nosfir-nux-button--secondary {
+    color: var(--nosfir-btn-secondary-text);
+    background: var(--nosfir-btn-secondary-bg);
+    border-color: var(--nosfir-btn-secondary-border);
+}
+
+.nosfir-btn--secondary:hover,
+.nosfir-btn--secondary:focus,
+.nosfir-button--secondary:hover,
+.nosfir-button--secondary:focus {
+    color: var(--nosfir-btn-secondary-text);
+    background: var(--nosfir-btn-secondary-bg-hover);
+    border-color: var(--nosfir-btn-secondary-border-hover);
+}
+
+.nosfir-btn--secondary:focus {
+    box-shadow: 0 0 0 var(--nosfir-btn-focus-shadow-width) rgba(108, 117, 125, 0.4);
+}
+
+/* Accent Button (Default) */
+.nosfir-btn--accent,
+.nosfir-button--accent,
+.nosfir-nux-button--accent {
+    color: var(--nosfir-btn-accent-text);
+    background: var(--nosfir-btn-accent-bg);
+    border-color: var(--nosfir-btn-accent-border);
+}
+
+.nosfir-btn--accent:hover,
+.nosfir-btn--accent:focus,
+.nosfir-button--accent:hover,
+.nosfir-button--accent:focus {
+    color: var(--nosfir-btn-accent-text);
+    background: var(--nosfir-btn-accent-bg-hover);
+    border-color: var(--nosfir-btn-accent-border-hover);
+}
+
+.nosfir-btn--accent:focus {
+    box-shadow: 0 0 0 var(--nosfir-btn-focus-shadow-width) var(--nosfir-btn-accent-focus-shadow);
+}
+
+/* Success Button */
+.nosfir-btn--success,
+.nosfir-button--success,
+.nosfir-nux-button--success {
+    color: var(--nosfir-btn-success-text);
+    background: var(--nosfir-btn-success-bg);
+    border-color: var(--nosfir-btn-success-border);
+}
+
+.nosfir-btn--success:hover,
+.nosfir-btn--success:focus,
+.nosfir-button--success:hover,
+.nosfir-button--success:focus {
+    color: var(--nosfir-btn-success-text);
+    background: var(--nosfir-btn-success-bg-hover);
+    border-color: var(--nosfir-btn-success-border-hover);
+}
+
+.nosfir-btn--success:focus {
+    box-shadow: 0 0 0 var(--nosfir-btn-focus-shadow-width) rgba(39, 174, 96, 0.4);
+}
+
+/* Warning Button */
+.nosfir-btn--warning,
+.nosfir-button--warning,
+.nosfir-nux-button--warning {
+    color: var(--nosfir-btn-warning-text);
+    background: var(--nosfir-btn-warning-bg);
+    border-color: var(--nosfir-btn-warning-border);
+}
+
+.nosfir-btn--warning:hover,
+.nosfir-btn--warning:focus,
+.nosfir-button--warning:hover,
+.nosfir-button--warning:focus {
+    color: var(--nosfir-btn-warning-text);
+    background: var(--nosfir-btn-warning-bg-hover);
+    border-color: var(--nosfir-btn-warning-border-hover);
+}
+
+.nosfir-btn--warning:focus {
+    box-shadow: 0 0 0 var(--nosfir-btn-focus-shadow-width) rgba(243, 156, 18, 0.4);
+}
+
+/* Danger Button */
+.nosfir-btn--danger,
+.nosfir-btn--error,
+.nosfir-button--danger,
+.nosfir-button--error,
+.nosfir-nux-button--danger {
+    color: var(--nosfir-btn-danger-text);
+    background: var(--nosfir-btn-danger-bg);
+    border-color: var(--nosfir-btn-danger-border);
+}
+
+.nosfir-btn--danger:hover,
+.nosfir-btn--danger:focus,
+.nosfir-btn--error:hover,
+.nosfir-btn--error:focus,
+.nosfir-button--danger:hover,
+.nosfir-button--danger:focus {
+    color: var(--nosfir-btn-danger-text);
+    background: var(--nosfir-btn-danger-bg-hover);
+    border-color: var(--nosfir-btn-danger-border-hover);
+}
+
+.nosfir-btn--danger:focus,
+.nosfir-btn--error:focus {
+    box-shadow: 0 0 0 var(--nosfir-btn-focus-shadow-width) rgba(231, 76, 60, 0.4);
+}
+
+/* Info Button */
+.nosfir-btn--info,
+.nosfir-button--info,
+.nosfir-nux-button--info {
+    color: var(--nosfir-btn-info-text);
+    background: var(--nosfir-btn-info-bg);
+    border-color: var(--nosfir-btn-info-border);
+}
+
+.nosfir-btn--info:hover,
+.nosfir-btn--info:focus,
+.nosfir-button--info:hover,
+.nosfir-button--info:focus {
+    color: var(--nosfir-btn-info-text);
+    background: var(--nosfir-btn-info-bg-hover);
+    border-color: var(--nosfir-btn-info-border-hover);
+}
+
+.nosfir-btn--info:focus {
+    box-shadow: 0 0 0 var(--nosfir-btn-focus-shadow-width) rgba(52, 152, 219, 0.4);
+}
+
+/* Light Button */
+.nosfir-btn--light,
+.nosfir-button--light,
+.nosfir-nux-button--light {
+    color: var(--nosfir-btn-light-text);
+    background: var(--nosfir-btn-light-bg);
+    border-color: var(--nosfir-btn-light-border);
+}
+
+.nosfir-btn--light:hover,
+.nosfir-btn--light:focus,
+.nosfir-button--light:hover,
+.nosfir-button--light:focus {
+    color: var(--nosfir-btn-light-text);
+    background: var(--nosfir-btn-light-bg-hover);
+    border-color: var(--nosfir-btn-light-border-hover);
+}
+
+.nosfir-btn--light:focus {
+    box-shadow: 0 0 0 var(--nosfir-btn-focus-shadow-width) rgba(248, 249, 250, 0.5);
+}
+
+/* Dark Button */
+.nosfir-btn--dark,
+.nosfir-button--dark,
+.nosfir-nux-button--dark {
+    color: var(--nosfir-btn-dark-text);
+    background: var(--nosfir-btn-dark-bg);
+    border-color: var(--nosfir-btn-dark-border);
+}
+
+.nosfir-btn--dark:hover,
+.nosfir-btn--dark:focus,
+.nosfir-button--dark:hover,
+.nosfir-button--dark:focus {
+    color: var(--nosfir-btn-dark-text);
+    background: var(--nosfir-btn-dark-bg-hover);
+    border-color: var(--nosfir-btn-dark-border-hover);
+}
+
+.nosfir-btn--dark:focus {
+    box-shadow: 0 0 0 var(--nosfir-btn-focus-shadow-width) rgba(52, 58, 64, 0.4);
+}
+
+/* ============================================
+   4. BUTTON SIZES
+   ============================================ */
+
+/* Small Button */
+.nosfir-btn--sm,
+.nosfir-btn--small,
+.nosfir-button--sm,
+.nosfir-button--small,
+.nosfir-nux-button--small {
+    padding: var(--nosfir-btn-padding-y-sm) var(--nosfir-btn-padding-x-sm) calc(var(--nosfir-btn-padding-y-sm) + 1px);
+    font-size: var(--nosfir-btn-font-size-sm);
+    line-height: var(--nosfir-btn-line-height-sm);
+    border-radius: var(--nosfir-btn-border-radius-sm);
+}
+
+/* Medium Button (Default) */
+.nosfir-btn--md,
+.nosfir-btn--medium,
+.nosfir-button--md,
+.nosfir-button--medium {
+    padding: var(--nosfir-btn-padding-y) var(--nosfir-btn-padding-x) calc(var(--nosfir-btn-padding-y) + 2px);
+    font-size: var(--nosfir-btn-font-size);
+    line-height: var(--nosfir-btn-line-height);
+    border-radius: var(--nosfir-btn-border-radius);
+}
+
+/* Large Button */
+.nosfir-btn--lg,
+.nosfir-btn--large,
+.nosfir-button--lg,
+.nosfir-button--large,
+.nosfir-nux-button--large {
+    padding: var(--nosfir-btn-padding-y-lg) var(--nosfir-btn-padding-x-lg) calc(var(--nosfir-btn-padding-y-lg) + 2px);
+    font-size: var(--nosfir-btn-font-size-lg);
+    line-height: var(--nosfir-btn-line-height-lg);
+    border-radius: var(--nosfir-btn-border-radius-lg);
+}
+
+/* Extra Large Button */
+.nosfir-btn--xl,
+.nosfir-button--xl {
+    padding: 14px 28px 16px;
+    font-size: 18px;
+    line-height: 26px;
+    border-radius: var(--nosfir-btn-border-radius-lg);
+}
+
+/* Pill Button (Rounded) */
+.nosfir-btn--pill,
+.nosfir-button--pill {
+    border-radius: var(--nosfir-btn-border-radius-pill);
+}
+
+/* Square Button (No Border Radius) */
+.nosfir-btn--square,
+.nosfir-button--square {
+    border-radius: 0;
+}
+
+/* ============================================
+   5. BUTTON STATES
+   ============================================ */
+
+/* Disabled State */
+.nosfir-btn[disabled],
+.nosfir-btn:disabled,
+.nosfir-btn--disabled,
+.nosfir-nux .nosfir-nux-button[disabled],
+.nosfir-nux .nosfir-nux-button:disabled,
+a.nosfir-nux-button[disabled],
+a.nosfir-nux-button:disabled,
+button.nosfir-nux-button[disabled],
+button.nosfir-nux-button:disabled,
+.nosfir-button[disabled],
+.nosfir-button:disabled,
+.nosfir-button--disabled {
+    color: var(--nosfir-btn-accent-text);
+    background: var(--nosfir-btn-accent-disabled-bg);
+    border-color: var(--nosfir-btn-accent-disabled-border);
+    cursor: default;
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: var(--nosfir-btn-disabled-opacity);
+}
+
+.nosfir-btn[disabled]:active,
+.nosfir-btn:disabled:active,
+.nosfir-nux .nosfir-nux-button[disabled]:active,
+.nosfir-nux .nosfir-nux-button:disabled:active,
+a.nosfir-nux-button[disabled]:active,
+a.nosfir-nux-button:disabled:active,
+button.nosfir-nux-button[disabled]:active,
+button.nosfir-nux-button:disabled:active,
+.nosfir-button[disabled]:active,
+.nosfir-button:disabled:active {
+    border-width: var(--nosfir-btn-border-width) var(--nosfir-btn-border-width) var(--nosfir-btn-border-width-bottom);
+    transform: none;
+}
+
+/* Disabled Variant Buttons */
+.nosfir-btn--primary[disabled],
+.nosfir-btn--primary:disabled {
+    background: rgba(44, 62, 80, 0.5);
+    border-color: rgba(26, 37, 47, 0.5);
+}
+
+.nosfir-btn--secondary[disabled],
+.nosfir-btn--secondary:disabled {
+    background: rgba(108, 117, 125, 0.5);
+    border-color: rgba(90, 98, 104, 0.5);
+}
+
+.nosfir-btn--success[disabled],
+.nosfir-btn--success:disabled {
+    background: rgba(39, 174, 96, 0.5);
+    border-color: rgba(33, 154, 82, 0.5);
+}
+
+.nosfir-btn--danger[disabled],
+.nosfir-btn--danger:disabled {
+    background: rgba(231, 76, 60, 0.5);
+    border-color: rgba(192, 57, 43, 0.5);
+}
+
+/* ============================================
+   6. BUTTON WITH ICONS
+   ============================================ */
+
+/* Icon Button Base */
+.nosfir-btn--icon,
+.nosfir-button--icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+/* Icon Only Button */
+.nosfir-btn--icon-only,
+.nosfir-button--icon-only {
+    padding: var(--nosfir-btn-padding-y);
+    width: 38px;
+    height: 38px;
+}
+
+.nosfir-btn--icon-only.nosfir-btn--sm {
+    padding: var(--nosfir-btn-padding-y-sm);
+    width: 30px;
+    height: 30px;
+}
+
+.nosfir-btn--icon-only.nosfir-btn--lg {
+    padding: var(--nosfir-btn-padding-y-lg);
+    width: 48px;
+    height: 48px;
+}
+
+/* Icon Styles */
+.nosfir-btn .nosfir-btn__icon,
+.nosfir-button .nosfir-button__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.nosfir-btn .nosfir-btn__icon svg,
+.nosfir-button .nosfir-button__icon svg {
+    width: 1em;
+    height: 1em;
+    fill: currentColor;
+}
+
+.nosfir-btn .nosfir-btn__icon .dashicons,
+.nosfir-button .nosfir-button__icon .dashicons {
+    font-size: inherit;
+    width: auto;
+    height: auto;
+    vertical-align: middle;
+}
+
+/* Icon Position */
+.nosfir-btn--icon-left .nosfir-btn__icon,
+.nosfir-button--icon-left .nosfir-button__icon {
+    order: -1;
+}
+
+.nosfir-btn--icon-right .nosfir-btn__icon,
+.nosfir-button--icon-right .nosfir-button__icon {
+    order: 1;
+}
+
+/* ============================================
+   7. BUTTON GROUPS
+   ============================================ */
+
+/* Button Group Container */
+.nosfir-btn-group,
+.nosfir-button-group {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 0;
+    vertical-align: middle;
+}
+
+.nosfir-btn-group > .nosfir-btn,
+.nosfir-btn-group > .nosfir-button,
+.nosfir-button-group > .nosfir-btn,
+.nosfir-button-group > .nosfir-button {
+    position: relative;
+    flex: 0 1 auto;
+    border-radius: 0;
+}
+
+/* First Button */
+.nosfir-btn-group > .nosfir-btn:first-child,
+.nosfir-btn-group > .nosfir-button:first-child,
+.nosfir-button-group > .nosfir-btn:first-child,
+.nosfir-button-group > .nosfir-button:first-child {
+    border-top-left-radius: var(--nosfir-btn-border-radius);
+    border-bottom-left-radius: var(--nosfir-btn-border-radius);
+}
+
+/* Last Button */
+.nosfir-btn-group > .nosfir-btn:last-child,
+.nosfir-btn-group > .nosfir-button:last-child,
+.nosfir-button-group > .nosfir-btn:last-child,
+.nosfir-button-group > .nosfir-button:last-child {
+    border-top-right-radius: var(--nosfir-btn-border-radius);
+    border-bottom-right-radius: var(--nosfir-btn-border-radius);
+}
+
+/* Middle Buttons - Remove double borders */
+.nosfir-btn-group > .nosfir-btn:not(:first-child),
+.nosfir-btn-group > .nosfir-button:not(:first-child),
+.nosfir-button-group > .nosfir-btn:not(:first-child),
+.nosfir-button-group > .nosfir-button:not(:first-child) {
+    margin-left: -1px;
+}
+
+/* Hover state - bring button forward */
+.nosfir-btn-group > .nosfir-btn:hover,
+.nosfir-btn-group > .nosfir-btn:focus,
+.nosfir-btn-group > .nosfir-btn:active,
+.nosfir-button-group > .nosfir-btn:hover,
+.nosfir-button-group > .nosfir-btn:focus,
+.nosfir-button-group > .nosfir-btn:active {
+    z-index: 1;
+}
+
+/* Vertical Button Group */
+.nosfir-btn-group--vertical,
+.nosfir-button-group--vertical {
+    flex-direction: column;
+}
+
+.nosfir-btn-group--vertical > .nosfir-btn,
+.nosfir-btn-group--vertical > .nosfir-button,
+.nosfir-button-group--vertical > .nosfir-btn,
+.nosfir-button-group--vertical > .nosfir-button {
+    width: 100%;
+}
+
+.nosfir-btn-group--vertical > .nosfir-btn:first-child,
+.nosfir-button-group--vertical > .nosfir-btn:first-child {
+    border-radius: var(--nosfir-btn-border-radius) var(--nosfir-btn-border-radius) 0 0;
+}
+
+.nosfir-btn-group--vertical > .nosfir-btn:last-child,
+.nosfir-button-group--vertical > .nosfir-btn:last-child {
+    border-radius: 0 0 var(--nosfir-btn-border-radius) var(--nosfir-btn-border-radius);
+}
+
+.nosfir-btn-group--vertical > .nosfir-btn:not(:first-child),
+.nosfir-button-group--vertical > .nosfir-btn:not(:first-child) {
+    margin-left: 0;
+    margin-top: -1px;
+}
+
+/* Button Group with Gap */
+.nosfir-btn-group--gap,
+.nosfir-button-group--gap {
+    gap: 10px;
+}
+
+.nosfir-btn-group--gap > .nosfir-btn,
+.nosfir-button-group--gap > .nosfir-btn {
+    border-radius: var(--nosfir-btn-border-radius);
+    margin-left: 0;
+}
+
+/* ============================================
+   8. LINK BUTTONS
+   ============================================ */
+
+/* Link Style Button */
+.nosfir-btn--link,
+.nosfir-button--link,
+.nosfir-nux-button--link {
+    background: transparent;
+    border: 0;
+    border-color: transparent;
+    color: #0073aa;
+    padding: 0;
+    margin: 0;
+    font-size: inherit;
+    font-weight: inherit;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.nosfir-btn--link:hover,
+.nosfir-btn--link:focus,
+.nosfir-button--link:hover,
+.nosfir-button--link:focus,
+.nosfir-nux-button--link:hover,
+.nosfir-nux-button--link:focus {
+    background: transparent;
+    border-color: transparent;
+    color: #00a0d2;
+    text-decoration: underline;
+    box-shadow: none;
+    transform: none;
+}
+
+.nosfir-btn--link:active,
+.nosfir-button--link:active {
+    border-width: 0;
+    transform: none;
+}
+
+.nosfir-btn--link[disabled],
+.nosfir-btn--link:disabled,
+.nosfir-button--link[disabled],
+.nosfir-button--link:disabled {
+    background: transparent;
+    color: #999;
+}
+
+/* Text Button (No underline) */
+.nosfir-btn--text,
+.nosfir-button--text {
+    background: transparent;
+    border: 0;
+    border-color: transparent;
+    color: #0073aa;
+    padding: var(--nosfir-btn-padding-y) var(--nosfir-btn-padding-x);
+    text-decoration: none;
+}
+
+.nosfir-btn--text:hover,
+.nosfir-btn--text:focus,
+.nosfir-button--text:hover,
+.nosfir-button--text:focus {
+    background: rgba(0, 0, 0, 0.05);
+    color: #00a0d2;
+    text-decoration: none;
+    box-shadow: none;
+}
+
+/* ============================================
+   9. BLOCK BUTTONS
+   ============================================ */
+
+/* Full Width Block Button */
+.nosfir-btn--block,
+.nosfir-button--block {
+    display: block;
+    width: 100%;
+}
+
+/* Block Button in Group */
+.nosfir-btn-group--block,
+.nosfir-button-group--block {
+    display: flex;
+    width: 100%;
+}
+
+.nosfir-btn-group--block > .nosfir-btn,
+.nosfir-btn-group--block > .nosfir-button,
+.nosfir-button-group--block > .nosfir-btn,
+.nosfir-button-group--block > .nosfir-button {
+    flex: 1;
+}
+
+/* ============================================
+   10. LOADING BUTTONS
+   ============================================ */
+
+/* Loading State */
+.nosfir-btn--loading,
+.nosfir-btn.is-loading,
+.nosfir-button--loading,
+.nosfir-button.is-loading,
+.nosfir-nux-button.updating-message {
+    position: relative;
+    pointer-events: none;
+    color: transparent !important;
+}
+
+.nosfir-btn--loading::after,
+.nosfir-btn.is-loading::after,
+.nosfir-button--loading::after,
+.nosfir-button.is-loading::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 16px;
+    height: 16px;
+    margin-top: -8px;
+    margin-left: -8px;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: nosfir-btn-spin 0.75s linear infinite;
+}
+
+/* Loading with Dashicons */
+.nosfir-nux-button.updating-message::before {
+    display: inline-block;
+    content: "";
+    font: 400 20px/1 dashicons;
+    margin: 3px 5px 0 -2px;
+    vertical-align: bottom;
+    color: #fff;
+    animation: nosfir-btn-spin 2s linear infinite;
+}
+
+/* Loading Button Spinner Animation */
+@keyframes nosfir-btn-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Loading with Text */
+.nosfir-btn--loading-text,
+.nosfir-button--loading-text {
+    color: inherit !important;
+}
+
+.nosfir-btn--loading-text::before,
+.nosfir-button--loading-text::before {
+    content: "";
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    margin-right: 8px;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    vertical-align: middle;
+    animation: nosfir-btn-spin 0.75s linear infinite;
+}
+
+/* ============================================
+   11. SOCIAL BUTTONS
+   ============================================ */
+
+/* Social Button Base */
+.nosfir-btn--social,
+.nosfir-button--social {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Facebook */
+.nosfir-btn--facebook,
+.nosfir-button--facebook {
+    background: #1877f2;
+    border-color: #166fe5;
+}
+
+.nosfir-btn--facebook:hover,
+.nosfir-btn--facebook:focus {
+    background: #166fe5;
+    border-color: #1266d3;
+}
+
+/* Twitter/X */
+.nosfir-btn--twitter,
+.nosfir-button--twitter {
+    background: #1da1f2;
+    border-color: #1a91da;
+}
+
+.nosfir-btn--twitter:hover,
+.nosfir-btn--twitter:focus {
+    background: #1a91da;
+    border-color: #1681bf;
+}
+
+.nosfir-btn--x,
+.nosfir-button--x {
+    background: #000000;
+    border-color: #14171a;
+}
+
+.nosfir-btn--x:hover,
+.nosfir-btn--x:focus {
+    background: #14171a;
+    border-color: #1c2025;
+}
+
+/* Instagram */
+.nosfir-btn--instagram,
+.nosfir-button--instagram {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    border-color: #c13584;
+}
+
+.nosfir-btn--instagram:hover,
+.nosfir-btn--instagram:focus {
+    background: linear-gradient(45deg, #e08323 0%, #d6582c 25%, #cc1733 50%, #bc1356 75%, #ac0878 100%);
+}
+
+/* LinkedIn */
+.nosfir-btn--linkedin,
+.nosfir-button--linkedin {
+    background: #0a66c2;
+    border-color: #094d92;
+}
+
+.nosfir-btn--linkedin:hover,
+.nosfir-btn--linkedin:focus {
+    background: #094d92;
+    border-color: #073d74;
+}
+
+/* YouTube */
+.nosfir-btn--youtube,
+.nosfir-button--youtube {
+    background: #ff0000;
+    border-color: #cc0000;
+}
+
+.nosfir-btn--youtube:hover,
+.nosfir-btn--youtube:focus {
+    background: #cc0000;
+    border-color: #990000;
+}
+
+/* WhatsApp */
+.nosfir-btn--whatsapp,
+.nosfir-button--whatsapp {
+    background: #25d366;
+    border-color: #1da851;
+}
+
+.nosfir-btn--whatsapp:hover,
+.nosfir-btn--whatsapp:focus {
+    background: #1da851;
+    border-color: #178b43;
+}
+
+/* Pinterest */
+.nosfir-btn--pinterest,
+.nosfir-button--pinterest {
+    background: #bd081c;
+    border-color: #970617;
+}
+
+.nosfir-btn--pinterest:hover,
+.nosfir-btn--pinterest:focus {
+    background: #970617;
+    border-color: #700511;
+}
+
+/* GitHub */
+.nosfir-btn--github,
+.nosfir-button--github {
+    background: #24292e;
+    border-color: #1b1f23;
+}
+
+.nosfir-btn--github:hover,
+.nosfir-btn--github:focus {
+    background: #1b1f23;
+    border-color: #13161a;
+}
+
+/* ============================================
+   12. WOOCOMMERCE BUTTONS
+   ============================================ */
+
+/* WooCommerce Button Integration */
+.woocommerce .nosfir-btn,
+.woocommerce-page .nosfir-btn,
+.woocommerce a.button,
+.woocommerce button.button,
+.woocommerce input.button,
+.woocommerce #respond input#submit,
+.woocommerce a.button.alt,
+.woocommerce button.button.alt,
+.woocommerce input.button.alt,
+.woocommerce #respond input#submit.alt {
+    display: inline-block;
+    box-sizing: border-box;
+    margin: 0;
+    padding: var(--nosfir-btn-padding-y) var(--nosfir-btn-padding-x) calc(var(--nosfir-btn-padding-y) + 2px);
+    font-family: var(--nosfir-btn-font-family);
+    font-size: var(--nosfir-btn-font-size);
+    font-weight: var(--nosfir-btn-font-weight);
+    line-height: var(--nosfir-btn-line-height);
+    text-align: center;
+    text-decoration: none;
+    color: var(--nosfir-btn-primary-text);
+    background: var(--nosfir-btn-primary-bg);
+    border-style: solid;
+    border-color: var(--nosfir-btn-primary-border);
+    border-width: var(--nosfir-btn-border-width) var(--nosfir-btn-border-width) var(--nosfir-btn-border-width-bottom);
+    border-radius: var(--nosfir-btn-border-radius);
+    cursor: pointer;
+    transition: var(--nosfir-btn-transition);
+}
+
+.woocommerce a.button:hover,
+.woocommerce button.button:hover,
+.woocommerce input.button:hover,
+.woocommerce a.button.alt:hover,
+.woocommerce button.button.alt:hover,
+.woocommerce input.button.alt:hover {
+    color: var(--nosfir-btn-primary-text);
+    background: var(--nosfir-btn-primary-bg-hover);
+    border-color: var(--nosfir-btn-primary-border-hover);
+}
+
+.woocommerce a.button:focus,
+.woocommerce button.button:focus,
+.woocommerce input.button:focus {
+    box-shadow: 0 0 0 var(--nosfir-btn-focus-shadow-width) rgba(44, 62, 80, 0.4);
+}
+
+/* Add to Cart Button */
+.woocommerce .single_add_to_cart_button,
+.woocommerce .add_to_cart_button {
+    background: var(--nosfir-btn-success-bg);
+    border-color: var(--nosfir-btn-success-border);
+}
+
+.woocommerce .single_add_to_cart_button:hover,
+.woocommerce .add_to_cart_button:hover {
+    background: var(--nosfir-btn-success-bg-hover);
+    border-color: var(--nosfir-btn-success-border-hover);
+}
+
+/* View Cart / Added to Cart */
+.woocommerce .added_to_cart {
+    display: inline-block;
+    padding: var(--nosfir-btn-padding-y) var(--nosfir-btn-padding-x);
+    font-size: var(--nosfir-btn-font-size-sm);
+    color: var(--nosfir-btn-accent-bg);
+    text-decoration: none;
+}
+
+.woocommerce .added_to_cart:hover {
+    color: var(--nosfir-btn-accent-bg-hover);
+}
+
+/* Checkout Button */
+.woocommerce .checkout-button,
+.woocommerce .wc-proceed-to-checkout a.checkout-button {
+    background: var(--nosfir-btn-accent-bg);
+    border-color: var(--nosfir-btn-accent-border);
+}
+
+.woocommerce .checkout-button:hover,
+.woocommerce .wc-proceed-to-checkout a.checkout-button:hover {
+    background: var(--nosfir-btn-accent-bg-hover);
+    border-color: var(--nosfir-btn-accent-border-hover);
+}
+
+/* Disabled WooCommerce Buttons */
+.woocommerce a.button.disabled,
+.woocommerce a.button:disabled,
+.woocommerce button.button.disabled,
+.woocommerce button.button:disabled,
+.woocommerce input.button.disabled,
+.woocommerce input.button:disabled {
+    opacity: var(--nosfir-btn-disabled-opacity);
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* ============================================
+   13. WORDPRESS BLOCK BUTTONS
+   ============================================ */
+
+/* Gutenberg Block Button */
+.wp-block-button__link,
+.wc-block-components-button {
+    display: inline-block;
+    box-sizing: border-box;
+    padding: var(--nosfir-btn-padding-y) var(--nosfir-btn-padding-x) calc(var(--nosfir-btn-padding-y) + 2px);
+    font-family: var(--nosfir-btn-font-family);
+    font-size: var(--nosfir-btn-font-size);
+    font-weight: var(--nosfir-btn-font-weight);
+    line-height: var(--nosfir-btn-line-height);
+    text-align: center;
+    text-decoration: none;
+    color: var(--nosfir-btn-primary-text);
+    background: var(--nosfir-btn-primary-bg);
+    border-style: solid;
+    border-color: var(--nosfir-btn-primary-border);
+    border-width: var(--nosfir-btn-border-width) var(--nosfir-btn-border-width) var(--nosfir-btn-border-width-bottom);
+    border-radius: var(--nosfir-btn-border-radius);
+    cursor: pointer;
+    transition: var(--nosfir-btn-transition);
+}
+
+.wp-block-button__link:hover,
+.wc-block-components-button:hover {
+    color: var(--nosfir-btn-primary-text);
+    background: var(--nosfir-btn-primary-bg-hover);
+    border-color: var(--nosfir-btn-primary-border-hover);
+    text-decoration: none;
+}
+
+.wp-block-button__link:focus,
+.wc-block-components-button:focus {
+    box-shadow: 0 0 0 var(--nosfir-btn-focus-shadow-width) rgba(44, 62, 80, 0.4);
+    outline: none;
+}
+
+/* Outline Block Button */
+.wp-block-button.is-style-outline .wp-block-button__link {
+    color: var(--nosfir-btn-primary-bg);
+    background: transparent;
+    border-color: var(--nosfir-btn-primary-bg);
+}
+
+.wp-block-button.is-style-outline .wp-block-button__link:hover {
+    color: var(--nosfir-btn-primary-text);
+    background: var(--nosfir-btn-primary-bg);
+}
+
+/* WooCommerce Block Button Disabled */
+.wc-block-components-button:not(.is-link).disabled,
+.wc-block-components-button:not(.is-link):disabled {
+    opacity: var(--nosfir-btn-disabled-opacity);
+    cursor: not-allowed;
+}
+
+/* ============================================
+   14. OUTLINE BUTTONS
+   ============================================ */
+
+/* Outline Button Base */
+.nosfir-btn--outline,
+.nosfir-button--outline {
+    background: transparent;
+    color: var(--nosfir-btn-accent-bg);
+    border-color: var(--nosfir-btn-accent-bg);
+}
+
+.nosfir-btn--outline:hover,
+.nosfir-btn--outline:focus,
+.nosfir-button--outline:hover,
+.nosfir-button--outline:focus {
+    color: var(--nosfir-btn-accent-text);
+    background: var(--nosfir-btn-accent-bg);
+    border-color: var(--nosfir-btn-accent-bg);
+}
+
+/* Outline Primary */
+.nosfir-btn--outline-primary,
+.nosfir-button--outline-primary {
+    color: var(--nosfir-btn-primary-bg);
+    border-color: var(--nosfir-btn-primary-bg);
+    background: transparent;
+}
+
+.nosfir-btn--outline-primary:hover,
+.nosfir-btn--outline-primary:focus {
+    color: var(--nosfir-btn-primary-text);
+    background: var(--nosfir-btn-primary-bg);
+}
+
+/* Outline Secondary */
+.nosfir-btn--outline-secondary,
+.nosfir-button--outline-secondary {
+    color: var(--nosfir-btn-secondary-bg);
+    border-color: var(--nosfir-btn-secondary-bg);
+    background: transparent;
+}
+
+.nosfir-btn--outline-secondary:hover,
+.nosfir-btn--outline-secondary:focus {
+    color: var(--nosfir-btn-secondary-text);
+    background: var(--nosfir-btn-secondary-bg);
+}
+
+/* Outline Success */
+.nosfir-btn--outline-success,
+.nosfir-button--outline-success {
+    color: var(--nosfir-btn-success-bg);
+    border-color: var(--nosfir-btn-success-bg);
+    background: transparent;
+}
+
+.nosfir-btn--outline-success:hover,
+.nosfir-btn--outline-success:focus {
+    color: var(--nosfir-btn-success-text);
+    background: var(--nosfir-btn-success-bg);
+}
+
+/* Outline Danger */
+.nosfir-btn--outline-danger,
+.nosfir-button--outline-danger {
+    color: var(--nosfir-btn-danger-bg);
+    border-color: var(--nosfir-btn-danger-bg);
+    background: transparent;
+}
+
+.nosfir-btn--outline-danger:hover,
+.nosfir-btn--outline-danger:focus {
+    color: var(--nosfir-btn-danger-text);
+    background: var(--nosfir-btn-danger-bg);
+}
+
+/* Outline Info */
+.nosfir-btn--outline-info,
+.nosfir-button--outline-info {
+    color: var(--nosfir-btn-info-bg);
+    border-color: var(--nosfir-btn-info-bg);
+    background: transparent;
+}
+
+.nosfir-btn--outline-info:hover,
+.nosfir-btn--outline-info:focus {
+    color: var(--nosfir-btn-info-text);
+    background: var(--nosfir-btn-info-bg);
+}
+
+/* Outline Warning */
+.nosfir-btn--outline-warning,
+.nosfir-button--outline-warning {
+    color: var(--nosfir-btn-warning-bg);
+    border-color: var(--nosfir-btn-warning-bg);
+    background: transparent;
+}
+
+.nosfir-btn--outline-warning:hover,
+.nosfir-btn--outline-warning:focus {
+    color: var(--nosfir-btn-warning-text);
+    background: var(--nosfir-btn-warning-bg);
+}
+
+/* Outline Dark */
+.nosfir-btn--outline-dark,
+.nosfir-button--outline-dark {
+    color: var(--nosfir-btn-dark-bg);
+    border-color: var(--nosfir-btn-dark-bg);
+    background: transparent;
+}
+
+.nosfir-btn--outline-dark:hover,
+.nosfir-btn--outline-dark:focus {
+    color: var(--nosfir-btn-dark-text);
+    background: var(--nosfir-btn-dark-bg);
+}
+
+/* Outline Light */
+.nosfir-btn--outline-light,
+.nosfir-button--outline-light {
+    color: var(--nosfir-btn-light-text);
+    border-color: var(--nosfir-btn-light-border);
+    background: transparent;
+}
+
+.nosfir-btn--outline-light:hover,
+.nosfir-btn--outline-light:focus {
+    color: var(--nosfir-btn-light-text);
+    background: var(--nosfir-btn-light-bg);
+}
+
+/* ============================================
+   15. RESPONSIVE BUTTONS
+   ============================================ */
+
+/* Responsive Block Button */
+@media only screen and (max-width: 576px) {
+    .nosfir-btn--block-mobile,
+    .nosfir-button--block-mobile {
+        display: block;
+        width: 100%;
+    }
+    
+    .nosfir-btn-group--block-mobile,
+    .nosfir-button-group--block-mobile {
+        flex-direction: column;
+    }
+    
+    .nosfir-btn-group--block-mobile > .nosfir-btn,
+    .nosfir-button-group--block-mobile > .nosfir-btn {
+        width: 100%;
+        border-radius: 0;
+        margin-left: 0;
+        margin-top: -1px;
+    }
+    
+    .nosfir-btn-group--block-mobile > .nosfir-btn:first-child {
+        border-radius: var(--nosfir-btn-border-radius) var(--nosfir-btn-border-radius) 0 0;
+        margin-top: 0;
+    }
+    
+    .nosfir-btn-group--block-mobile > .nosfir-btn:last-child {
+        border-radius: 0 0 var(--nosfir-btn-border-radius) var(--nosfir-btn-border-radius);
+    }
+}
+
+@media only screen and (max-width: 782px) {
+    /* Larger touch targets on mobile */
+    .nosfir-btn,
+    .nosfir-button,
+    .nosfir-nux-button {
+        min-height: 44px;
+        padding-top: 10px;
+        padding-bottom: 12px;
+    }
+    
+    .nosfir-btn--sm,
+    .nosfir-button--sm {
+        min-height: 36px;
+        padding-top: 7px;
+        padding-bottom: 9px;
+    }
+}
+
+/* ============================================
+   END OF NOSFIR BUTTON STYLES
+   ============================================ */

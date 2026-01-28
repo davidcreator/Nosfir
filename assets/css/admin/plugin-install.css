@@ -1,0 +1,1408 @@
+/*!
+ * Nosfir Theme - Plugin Install Styles
+ * 
+ * @package nosfir
+ * @version 1.0.0
+ * 
+ * TABLE OF CONTENTS
+ * ============================================
+ * 1.  CSS Variables (Plugin Install)
+ * 2.  Base Install Button
+ * 3.  Button States (Installing/Updating)
+ * 4.  Plugin Cards
+ * 5.  Plugin List Table
+ * 6.  Recommended Plugins Section
+ * 7.  Required Plugins Notice
+ * 8.  Plugin Status Badges
+ * 9.  Progress Indicators
+ * 10. Success/Error Messages
+ * 11. TGMPA Integration
+ * 12. Animations
+ * 13. Responsive Styles
+ * ============================================
+ */
+
+/* ============================================
+   1. CSS VARIABLES (PLUGIN INSTALL)
+   ============================================ */
+
+:root {
+    /* Install Button Colors */
+    --nosfir-install-btn-bg: #0073aa;
+    --nosfir-install-btn-bg-hover: #005a87;
+    --nosfir-install-btn-text: #ffffff;
+    --nosfir-install-btn-border: #006799;
+    
+    /* Activate Button Colors */
+    --nosfir-activate-btn-bg: #00a32a;
+    --nosfir-activate-btn-bg-hover: #008a20;
+    --nosfir-activate-btn-text: #ffffff;
+    --nosfir-activate-btn-border: #008a20;
+    
+    /* Update Button Colors */
+    --nosfir-update-btn-bg: #d63638;
+    --nosfir-update-btn-bg-hover: #b32d2e;
+    --nosfir-update-btn-text: #ffffff;
+    --nosfir-update-btn-border: #b32d2e;
+    
+    /* Deactivate Button Colors */
+    --nosfir-deactivate-btn-bg: #dba617;
+    --nosfir-deactivate-btn-bg-hover: #c59415;
+    --nosfir-deactivate-btn-text: #ffffff;
+    --nosfir-deactivate-btn-border: #c59415;
+    
+    /* Status Colors */
+    --nosfir-status-active: #00a32a;
+    --nosfir-status-inactive: #787c82;
+    --nosfir-status-update: #d63638;
+    --nosfir-status-required: #2271b1;
+    --nosfir-status-recommended: #dba617;
+    
+    /* Card Colors */
+    --nosfir-card-bg: #ffffff;
+    --nosfir-card-border: #c3c4c7;
+    --nosfir-card-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+    --nosfir-card-shadow-hover: 0 1px 4px rgba(0, 0, 0, 0.1);
+    
+    /* Text Colors */
+    --nosfir-text-primary: #1d2327;
+    --nosfir-text-secondary: #50575e;
+    --nosfir-text-muted: #787c82;
+    --nosfir-text-link: #2271b1;
+    --nosfir-text-link-hover: #135e96;
+    
+    /* Spinner */
+    --nosfir-spinner-color: #0073aa;
+    --nosfir-spinner-size: 20px;
+    
+    /* Transitions */
+    --nosfir-transition: 0.2s ease-in-out;
+}
+
+/* ============================================
+   2. BASE INSTALL BUTTON
+   ============================================ */
+
+/* Install Now Button */
+.nosfir-install-now,
+a.nosfir-install-now,
+button.nosfir-install-now,
+.nosfir-plugin-install .install-now {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 6px 12px;
+    min-height: 32px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    color: var(--nosfir-install-btn-text);
+    background: var(--nosfir-install-btn-bg);
+    border: 1px solid var(--nosfir-install-btn-border);
+    border-radius: 3px;
+    cursor: pointer;
+    transition: var(--nosfir-transition);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.nosfir-install-now:hover,
+a.nosfir-install-now:hover,
+button.nosfir-install-now:hover,
+.nosfir-plugin-install .install-now:hover {
+    color: var(--nosfir-install-btn-text);
+    background: var(--nosfir-install-btn-bg-hover);
+    border-color: var(--nosfir-install-btn-bg-hover);
+}
+
+.nosfir-install-now:focus,
+a.nosfir-install-now:focus,
+button.nosfir-install-now:focus,
+.nosfir-plugin-install .install-now:focus {
+    outline: 2px solid var(--nosfir-install-btn-bg);
+    outline-offset: 1px;
+    box-shadow: none;
+}
+
+/* Activate Button */
+.nosfir-activate-now,
+a.nosfir-activate-now,
+button.nosfir-activate-now,
+.nosfir-plugin-install .activate-now {
+    color: var(--nosfir-activate-btn-text);
+    background: var(--nosfir-activate-btn-bg);
+    border-color: var(--nosfir-activate-btn-border);
+}
+
+.nosfir-activate-now:hover,
+a.nosfir-activate-now:hover,
+button.nosfir-activate-now:hover,
+.nosfir-plugin-install .activate-now:hover {
+    background: var(--nosfir-activate-btn-bg-hover);
+    border-color: var(--nosfir-activate-btn-bg-hover);
+}
+
+.nosfir-activate-now:focus,
+a.nosfir-activate-now:focus {
+    outline-color: var(--nosfir-activate-btn-bg);
+}
+
+/* Update Button */
+.nosfir-update-now,
+a.nosfir-update-now,
+button.nosfir-update-now,
+.nosfir-plugin-install .update-now {
+    color: var(--nosfir-update-btn-text);
+    background: var(--nosfir-update-btn-bg);
+    border-color: var(--nosfir-update-btn-border);
+}
+
+.nosfir-update-now:hover,
+a.nosfir-update-now:hover,
+button.nosfir-update-now:hover,
+.nosfir-plugin-install .update-now:hover {
+    background: var(--nosfir-update-btn-bg-hover);
+    border-color: var(--nosfir-update-btn-bg-hover);
+}
+
+.nosfir-update-now:focus,
+a.nosfir-update-now:focus {
+    outline-color: var(--nosfir-update-btn-bg);
+}
+
+/* Deactivate Button */
+.nosfir-deactivate-now,
+a.nosfir-deactivate-now,
+button.nosfir-deactivate-now {
+    color: var(--nosfir-deactivate-btn-text);
+    background: var(--nosfir-deactivate-btn-bg);
+    border-color: var(--nosfir-deactivate-btn-border);
+}
+
+.nosfir-deactivate-now:hover,
+a.nosfir-deactivate-now:hover {
+    background: var(--nosfir-deactivate-btn-bg-hover);
+    border-color: var(--nosfir-deactivate-btn-bg-hover);
+}
+
+/* ============================================
+   3. BUTTON STATES (INSTALLING/UPDATING)
+   ============================================ */
+
+/* Installing/Updating State */
+.nosfir-install-now.updating-message,
+.nosfir-install-now.installing,
+.nosfir-activate-now.updating-message,
+.nosfir-update-now.updating-message,
+.nosfir-plugin-install .install-now.updating-message,
+.nosfir-plugin-install .activate-now.updating-message,
+.nosfir-plugin-install .update-now.updating-message {
+    pointer-events: none;
+    cursor: default;
+    opacity: 0.7;
+}
+
+/* Spinner Before Text */
+.nosfir-install-now.updating-message::before,
+.nosfir-activate-now.updating-message::before,
+.nosfir-update-now.updating-message::before,
+.nosfir-plugin-install .install-now.updating-message::before,
+.nosfir-plugin-install .activate-now.updating-message::before,
+.nosfir-plugin-install .update-now.updating-message::before {
+    display: inline-block;
+    content: "";
+    width: var(--nosfir-spinner-size);
+    height: var(--nosfir-spinner-size);
+    margin-right: 6px;
+    margin-left: -2px;
+    vertical-align: middle;
+    font: 400 19px/1 dashicons;
+    animation: nosfir-rotation 2s infinite linear;
+}
+
+/* Dashicons Spinner Alternative */
+.nosfir-install-now.updating-message.dashicons-spinner::before,
+.nosfir-plugin-install .updating-message.dashicons-spinner::before {
+    content: "\f463";
+    font-family: dashicons;
+}
+
+/* Updated/Installed State */
+.nosfir-install-now.updated-message,
+.nosfir-install-now.installed,
+.nosfir-activate-now.updated-message,
+.nosfir-update-now.updated-message,
+.nosfir-plugin-install .install-now.updated-message,
+.nosfir-plugin-install .activate-now.updated-message,
+.nosfir-plugin-install .update-now.updated-message {
+    background: var(--nosfir-status-active);
+    border-color: var(--nosfir-status-active);
+    pointer-events: none;
+}
+
+.nosfir-install-now.updated-message::before,
+.nosfir-activate-now.updated-message::before,
+.nosfir-update-now.updated-message::before,
+.nosfir-plugin-install .updated-message::before {
+    content: "\f147";
+    font-family: dashicons;
+    font-size: 16px;
+    margin-right: 4px;
+    vertical-align: middle;
+    animation: none;
+}
+
+/* Button Disabled State */
+.nosfir-install-now[disabled],
+.nosfir-install-now:disabled,
+.nosfir-activate-now[disabled],
+.nosfir-activate-now:disabled,
+.nosfir-update-now[disabled],
+.nosfir-update-now:disabled,
+.nosfir-plugin-install .install-now[disabled],
+.nosfir-plugin-install .activate-now[disabled],
+.nosfir-plugin-install .update-now[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* Already Active State */
+.nosfir-install-now.button-disabled,
+.nosfir-plugin-install .install-now.button-disabled {
+    background: var(--nosfir-text-muted);
+    border-color: var(--nosfir-text-muted);
+    cursor: default;
+}
+
+/* ============================================
+   4. PLUGIN CARDS
+   ============================================ */
+
+/* Plugin Card Container */
+.nosfir-plugin-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 20px;
+    background: var(--nosfir-card-bg);
+    border: 1px solid var(--nosfir-card-border);
+    border-radius: 4px;
+    box-shadow: var(--nosfir-card-shadow);
+    transition: var(--nosfir-transition);
+}
+
+.nosfir-plugin-card:hover {
+    box-shadow: var(--nosfir-card-shadow-hover);
+}
+
+/* Plugin Card Header */
+.nosfir-plugin-card__header {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+/* Plugin Icon */
+.nosfir-plugin-card__icon {
+    flex-shrink: 0;
+    width: 64px;
+    height: 64px;
+    background: #f0f0f1;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.nosfir-plugin-card__icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.nosfir-plugin-card__icon .dashicons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    font-size: 32px;
+    color: var(--nosfir-text-muted);
+}
+
+/* Plugin Info */
+.nosfir-plugin-card__info {
+    flex: 1;
+    min-width: 0;
+}
+
+.nosfir-plugin-card__name {
+    margin: 0 0 5px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--nosfir-text-primary);
+    line-height: 1.4;
+}
+
+.nosfir-plugin-card__name a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.nosfir-plugin-card__name a:hover {
+    color: var(--nosfir-text-link);
+}
+
+.nosfir-plugin-card__author {
+    margin: 0;
+    font-size: 12px;
+    color: var(--nosfir-text-muted);
+}
+
+.nosfir-plugin-card__author a {
+    color: var(--nosfir-text-link);
+    text-decoration: none;
+}
+
+.nosfir-plugin-card__author a:hover {
+    color: var(--nosfir-text-link-hover);
+    text-decoration: underline;
+}
+
+/* Plugin Description */
+.nosfir-plugin-card__description {
+    flex: 1;
+    margin: 0 0 15px;
+    font-size: 13px;
+    color: var(--nosfir-text-secondary);
+    line-height: 1.5;
+}
+
+.nosfir-plugin-card__description p {
+    margin: 0;
+}
+
+/* Plugin Meta */
+.nosfir-plugin-card__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 20px;
+    margin-bottom: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #f0f0f1;
+    font-size: 12px;
+    color: var(--nosfir-text-muted);
+}
+
+.nosfir-plugin-card__meta-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.nosfir-plugin-card__meta-item .dashicons {
+    font-size: 14px;
+    width: 14px;
+    height: 14px;
+}
+
+/* Plugin Rating */
+.nosfir-plugin-card__rating {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.nosfir-plugin-card__rating .star-rating {
+    display: inline-flex;
+}
+
+.nosfir-plugin-card__rating .star-rating .star {
+    color: #ffb900;
+    font-size: 14px;
+}
+
+.nosfir-plugin-card__rating .star-rating .star.empty {
+    color: #dba617;
+    opacity: 0.4;
+}
+
+.nosfir-plugin-card__rating-count {
+    font-size: 11px;
+    color: var(--nosfir-text-muted);
+}
+
+/* Plugin Footer/Actions */
+.nosfir-plugin-card__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: auto;
+    padding-top: 15px;
+    border-top: 1px solid #f0f0f1;
+}
+
+.nosfir-plugin-card__actions {
+    display: flex;
+    gap: 8px;
+}
+
+.nosfir-plugin-card__status {
+    font-size: 12px;
+    color: var(--nosfir-text-muted);
+}
+
+/* Plugin Card Variations */
+.nosfir-plugin-card--horizontal {
+    flex-direction: row;
+    align-items: center;
+}
+
+.nosfir-plugin-card--horizontal .nosfir-plugin-card__header {
+    margin-bottom: 0;
+    flex: 1;
+}
+
+.nosfir-plugin-card--horizontal .nosfir-plugin-card__description {
+    display: none;
+}
+
+.nosfir-plugin-card--horizontal .nosfir-plugin-card__meta {
+    display: none;
+}
+
+.nosfir-plugin-card--horizontal .nosfir-plugin-card__footer {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+    flex-shrink: 0;
+}
+
+/* Featured Plugin Card */
+.nosfir-plugin-card--featured {
+    border-color: var(--nosfir-status-required);
+    border-width: 2px;
+}
+
+.nosfir-plugin-card--featured::before {
+    content: "Recomendado";
+    position: absolute;
+    top: -1px;
+    right: 15px;
+    padding: 4px 10px;
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #fff;
+    background: var(--nosfir-status-required);
+    border-radius: 0 0 4px 4px;
+}
+
+/* Required Plugin Card */
+.nosfir-plugin-card--required {
+    border-left: 4px solid var(--nosfir-status-required);
+}
+
+.nosfir-plugin-card--required .nosfir-plugin-card__badge {
+    display: inline-block;
+    padding: 2px 8px;
+    margin-left: 8px;
+    font-size: 10px;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: var(--nosfir-status-required);
+    background: rgba(34, 113, 177, 0.1);
+    border-radius: 3px;
+}
+
+/* Active Plugin Card */
+.nosfir-plugin-card--active {
+    border-left: 4px solid var(--nosfir-status-active);
+}
+
+/* Needs Update Plugin Card */
+.nosfir-plugin-card--update-available {
+    border-left: 4px solid var(--nosfir-status-update);
+}
+
+/* ============================================
+   5. PLUGIN LIST TABLE
+   ============================================ */
+
+/* Plugin List Container */
+.nosfir-plugin-list {
+    margin: 20px 0;
+}
+
+/* Plugin List Table */
+.nosfir-plugin-list__table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--nosfir-card-bg);
+    border: 1px solid var(--nosfir-card-border);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.nosfir-plugin-list__table th,
+.nosfir-plugin-list__table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #f0f0f1;
+}
+
+.nosfir-plugin-list__table th {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--nosfir-text-primary);
+    background: #f6f7f7;
+}
+
+.nosfir-plugin-list__table tr:last-child td {
+    border-bottom: none;
+}
+
+.nosfir-plugin-list__table tr:hover td {
+    background: #f9f9f9;
+}
+
+/* Plugin Name Column */
+.nosfir-plugin-list__name {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.nosfir-plugin-list__name-icon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    background: #f0f0f1;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.nosfir-plugin-list__name-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.nosfir-plugin-list__name-text {
+    font-weight: 500;
+    color: var(--nosfir-text-primary);
+}
+
+.nosfir-plugin-list__name-text a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.nosfir-plugin-list__name-text a:hover {
+    color: var(--nosfir-text-link);
+}
+
+/* Plugin Version Column */
+.nosfir-plugin-list__version {
+    font-size: 12px;
+    color: var(--nosfir-text-muted);
+}
+
+/* Plugin Status Column */
+.nosfir-plugin-list__status {
+    font-size: 12px;
+}
+
+/* Plugin Actions Column */
+.nosfir-plugin-list__actions {
+    text-align: right;
+    white-space: nowrap;
+}
+
+.nosfir-plugin-list__actions .button {
+    margin-left: 5px;
+}
+
+/* ============================================
+   6. RECOMMENDED PLUGINS SECTION
+   ============================================ */
+
+/* Section Container */
+.nosfir-recommended-plugins {
+    margin: 30px 0;
+}
+
+/* Section Header */
+.nosfir-recommended-plugins__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--nosfir-card-border);
+}
+
+.nosfir-recommended-plugins__title {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--nosfir-text-primary);
+}
+
+.nosfir-recommended-plugins__subtitle {
+    margin: 5px 0 0;
+    font-size: 13px;
+    color: var(--nosfir-text-secondary);
+}
+
+.nosfir-recommended-plugins__actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* Plugins Grid */
+.nosfir-recommended-plugins__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+}
+
+/* Plugins List (Alternative Layout) */
+.nosfir-recommended-plugins__list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Bulk Actions */
+.nosfir-recommended-plugins__bulk-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #f6f7f7;
+    border-radius: 4px;
+}
+
+.nosfir-recommended-plugins__bulk-actions label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+/* ============================================
+   7. REQUIRED PLUGINS NOTICE
+   ============================================ */
+
+/* Notice Container */
+.nosfir-required-notice {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 15px 20px;
+    margin: 20px 0;
+    background: #fff8e5;
+    border: 1px solid #ffb900;
+    border-left-width: 4px;
+    border-radius: 4px;
+}
+
+.nosfir-required-notice--error {
+    background: #fcf0f1;
+    border-color: #d63638;
+}
+
+.nosfir-required-notice--success {
+    background: #edfaef;
+    border-color: #00a32a;
+}
+
+.nosfir-required-notice--info {
+    background: #f0f6fc;
+    border-color: #2271b1;
+}
+
+/* Notice Icon */
+.nosfir-required-notice__icon {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nosfir-required-notice__icon .dashicons {
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+    color: #dba617;
+}
+
+.nosfir-required-notice--error .nosfir-required-notice__icon .dashicons {
+    color: #d63638;
+}
+
+.nosfir-required-notice--success .nosfir-required-notice__icon .dashicons {
+    color: #00a32a;
+}
+
+.nosfir-required-notice--info .nosfir-required-notice__icon .dashicons {
+    color: #2271b1;
+}
+
+/* Notice Content */
+.nosfir-required-notice__content {
+    flex: 1;
+}
+
+.nosfir-required-notice__title {
+    margin: 0 0 5px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--nosfir-text-primary);
+}
+
+.nosfir-required-notice__message {
+    margin: 0 0 10px;
+    font-size: 13px;
+    color: var(--nosfir-text-secondary);
+    line-height: 1.5;
+}
+
+.nosfir-required-notice__message:last-child {
+    margin-bottom: 0;
+}
+
+.nosfir-required-notice__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+/* Notice Dismiss */
+.nosfir-required-notice__dismiss {
+    flex-shrink: 0;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: var(--nosfir-transition);
+}
+
+.nosfir-required-notice__dismiss:hover {
+    opacity: 1;
+}
+
+.nosfir-required-notice__dismiss .dashicons {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+    color: var(--nosfir-text-muted);
+}
+
+/* ============================================
+   8. PLUGIN STATUS BADGES
+   ============================================ */
+
+/* Base Badge */
+.nosfir-plugin-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 8px;
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    border-radius: 3px;
+    white-space: nowrap;
+}
+
+/* Active Badge */
+.nosfir-plugin-badge--active {
+    color: var(--nosfir-status-active);
+    background: rgba(0, 163, 42, 0.1);
+}
+
+.nosfir-plugin-badge--active::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background: var(--nosfir-status-active);
+    border-radius: 50%;
+}
+
+/* Inactive Badge */
+.nosfir-plugin-badge--inactive {
+    color: var(--nosfir-status-inactive);
+    background: rgba(120, 124, 130, 0.1);
+}
+
+/* Required Badge */
+.nosfir-plugin-badge--required {
+    color: var(--nosfir-status-required);
+    background: rgba(34, 113, 177, 0.1);
+}
+
+/* Recommended Badge */
+.nosfir-plugin-badge--recommended {
+    color: #996800;
+    background: rgba(219, 166, 23, 0.15);
+}
+
+/* Update Available Badge */
+.nosfir-plugin-badge--update {
+    color: var(--nosfir-status-update);
+    background: rgba(214, 54, 56, 0.1);
+}
+
+/* Not Installed Badge */
+.nosfir-plugin-badge--not-installed {
+    color: var(--nosfir-text-muted);
+    background: rgba(120, 124, 130, 0.1);
+}
+
+/* ============================================
+   9. PROGRESS INDICATORS
+   ============================================ */
+
+/* Progress Bar Container */
+.nosfir-install-progress {
+    margin: 20px 0;
+}
+
+/* Progress Bar */
+.nosfir-install-progress__bar {
+    height: 8px;
+    background: #f0f0f1;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.nosfir-install-progress__fill {
+    height: 100%;
+    background: var(--nosfir-install-btn-bg);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+.nosfir-install-progress__fill--success {
+    background: var(--nosfir-status-active);
+}
+
+.nosfir-install-progress__fill--error {
+    background: var(--nosfir-status-update);
+}
+
+/* Progress Text */
+.nosfir-install-progress__text {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 8px;
+    font-size: 12px;
+    color: var(--nosfir-text-muted);
+}
+
+.nosfir-install-progress__status {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.nosfir-install-progress__status .dashicons {
+    font-size: 14px;
+    width: 14px;
+    height: 14px;
+}
+
+/* Bulk Progress */
+.nosfir-bulk-progress {
+    padding: 20px;
+    background: var(--nosfir-card-bg);
+    border: 1px solid var(--nosfir-card-border);
+    border-radius: 4px;
+    margin: 20px 0;
+}
+
+.nosfir-bulk-progress__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.nosfir-bulk-progress__title {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--nosfir-text-primary);
+}
+
+.nosfir-bulk-progress__count {
+    font-size: 13px;
+    color: var(--nosfir-text-muted);
+}
+
+.nosfir-bulk-progress__list {
+    margin: 15px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.nosfir-bulk-progress__item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid #f0f0f1;
+    font-size: 13px;
+}
+
+.nosfir-bulk-progress__item:last-child {
+    border-bottom: none;
+}
+
+.nosfir-bulk-progress__item-icon {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nosfir-bulk-progress__item-icon .dashicons {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+}
+
+.nosfir-bulk-progress__item--pending .dashicons {
+    color: var(--nosfir-text-muted);
+}
+
+.nosfir-bulk-progress__item--installing .dashicons {
+    color: var(--nosfir-install-btn-bg);
+    animation: nosfir-rotation 2s infinite linear;
+}
+
+.nosfir-bulk-progress__item--success .dashicons {
+    color: var(--nosfir-status-active);
+}
+
+.nosfir-bulk-progress__item--error .dashicons {
+    color: var(--nosfir-status-update);
+}
+
+.nosfir-bulk-progress__item-name {
+    flex: 1;
+    color: var(--nosfir-text-primary);
+}
+
+.nosfir-bulk-progress__item-status {
+    font-size: 12px;
+    color: var(--nosfir-text-muted);
+}
+
+/* ============================================
+   10. SUCCESS/ERROR MESSAGES
+   ============================================ */
+
+/* Message Container */
+.nosfir-install-message {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px 15px;
+    margin: 15px 0;
+    border-radius: 4px;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+/* Success Message */
+.nosfir-install-message--success {
+    color: #0a4b1c;
+    background: #edfaef;
+    border: 1px solid #00a32a;
+}
+
+.nosfir-install-message--success .dashicons {
+    color: var(--nosfir-status-active);
+}
+
+/* Error Message */
+.nosfir-install-message--error {
+    color: #8a1d1f;
+    background: #fcf0f1;
+    border: 1px solid #d63638;
+}
+
+.nosfir-install-message--error .dashicons {
+    color: var(--nosfir-status-update);
+}
+
+/* Warning Message */
+.nosfir-install-message--warning {
+    color: #614200;
+    background: #fff8e5;
+    border: 1px solid #dba617;
+}
+
+.nosfir-install-message--warning .dashicons {
+    color: #dba617;
+}
+
+/* Info Message */
+.nosfir-install-message--info {
+    color: #0a4b78;
+    background: #f0f6fc;
+    border: 1px solid #2271b1;
+}
+
+.nosfir-install-message--info .dashicons {
+    color: var(--nosfir-status-required);
+}
+
+/* Message Icon */
+.nosfir-install-message__icon {
+    flex-shrink: 0;
+}
+
+.nosfir-install-message__icon .dashicons {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+}
+
+/* Message Content */
+.nosfir-install-message__content {
+    flex: 1;
+}
+
+.nosfir-install-message__content p {
+    margin: 0;
+}
+
+.nosfir-install-message__content a {
+    color: inherit;
+    font-weight: 500;
+}
+
+/* ============================================
+   11. TGMPA INTEGRATION
+   ============================================ */
+
+/* TGMPA Table Styles */
+.tgmpa.wrap .wp-list-table {
+    margin-top: 20px;
+}
+
+.tgmpa.wrap .plugin-install-php .wp-list-table {
+    border: 1px solid var(--nosfir-card-border);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.tgmpa.wrap .wp-list-table th,
+.tgmpa.wrap .wp-list-table td {
+    padding: 12px 15px;
+}
+
+.tgmpa.wrap .wp-list-table .column-source {
+    width: 15%;
+}
+
+.tgmpa.wrap .wp-list-table .column-type {
+    width: 10%;
+}
+
+.tgmpa.wrap .wp-list-table .column-status {
+    width: 15%;
+}
+
+/* TGMPA Plugin Name */
+.tgmpa.wrap .wp-list-table .plugin-title {
+    font-weight: 600;
+}
+
+.tgmpa.wrap .wp-list-table .plugin-title .row-actions {
+    margin-top: 5px;
+}
+
+/* TGMPA Status Column */
+.tgmpa.wrap .wp-list-table .column-status .nosfir-plugin-badge {
+    margin-right: 5px;
+}
+
+/* TGMPA Bulk Actions */
+.tgmpa.wrap .tablenav .actions {
+    padding: 5px 0;
+}
+
+/* TGMPA Notice */
+.tgmpa-notice {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 15px 20px;
+    background: #fff8e5;
+    border-left: 4px solid #dba617;
+}
+
+.tgmpa-notice.notice-error {
+    background: #fcf0f1;
+    border-left-color: #d63638;
+}
+
+.tgmpa-notice.notice-success {
+    background: #edfaef;
+    border-left-color: #00a32a;
+}
+
+.tgmpa-notice p {
+    margin: 0;
+    padding: 0;
+}
+
+.tgmpa-notice .tgmpa-link {
+    font-weight: 500;
+}
+
+/* ============================================
+   12. ANIMATIONS
+   ============================================ */
+
+/* Rotation Animation */
+@keyframes nosfir-rotation {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Pulse Animation */
+@keyframes nosfir-pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* Fade In Animation */
+@keyframes nosfir-fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Slide In Animation */
+@keyframes nosfir-slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Apply Animations */
+.nosfir-plugin-card {
+    animation: nosfir-fadeIn 0.3s ease-out;
+}
+
+.nosfir-install-message {
+    animation: nosfir-slideIn 0.3s ease-out;
+}
+
+.nosfir-bulk-progress__item--installing {
+    animation: nosfir-pulse 1.5s infinite;
+}
+
+/* ============================================
+   13. RESPONSIVE STYLES
+   ============================================ */
+
+@media screen and (max-width: 1200px) {
+    .nosfir-recommended-plugins__grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+}
+
+@media screen and (max-width: 782px) {
+    /* Plugin Cards */
+    .nosfir-plugin-card {
+        padding: 15px;
+    }
+    
+    .nosfir-plugin-card__header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .nosfir-plugin-card__icon {
+        width: 48px;
+        height: 48px;
+    }
+    
+    .nosfir-plugin-card__footer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .nosfir-plugin-card__actions {
+        width: 100%;
+    }
+    
+    .nosfir-plugin-card__actions .nosfir-install-now,
+    .nosfir-plugin-card__actions .nosfir-activate-now {
+        flex: 1;
+        justify-content: center;
+    }
+    
+    /* Plugin Cards Grid */
+    .nosfir-recommended-plugins__grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Plugin Card Horizontal */
+    .nosfir-plugin-card--horizontal {
+        flex-direction: column;
+    }
+    
+    .nosfir-plugin-card--horizontal .nosfir-plugin-card__footer {
+        width: 100%;
+    }
+    
+    /* Recommended Section */
+    .nosfir-recommended-plugins__header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .nosfir-recommended-plugins__actions {
+        width: 100%;
+    }
+    
+    .nosfir-recommended-plugins__actions .button {
+        flex: 1;
+        text-align: center;
+    }
+    
+    /* Required Notice */
+    .nosfir-required-notice {
+        flex-direction: column;
+    }
+    
+    .nosfir-required-notice__actions {
+        width: 100%;
+    }
+    
+    .nosfir-required-notice__actions .button {
+        flex: 1;
+        text-align: center;
+    }
+    
+    /* Plugin List Table */
+    .nosfir-plugin-list__table {
+        display: block;
+    }
+    
+    .nosfir-plugin-list__table thead {
+        display: none;
+    }
+    
+    .nosfir-plugin-list__table tbody {
+        display: block;
+    }
+    
+    .nosfir-plugin-list__table tr {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 15px;
+        border-bottom: 1px solid #f0f0f1;
+    }
+    
+    .nosfir-plugin-list__table td {
+        border: none;
+        padding: 5px 0;
+    }
+    
+    .nosfir-plugin-list__table td:first-child {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    .nosfir-plugin-list__table .nosfir-plugin-list__actions {
+        width: 100%;
+        text-align: left;
+        margin-top: 10px;
+    }
+    
+    /* Bulk Actions */
+    .nosfir-recommended-plugins__bulk-actions {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    /* Buttons */
+    .nosfir-install-now,
+    .nosfir-activate-now,
+    .nosfir-update-now {
+        min-height: 40px;
+        padding: 8px 16px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    /* Even smaller screens */
+    .nosfir-plugin-card__meta {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .nosfir-bulk-progress {
+        padding: 15px;
+    }
+    
+    .nosfir-bulk-progress__header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+}
+
+/* ============================================
+   END OF NOSFIR PLUGIN INSTALL STYLES
+   ============================================ */
