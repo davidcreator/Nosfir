@@ -16,7 +16,7 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 
 ---
 
-## [1.0.0] - 2024-XX-XX
+## [1.0.0] - 26-01-2026
 
 ### 🎉 Lançamento Inicial
 
