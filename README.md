@@ -7,7 +7,7 @@
 ![PHP](https://img.shields.io/badge/PHP-8.0%2B-purple.svg)
 
 <p align="center">
-  <img src="screenshot.png" alt="Nosfir Screenshot" width="600">
+  <img src="logo.png" alt="Nosfir Screenshot" width="600">
 </p>
 
 ## 📋 Descrição
