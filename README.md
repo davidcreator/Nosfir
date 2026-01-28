@@ -553,7 +553,8 @@ Sim! Ative em Aparência > Personalizar > Cores > Habilitar Modo Escuro.
 Abra uma issue com a tag "enhancement"
 
 ## 🤝 Contribuição
-Contribuições são bem-vindas! Por favor, leia nosso Guia de Contribuição e o Código de Conduta antes de enviar um Pull Request.
+
+Contribuições são bem-vindas! Por favor, leia nosso [Guia de Contribuição](docs/CONTRIBUTING.md) e o [Código de Conduta](docs/CODE_OF_CONDUCT.md) antes de enviar um Pull Request.
 
 ### Como Contribuir
 1. Faça um Fork do repositório
