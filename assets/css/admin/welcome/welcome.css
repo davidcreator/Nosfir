@@ -1,0 +1,1249 @@
+/**
+ * Nosfir Theme - Welcome Page Styles
+ *
+ * Styles for the theme welcome/about page in WordPress admin.
+ * Located at: Appearance > Nosfir Welcome
+ *
+ * @package Nosfir
+ * @subpackage Admin
+ * @since 1.0.0
+ */
+
+/* ==========================================================================
+   CSS Variables
+   ========================================================================== */
+
+:root {
+    /* Primary Colors */
+    --nosfir-welcome-primary: #0073aa;
+    --nosfir-welcome-primary-dark: #005a87;
+    --nosfir-welcome-primary-light: #00a0d2;
+    --nosfir-welcome-accent: #00aadc;
+    --nosfir-welcome-accent-hover: #0087be;
+
+    /* Background Colors */
+    --nosfir-welcome-bg: #e9eff3;
+    --nosfir-welcome-bg-white: #fff;
+    --nosfir-welcome-bg-light: #f7f7f7;
+    --nosfir-welcome-bg-nav: #0087be;
+
+    /* Text Colors */
+    --nosfir-welcome-text: #608299;
+    --nosfir-welcome-text-dark: #2e4453;
+    --nosfir-welcome-text-light: #87a6bc;
+    --nosfir-welcome-text-muted: #a5c9e1;
+
+    /* Border Colors */
+    --nosfir-welcome-border: #d8e2e9;
+    --nosfir-welcome-border-light: #c8d7e1;
+    --nosfir-welcome-border-hover: #a8bece;
+
+    /* Shadows */
+    --nosfir-welcome-shadow: 0 1px 0 #c8d7e1;
+    --nosfir-welcome-shadow-hover: 0 1px 0 #a8bece;
+    --nosfir-welcome-shadow-card: 0 2px 5px rgba(0, 0, 0, 0.05);
+
+    /* Spacing */
+    --nosfir-welcome-spacing: 50px;
+    --nosfir-welcome-spacing-sm: 25px;
+    --nosfir-welcome-spacing-xs: 16px;
+
+    /* Border Radius */
+    --nosfir-welcome-radius: 3px;
+    --nosfir-welcome-radius-lg: 5px;
+    --nosfir-welcome-radius-full: 100%;
+
+    /* Transitions */
+    --nosfir-welcome-transition: 0.2s ease;
+
+    /* Card Dimensions */
+    --nosfir-welcome-card-width: 300px;
+    --nosfir-welcome-logo-size: 150px;
+}
+
+/* ==========================================================================
+   Main Container
+   ========================================================================== */
+
+/**
+ * Welcome Page Wrapper
+ * Main container for the welcome page content
+ */
+.appearance_page_nosfir-welcome .nosfir-wrap {
+    background: var(--nosfir-welcome-bg);
+    padding: var(--nosfir-welcome-spacing);
+    border: 10px solid var(--nosfir-welcome-bg-white);
+    margin-top: 20px;
+    margin-right: 20px;
+    color: var(--nosfir-welcome-text);
+    border-radius: var(--nosfir-welcome-radius-lg);
+    box-shadow: var(--nosfir-welcome-shadow-card);
+}
+
+/**
+ * Headings
+ */
+.appearance_page_nosfir-welcome .nosfir-wrap h1,
+.appearance_page_nosfir-welcome .nosfir-wrap h2,
+.appearance_page_nosfir-welcome .nosfir-wrap h3,
+.appearance_page_nosfir-welcome .nosfir-wrap h4,
+.appearance_page_nosfir-welcome .nosfir-wrap h5,
+.appearance_page_nosfir-welcome .nosfir-wrap h6 {
+    color: var(--nosfir-welcome-text-dark);
+    margin-top: 0;
+    line-height: 1.4;
+}
+
+/**
+ * Links
+ */
+.appearance_page_nosfir-welcome .nosfir-wrap a {
+    color: var(--nosfir-welcome-accent);
+    text-decoration: underline;
+    transition: color var(--nosfir-welcome-transition);
+}
+
+.appearance_page_nosfir-welcome .nosfir-wrap a:hover {
+    color: var(--nosfir-welcome-accent-hover);
+}
+
+/**
+ * Paragraphs
+ */
+.appearance_page_nosfir-welcome .nosfir-wrap p {
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 1em;
+}
+
+/* ==========================================================================
+   Navigation Bar
+   ========================================================================== */
+
+/**
+ * Navigation Container
+ */
+.appearance_page_nosfir-welcome .nosfir-welcome-nav {
+    background-color: var(--nosfir-welcome-bg-nav);
+    margin: calc(-1 * var(--nosfir-welcome-spacing));
+    margin-bottom: 0;
+    border-radius: var(--nosfir-welcome-radius-lg) var(--nosfir-welcome-radius-lg) 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+/**
+ * Navigation Links
+ */
+.appearance_page_nosfir-welcome .nosfir-welcome-nav a {
+    text-decoration: none;
+    color: var(--nosfir-welcome-bg-white);
+    display: inline-block;
+    padding: 1em 1.5em;
+    transition: background-color var(--nosfir-welcome-transition);
+    border-radius: var(--nosfir-welcome-radius);
+}
+
+.appearance_page_nosfir-welcome .nosfir-welcome-nav a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--nosfir-welcome-bg-white);
+}
+
+.appearance_page_nosfir-welcome .nosfir-welcome-nav a.active {
+    background-color: rgba(255, 255, 255, 0.15);
+    font-weight: 600;
+}
+
+/**
+ * Version Badge
+ */
+.appearance_page_nosfir-welcome .nosfir-welcome-nav__version {
+    float: right;
+    color: var(--nosfir-welcome-text-muted);
+    display: inline-block;
+    padding: 1em 2em;
+    font-size: 0.9em;
+}
+
+.appearance_page_nosfir-welcome .nosfir-welcome-nav__version strong {
+    color: var(--nosfir-welcome-bg-white);
+}
+
+/**
+ * Navigation List Reset
+ */
+.appearance_page_nosfir-welcome .nosfir-welcome-nav ul,
+.appearance_page_nosfir-welcome .nosfir-welcome-nav li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.appearance_page_nosfir-welcome .nosfir-welcome-nav ul {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.appearance_page_nosfir-welcome .nosfir-welcome-nav li {
+    display: inline-block;
+}
+
+/* ==========================================================================
+   Logo Section
+   ========================================================================== */
+
+/**
+ * Logo Container
+ */
+.appearance_page_nosfir-welcome .nosfir-logo {
+    border: 0;
+    background: var(--nosfir-welcome-bg-white);
+    display: block;
+    margin: 0 auto;
+    border-radius: var(--nosfir-welcome-radius-full);
+    width: var(--nosfir-welcome-logo-size);
+    height: var(--nosfir-welcome-logo-size);
+    text-align: center;
+    position: relative;
+    margin-top: -20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform var(--nosfir-welcome-transition),
+                box-shadow var(--nosfir-welcome-transition);
+}
+
+.appearance_page_nosfir-welcome .nosfir-logo:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/**
+ * Logo Image
+ */
+.appearance_page_nosfir-welcome .nosfir-logo img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    width: 90px;
+    height: auto;
+}
+
+/**
+ * Logo - Text Version
+ */
+.appearance_page_nosfir-welcome .nosfir-logo-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    font-size: 2.5em;
+    font-weight: 700;
+    color: var(--nosfir-welcome-primary);
+    letter-spacing: -1px;
+}
+
+/* ==========================================================================
+   Intro Section
+   ========================================================================== */
+
+/**
+ * Intro Container
+ */
+.appearance_page_nosfir-welcome .nosfir-intro {
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 2em 0;
+}
+
+/**
+ * Intro Heading
+ */
+.appearance_page_nosfir-welcome .nosfir-intro h1 {
+    line-height: 1.5;
+    font-weight: 400;
+    font-size: 2em;
+    margin-bottom: 0.5em;
+}
+
+.appearance_page_nosfir-welcome .nosfir-intro h1 span {
+    display: block;
+    font-size: 75%;
+    color: var(--nosfir-welcome-text);
+    margin-top: 0.5em;
+}
+
+.appearance_page_nosfir-welcome .nosfir-intro h1 strong {
+    color: var(--nosfir-welcome-primary);
+}
+
+/**
+ * Intro Description
+ */
+.appearance_page_nosfir-welcome .nosfir-intro p {
+    font-size: 1.1em;
+    color: var(--nosfir-welcome-text);
+}
+
+/**
+ * Notice Input
+ */
+.appearance_page_nosfir-welcome .nosfir-intro .notice-input {
+    text-align: left;
+}
+
+.appearance_page_nosfir-welcome .nosfir-intro .notice-input:last-of-type {
+    margin-bottom: var(--nosfir-welcome-spacing-xs);
+}
+
+/**
+ * Dismiss Button
+ */
+.appearance_page_nosfir-welcome .nosfir-nux-dismiss-button {
+    margin-left: var(--nosfir-welcome-spacing-xs);
+}
+
+/* ==========================================================================
+   Quick Actions Section
+   ========================================================================== */
+
+/**
+ * Quick Actions Grid
+ */
+.appearance_page_nosfir-welcome .nosfir-quick-actions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin: 2em 0;
+    padding: 2em;
+    background: var(--nosfir-welcome-bg-white);
+    border-radius: var(--nosfir-welcome-radius-lg);
+}
+
+/**
+ * Quick Action Item
+ */
+.appearance_page_nosfir-welcome .nosfir-quick-action {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    background: var(--nosfir-welcome-bg-light);
+    border-radius: var(--nosfir-welcome-radius);
+    text-decoration: none;
+    transition: all var(--nosfir-welcome-transition);
+}
+
+.appearance_page_nosfir-welcome .nosfir-quick-action:hover {
+    background: var(--nosfir-welcome-bg);
+    transform: translateY(-2px);
+    box-shadow: var(--nosfir-welcome-shadow-card);
+}
+
+.appearance_page_nosfir-welcome .nosfir-quick-action .dashicons {
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+    color: var(--nosfir-welcome-primary);
+}
+
+.appearance_page_nosfir-welcome .nosfir-quick-action span {
+    font-weight: 500;
+    color: var(--nosfir-welcome-text-dark);
+}
+
+/* ==========================================================================
+   Enhancement Columns Section
+   ========================================================================== */
+
+/**
+ * Enhancement Container
+ */
+.appearance_page_nosfir-welcome .nosfir-enhance {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    margin: 4em 0;
+    gap: 2em;
+}
+
+/**
+ * Enhancement Column
+ */
+.appearance_page_nosfir-welcome .nosfir-enhance .nosfir-enhance__column {
+    border: 1px solid var(--nosfir-welcome-border);
+    width: var(--nosfir-welcome-card-width);
+    background: var(--nosfir-welcome-bg-white);
+    border-radius: var(--nosfir-welcome-radius-lg);
+    overflow: hidden;
+    transition: transform var(--nosfir-welcome-transition),
+                box-shadow var(--nosfir-welcome-transition);
+}
+
+.appearance_page_nosfir-welcome .nosfir-enhance .nosfir-enhance__column:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/**
+ * Column Header
+ */
+.appearance_page_nosfir-welcome .nosfir-enhance .nosfir-enhance__column h3 {
+    font-size: 1em;
+    font-weight: 600;
+    color: var(--nosfir-welcome-text-light);
+    border-bottom: 1px solid var(--nosfir-welcome-border);
+    padding: 1em 1.5em;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.85em;
+}
+
+/**
+ * Column Image
+ */
+.appearance_page_nosfir-welcome .nosfir-enhance .nosfir-enhance__column img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 1.5em;
+    display: block;
+}
+
+/**
+ * Bundle & Child Themes Specific
+ */
+.appearance_page_nosfir-welcome .nosfir-enhance .nosfir-bundle,
+.appearance_page_nosfir-welcome .nosfir-enhance .nosfir-child-themes {
+    padding-bottom: 1.5em;
+}
+
+.appearance_page_nosfir-welcome .nosfir-enhance .nosfir-bundle p,
+.appearance_page_nosfir-welcome .nosfir-enhance .nosfir-child-themes p {
+    padding: 0 1.5em;
+    margin: 0 0 1em;
+}
+
+/**
+ * Bundle Section
+ */
+.appearance_page_nosfir-welcome .nosfir-enhance .nosfir-bundle {
+    order: 2;
+}
+
+.appearance_page_nosfir-welcome .nosfir-enhance .nosfir-bundle .bundle-image {
+    display: block;
+    background: var(--nosfir-welcome-bg-light);
+    margin-bottom: 1.5em;
+    padding: 2em;
+}
+
+.appearance_page_nosfir-welcome .nosfir-enhance .nosfir-bundle .bundle-image img {
+    display: block;
+    max-width: 75%;
+    margin: 0 auto;
+}
+
+/**
+ * Child Themes Section
+ */
+.appearance_page_nosfir-welcome .nosfir-enhance .nosfir-child-themes {
+    order: 3;
+}
+
+/**
+ * Features Column
+ */
+.appearance_page_nosfir-welcome .nosfir-enhance .nosfir-features {
+    order: 1;
+}
+
+/* ==========================================================================
+   Features List
+   ========================================================================== */
+
+/**
+ * Features List
+ */
+.appearance_page_nosfir-welcome .nosfir-features-list {
+    list-style: none;
+    padding: 0 1.5em;
+    margin: 0;
+}
+
+.appearance_page_nosfir-welcome .nosfir-features-list li {
+    position: relative;
+    padding: 0.75em 0 0.75em 30px;
+    border-bottom: 1px solid var(--nosfir-welcome-border);
+}
+
+.appearance_page_nosfir-welcome .nosfir-features-list li:last-child {
+    border-bottom: none;
+}
+
+.appearance_page_nosfir-welcome .nosfir-features-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: 0.75em;
+    color: #46b450;
+    font-weight: bold;
+}
+
+.appearance_page_nosfir-welcome .nosfir-features-list li.pro::before {
+    content: "★";
+    color: var(--nosfir-welcome-accent);
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+
+/**
+ * Primary Button
+ */
+.appearance_page_nosfir-welcome a.nosfir-button,
+.appearance_page_nosfir-welcome button.nosfir-button {
+    color: var(--nosfir-welcome-text-dark);
+    background-color: var(--nosfir-welcome-bg-white);
+    border: 1px solid var(--nosfir-welcome-border-light);
+    padding: 0.6em 1.2em;
+    border-radius: var(--nosfir-welcome-radius);
+    font-weight: 600;
+    font-size: 13px;
+    display: inline-block;
+    box-shadow: var(--nosfir-welcome-shadow);
+    text-decoration: none;
+    text-shadow: none;
+    height: auto;
+    line-height: 1.5;
+    cursor: pointer;
+    transition: all var(--nosfir-welcome-transition);
+}
+
+.appearance_page_nosfir-welcome a.nosfir-button:hover,
+.appearance_page_nosfir-welcome button.nosfir-button:hover {
+    border-color: var(--nosfir-welcome-border-hover);
+    box-shadow: var(--nosfir-welcome-shadow-hover);
+    color: var(--nosfir-welcome-text-dark);
+}
+
+.appearance_page_nosfir-welcome a.nosfir-button:focus,
+.appearance_page_nosfir-welcome button.nosfir-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--nosfir-welcome-accent);
+}
+
+/**
+ * Primary Filled Button
+ */
+.appearance_page_nosfir-welcome a.nosfir-button--primary,
+.appearance_page_nosfir-welcome button.nosfir-button--primary {
+    background: var(--nosfir-welcome-primary);
+    border-color: var(--nosfir-welcome-primary-dark);
+    color: var(--nosfir-welcome-bg-white);
+}
+
+.appearance_page_nosfir-welcome a.nosfir-button--primary:hover,
+.appearance_page_nosfir-welcome button.nosfir-button--primary:hover {
+    background: var(--nosfir-welcome-primary-dark);
+    color: var(--nosfir-welcome-bg-white);
+}
+
+/**
+ * Accent Button
+ */
+.appearance_page_nosfir-welcome a.nosfir-button--accent,
+.appearance_page_nosfir-welcome button.nosfir-button--accent {
+    background: var(--nosfir-welcome-accent);
+    border-color: var(--nosfir-welcome-accent-hover);
+    color: var(--nosfir-welcome-bg-white);
+}
+
+.appearance_page_nosfir-welcome a.nosfir-button--accent:hover,
+.appearance_page_nosfir-welcome button.nosfir-button--accent:hover {
+    background: var(--nosfir-welcome-accent-hover);
+    color: var(--nosfir-welcome-bg-white);
+}
+
+/**
+ * Disabled Button
+ */
+.appearance_page_nosfir-welcome a.nosfir-button.disabled,
+.appearance_page_nosfir-welcome button.nosfir-button:disabled {
+    cursor: default;
+    color: var(--nosfir-welcome-border-light);
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.appearance_page_nosfir-welcome a.nosfir-button.disabled:hover,
+.appearance_page_nosfir-welcome button.nosfir-button:disabled:hover {
+    border-color: var(--nosfir-welcome-border-light);
+    box-shadow: var(--nosfir-welcome-shadow);
+}
+
+/**
+ * Small Button
+ */
+.appearance_page_nosfir-welcome a.nosfir-button--small {
+    padding: 0.4em 0.8em;
+    font-size: 12px;
+}
+
+/**
+ * Large Button
+ */
+.appearance_page_nosfir-welcome a.nosfir-button--large {
+    padding: 0.8em 1.6em;
+    font-size: 15px;
+}
+
+/**
+ * Full Width Button
+ */
+.appearance_page_nosfir-welcome a.nosfir-button--full {
+    display: block;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* ==========================================================================
+   Tabs Section
+   ========================================================================== */
+
+/**
+ * Tabs Container
+ */
+.appearance_page_nosfir-welcome .nosfir-tabs {
+    margin: 2em 0;
+}
+
+/**
+ * Tab Navigation
+ */
+.appearance_page_nosfir-welcome .nosfir-tabs__nav {
+    display: flex;
+    border-bottom: 2px solid var(--nosfir-welcome-border);
+    margin-bottom: 2em;
+    gap: 5px;
+}
+
+.appearance_page_nosfir-welcome .nosfir-tabs__nav-item {
+    padding: 1em 1.5em;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    color: var(--nosfir-welcome-text);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--nosfir-welcome-transition);
+}
+
+.appearance_page_nosfir-welcome .nosfir-tabs__nav-item:hover {
+    color: var(--nosfir-welcome-text-dark);
+    background: rgba(0, 0, 0, 0.02);
+}
+
+.appearance_page_nosfir-welcome .nosfir-tabs__nav-item.active {
+    color: var(--nosfir-welcome-primary);
+    border-bottom-color: var(--nosfir-welcome-primary);
+}
+
+/**
+ * Tab Content
+ */
+.appearance_page_nosfir-welcome .nosfir-tabs__content {
+    display: none;
+    animation: nosfirFadeIn 0.3s ease;
+}
+
+.appearance_page_nosfir-welcome .nosfir-tabs__content.active {
+    display: block;
+}
+
+@keyframes nosfirFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==========================================================================
+   Changelog Section
+   ========================================================================== */
+
+/**
+ * Changelog Container
+ */
+.appearance_page_nosfir-welcome .nosfir-changelog {
+    background: var(--nosfir-welcome-bg-white);
+    padding: 2em;
+    border-radius: var(--nosfir-welcome-radius-lg);
+    margin: 2em 0;
+}
+
+/**
+ * Changelog Version
+ */
+.appearance_page_nosfir-welcome .nosfir-changelog__version {
+    margin-bottom: 1.5em;
+    padding-bottom: 1.5em;
+    border-bottom: 1px solid var(--nosfir-welcome-border);
+}
+
+.appearance_page_nosfir-welcome .nosfir-changelog__version:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.appearance_page_nosfir-welcome .nosfir-changelog__version h4 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 0.5em;
+}
+
+.appearance_page_nosfir-welcome .nosfir-changelog__version h4 .version-number {
+    background: var(--nosfir-welcome-primary);
+    color: var(--nosfir-welcome-bg-white);
+    padding: 0.2em 0.6em;
+    border-radius: var(--nosfir-welcome-radius);
+    font-size: 0.9em;
+}
+
+.appearance_page_nosfir-welcome .nosfir-changelog__version h4 .version-date {
+    color: var(--nosfir-welcome-text-light);
+    font-weight: 400;
+    font-size: 0.85em;
+}
+
+/**
+ * Changelog List
+ */
+.appearance_page_nosfir-welcome .nosfir-changelog__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.appearance_page_nosfir-welcome .nosfir-changelog__list li {
+    position: relative;
+    padding: 0.5em 0 0.5em 80px;
+}
+
+.appearance_page_nosfir-welcome .nosfir-changelog__list li::before {
+    position: absolute;
+    left: 0;
+    top: 0.5em;
+    padding: 0.15em 0.5em;
+    border-radius: var(--nosfir-welcome-radius);
+    font-size: 0.75em;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.appearance_page_nosfir-welcome .nosfir-changelog__list li.added::before {
+    content: "Added";
+    background: #d4edda;
+    color: #155724;
+}
+
+.appearance_page_nosfir-welcome .nosfir-changelog__list li.fixed::before {
+    content: "Fixed";
+    background: #fff3cd;
+    color: #856404;
+}
+
+.appearance_page_nosfir-welcome .nosfir-changelog__list li.improved::before {
+    content: "Improved";
+    background: #cce5ff;
+    color: #004085;
+}
+
+.appearance_page_nosfir-welcome .nosfir-changelog__list li.removed::before {
+    content: "Removed";
+    background: #f8d7da;
+    color: #721c24;
+}
+
+/* ==========================================================================
+   Support Section
+   ========================================================================== */
+
+/**
+ * Support Grid
+ */
+.appearance_page_nosfir-welcome .nosfir-support {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin: 2em 0;
+}
+
+/**
+ * Support Card
+ */
+.appearance_page_nosfir-welcome .nosfir-support__card {
+    background: var(--nosfir-welcome-bg-white);
+    padding: 2em;
+    border-radius: var(--nosfir-welcome-radius-lg);
+    text-align: center;
+    transition: transform var(--nosfir-welcome-transition),
+                box-shadow var(--nosfir-welcome-transition);
+}
+
+.appearance_page_nosfir-welcome .nosfir-support__card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--nosfir-welcome-shadow-card);
+}
+
+.appearance_page_nosfir-welcome .nosfir-support__card .dashicons {
+    font-size: 40px;
+    width: 40px;
+    height: 40px;
+    color: var(--nosfir-welcome-primary);
+    margin-bottom: 15px;
+}
+
+.appearance_page_nosfir-welcome .nosfir-support__card h4 {
+    margin: 0 0 10px;
+}
+
+.appearance_page_nosfir-welcome .nosfir-support__card p {
+    margin-bottom: 15px;
+    color: var(--nosfir-welcome-text);
+}
+
+/* ==========================================================================
+   Footer/Credits Section
+   ========================================================================== */
+
+/**
+ * Credits Container
+ */
+.appearance_page_nosfir-welcome .nosfir-credits {
+    text-align: center;
+    clear: both;
+    padding-top: 2em;
+    margin-top: 2em;
+    border-top: 1px solid var(--nosfir-welcome-border);
+}
+
+.appearance_page_nosfir-welcome .nosfir-credits p {
+    font-size: 0.85em;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--nosfir-welcome-text-light);
+}
+
+.appearance_page_nosfir-welcome .nosfir-credits img {
+    max-height: 12px;
+    margin: 0 0.5em;
+    margin-top: -3px;
+    opacity: 0.5;
+    vertical-align: middle;
+    transition: opacity var(--nosfir-welcome-transition);
+}
+
+.appearance_page_nosfir-welcome .nosfir-credits img:hover {
+    opacity: 0.8;
+}
+
+.appearance_page_nosfir-welcome .nosfir-credits a {
+    text-decoration: none;
+}
+
+/* ==========================================================================
+   Notices & Alerts
+   ========================================================================== */
+
+/**
+ * Welcome Notice
+ */
+.appearance_page_nosfir-welcome .nosfir-notice {
+    padding: 1em 1.5em;
+    border-radius: var(--nosfir-welcome-radius);
+    margin: 1.5em 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.appearance_page_nosfir-welcome .nosfir-notice .dashicons {
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.appearance_page_nosfir-welcome .nosfir-notice--info {
+    background: #e5f5fa;
+    border-left: 4px solid var(--nosfir-welcome-accent);
+}
+
+.appearance_page_nosfir-welcome .nosfir-notice--info .dashicons {
+    color: var(--nosfir-welcome-accent);
+}
+
+.appearance_page_nosfir-welcome .nosfir-notice--success {
+    background: #d4edda;
+    border-left: 4px solid #46b450;
+}
+
+.appearance_page_nosfir-welcome .nosfir-notice--success .dashicons {
+    color: #46b450;
+}
+
+.appearance_page_nosfir-welcome .nosfir-notice--warning {
+    background: #fff3cd;
+    border-left: 4px solid #ffb900;
+}
+
+.appearance_page_nosfir-welcome .nosfir-notice--warning .dashicons {
+    color: #ffb900;
+}
+
+/* ==========================================================================
+   Pro Upgrade Section
+   ========================================================================== */
+
+/**
+ * Pro Upgrade Banner
+ */
+.appearance_page_nosfir-welcome .nosfir-pro-banner {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #fff;
+    padding: 3em;
+    border-radius: var(--nosfir-welcome-radius-lg);
+    text-align: center;
+    margin: 2em 0;
+}
+
+.appearance_page_nosfir-welcome .nosfir-pro-banner h2 {
+    color: #fff;
+    margin-bottom: 0.5em;
+}
+
+.appearance_page_nosfir-welcome .nosfir-pro-banner p {
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 600px;
+    margin: 0 auto 1.5em;
+}
+
+.appearance_page_nosfir-welcome .nosfir-pro-banner .nosfir-button {
+    background: #fff;
+    color: #667eea;
+    border: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.appearance_page_nosfir-welcome .nosfir-pro-banner .nosfir-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* ==========================================================================
+   Video Section
+   ========================================================================== */
+
+/**
+ * Video Container
+ */
+.appearance_page_nosfir-welcome .nosfir-video {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0;
+    overflow: hidden;
+    border-radius: var(--nosfir-welcome-radius-lg);
+    margin: 2em 0;
+    box-shadow: var(--nosfir-welcome-shadow-card);
+}
+
+.appearance_page_nosfir-welcome .nosfir-video iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* ==========================================================================
+   System Status Section
+   ========================================================================== */
+
+/**
+ * System Status Table
+ */
+.appearance_page_nosfir-welcome .nosfir-system-status {
+    background: var(--nosfir-welcome-bg-white);
+    border-radius: var(--nosfir-welcome-radius-lg);
+    overflow: hidden;
+    margin: 2em 0;
+}
+
+.appearance_page_nosfir-welcome .nosfir-system-status table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.appearance_page_nosfir-welcome .nosfir-system-status th,
+.appearance_page_nosfir-welcome .nosfir-system-status td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--nosfir-welcome-border);
+}
+
+.appearance_page_nosfir-welcome .nosfir-system-status th {
+    background: var(--nosfir-welcome-bg-light);
+    font-weight: 600;
+    width: 40%;
+}
+
+.appearance_page_nosfir-welcome .nosfir-system-status tr:last-child th,
+.appearance_page_nosfir-welcome .nosfir-system-status tr:last-child td {
+    border-bottom: none;
+}
+
+.appearance_page_nosfir-welcome .nosfir-system-status .status-ok {
+    color: #46b450;
+}
+
+.appearance_page_nosfir-welcome .nosfir-system-status .status-warning {
+    color: #ffb900;
+}
+
+.appearance_page_nosfir-welcome .nosfir-system-status .status-error {
+    color: #dc3232;
+}
+
+/* ==========================================================================
+   Responsive Styles
+   ========================================================================== */
+
+/**
+ * Tablet Breakpoint
+ */
+@media all and (max-width: 900px) {
+    .appearance_page_nosfir-welcome .nosfir-wrap {
+        padding: var(--nosfir-welcome-spacing-sm);
+        margin-right: 10px;
+    }
+
+    .appearance_page_nosfir-welcome .nosfir-welcome-nav {
+        margin: calc(-1 * var(--nosfir-welcome-spacing-sm));
+        margin-bottom: 0;
+    }
+
+    .appearance_page_nosfir-welcome .nosfir-enhance {
+        flex-direction: column;
+        align-items: center;
+        margin: 2em 0;
+    }
+
+    .appearance_page_nosfir-welcome .nosfir-enhance .nosfir-enhance__column {
+        width: 100%;
+        max-width: 400px;
+        margin: 0.5em 0;
+    }
+}
+
+/**
+ * Mobile Breakpoint
+ */
+@media all and (max-width: 768px) {
+    .appearance_page_nosfir-welcome .nosfir-wrap {
+        padding: 20px;
+        margin-right: 0;
+        border-width: 5px;
+    }
+
+    .appearance_page_nosfir-welcome .nosfir-welcome-nav {
+        margin: -20px -20px 0;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .appearance_page_nosfir-welcome .nosfir-welcome-nav ul {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .appearance_page_nosfir-welcome .nosfir-welcome-nav li {
+        display: block;
+    }
+
+    .appearance_page_nosfir-welcome .nosfir-welcome-nav a {
+        display: block;
+        padding: 0.75em;
+    }
+
+    .appearance_page_nosfir-welcome .nosfir-welcome-nav__version {
+        float: none;
+        display: block;
+        padding: 0.75em;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .appearance_page_nosfir-welcome .nosfir-logo {
+        margin-top: 20px;
+        width: 120px;
+        height: 120px;
+    }
+
+    .appearance_page_nosfir-welcome .nosfir-logo img {
+        width: 70px;
+    }
+
+    .appearance_page_nosfir-welcome .nosfir-intro h1 {
+        font-size: 1.5em;
+    }
+
+    .appearance_page_nosfir-welcome .nosfir-enhance .nosfir-enhance__column {
+        max-width: 100%;
+    }
+
+    .appearance_page_nosfir-welcome .nosfir-tabs__nav {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .appearance_page_nosfir-welcome .nosfir-tabs__nav-item {
+        border-bottom: none;
+        border-left: 2px solid transparent;
+        margin-left: -2px;
+        margin-bottom: 0;
+    }
+
+    .appearance_page_nosfir-welcome .nosfir-tabs__nav-item.active {
+        border-bottom-color: transparent;
+        border-left-color: var(--nosfir-welcome-primary);
+    }
+
+    .appearance_page_nosfir-welcome .nosfir-pro-banner {
+        padding: 2em;
+    }
+
+    .appearance_page_nosfir-welcome .nosfir-changelog__list li {
+        padding-left: 0;
+        padding-top: 2em;
+    }
+
+    .appearance_page_nosfir-welcome .nosfir-changelog__list li::before {
+        top: 0.5em;
+        left: 0;
+    }
+}
+
+/**
+ * Small Mobile Breakpoint
+ */
+@media all and (max-width: 480px) {
+    .appearance_page_nosfir-welcome .nosfir-wrap {
+        padding: 15px;
+    }
+
+    .appearance_page_nosfir-welcome .nosfir-quick-actions {
+        grid-template-columns: 1fr;
+        padding: 1em;
+    }
+
+    .appearance_page_nosfir-welcome .nosfir-support {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ==========================================================================
+   Print Styles
+   ========================================================================== */
+
+@media print {
+    .appearance_page_nosfir-welcome .nosfir-wrap {
+        background: #fff;
+        border: none;
+        box-shadow: none;
+    }
+
+    .appearance_page_nosfir-welcome .nosfir-welcome-nav,
+    .appearance_page_nosfir-welcome .nosfir-button,
+    .appearance_page_nosfir-welcome .nosfir-pro-banner {
+        display: none !important;
+    }
+}
+
+/* ==========================================================================
+   High Contrast Mode
+   ========================================================================== */
+
+@media (prefers-contrast: high) {
+    .appearance_page_nosfir-welcome .nosfir-wrap {
+        border-color: #000;
+    }
+
+    .appearance_page_nosfir-welcome .nosfir-button {
+        border-width: 2px;
+    }
+
+    .appearance_page_nosfir-welcome .nosfir-enhance .nosfir-enhance__column {
+        border-width: 2px;
+    }
+}
+
+/* ==========================================================================
+   Reduced Motion
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .appearance_page_nosfir-welcome .nosfir-logo,
+    .appearance_page_nosfir-welcome .nosfir-button,
+    .appearance_page_nosfir-welcome .nosfir-enhance .nosfir-enhance__column,
+    .appearance_page_nosfir-welcome .nosfir-quick-action,
+    .appearance_page_nosfir-welcome .nosfir-support__card,
+    .appearance_page_nosfir-welcome .nosfir-tabs__content {
+        transition: none;
+        animation: none;
+    }
+}
+
+/* ==========================================================================
+   RTL Support
+   ========================================================================== */
+
+[dir="rtl"] .appearance_page_nosfir-welcome .nosfir-wrap {
+    margin-right: 0;
+    margin-left: 20px;
+}
+
+[dir="rtl"] .appearance_page_nosfir-welcome .nosfir-welcome-nav__version {
+    float: left;
+}
+
+[dir="rtl"] .appearance_page_nosfir-welcome .nosfir-nux-dismiss-button {
+    margin-left: 0;
+    margin-right: var(--nosfir-welcome-spacing-xs);
+}
+
+[dir="rtl"] .appearance_page_nosfir-welcome .nosfir-features-list li,
+[dir="rtl"] .appearance_page_nosfir-welcome .nosfir-changelog__list li {
+    padding-left: 0;
+    padding-right: 80px;
+}
+
+[dir="rtl"] .appearance_page_nosfir-welcome .nosfir-features-list li::before,
+[dir="rtl"] .appearance_page_nosfir-welcome .nosfir-changelog__list li::before {
+    left: auto;
+    right: 0;
+}
+
+[dir="rtl"] .appearance_page_nosfir-welcome .nosfir-notice {
+    border-left: none;
+    border-right: 4px solid;
+}

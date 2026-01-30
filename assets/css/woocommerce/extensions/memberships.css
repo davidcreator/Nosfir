@@ -1,0 +1,1125 @@
+/**
+ * Nosfir Theme - WooCommerce Memberships
+ *
+ * Styles for the WooCommerce Memberships extension.
+ * Provides custom styling for membership areas, member content,
+ * restricted access, and My Account membership sections.
+ *
+ * @package Nosfir
+ * @subpackage WooCommerce/Extensions
+ * @since 1.0.0
+ *
+ * @see https://woocommerce.com/products/woocommerce-memberships/
+ */
+
+/* ==========================================================================
+   CSS Variables
+   ========================================================================== */
+
+:root {
+    /* Colors */
+    --nosfir-membership-primary: #0073aa;
+    --nosfir-membership-primary-dark: #005a87;
+    --nosfir-membership-primary-light: #e5f5fa;
+    --nosfir-membership-text: #43454b;
+    --nosfir-membership-text-light: #666;
+    --nosfir-membership-bg: #fff;
+    --nosfir-membership-bg-alt: #f7f7f7;
+    --nosfir-membership-border: rgba(0, 0, 0, 0.05);
+    --nosfir-membership-border-dark: rgba(0, 0, 0, 0.1);
+
+    /* Status Colors */
+    --nosfir-membership-active: #0f834d;
+    --nosfir-membership-active-bg: #d4edda;
+    --nosfir-membership-pending: #ffba00;
+    --nosfir-membership-pending-bg: #fff3cd;
+    --nosfir-membership-expired: #e2401c;
+    --nosfir-membership-expired-bg: #f8d7da;
+    --nosfir-membership-cancelled: #6c757d;
+    --nosfir-membership-cancelled-bg: #e9e9e9;
+    --nosfir-membership-paused: #3d9cd2;
+    --nosfir-membership-paused-bg: #e5f5fa;
+
+    /* Spacing */
+    --nosfir-membership-spacing-xs: 0.5em;
+    --nosfir-membership-spacing-sm: 1em;
+    --nosfir-membership-spacing: 1.618em;
+    --nosfir-membership-spacing-lg: 2em;
+
+    /* Border Radius */
+    --nosfir-membership-radius: 3px;
+    --nosfir-membership-radius-lg: 5px;
+
+    /* Transitions */
+    --nosfir-membership-transition: 0.2s ease;
+
+    /* Shadows */
+    --nosfir-membership-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    --nosfir-membership-shadow-hover: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* ==========================================================================
+   My Account Navigation - Membership Icons
+   ========================================================================== */
+
+/**
+ * Members Area Icon
+ */
+.woocommerce .woocommerce-MyAccount-navigation ul li.woocommerce-MyAccount-navigation-link--members-area a::before,
+.woocommerce-page .woocommerce-MyAccount-navigation ul li.woocommerce-MyAccount-navigation-link--members-area a::before {
+    content: "\f481"; /* dashicons-groups */
+    font-family: "dashicons";
+    margin-right: 0.5em;
+    vertical-align: middle;
+}
+
+/**
+ * Back to Memberships Icon
+ */
+.woocommerce .woocommerce-MyAccount-navigation ul li.woocommerce-MyAccount-navigation-link--back-to-memberships a::before,
+.woocommerce-page .woocommerce-MyAccount-navigation ul li.woocommerce-MyAccount-navigation-link--back-to-memberships a::before {
+    content: "\f341"; /* dashicons-arrow-left-alt */
+    font-family: "dashicons";
+    margin-right: 0.5em;
+    vertical-align: middle;
+}
+
+/**
+ * My Membership Content Icon
+ */
+.woocommerce .woocommerce-MyAccount-navigation ul li.woocommerce-MyAccount-navigation-link--my-membership-content a::before,
+.woocommerce-page .woocommerce-MyAccount-navigation ul li.woocommerce-MyAccount-navigation-link--my-membership-content a::before {
+    content: "\f330"; /* dashicons-admin-page */
+    font-family: "dashicons";
+    margin-right: 0.5em;
+    vertical-align: middle;
+}
+
+/**
+ * My Membership Products Icon
+ */
+.woocommerce .woocommerce-MyAccount-navigation ul li.woocommerce-MyAccount-navigation-link--my-membership-products a::before,
+.woocommerce-page .woocommerce-MyAccount-navigation ul li.woocommerce-MyAccount-navigation-link--my-membership-products a::before {
+    content: "\f174"; /* dashicons-cart */
+    font-family: "dashicons";
+    margin-right: 0.5em;
+    vertical-align: middle;
+}
+
+/**
+ * My Membership Discounts Icon
+ */
+.woocommerce .woocommerce-MyAccount-navigation ul li.woocommerce-MyAccount-navigation-link--my-membership-discounts a::before,
+.woocommerce-page .woocommerce-MyAccount-navigation ul li.woocommerce-MyAccount-navigation-link--my-membership-discounts a::before {
+    content: "\f524"; /* dashicons-tag */
+    font-family: "dashicons";
+    margin-right: 0.5em;
+    vertical-align: middle;
+}
+
+/**
+ * My Membership Notes Icon
+ */
+.woocommerce .woocommerce-MyAccount-navigation ul li.woocommerce-MyAccount-navigation-link--my-membership-notes a::before,
+.woocommerce-page .woocommerce-MyAccount-navigation ul li.woocommerce-MyAccount-navigation-link--my-membership-notes a::before {
+    content: "\f175"; /* dashicons-edit */
+    font-family: "dashicons";
+    margin-right: 0.5em;
+    vertical-align: middle;
+}
+
+/**
+ * My Membership Details Icon
+ */
+.woocommerce .woocommerce-MyAccount-navigation ul li.woocommerce-MyAccount-navigation-link--my-membership-details a::before,
+.woocommerce-page .woocommerce-MyAccount-navigation ul li.woocommerce-MyAccount-navigation-link--my-membership-details a::before {
+    content: "\f339"; /* dashicons-info */
+    font-family: "dashicons";
+    margin-right: 0.5em;
+    vertical-align: middle;
+}
+
+/**
+ * Navigation Link - Active State
+ */
+.woocommerce-MyAccount-navigation ul li.woocommerce-MyAccount-navigation-link--members-area.is-active a,
+.woocommerce-MyAccount-navigation ul li[class*="my-membership"].is-active a {
+    color: var(--nosfir-membership-primary);
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   Memberships Table (My Account)
+   ========================================================================== */
+
+/**
+ * Memberships Table
+ */
+table.my_account_memberships {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: var(--nosfir-membership-spacing);
+}
+
+table.my_account_memberships th,
+table.my_account_memberships td {
+    padding: 0.75em;
+    text-align: left;
+    border-bottom: 1px solid var(--nosfir-membership-border);
+}
+
+table.my_account_memberships th {
+    font-weight: 600;
+    background: var(--nosfir-membership-bg-alt);
+    color: var(--nosfir-membership-text);
+}
+
+table.my_account_memberships tbody tr:hover {
+    background: var(--nosfir-membership-bg-alt);
+}
+
+/**
+ * Membership Name
+ */
+table.my_account_memberships .membership-name {
+    font-weight: 600;
+    color: var(--nosfir-membership-text);
+}
+
+table.my_account_memberships .membership-name a {
+    color: inherit;
+    text-decoration: none;
+    transition: color var(--nosfir-membership-transition);
+}
+
+table.my_account_memberships .membership-name a:hover {
+    color: var(--nosfir-membership-primary);
+}
+
+/**
+ * Membership Status Badges
+ */
+table.my_account_memberships .membership-status {
+    display: inline-block;
+    padding: 0.25em 0.75em;
+    border-radius: 20px;
+    font-size: 0.85em;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+table.my_account_memberships .membership-status.active,
+table.my_account_memberships .membership-status.wcm-active {
+    background: var(--nosfir-membership-active-bg);
+    color: var(--nosfir-membership-active);
+}
+
+table.my_account_memberships .membership-status.pending,
+table.my_account_memberships .membership-status.delayed {
+    background: var(--nosfir-membership-pending-bg);
+    color: #856404;
+}
+
+table.my_account_memberships .membership-status.expired,
+table.my_account_memberships .membership-status.cancelled {
+    background: var(--nosfir-membership-expired-bg);
+    color: var(--nosfir-membership-expired);
+}
+
+table.my_account_memberships .membership-status.paused {
+    background: var(--nosfir-membership-paused-bg);
+    color: var(--nosfir-membership-paused);
+}
+
+table.my_account_memberships .membership-status.complimentary,
+table.my_account_memberships .membership-status.free-trial {
+    background: var(--nosfir-membership-primary-light);
+    color: var(--nosfir-membership-primary);
+}
+
+/**
+ * Membership Dates
+ */
+table.my_account_memberships .membership-start-date,
+table.my_account_memberships .membership-end-date,
+table.my_account_memberships .membership-next-bill-on {
+    color: var(--nosfir-membership-text-light);
+    font-size: 0.9em;
+}
+
+/**
+ * Membership Actions
+ */
+table.my_account_memberships .membership-actions a {
+    display: inline-block;
+    padding: 0.4em 0.8em;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    font-size: 0.85em;
+    background: var(--nosfir-membership-bg);
+    border: 1px solid var(--nosfir-membership-border-dark);
+    border-radius: var(--nosfir-membership-radius);
+    text-decoration: none;
+    color: var(--nosfir-membership-text);
+    transition: all var(--nosfir-membership-transition);
+}
+
+table.my_account_memberships .membership-actions a:hover {
+    background: var(--nosfir-membership-primary);
+    border-color: var(--nosfir-membership-primary);
+    color: var(--nosfir-membership-bg);
+}
+
+table.my_account_memberships .membership-actions a.cancel,
+table.my_account_memberships .membership-actions a.pause {
+    color: var(--nosfir-membership-expired);
+    border-color: var(--nosfir-membership-expired);
+}
+
+table.my_account_memberships .membership-actions a.cancel:hover,
+table.my_account_memberships .membership-actions a.pause:hover {
+    background: var(--nosfir-membership-expired);
+    color: var(--nosfir-membership-bg);
+}
+
+table.my_account_memberships .membership-actions a.renew {
+    background: var(--nosfir-membership-active);
+    border-color: var(--nosfir-membership-active);
+    color: var(--nosfir-membership-bg);
+}
+
+table.my_account_memberships .membership-actions a.renew:hover {
+    background: #0a6b3f;
+}
+
+/* ==========================================================================
+   Membership Details Page
+   ========================================================================== */
+
+/**
+ * Membership Details Header
+ */
+.wc-memberships-member-details-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: var(--nosfir-membership-spacing);
+    padding-bottom: var(--nosfir-membership-spacing-sm);
+    border-bottom: 2px solid var(--nosfir-membership-primary);
+}
+
+.wc-memberships-member-details-header h2 {
+    margin: 0;
+    font-size: 1.5em;
+    color: var(--nosfir-membership-text);
+}
+
+/**
+ * Membership Info Card
+ */
+.wc-memberships-member-details {
+    background: var(--nosfir-membership-bg-alt);
+    padding: var(--nosfir-membership-spacing);
+    border-radius: var(--nosfir-membership-radius-lg);
+    margin-bottom: var(--nosfir-membership-spacing);
+}
+
+.wc-memberships-member-details dl {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.75em 1em;
+    margin: 0;
+}
+
+.wc-memberships-member-details dt {
+    font-weight: 600;
+    color: var(--nosfir-membership-text);
+}
+
+.wc-memberships-member-details dd {
+    margin: 0;
+    color: var(--nosfir-membership-text-light);
+}
+
+.wc-memberships-member-details dd .membership-status {
+    display: inline-block;
+    padding: 0.2em 0.6em;
+    border-radius: 20px;
+    font-size: 0.85em;
+    font-weight: 500;
+}
+
+/* ==========================================================================
+   Members Area Content
+   ========================================================================== */
+
+/**
+ * Members Area Container
+ */
+.wc-memberships-members-area {
+    margin-bottom: var(--nosfir-membership-spacing);
+}
+
+/**
+ * Members Area Section
+ */
+.wc-memberships-members-area-section {
+    margin-bottom: var(--nosfir-membership-spacing-lg);
+}
+
+.wc-memberships-members-area-section h3 {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: var(--nosfir-membership-text);
+    margin-bottom: var(--nosfir-membership-spacing-sm);
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid var(--nosfir-membership-border-dark);
+}
+
+/**
+ * Members Content List
+ */
+.wc-memberships-content-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.wc-memberships-content-list li {
+    padding: var(--nosfir-membership-spacing-sm);
+    border-bottom: 1px solid var(--nosfir-membership-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    transition: background-color var(--nosfir-membership-transition);
+}
+
+.wc-memberships-content-list li:hover {
+    background: var(--nosfir-membership-bg-alt);
+}
+
+.wc-memberships-content-list li:last-child {
+    border-bottom: none;
+}
+
+.wc-memberships-content-list li a {
+    color: var(--nosfir-membership-text);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color var(--nosfir-membership-transition);
+}
+
+.wc-memberships-content-list li a:hover {
+    color: var(--nosfir-membership-primary);
+}
+
+/**
+ * Content Type Badge
+ */
+.wc-memberships-content-list .content-type {
+    display: inline-block;
+    padding: 0.15em 0.5em;
+    background: var(--nosfir-membership-bg-alt);
+    border-radius: var(--nosfir-membership-radius);
+    font-size: 0.75em;
+    color: var(--nosfir-membership-text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/**
+ * Content Access Date
+ */
+.wc-memberships-content-list .access-date {
+    font-size: 0.85em;
+    color: var(--nosfir-membership-text-light);
+}
+
+/* ==========================================================================
+   Members Products
+   ========================================================================== */
+
+/**
+ * Members Products Grid
+ */
+.wc-memberships-members-products {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.wc-memberships-members-products .product {
+    background: var(--nosfir-membership-bg);
+    border: 1px solid var(--nosfir-membership-border-dark);
+    border-radius: var(--nosfir-membership-radius-lg);
+    padding: 15px;
+    text-align: center;
+    transition: all var(--nosfir-membership-transition);
+}
+
+.wc-memberships-members-products .product:hover {
+    border-color: var(--nosfir-membership-primary);
+    box-shadow: var(--nosfir-membership-shadow-hover);
+}
+
+.wc-memberships-members-products .product img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--nosfir-membership-radius);
+    margin-bottom: 10px;
+}
+
+.wc-memberships-members-products .product .product-title {
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.wc-memberships-members-products .product .price {
+    color: var(--nosfir-membership-primary);
+    font-weight: 600;
+}
+
+/**
+ * Member Discount Badge
+ */
+.wc-memberships-members-products .product .member-discount {
+    display: inline-block;
+    padding: 0.2em 0.6em;
+    background: var(--nosfir-membership-active-bg);
+    color: var(--nosfir-membership-active);
+    border-radius: var(--nosfir-membership-radius);
+    font-size: 0.8em;
+    font-weight: 600;
+    margin-top: 5px;
+}
+
+/* ==========================================================================
+   Member Discounts
+   ========================================================================== */
+
+/**
+ * Discounts Table
+ */
+table.wc-memberships-discounts-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table.wc-memberships-discounts-table th,
+table.wc-memberships-discounts-table td {
+    padding: 0.75em;
+    text-align: left;
+    border-bottom: 1px solid var(--nosfir-membership-border);
+}
+
+table.wc-memberships-discounts-table th {
+    font-weight: 600;
+    background: var(--nosfir-membership-bg-alt);
+}
+
+/**
+ * Discount Amount
+ */
+table.wc-memberships-discounts-table .discount-amount {
+    font-weight: 600;
+    color: var(--nosfir-membership-active);
+}
+
+/**
+ * Discount Applied Badge
+ */
+.wc-memberships-discount-badge {
+    display: inline-block;
+    padding: 0.25em 0.75em;
+    background: var(--nosfir-membership-active-bg);
+    color: var(--nosfir-membership-active);
+    border-radius: 20px;
+    font-size: 0.8em;
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   Member Notes
+   ========================================================================== */
+
+/**
+ * Notes Container
+ */
+.wc-memberships-member-notes {
+    margin-bottom: var(--nosfir-membership-spacing);
+}
+
+/**
+ * Single Note
+ */
+.wc-memberships-member-notes .note {
+    padding: var(--nosfir-membership-spacing-sm);
+    background: var(--nosfir-membership-bg-alt);
+    border-left: 4px solid var(--nosfir-membership-primary);
+    border-radius: 0 var(--nosfir-membership-radius) var(--nosfir-membership-radius) 0;
+    margin-bottom: var(--nosfir-membership-spacing-sm);
+}
+
+.wc-memberships-member-notes .note:last-child {
+    margin-bottom: 0;
+}
+
+.wc-memberships-member-notes .note-date {
+    font-size: 0.85em;
+    color: var(--nosfir-membership-text-light);
+    margin-bottom: 0.5em;
+}
+
+.wc-memberships-member-notes .note-content {
+    color: var(--nosfir-membership-text);
+    line-height: 1.6;
+}
+
+.wc-memberships-member-notes .note-content p:last-child {
+    margin-bottom: 0;
+}
+
+/* ==========================================================================
+   Restricted Content Message
+   ========================================================================== */
+
+/**
+ * Restriction Notice
+ */
+.wc-memberships-content-restricted-message,
+.wc-memberships-purchasing-restricted-message,
+.wc-memberships-products-viewing-restricted-message {
+    padding: var(--nosfir-membership-spacing);
+    background: var(--nosfir-membership-bg-alt);
+    border-left: 4px solid var(--nosfir-membership-primary);
+    border-radius: 0 var(--nosfir-membership-radius-lg) var(--nosfir-membership-radius-lg) 0;
+    margin-bottom: var(--nosfir-membership-spacing);
+}
+
+.wc-memberships-content-restricted-message p,
+.wc-memberships-purchasing-restricted-message p,
+.wc-memberships-products-viewing-restricted-message p {
+    margin: 0 0 0.75em;
+    color: var(--nosfir-membership-text);
+    line-height: 1.6;
+}
+
+.wc-memberships-content-restricted-message p:last-child,
+.wc-memberships-purchasing-restricted-message p:last-child,
+.wc-memberships-products-viewing-restricted-message p:last-child {
+    margin-bottom: 0;
+}
+
+/**
+ * Restriction CTA Button
+ */
+.wc-memberships-content-restricted-message .button,
+.wc-memberships-purchasing-restricted-message .button {
+    display: inline-block;
+    padding: 0.75em 1.5em;
+    background: var(--nosfir-membership-primary);
+    color: var(--nosfir-membership-bg);
+    text-decoration: none;
+    border-radius: var(--nosfir-membership-radius);
+    font-weight: 600;
+    margin-top: var(--nosfir-membership-spacing-sm);
+    transition: background-color var(--nosfir-membership-transition);
+}
+
+.wc-memberships-content-restricted-message .button:hover,
+.wc-memberships-purchasing-restricted-message .button:hover {
+    background: var(--nosfir-membership-primary-dark);
+    color: var(--nosfir-membership-bg);
+}
+
+/* ==========================================================================
+   Drip Content
+   ========================================================================== */
+
+/**
+ * Drip Content Notice
+ */
+.wc-memberships-content-delayed-message {
+    padding: var(--nosfir-membership-spacing);
+    background: var(--nosfir-membership-pending-bg);
+    border-left: 4px solid var(--nosfir-membership-pending);
+    border-radius: 0 var(--nosfir-membership-radius-lg) var(--nosfir-membership-radius-lg) 0;
+    margin-bottom: var(--nosfir-membership-spacing);
+}
+
+.wc-memberships-content-delayed-message p {
+    margin: 0;
+    color: #856404;
+}
+
+/**
+ * Drip Countdown
+ */
+.wc-memberships-drip-countdown {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0.5em 1em;
+    background: var(--nosfir-membership-bg);
+    border-radius: var(--nosfir-membership-radius);
+    font-family: monospace;
+    font-size: 1.1em;
+    font-weight: 600;
+    color: var(--nosfir-membership-pending);
+}
+
+.wc-memberships-drip-countdown::before {
+    content: "⏱";
+}
+
+/* ==========================================================================
+   Membership Plans Display
+   ========================================================================== */
+
+/**
+ * Plans Container
+ */
+.wc-memberships-plans {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-bottom: var(--nosfir-membership-spacing);
+}
+
+/**
+ * Single Plan Card
+ */
+.wc-memberships-plan {
+    background: var(--nosfir-membership-bg);
+    border: 2px solid var(--nosfir-membership-border-dark);
+    border-radius: var(--nosfir-membership-radius-lg);
+    padding: var(--nosfir-membership-spacing);
+    text-align: center;
+    transition: all var(--nosfir-membership-transition);
+}
+
+.wc-memberships-plan:hover {
+    border-color: var(--nosfir-membership-primary);
+    box-shadow: var(--nosfir-membership-shadow-hover);
+}
+
+.wc-memberships-plan.featured {
+    border-color: var(--nosfir-membership-primary);
+    position: relative;
+}
+
+.wc-memberships-plan.featured::before {
+    content: "Popular";
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.25em 1em;
+    background: var(--nosfir-membership-primary);
+    color: var(--nosfir-membership-bg);
+    font-size: 0.75em;
+    font-weight: 600;
+    text-transform: uppercase;
+    border-radius: 20px;
+}
+
+/**
+ * Plan Header
+ */
+.wc-memberships-plan .plan-header {
+    margin-bottom: var(--nosfir-membership-spacing-sm);
+}
+
+.wc-memberships-plan .plan-name {
+    font-size: 1.3em;
+    font-weight: 700;
+    color: var(--nosfir-membership-text);
+    margin: 0 0 0.5em;
+}
+
+.wc-memberships-plan .plan-price {
+    font-size: 2em;
+    font-weight: 700;
+    color: var(--nosfir-membership-primary);
+}
+
+.wc-memberships-plan .plan-price .period {
+    font-size: 0.4em;
+    font-weight: 400;
+    color: var(--nosfir-membership-text-light);
+}
+
+/**
+ * Plan Features
+ */
+.wc-memberships-plan .plan-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--nosfir-membership-spacing);
+    text-align: left;
+}
+
+.wc-memberships-plan .plan-features li {
+    padding: 0.5em 0;
+    border-bottom: 1px solid var(--nosfir-membership-border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.wc-memberships-plan .plan-features li:last-child {
+    border-bottom: none;
+}
+
+.wc-memberships-plan .plan-features li::before {
+    content: "✓";
+    color: var(--nosfir-membership-active);
+    font-weight: bold;
+}
+
+.wc-memberships-plan .plan-features li.not-included {
+    color: var(--nosfir-membership-text-light);
+    text-decoration: line-through;
+}
+
+.wc-memberships-plan .plan-features li.not-included::before {
+    content: "✕";
+    color: var(--nosfir-membership-expired);
+}
+
+/**
+ * Plan CTA
+ */
+.wc-memberships-plan .plan-cta .button {
+    display: block;
+    width: 100%;
+    padding: 1em;
+    background: var(--nosfir-membership-primary);
+    color: var(--nosfir-membership-bg);
+    text-decoration: none;
+    border: none;
+    border-radius: var(--nosfir-membership-radius);
+    font-weight: 600;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color var(--nosfir-membership-transition);
+}
+
+.wc-memberships-plan .plan-cta .button:hover {
+    background: var(--nosfir-membership-primary-dark);
+}
+
+.wc-memberships-plan.featured .plan-cta .button {
+    background: var(--nosfir-membership-active);
+}
+
+.wc-memberships-plan.featured .plan-cta .button:hover {
+    background: #0a6b3f;
+}
+
+/* ==========================================================================
+   Membership Teaser
+   ========================================================================== */
+
+/**
+ * Content Teaser Overlay
+ */
+.wc-memberships-content-teaser {
+    position: relative;
+}
+
+.wc-memberships-content-teaser .teaser-content {
+    position: relative;
+    max-height: 200px;
+    overflow: hidden;
+}
+
+.wc-memberships-content-teaser .teaser-content::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background: linear-gradient(to bottom, transparent, var(--nosfir-membership-bg));
+}
+
+.wc-memberships-content-teaser .teaser-cta {
+    text-align: center;
+    padding: var(--nosfir-membership-spacing);
+    background: var(--nosfir-membership-bg-alt);
+    border-radius: var(--nosfir-membership-radius-lg);
+    margin-top: -50px;
+    position: relative;
+    z-index: 1;
+}
+
+/* ==========================================================================
+   Free Trial Badge
+   ========================================================================== */
+
+/**
+ * Free Trial Indicator
+ */
+.wc-memberships-free-trial-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 0.4em 1em;
+    background: linear-gradient(135deg, var(--nosfir-membership-active), #2ecc71);
+    color: var(--nosfir-membership-bg);
+    border-radius: 20px;
+    font-size: 0.85em;
+    font-weight: 600;
+}
+
+.wc-memberships-free-trial-badge::before {
+    content: "★";
+}
+
+/* ==========================================================================
+   Loading State
+   ========================================================================== */
+
+/**
+ * Membership Loading
+ */
+.wc-memberships-loading {
+    position: relative;
+    min-height: 100px;
+}
+
+.wc-memberships-loading::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30px;
+    height: 30px;
+    margin: -15px 0 0 -15px;
+    border: 3px solid var(--nosfir-membership-border-dark);
+    border-top-color: var(--nosfir-membership-primary);
+    border-radius: 50%;
+    animation: nosfirMembershipSpinner 0.8s linear infinite;
+}
+
+@keyframes nosfirMembershipSpinner {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ==========================================================================
+   Dark Mode Support
+   ========================================================================== */
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --nosfir-membership-text: #e5e5e5;
+        --nosfir-membership-text-light: #aaa;
+        --nosfir-membership-bg: #1a1a1a;
+        --nosfir-membership-bg-alt: #2d2d2d;
+        --nosfir-membership-border: rgba(255, 255, 255, 0.05);
+        --nosfir-membership-border-dark: rgba(255, 255, 255, 0.1);
+        --nosfir-membership-primary-light: rgba(0, 115, 170, 0.2);
+    }
+
+    .wc-memberships-plan {
+        background: var(--nosfir-membership-bg);
+    }
+
+    .wc-memberships-content-teaser .teaser-content::after {
+        background: linear-gradient(to bottom, transparent, var(--nosfir-membership-bg));
+    }
+}
+
+/* ==========================================================================
+   Responsive Styles
+   ========================================================================== */
+
+/**
+ * Tablet Breakpoint
+ */
+@media (max-width: 768px) {
+    .woocommerce-account table.my_account_memberships {
+        table-layout: auto;
+    }
+
+    table.my_account_memberships th,
+    table.my_account_memberships td {
+        padding: 0.5em;
+        font-size: 0.9em;
+    }
+
+    .wc-memberships-member-details dl {
+        grid-template-columns: 1fr;
+        gap: 0.5em;
+    }
+
+    .wc-memberships-member-details dt {
+        margin-top: 0.75em;
+    }
+
+    .wc-memberships-member-details dt:first-child {
+        margin-top: 0;
+    }
+
+    .wc-memberships-plans {
+        grid-template-columns: 1fr;
+    }
+}
+
+/**
+ * Mobile Breakpoint
+ */
+@media (max-width: 568px) {
+    .wc-memberships-member-details-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    table.my_account_memberships,
+    table.my_account_memberships thead,
+    table.my_account_memberships tbody,
+    table.my_account_memberships th,
+    table.my_account_memberships td,
+    table.my_account_memberships tr {
+        display: block;
+    }
+
+    table.my_account_memberships thead {
+        display: none;
+    }
+
+    table.my_account_memberships tr {
+        margin-bottom: var(--nosfir-membership-spacing-sm);
+        padding: var(--nosfir-membership-spacing-sm);
+        background: var(--nosfir-membership-bg-alt);
+        border-radius: var(--nosfir-membership-radius);
+    }
+
+    table.my_account_memberships td {
+        border-bottom: none;
+        padding: 0.25em 0;
+        text-align: left;
+    }
+
+    table.my_account_memberships td::before {
+        content: attr(data-title) ": ";
+        font-weight: 600;
+    }
+
+    table.my_account_memberships .membership-actions {
+        margin-top: var(--nosfir-membership-spacing-xs);
+    }
+
+    table.my_account_memberships .membership-actions a {
+        display: block;
+        text-align: center;
+        margin: 5px 0;
+    }
+
+    .wc-memberships-content-list li {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .wc-memberships-members-products {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .wc-memberships-plan {
+        padding: var(--nosfir-membership-spacing-sm);
+    }
+
+    .wc-memberships-plan .plan-price {
+        font-size: 1.5em;
+    }
+}
+
+/* ==========================================================================
+   Accessibility
+   ========================================================================== */
+
+/**
+ * Reduced Motion
+ */
+@media (prefers-reduced-motion: reduce) {
+    table.my_account_memberships .membership-actions a,
+    .wc-memberships-content-list li,
+    .wc-memberships-members-products .product,
+    .wc-memberships-plan,
+    .wc-memberships-content-restricted-message .button,
+    .wc-memberships-loading::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/**
+ * Focus Visible
+ */
+table.my_account_memberships .membership-name a:focus-visible,
+table.my_account_memberships .membership-actions a:focus-visible,
+.wc-memberships-content-list li a:focus-visible,
+.wc-memberships-content-restricted-message .button:focus-visible,
+.wc-memberships-plan .plan-cta .button:focus-visible {
+    outline: 2px solid var(--nosfir-membership-primary);
+    outline-offset: 2px;
+}
+
+/**
+ * High Contrast Mode
+ */
+@media (prefers-contrast: high) {
+    table.my_account_memberships .membership-status {
+        border: 2px solid currentColor;
+    }
+
+    .wc-memberships-plan {
+        border-width: 3px;
+    }
+
+    .wc-memberships-content-restricted-message,
+    .wc-memberships-content-delayed-message {
+        border-left-width: 6px;
+    }
+}
+
+/* ==========================================================================
+   Print Styles
+   ========================================================================== */
+
+@media print {
+    table.my_account_memberships {
+        border: 1px solid #000;
+    }
+
+    table.my_account_memberships th,
+    table.my_account_memberships td {
+        border: 1px solid #ccc;
+    }
+
+    table.my_account_memberships .membership-status {
+        background: transparent !important;
+        border: 1px solid currentColor;
+    }
+
+    .wc-memberships-content-restricted-message,
+    .wc-memberships-content-delayed-message {
+        background: transparent !important;
+        border: 1px solid #000;
+    }
+
+    .wc-memberships-plan {
+        page-break-inside: avoid;
+    }
+
+    .wc-memberships-loading::after {
+        display: none;
+    }
+}

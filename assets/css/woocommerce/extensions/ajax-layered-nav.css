@@ -1,0 +1,954 @@
+/**
+ * Nosfir Theme - WooCommerce AJAX Layered Navigation
+ *
+ * Styles for the WooCommerce AJAX Layered Navigation extension.
+ * Provides custom styling for color swatches, size filters, and checkbox navigation.
+ *
+ * @package Nosfir
+ * @subpackage WooCommerce/Extensions
+ * @since 1.0.0
+ *
+ * @see https://woocommerce.com/products/woocommerce-ajax-layered-navigation/
+ */
+
+/* ==========================================================================
+   CSS Variables
+   ========================================================================== */
+
+:root {
+    /* Colors */
+    --nosfir-nav-primary: #0073aa;
+    --nosfir-nav-text: #43454b;
+    --nosfir-nav-text-light: #666;
+    --nosfir-nav-bg: #fff;
+    --nosfir-nav-bg-hover: #f7f7f7;
+    --nosfir-nav-border: #ddd;
+    --nosfir-nav-active: #0073aa;
+    --nosfir-nav-check: #0f834d;
+
+    /* Sizes */
+    --nosfir-nav-box-size: 1.618em;
+    --nosfir-nav-box-radius: 0.202em;
+
+    /* Spacing */
+    --nosfir-nav-spacing: 0.6180469716em;
+    --nosfir-nav-spacing-sm: 0.327em;
+
+    /* Transitions */
+    --nosfir-nav-transition: 0.2s ease;
+
+    /* Shadows */
+    --nosfir-nav-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --nosfir-nav-shadow-hover: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+/* ==========================================================================
+   Base Layered Navigation Styles
+   ========================================================================== */
+
+/**
+ * Widget Container
+ */
+.widget_layered_nav {
+    margin-bottom: 2em;
+}
+
+/**
+ * Navigation List Reset
+ */
+.widget_layered_nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.widget_layered_nav ul li {
+    margin-bottom: var(--nosfir-nav-spacing-sm);
+    position: relative;
+}
+
+.widget_layered_nav ul li:last-child {
+    margin-bottom: 0;
+}
+
+/**
+ * Navigation Links
+ */
+.widget_layered_nav ul li a {
+    color: var(--nosfir-nav-text);
+    text-decoration: none;
+    transition: color var(--nosfir-nav-transition),
+                opacity var(--nosfir-nav-transition);
+}
+
+.widget_layered_nav ul li a:hover {
+    color: var(--nosfir-nav-primary);
+}
+
+/* ==========================================================================
+   Color Swatches Navigation
+   ========================================================================== */
+
+/**
+ * Colors List Container
+ */
+.widget_layered_nav ul.colors {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.widget_layered_nav ul.colors li {
+    margin-bottom: 0;
+}
+
+/**
+ * Color Swatch Link
+ */
+.widget_layered_nav ul.colors li a {
+    display: block;
+    position: relative;
+    opacity: 0.7;
+    transition: opacity var(--nosfir-nav-transition),
+                transform var(--nosfir-nav-transition);
+}
+
+.widget_layered_nav ul.colors li a:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/**
+ * Color Swatch Box
+ */
+.widget_layered_nav ul.colors li .box {
+    border: 0;
+    display: inline-block;
+    box-sizing: border-box;
+    border-radius: var(--nosfir-nav-box-radius);
+    height: var(--nosfir-nav-box-size);
+    width: var(--nosfir-nav-box-size);
+    box-shadow: var(--nosfir-nav-shadow);
+    transition: box-shadow var(--nosfir-nav-transition);
+}
+
+.widget_layered_nav ul.colors li a:hover .box {
+    box-shadow: var(--nosfir-nav-shadow-hover);
+}
+
+/**
+ * Color Swatch - Chosen State
+ */
+.widget_layered_nav ul.colors li.chosen a {
+    opacity: 1;
+}
+
+.widget_layered_nav ul.colors li.chosen a:hover {
+    opacity: 0.5;
+}
+
+.widget_layered_nav ul.colors li.chosen .box {
+    box-shadow: 0 0 0 2px var(--nosfir-nav-bg),
+                0 0 0 4px var(--nosfir-nav-active);
+}
+
+/**
+ * Color Swatch - Light Colors Border
+ */
+.widget_layered_nav ul.colors li .box.color-white,
+.widget_layered_nav ul.colors li .box.color-light,
+.widget_layered_nav ul.colors li .box[style*="background-color: #fff"],
+.widget_layered_nav ul.colors li .box[style*="background-color: white"],
+.widget_layered_nav ul.colors li .box[style*="background-color: #ffffff"] {
+    border: 1px solid var(--nosfir-nav-border);
+}
+
+/**
+ * Color Swatch Sizes
+ */
+.widget_layered_nav ul.colors.colors--small li .box {
+    height: 1.2em;
+    width: 1.2em;
+}
+
+.widget_layered_nav ul.colors.colors--large li .box {
+    height: 2.2em;
+    width: 2.2em;
+    border-radius: 0.3em;
+}
+
+/**
+ * Color Swatch - Circle Variant
+ */
+.widget_layered_nav ul.colors.colors--circle li .box {
+    border-radius: 50%;
+}
+
+/* ==========================================================================
+   Checkbox Navigation
+   ========================================================================== */
+
+/**
+ * Checkboxes List
+ */
+.widget_layered_nav ul.checkboxes li {
+    display: flex;
+    align-items: center;
+    padding: var(--nosfir-nav-spacing-sm) 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.widget_layered_nav ul.checkboxes li:last-child {
+    border-bottom: none;
+}
+
+/**
+ * Checkbox Input
+ */
+.widget_layered_nav ul.checkboxes li input {
+    margin-right: var(--nosfir-nav-spacing);
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+    accent-color: var(--nosfir-nav-primary);
+}
+
+/**
+ * Checkbox Label
+ */
+.widget_layered_nav ul.checkboxes li label {
+    cursor: pointer;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/**
+ * Checkbox - Chosen State
+ */
+.widget_layered_nav ul.checkboxes li.chosen {
+    background-color: var(--nosfir-nav-bg-hover);
+    margin-left: calc(-1 * var(--nosfir-nav-spacing));
+    margin-right: calc(-1 * var(--nosfir-nav-spacing));
+    padding-left: var(--nosfir-nav-spacing);
+    padding-right: var(--nosfir-nav-spacing);
+    border-radius: var(--nosfir-nav-box-radius);
+}
+
+/**
+ * Custom Checkbox Style
+ */
+.widget_layered_nav ul.checkboxes.checkboxes--custom li input {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--nosfir-nav-border);
+    border-radius: 3px;
+    background: var(--nosfir-nav-bg);
+    position: relative;
+    transition: all var(--nosfir-nav-transition);
+}
+
+.widget_layered_nav ul.checkboxes.checkboxes--custom li input:checked {
+    background: var(--nosfir-nav-primary);
+    border-color: var(--nosfir-nav-primary);
+}
+
+.widget_layered_nav ul.checkboxes.checkboxes--custom li input:checked::after {
+    content: "✓";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--nosfir-nav-bg);
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.widget_layered_nav ul.checkboxes.checkboxes--custom li input:hover {
+    border-color: var(--nosfir-nav-primary);
+}
+
+/* ==========================================================================
+   Size Filters Navigation
+   ========================================================================== */
+
+/**
+ * Sizes List Container
+ */
+.widget_layered_nav ul.sizes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.widget_layered_nav ul.sizes li {
+    margin-bottom: 0;
+}
+
+/**
+ * Size Filter Link
+ */
+.widget_layered_nav ul.sizes li a {
+    opacity: 1;
+    display: block;
+}
+
+/**
+ * Size Filter Box
+ */
+.widget_layered_nav ul.sizes li .size-filter {
+    font-size: 1em;
+    height: var(--nosfir-nav-box-size);
+    min-width: var(--nosfir-nav-box-size);
+    text-align: center;
+    line-height: var(--nosfir-nav-box-size);
+    background-color: var(--nosfir-nav-bg);
+    border: 1px solid var(--nosfir-nav-border);
+    opacity: 0.6;
+    font-weight: 600;
+    border-radius: var(--nosfir-nav-box-radius);
+    padding: 0 var(--nosfir-nav-spacing-sm);
+    transition: all var(--nosfir-nav-transition);
+    display: inline-block;
+}
+
+.widget_layered_nav ul.sizes li .size-filter:hover {
+    opacity: 1;
+    border-color: var(--nosfir-nav-primary);
+    color: var(--nosfir-nav-primary);
+}
+
+/**
+ * Size Filter - Chosen State
+ */
+.widget_layered_nav ul.sizes li.chosen .size-filter {
+    opacity: 1;
+    background-color: var(--nosfir-nav-primary);
+    border-color: var(--nosfir-nav-primary);
+    color: var(--nosfir-nav-bg);
+}
+
+.widget_layered_nav ul.sizes li.chosen .size-filter:hover {
+    opacity: 0.8;
+}
+
+/**
+ * Size Filter - Unavailable/Out of Stock
+ */
+.widget_layered_nav ul.sizes li.unavailable .size-filter {
+    opacity: 0.3;
+    cursor: not-allowed;
+    text-decoration: line-through;
+}
+
+.widget_layered_nav ul.sizes li.unavailable .size-filter:hover {
+    opacity: 0.3;
+    border-color: var(--nosfir-nav-border);
+    color: inherit;
+}
+
+/**
+ * Size Filter Variants
+ */
+.widget_layered_nav ul.sizes.sizes--pills li .size-filter {
+    border-radius: 50px;
+    padding: 0 0.75em;
+}
+
+.widget_layered_nav ul.sizes.sizes--square li .size-filter {
+    border-radius: 0;
+}
+
+.widget_layered_nav ul.sizes.sizes--large li .size-filter {
+    height: 2.5em;
+    min-width: 2.5em;
+    line-height: 2.5em;
+    font-size: 1.1em;
+}
+
+/* ==========================================================================
+   Hide Default Chosen Indicator
+   ========================================================================== */
+
+/**
+ * Remove default checkmark/indicator for chosen items
+ */
+.widget_layered_nav ul.colors li.chosen::before,
+.widget_layered_nav ul.checkboxes li.chosen::before,
+.widget_layered_nav ul.sizes li.chosen::before {
+    display: none;
+}
+
+/* ==========================================================================
+   Show Count Display
+   ========================================================================== */
+
+/**
+ * Show Count - Link Display
+ */
+.widget_layered_nav ul.colors li.show-count a,
+.widget_layered_nav ul.checkboxes li.show-count a,
+.widget_layered_nav ul.sizes li.show-count a {
+    display: inline-block;
+}
+
+/**
+ * Show Count - Count Badge
+ */
+.widget_layered_nav ul.colors li.show-count .count,
+.widget_layered_nav ul.checkboxes li.show-count .count,
+.widget_layered_nav ul.sizes li.show-count .count {
+    float: right;
+    line-height: var(--nosfir-nav-box-size);
+    font-size: 1em;
+    color: var(--nosfir-nav-text-light);
+    margin-left: var(--nosfir-nav-spacing);
+}
+
+/**
+ * Count Badge - Styled Variant
+ */
+.widget_layered_nav ul li.show-count .count--badge {
+    background: var(--nosfir-nav-bg-hover);
+    padding: 0.15em 0.5em;
+    border-radius: 10px;
+    font-size: 0.85em;
+    font-weight: 500;
+}
+
+.widget_layered_nav ul li.chosen.show-count .count--badge {
+    background: var(--nosfir-nav-primary);
+    color: var(--nosfir-nav-bg);
+}
+
+/* ==========================================================================
+   Labels Navigation
+   ========================================================================== */
+
+/**
+ * Labels List
+ */
+.widget_layered_nav ul.labels {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.widget_layered_nav ul.labels li {
+    margin-bottom: 0;
+}
+
+/**
+ * Label Tag
+ */
+.widget_layered_nav ul.labels li a {
+    display: inline-block;
+    padding: 0.4em 0.8em;
+    background: var(--nosfir-nav-bg-hover);
+    border: 1px solid var(--nosfir-nav-border);
+    border-radius: var(--nosfir-nav-box-radius);
+    font-size: 0.9em;
+    transition: all var(--nosfir-nav-transition);
+}
+
+.widget_layered_nav ul.labels li a:hover {
+    background: var(--nosfir-nav-primary);
+    border-color: var(--nosfir-nav-primary);
+    color: var(--nosfir-nav-bg);
+}
+
+.widget_layered_nav ul.labels li.chosen a {
+    background: var(--nosfir-nav-primary);
+    border-color: var(--nosfir-nav-primary);
+    color: var(--nosfir-nav-bg);
+}
+
+.widget_layered_nav ul.labels li.chosen a:hover {
+    opacity: 0.8;
+}
+
+/* ==========================================================================
+   Images Navigation
+   ========================================================================== */
+
+/**
+ * Images List
+ */
+.widget_layered_nav ul.images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.widget_layered_nav ul.images li {
+    margin-bottom: 0;
+}
+
+/**
+ * Image Thumbnail
+ */
+.widget_layered_nav ul.images li a {
+    display: block;
+    opacity: 0.7;
+    transition: opacity var(--nosfir-nav-transition),
+                transform var(--nosfir-nav-transition);
+}
+
+.widget_layered_nav ul.images li a:hover {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+.widget_layered_nav ul.images li a img {
+    display: block;
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: var(--nosfir-nav-box-radius);
+    border: 2px solid transparent;
+    transition: border-color var(--nosfir-nav-transition);
+}
+
+.widget_layered_nav ul.images li a:hover img {
+    border-color: var(--nosfir-nav-primary);
+}
+
+/**
+ * Image - Chosen State
+ */
+.widget_layered_nav ul.images li.chosen a {
+    opacity: 1;
+}
+
+.widget_layered_nav ul.images li.chosen a img {
+    border-color: var(--nosfir-nav-primary);
+    box-shadow: 0 0 0 2px var(--nosfir-nav-bg),
+                0 0 0 4px var(--nosfir-nav-primary);
+}
+
+/* ==========================================================================
+   Dropdown Navigation
+   ========================================================================== */
+
+/**
+ * Dropdown Select
+ */
+.widget_layered_nav select {
+    width: 100%;
+    padding: var(--nosfir-nav-spacing);
+    border: 1px solid var(--nosfir-nav-border);
+    border-radius: var(--nosfir-nav-box-radius);
+    background: var(--nosfir-nav-bg);
+    font-size: 1em;
+    color: var(--nosfir-nav-text);
+    cursor: pointer;
+    transition: border-color var(--nosfir-nav-transition);
+}
+
+.widget_layered_nav select:hover,
+.widget_layered_nav select:focus {
+    border-color: var(--nosfir-nav-primary);
+    outline: none;
+}
+
+/* ==========================================================================
+   Range Slider Navigation
+   ========================================================================== */
+
+/**
+ * Range Slider Container
+ */
+.widget_layered_nav .range-slider {
+    padding: 1em 0;
+}
+
+.widget_layered_nav .range-slider__values {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5em;
+    font-size: 0.9em;
+    color: var(--nosfir-nav-text-light);
+}
+
+/**
+ * Range Inputs
+ */
+.widget_layered_nav .range-slider input[type="range"] {
+    width: 100%;
+    cursor: pointer;
+    accent-color: var(--nosfir-nav-primary);
+}
+
+/* ==========================================================================
+   Loading State
+   ========================================================================== */
+
+/**
+ * AJAX Loading Overlay
+ */
+.widget_layered_nav.loading {
+    position: relative;
+    pointer-events: none;
+}
+
+.widget_layered_nav.loading::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.7);
+    z-index: 10;
+}
+
+.widget_layered_nav.loading::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 24px;
+    height: 24px;
+    margin: -12px 0 0 -12px;
+    border: 3px solid var(--nosfir-nav-border);
+    border-top-color: var(--nosfir-nav-primary);
+    border-radius: 50%;
+    z-index: 11;
+    animation: nosfirNavSpinner 0.8s linear infinite;
+}
+
+@keyframes nosfirNavSpinner {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ==========================================================================
+   Active Filters Display
+   ========================================================================== */
+
+/**
+ * Active Filters Container
+ */
+.widget_layered_nav_filters {
+    margin-bottom: 1.5em;
+}
+
+.widget_layered_nav_filters ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/**
+ * Active Filter Tag
+ */
+.widget_layered_nav_filters li {
+    margin: 0;
+}
+
+.widget_layered_nav_filters li a {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 0.4em 0.8em;
+    background: var(--nosfir-nav-bg-hover);
+    border: 1px solid var(--nosfir-nav-border);
+    border-radius: var(--nosfir-nav-box-radius);
+    font-size: 0.85em;
+    color: var(--nosfir-nav-text);
+    text-decoration: none;
+    transition: all var(--nosfir-nav-transition);
+}
+
+.widget_layered_nav_filters li a:hover {
+    background: var(--nosfir-nav-primary);
+    border-color: var(--nosfir-nav-primary);
+    color: var(--nosfir-nav-bg);
+}
+
+/**
+ * Remove Icon
+ */
+.widget_layered_nav_filters li a::after {
+    content: "×";
+    font-size: 1.2em;
+    font-weight: bold;
+    line-height: 1;
+}
+
+/* ==========================================================================
+   Clear All Filters
+   ========================================================================== */
+
+/**
+ * Clear All Button
+ */
+.widget_layered_nav .clear-all,
+.woocommerce-widget-layered-nav-clear-all {
+    display: inline-block;
+    margin-top: 1em;
+    padding: 0.5em 1em;
+    background: transparent;
+    border: 1px solid var(--nosfir-nav-border);
+    border-radius: var(--nosfir-nav-box-radius);
+    color: var(--nosfir-nav-text-light);
+    font-size: 0.85em;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all var(--nosfir-nav-transition);
+}
+
+.widget_layered_nav .clear-all:hover,
+.woocommerce-widget-layered-nav-clear-all:hover {
+    background: var(--nosfir-nav-primary);
+    border-color: var(--nosfir-nav-primary);
+    color: var(--nosfir-nav-bg);
+}
+
+/* ==========================================================================
+   Collapsible Filters
+   ========================================================================== */
+
+/**
+ * Collapsible Widget Title
+ */
+.widget_layered_nav.collapsible .widget-title,
+.widget_layered_nav.collapsible .widgettitle {
+    cursor: pointer;
+    position: relative;
+    padding-right: 25px;
+}
+
+.widget_layered_nav.collapsible .widget-title::after,
+.widget_layered_nav.collapsible .widgettitle::after {
+    content: "−";
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--nosfir-nav-text-light);
+    transition: transform var(--nosfir-nav-transition);
+}
+
+.widget_layered_nav.collapsible.collapsed .widget-title::after,
+.widget_layered_nav.collapsible.collapsed .widgettitle::after {
+    content: "+";
+}
+
+/**
+ * Collapsible Content
+ */
+.widget_layered_nav.collapsible > ul,
+.widget_layered_nav.collapsible > form {
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+    overflow: hidden;
+}
+
+.widget_layered_nav.collapsible.collapsed > ul,
+.widget_layered_nav.collapsible.collapsed > form {
+    max-height: 0;
+    opacity: 0;
+}
+
+/* ==========================================================================
+   Horizontal Layout
+   ========================================================================== */
+
+/**
+ * Horizontal Navigation
+ */
+.widget_layered_nav.horizontal ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.widget_layered_nav.horizontal ul li {
+    margin-bottom: 0;
+}
+
+.widget_layered_nav.horizontal ul.checkboxes li {
+    padding: var(--nosfir-nav-spacing-sm) var(--nosfir-nav-spacing);
+    border: 1px solid var(--nosfir-nav-border);
+    border-radius: var(--nosfir-nav-box-radius);
+    border-bottom: 1px solid var(--nosfir-nav-border);
+}
+
+.widget_layered_nav.horizontal ul.checkboxes li.chosen {
+    margin: 0;
+    background: var(--nosfir-nav-primary);
+    border-color: var(--nosfir-nav-primary);
+}
+
+.widget_layered_nav.horizontal ul.checkboxes li.chosen label {
+    color: var(--nosfir-nav-bg);
+}
+
+/* ==========================================================================
+   Dark Mode Support
+   ========================================================================== */
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --nosfir-nav-text: #e5e5e5;
+        --nosfir-nav-text-light: #aaa;
+        --nosfir-nav-bg: #2d2d2d;
+        --nosfir-nav-bg-hover: #3d3d3d;
+        --nosfir-nav-border: #444;
+    }
+
+    .widget_layered_nav ul.sizes li .size-filter {
+        background-color: var(--nosfir-nav-bg);
+    }
+
+    .widget_layered_nav.loading::after {
+        background: rgba(0, 0, 0, 0.7);
+    }
+}
+
+/* ==========================================================================
+   Responsive Styles
+   ========================================================================== */
+
+/**
+ * Tablet Breakpoint
+ */
+@media screen and (max-width: 900px) {
+    .widget_layered_nav ul.colors li .box,
+    .widget_layered_nav ul.sizes li .size-filter {
+        height: 2em;
+        min-width: 2em;
+        line-height: 2em;
+    }
+
+    .widget_layered_nav ul.images li a img {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+/**
+ * Mobile Breakpoint
+ */
+@media screen and (max-width: 600px) {
+    .widget_layered_nav ul.colors,
+    .widget_layered_nav ul.sizes,
+    .widget_layered_nav ul.labels,
+    .widget_layered_nav ul.images {
+        gap: 6px;
+    }
+
+    .widget_layered_nav ul.colors li .box {
+        height: 1.8em;
+        width: 1.8em;
+    }
+
+    .widget_layered_nav ul.sizes li .size-filter {
+        font-size: 0.9em;
+        padding: 0 0.4em;
+    }
+
+    .widget_layered_nav ul.checkboxes li input {
+        width: 16px;
+        height: 16px;
+    }
+
+    .widget_layered_nav ul.labels li a {
+        padding: 0.3em 0.6em;
+        font-size: 0.85em;
+    }
+
+    .widget_layered_nav ul.images li a img {
+        width: 30px;
+        height: 30px;
+    }
+
+    .widget_layered_nav_filters li a {
+        padding: 0.3em 0.6em;
+        font-size: 0.8em;
+    }
+}
+
+/* ==========================================================================
+   Accessibility
+   ========================================================================== */
+
+/**
+ * Reduced Motion
+ */
+@media (prefers-reduced-motion: reduce) {
+    .widget_layered_nav ul.colors li a,
+    .widget_layered_nav ul.colors li .box,
+    .widget_layered_nav ul.sizes li .size-filter,
+    .widget_layered_nav ul.images li a,
+    .widget_layered_nav.loading::before,
+    .widget_layered_nav.collapsible > ul,
+    .widget_layered_nav.collapsible > form {
+        transition: none !important;
+        animation: none !important;
+    }
+
+    .widget_layered_nav ul.colors li a:hover,
+    .widget_layered_nav ul.images li a:hover {
+        transform: none;
+    }
+}
+
+/**
+ * Focus Visible
+ */
+.widget_layered_nav ul li a:focus-visible,
+.widget_layered_nav ul.checkboxes li input:focus-visible,
+.widget_layered_nav select:focus-visible {
+    outline: 2px solid var(--nosfir-nav-primary);
+    outline-offset: 2px;
+}
+
+/**
+ * High Contrast Mode
+ */
+@media (prefers-contrast: high) {
+    .widget_layered_nav ul.colors li .box {
+        border: 2px solid var(--nosfir-nav-text);
+    }
+
+    .widget_layered_nav ul.sizes li .size-filter {
+        border-width: 2px;
+    }
+
+    .widget_layered_nav ul.checkboxes.checkboxes--custom li input {
+        border-width: 3px;
+    }
+}
+
+/* ==========================================================================
+   Print Styles
+   ========================================================================== */
+
+@media print {
+    .widget_layered_nav ul.colors li .box {
+        border: 1px solid #000;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
+
+    .widget_layered_nav ul.sizes li .size-filter {
+        border: 1px solid #000;
+        background: #fff !important;
+        color: #000 !important;
+    }
+
+    .widget_layered_nav.loading::before,
+    .widget_layered_nav.loading::after {
+        display: none;
+    }
+}

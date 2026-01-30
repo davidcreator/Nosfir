@@ -1,0 +1,925 @@
+/**
+ * Nosfir Theme - Customizer Admin Styles
+ *
+ * Styles for the WordPress Customizer interface including:
+ * - NUX (New User Experience) buttons
+ * - Guided tour interface
+ * - Custom controls styling
+ * - Animations and transitions
+ *
+ * @package Nosfir
+ * @subpackage Admin
+ * @since 1.0.0
+ */
+
+/* ==========================================================================
+   CSS Variables
+   ========================================================================== */
+
+:root {
+    /* Primary Colors */
+    --nosfir-primary: #0073aa;
+    --nosfir-primary-hover: #005a87;
+    --nosfir-primary-light: #00a0d2;
+    --nosfir-primary-lighter: #78dcfa;
+    --nosfir-primary-pale: #bceefd;
+
+    /* Secondary Colors */
+    --nosfir-accent: #00aadc;
+    --nosfir-accent-dark: #0087be;
+    --nosfir-accent-darker: #005082;
+
+    /* Neutral Colors */
+    --nosfir-dark: #23282d;
+    --nosfir-dark-rgb: 35, 40, 45;
+    --nosfir-gray: #a4a4a4;
+    --nosfir-gray-light: #ccc;
+    --nosfir-white: #fff;
+
+    /* Status Colors */
+    --nosfir-success: #46b450;
+    --nosfir-warning: #ffb900;
+    --nosfir-error: #dc3232;
+    --nosfir-info: #00a0d2;
+
+    /* Disabled State */
+    --nosfir-disabled-bg: #bceefd;
+    --nosfir-disabled-border: #8cc9e2;
+
+    /* Shadows */
+    --nosfir-shadow: 3px 1px 5px -2px rgba(0, 0, 0, 0.145);
+    --nosfir-shadow-focus: 0 0 0 2px var(--nosfir-primary-lighter);
+
+    /* Border Radius */
+    --nosfir-radius-sm: 3px;
+    --nosfir-radius: 4px;
+    --nosfir-radius-lg: 5px;
+
+    /* Transitions */
+    --nosfir-transition-fast: 150ms;
+    --nosfir-transition: 250ms;
+    --nosfir-transition-slow: 300ms;
+
+    /* Tour Dimensions */
+    --nosfir-tour-width: 360px;
+    --nosfir-tour-arrow-size: 14px;
+}
+
+/* ==========================================================================
+   NUX Button Styles
+   ========================================================================== */
+
+/**
+ * Primary NUX Button
+ * Used for main call-to-action buttons in the customizer
+ */
+.nosfir-nux .nosfir-nux-button,
+a.nosfir-nux-button,
+button.nosfir-nux-button {
+    /* Layout */
+    display: inline-block;
+    box-sizing: border-box;
+    overflow: hidden;
+    vertical-align: baseline;
+    margin: 0;
+    padding: 7px 14px 9px;
+    height: auto;
+
+    /* Appearance */
+    background: var(--nosfir-accent);
+    border-color: var(--nosfir-accent-dark);
+    border-style: solid;
+    border-width: 1px 1px 2px;
+    border-radius: var(--nosfir-radius);
+    outline: 0;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+
+    /* Typography */
+    color: var(--nosfir-white);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 21px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: none;
+    text-shadow: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    /* Transition */
+    transition: all var(--nosfir-transition-fast) ease;
+}
+
+/**
+ * NUX Button - Hover State
+ */
+.nosfir-nux .nosfir-nux-button:hover,
+.nosfir-nux .nosfir-nux-button:focus,
+a.nosfir-nux-button:hover,
+a.nosfir-nux-button:focus,
+button.nosfir-nux-button:hover,
+button.nosfir-nux-button:focus {
+    background: var(--nosfir-accent-dark);
+    border-color: var(--nosfir-accent-darker);
+    color: var(--nosfir-white);
+}
+
+/**
+ * NUX Button - Focus State
+ */
+.nosfir-nux .nosfir-nux-button:focus,
+a.nosfir-nux-button:focus,
+button.nosfir-nux-button:focus {
+    box-shadow: var(--nosfir-shadow-focus);
+}
+
+/**
+ * NUX Button - Active State
+ */
+.nosfir-nux .nosfir-nux-button:active,
+a.nosfir-nux-button:active,
+button.nosfir-nux-button:active {
+    border-width: 2px 1px 1px;
+    box-shadow: none;
+    vertical-align: baseline;
+}
+
+/* Link button specific */
+a.nosfir-nux-button {
+    vertical-align: middle;
+}
+
+a.nosfir-nux-button:active {
+    vertical-align: middle;
+}
+
+/**
+ * NUX Button - Disabled State
+ */
+.nosfir-nux .nosfir-nux-button[disabled],
+.nosfir-nux .nosfir-nux-button:disabled,
+a.nosfir-nux-button[disabled],
+a.nosfir-nux-button:disabled,
+button.nosfir-nux-button[disabled],
+button.nosfir-nux-button:disabled {
+    background: var(--nosfir-disabled-bg);
+    border-color: var(--nosfir-disabled-border);
+    color: var(--nosfir-white);
+    cursor: default;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.nosfir-nux .nosfir-nux-button[disabled]:active,
+.nosfir-nux .nosfir-nux-button:disabled:active,
+a.nosfir-nux-button[disabled]:active,
+a.nosfir-nux-button:disabled:active,
+button.nosfir-nux-button[disabled]:active,
+button.nosfir-nux-button:disabled:active {
+    border-width: 1px 1px 2px;
+}
+
+/**
+ * NUX Button - Secondary Style
+ */
+.nosfir-nux-button--secondary {
+    background: transparent !important;
+    border-color: var(--nosfir-accent) !important;
+    color: var(--nosfir-accent) !important;
+}
+
+.nosfir-nux-button--secondary:hover,
+.nosfir-nux-button--secondary:focus {
+    background: var(--nosfir-accent) !important;
+    color: var(--nosfir-white) !important;
+}
+
+/**
+ * NUX Button - Small Size
+ */
+.nosfir-nux-button--small {
+    padding: 4px 10px 5px;
+    font-size: 12px;
+    line-height: 18px;
+}
+
+/**
+ * NUX Button - Large Size
+ */
+.nosfir-nux-button--large {
+    padding: 10px 20px 12px;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+/* ==========================================================================
+   Guided Tour Container
+   ========================================================================== */
+
+/**
+ * Main Tour Container
+ * Fixed position overlay for the guided tour
+ */
+.nosfir-guided-tour {
+    /* Positioning */
+    position: fixed;
+    left: 5px;
+    z-index: 999999998;
+
+    /* Dimensions */
+    width: var(--nosfir-tour-width);
+    max-width: calc(100vw - 20px);
+
+    /* Appearance */
+    display: block;
+    background-color: rgba(var(--nosfir-dark-rgb), 0.95);
+    border-radius: var(--nosfir-radius-lg);
+    box-shadow: var(--nosfir-shadow);
+    box-sizing: border-box;
+
+    /* Typography */
+    color: var(--nosfir-gray);
+    font-size: 1.1em;
+    text-align: left;
+
+    /* Initial State */
+    opacity: 0;
+
+    /* Transitions */
+    transition-duration: var(--nosfir-transition);
+    transition-property: opacity, transform;
+    transition-timing-function: ease-in-out;
+}
+
+/**
+ * Tour Arrow (Left Pointing)
+ * Creates the arrow pointing to the left side
+ */
+.nosfir-guided-tour::before {
+    content: "";
+    position: absolute;
+    top: 30px;
+    left: calc(-1 * var(--nosfir-tour-arrow-size));
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: var(--nosfir-tour-arrow-size);
+    border-color: transparent;
+    border-left-width: 0;
+    border-right-color: rgba(var(--nosfir-dark-rgb), 0.95);
+}
+
+/**
+ * Tour Arrow - Right Pointing Variant
+ */
+.nosfir-guided-tour--right::before {
+    left: auto;
+    right: calc(-1 * var(--nosfir-tour-arrow-size));
+    border-right-width: 0;
+    border-left-width: var(--nosfir-tour-arrow-size);
+    border-right-color: transparent;
+    border-left-color: rgba(var(--nosfir-dark-rgb), 0.95);
+}
+
+/**
+ * Tour Arrow - Top Pointing Variant
+ */
+.nosfir-guided-tour--top::before {
+    top: calc(-1 * var(--nosfir-tour-arrow-size));
+    left: 30px;
+    border-top-width: 0;
+    border-bottom-width: var(--nosfir-tour-arrow-size);
+    border-left-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: rgba(var(--nosfir-dark-rgb), 0.95);
+}
+
+/**
+ * Tour Arrow - Bottom Pointing Variant
+ */
+.nosfir-guided-tour--bottom::before {
+    top: auto;
+    bottom: calc(-1 * var(--nosfir-tour-arrow-size));
+    left: 30px;
+    border-bottom-width: 0;
+    border-top-width: var(--nosfir-tour-arrow-size);
+    border-left-color: transparent;
+    border-right-color: transparent;
+    border-top-color: rgba(var(--nosfir-dark-rgb), 0.95);
+}
+
+/* ==========================================================================
+   Guided Tour Step Content
+   ========================================================================== */
+
+/**
+ * Tour Step Container
+ */
+.nosfir-guided-tour .nosfir-guided-tour-step {
+    padding: 30px;
+    overflow: hidden;
+}
+
+/**
+ * Tour Step - Heading
+ */
+.nosfir-guided-tour .nosfir-guided-tour-step h2 {
+    margin: 0 0 15px;
+    padding: 0;
+    font-size: 1.2em;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--nosfir-white);
+}
+
+/**
+ * Tour Step - Paragraph
+ */
+.nosfir-guided-tour .nosfir-guided-tour-step p {
+    margin: 0 0 15px;
+    font-size: 1em;
+    line-height: 1.7;
+    color: var(--nosfir-gray);
+}
+
+.nosfir-guided-tour .nosfir-guided-tour-step p:last-child {
+    margin-bottom: 0;
+}
+
+/**
+ * Tour Step - Lists
+ */
+.nosfir-guided-tour .nosfir-guided-tour-step ul,
+.nosfir-guided-tour .nosfir-guided-tour-step ol {
+    margin: 0 0 15px 20px;
+    padding: 0;
+}
+
+.nosfir-guided-tour .nosfir-guided-tour-step li {
+    margin-bottom: 8px;
+    line-height: 1.6;
+}
+
+/**
+ * Tour Step - Links
+ */
+.nosfir-guided-tour .nosfir-guided-tour-step a {
+    color: var(--nosfir-accent);
+    text-decoration: none;
+    transition: opacity var(--nosfir-transition-fast) ease;
+}
+
+.nosfir-guided-tour .nosfir-guided-tour-step a:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+}
+
+/**
+ * Tour Step - Skip Link
+ */
+.nosfir-guided-tour .nosfir-guided-tour-step .nosfir-guided-tour-skip {
+    margin-left: 10px;
+    color: var(--nosfir-accent);
+    font-size: 0.9em;
+    text-decoration: none;
+    cursor: pointer;
+    transition: opacity var(--nosfir-transition-fast) ease;
+}
+
+.nosfir-guided-tour .nosfir-guided-tour-step .nosfir-guided-tour-skip:hover {
+    opacity: 0.75;
+}
+
+/* ==========================================================================
+   Tour Step States
+   ========================================================================== */
+
+/**
+ * First Step State
+ * Shows the main button, hides skip for emphasis
+ */
+.nosfir-guided-tour.nosfir-first-step .nosfir-guided-tour-step a.nosfir-nux-button {
+    display: inline-block;
+}
+
+/**
+ * Not First Step State
+ * Hides main button, shows skip as primary action
+ */
+.nosfir-guided-tour:not(.nosfir-first-step) .nosfir-guided-tour-step a.nosfir-nux-button {
+    display: none;
+}
+
+.nosfir-guided-tour:not(.nosfir-first-step) .nosfir-guided-tour-step .nosfir-guided-tour-skip {
+    display: block;
+    float: right;
+    margin: 0;
+    padding: 7px 14px;
+}
+
+/**
+ * Inside Section State
+ * When tour is inside a customizer section
+ */
+.nosfir-guided-tour.nosfir-inside-section .nosfir-guided-tour-step a.nosfir-nux-button {
+    display: inline-block;
+}
+
+.nosfir-guided-tour.nosfir-inside-section .nosfir-guided-tour-step .nosfir-guided-tour-skip {
+    display: none;
+}
+
+/**
+ * Last Step State
+ * Shows finish button on the last step
+ */
+.nosfir-guided-tour.nosfir-last-step .nosfir-guided-tour-step a.nosfir-nux-button {
+    display: inline-block;
+}
+
+/* ==========================================================================
+   Tour Navigation
+   ========================================================================== */
+
+/**
+ * Tour Navigation Container
+ */
+.nosfir-guided-tour-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/**
+ * Tour Progress Dots
+ */
+.nosfir-guided-tour-dots {
+    display: flex;
+    gap: 8px;
+}
+
+.nosfir-guided-tour-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transition: all var(--nosfir-transition-fast) ease;
+}
+
+.nosfir-guided-tour-dot.active {
+    background: var(--nosfir-accent);
+    transform: scale(1.2);
+}
+
+.nosfir-guided-tour-dot.completed {
+    background: var(--nosfir-success);
+}
+
+/**
+ * Tour Navigation Buttons
+ */
+.nosfir-guided-tour-nav-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.nosfir-guided-tour-prev,
+.nosfir-guided-tour-next {
+    padding: 5px 12px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: var(--nosfir-radius-sm);
+    color: var(--nosfir-white);
+    font-size: 12px;
+    cursor: pointer;
+    transition: all var(--nosfir-transition-fast) ease;
+}
+
+.nosfir-guided-tour-prev:hover,
+.nosfir-guided-tour-next:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.nosfir-guided-tour-next {
+    background: var(--nosfir-accent);
+    border-color: var(--nosfir-accent);
+}
+
+.nosfir-guided-tour-next:hover {
+    background: var(--nosfir-accent-dark);
+    border-color: var(--nosfir-accent-dark);
+}
+
+/* ==========================================================================
+   Tour Animation States
+   ========================================================================== */
+
+/**
+ * Loaded State
+ * Tour is fully loaded and visible
+ */
+.nosfir-loaded {
+    opacity: 1;
+}
+
+/**
+ * Moving State
+ * Tour is transitioning between positions
+ */
+.nosfir-moving {
+    transition-duration: var(--nosfir-transition);
+    transition-property: transform;
+    transition-timing-function: cubic-bezier(0.84, 0.45, 0.68, 1.44);
+}
+
+/**
+ * Entering Animation
+ */
+.nosfir-entering .nosfir-guided-tour {
+    animation-name: nosfirBounceInLeft;
+    animation-duration: var(--nosfir-transition-slow);
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+    -webkit-animation-name: nosfirBounceInLeft;
+    -webkit-animation-duration: var(--nosfir-transition-slow);
+    -webkit-animation-timing-function: ease-in-out;
+    -webkit-animation-fill-mode: forwards;
+}
+
+/**
+ * Exiting Animation
+ */
+.nosfir-exiting .nosfir-guided-tour {
+    animation-name: nosfirBounceOutRight;
+    animation-duration: var(--nosfir-transition-slow);
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+    -webkit-animation-name: nosfirBounceOutRight;
+    -webkit-animation-duration: var(--nosfir-transition-slow);
+    -webkit-animation-timing-function: ease-in-out;
+    -webkit-animation-fill-mode: forwards;
+}
+
+/* ==========================================================================
+   Keyframe Animations
+   ========================================================================== */
+
+/**
+ * Bounce In From Left
+ */
+@keyframes nosfirBounceInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    60% {
+        transform: translateX(10%);
+    }
+    80% {
+        transform: translateX(-5%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@-webkit-keyframes nosfirBounceInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    60% {
+        transform: translateX(10%);
+    }
+    80% {
+        transform: translateX(-5%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/**
+ * Bounce Out To Right
+ */
+@keyframes nosfirBounceOutRight {
+    0% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    20% {
+        transform: translateX(-10%);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+}
+
+@-webkit-keyframes nosfirBounceOutRight {
+    0% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    20% {
+        transform: translateX(-10%);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+}
+
+/**
+ * Fade In Animation
+ */
+@keyframes nosfirFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/**
+ * Fade Out Animation
+ */
+@keyframes nosfirFadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+/**
+ * Slide In From Top
+ */
+@keyframes nosfirSlideInTop {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/**
+ * Pulse Animation
+ */
+@keyframes nosfirPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* ==========================================================================
+   Tour Close Button
+   ========================================================================== */
+
+/**
+ * Close Button
+ */
+.nosfir-guided-tour-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-radius: 50%;
+    color: var(--nosfir-gray);
+    font-size: 18px;
+    line-height: 24px;
+    text-align: center;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: all var(--nosfir-transition-fast) ease;
+}
+
+.nosfir-guided-tour-close:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--nosfir-white);
+    opacity: 1;
+}
+
+.nosfir-guided-tour-close::before {
+    content: "×";
+}
+
+/* ==========================================================================
+   Tour Overlay
+   ========================================================================== */
+
+/**
+ * Overlay Background
+ * Optional dark overlay behind the tour
+ */
+.nosfir-tour-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999999997;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--nosfir-transition) ease;
+}
+
+.nosfir-tour-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/**
+ * Spotlight Effect
+ * Highlights specific elements during tour
+ */
+.nosfir-tour-spotlight {
+    position: fixed;
+    z-index: 999999996;
+    border-radius: var(--nosfir-radius);
+    box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+    transition: all var(--nosfir-transition) ease;
+}
+
+/* ==========================================================================
+   Customizer Section Enhancements
+   ========================================================================== */
+
+/**
+ * Section Header Styling
+ */
+.nosfir-customizer-section-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    background: linear-gradient(135deg, var(--nosfir-primary), var(--nosfir-primary-light));
+    margin: -12px -12px 12px;
+    color: var(--nosfir-white);
+}
+
+.nosfir-customizer-section-header .dashicons {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+}
+
+/**
+ * Section Description
+ */
+.nosfir-customizer-section-description {
+    padding: 10px;
+    background: #f7f7f7;
+    border-left: 3px solid var(--nosfir-primary);
+    margin-bottom: 15px;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+/* ==========================================================================
+   Control Group Styling
+   ========================================================================== */
+
+/**
+ * Control Group Container
+ */
+.nosfir-control-group {
+    margin: 15px 0;
+    padding: 15px;
+    background: #fafafa;
+    border: 1px solid #eee;
+    border-radius: var(--nosfir-radius);
+}
+
+.nosfir-control-group-title {
+    margin: -15px -15px 15px;
+    padding: 10px 15px;
+    background: #f0f0f0;
+    border-bottom: 1px solid #eee;
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ==========================================================================
+   Responsive Styles
+   ========================================================================== */
+
+/**
+ * Tablet Breakpoint
+ */
+@media screen and (max-width: 782px) {
+    .nosfir-guided-tour {
+        width: calc(100vw - 30px);
+        left: 15px;
+        right: 15px;
+    }
+
+    .nosfir-guided-tour::before {
+        display: none;
+    }
+
+    .nosfir-guided-tour .nosfir-guided-tour-step {
+        padding: 20px;
+    }
+}
+
+/**
+ * Mobile Breakpoint
+ */
+@media screen and (max-width: 480px) {
+    .nosfir-guided-tour .nosfir-guided-tour-step h2 {
+        font-size: 1.1em;
+    }
+
+    .nosfir-guided-tour .nosfir-guided-tour-step p {
+        font-size: 0.95em;
+    }
+
+    .nosfir-guided-tour-navigation {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nosfir-guided-tour-nav-buttons {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+
+/* ==========================================================================
+   High Contrast Mode Support
+   ========================================================================== */
+
+@media (prefers-contrast: high) {
+    .nosfir-guided-tour {
+        background-color: #000;
+        border: 2px solid #fff;
+    }
+
+    .nosfir-nux-button,
+    a.nosfir-nux-button {
+        border-width: 2px;
+    }
+}
+
+/* ==========================================================================
+   Reduced Motion Support
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .nosfir-guided-tour,
+    .nosfir-nux-button,
+    a.nosfir-nux-button,
+    .nosfir-moving {
+        transition: none;
+    }
+
+    .nosfir-entering .nosfir-guided-tour,
+    .nosfir-exiting .nosfir-guided-tour {
+        animation: none;
+    }
+
+    .nosfir-entering .nosfir-guided-tour {
+        opacity: 1;
+    }
+
+    .nosfir-exiting .nosfir-guided-tour {
+        opacity: 0;
+    }
+}
+
+/* ==========================================================================
+   Print Styles
+   ========================================================================== */
+
+@media print {
+    .nosfir-guided-tour,
+    .nosfir-tour-overlay {
+        display: none !important;
+    }
+}

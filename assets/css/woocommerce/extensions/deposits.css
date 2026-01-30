@@ -1,0 +1,922 @@
+/**
+ * Nosfir Theme - WooCommerce Deposits
+ *
+ * Styles for the WooCommerce Deposits extension.
+ * Provides custom styling for deposit options, payment plans, 
+ * and partial payment interfaces.
+ *
+ * @package Nosfir
+ * @subpackage WooCommerce/Extensions
+ * @since 1.0.0
+ *
+ * @see https://woocommerce.com/products/woocommerce-deposits/
+ */
+
+/* ==========================================================================
+   CSS Variables
+   ========================================================================== */
+
+:root {
+    /* Colors */
+    --nosfir-deposit-primary: #0073aa;
+    --nosfir-deposit-primary-dark: #005a87;
+    --nosfir-deposit-text: #43454b;
+    --nosfir-deposit-text-light: #666;
+    --nosfir-deposit-bg: #fff;
+    --nosfir-deposit-bg-alt: rgba(0, 0, 0, 0.0125);
+    --nosfir-deposit-bg-hover: rgba(0, 0, 0, 0.02);
+    --nosfir-deposit-bg-active: rgba(0, 0, 0, 0.025);
+    --nosfir-deposit-border: rgba(0, 0, 0, 0.05);
+    --nosfir-deposit-border-dark: rgba(0, 0, 0, 0.1);
+
+    /* Status Colors */
+    --nosfir-deposit-success: #0f834d;
+    --nosfir-deposit-warning: #ffba00;
+    --nosfir-deposit-error: #e2401c;
+    --nosfir-deposit-info: #3d9cd2;
+
+    /* Spacing */
+    --nosfir-deposit-spacing-xs: 0.6180469716em;
+    --nosfir-deposit-spacing-sm: 1em;
+    --nosfir-deposit-spacing: 1.618em;
+
+    /* Border Radius */
+    --nosfir-deposit-radius: 3px;
+    --nosfir-deposit-radius-lg: 5px;
+
+    /* Transitions */
+    --nosfir-deposit-transition: 0.2s ease;
+
+    /* Shadows */
+    --nosfir-deposit-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* ==========================================================================
+   Deposits Wrapper
+   ========================================================================== */
+
+/**
+ * Main Deposits Container
+ */
+.wc-deposits-wrapper {
+    margin-bottom: var(--nosfir-deposit-spacing);
+    padding: var(--nosfir-deposit-spacing-sm);
+    background: var(--nosfir-deposit-bg);
+    border: 1px solid var(--nosfir-deposit-border);
+    border-radius: var(--nosfir-deposit-radius-lg);
+}
+
+/**
+ * Deposits Title
+ */
+.wc-deposits-wrapper .wc-deposits-title {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: var(--nosfir-deposit-text);
+    margin-bottom: var(--nosfir-deposit-spacing-sm);
+    padding-bottom: var(--nosfir-deposit-spacing-xs);
+    border-bottom: 2px solid var(--nosfir-deposit-primary);
+}
+
+/* ==========================================================================
+   Deposit Options (Full/Deposit Toggle)
+   ========================================================================== */
+
+/**
+ * Deposit Options List
+ */
+.wc-deposits-wrapper .wc-deposits-option {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/**
+ * Single Deposit Option
+ */
+.wc-deposits-wrapper .wc-deposits-option li {
+    padding: var(--nosfir-deposit-spacing-xs) var(--nosfir-deposit-spacing-sm);
+    border: none;
+    background: var(--nosfir-deposit-bg-alt);
+    box-shadow: none;
+    border-radius: 0;
+    margin-bottom: 2px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color var(--nosfir-deposit-transition);
+}
+
+.wc-deposits-wrapper .wc-deposits-option li:first-child {
+    border-radius: var(--nosfir-deposit-radius) var(--nosfir-deposit-radius) 0 0;
+}
+
+.wc-deposits-wrapper .wc-deposits-option li:last-child {
+    border-radius: 0 0 var(--nosfir-deposit-radius) var(--nosfir-deposit-radius);
+    margin-bottom: 0;
+}
+
+.wc-deposits-wrapper .wc-deposits-option li:only-child {
+    border-radius: var(--nosfir-deposit-radius);
+}
+
+/**
+ * Option Hover State
+ */
+.wc-deposits-wrapper .wc-deposits-option li:hover {
+    background: var(--nosfir-deposit-bg-hover);
+}
+
+/**
+ * Option Active/Selected State
+ */
+.wc-deposits-wrapper .wc-deposits-option li.selected,
+.wc-deposits-wrapper .wc-deposits-option li:has(input:checked) {
+    background: var(--nosfir-deposit-bg-active);
+    border-left: 3px solid var(--nosfir-deposit-primary);
+}
+
+/**
+ * Radio Input
+ */
+.wc-deposits-wrapper .wc-deposits-option li input {
+    margin-right: var(--nosfir-deposit-spacing-xs);
+    width: 18px;
+    height: 18px;
+    accent-color: var(--nosfir-deposit-primary);
+    cursor: pointer;
+}
+
+/**
+ * Option Label
+ */
+.wc-deposits-wrapper .wc-deposits-option li label {
+    cursor: pointer;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 500;
+    color: var(--nosfir-deposit-text);
+}
+
+/**
+ * Option Price
+ */
+.wc-deposits-wrapper .wc-deposits-option li .wc-deposits-option-price {
+    font-weight: 600;
+    color: var(--nosfir-deposit-primary);
+}
+
+/* ==========================================================================
+   Payment Description
+   ========================================================================== */
+
+/**
+ * Payment Description Text
+ */
+.wc-deposits-wrapper .wc-deposits-payment-description {
+    color: inherit;
+    font-size: 0.9em;
+    line-height: 1.6;
+    margin-top: var(--nosfir-deposit-spacing-sm);
+    padding: var(--nosfir-deposit-spacing-sm);
+    background: var(--nosfir-deposit-bg-alt);
+    border-radius: var(--nosfir-deposit-radius);
+}
+
+.wc-deposits-wrapper .wc-deposits-payment-description p {
+    margin: 0;
+}
+
+.wc-deposits-wrapper .wc-deposits-payment-description p + p {
+    margin-top: 0.5em;
+}
+
+/* ==========================================================================
+   Payment Plans
+   ========================================================================== */
+
+/**
+ * Payment Plans Container
+ */
+.wc-deposits-wrapper .wc-deposits-payment-plans {
+    background: transparent;
+    padding: 0;
+    border: 0;
+    box-shadow: none;
+    list-style: none;
+    margin: var(--nosfir-deposit-spacing-sm) 0 0;
+}
+
+/**
+ * Single Payment Plan
+ */
+.wc-deposits-wrapper .wc-deposits-payment-plans li.wc-deposits-payment-plan {
+    border: var(--nosfir-deposit-spacing-sm) solid var(--nosfir-deposit-bg-alt);
+    padding: var(--nosfir-deposit-spacing);
+    margin-bottom: var(--nosfir-deposit-spacing-sm);
+    border-radius: var(--nosfir-deposit-radius-lg);
+    background: var(--nosfir-deposit-bg);
+    cursor: pointer;
+    transition: all var(--nosfir-deposit-transition);
+    position: relative;
+}
+
+.wc-deposits-wrapper .wc-deposits-payment-plans li.wc-deposits-payment-plan:hover {
+    background: var(--nosfir-deposit-bg-alt);
+    border-color: var(--nosfir-deposit-bg-hover);
+}
+
+.wc-deposits-wrapper .wc-deposits-payment-plans li.wc-deposits-payment-plan:last-child {
+    border-bottom: var(--nosfir-deposit-spacing-sm) solid var(--nosfir-deposit-bg-alt);
+    margin-bottom: 0;
+}
+
+/**
+ * Selected Payment Plan
+ */
+.wc-deposits-wrapper .wc-deposits-payment-plans li.wc-deposits-payment-plan.selected,
+.wc-deposits-wrapper .wc-deposits-payment-plans li.wc-deposits-payment-plan:has(input:checked) {
+    border-color: var(--nosfir-deposit-primary);
+    background: rgba(0, 115, 170, 0.05);
+}
+
+.wc-deposits-wrapper .wc-deposits-payment-plans li.wc-deposits-payment-plan.selected::before,
+.wc-deposits-wrapper .wc-deposits-payment-plans li.wc-deposits-payment-plan:has(input:checked)::before {
+    content: "✓";
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 24px;
+    height: 24px;
+    background: var(--nosfir-deposit-primary);
+    color: var(--nosfir-deposit-bg);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/**
+ * Payment Plan Radio
+ */
+.wc-deposits-wrapper .wc-deposits-payment-plans li.wc-deposits-payment-plan input {
+    margin-right: 0;
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/**
+ * Payment Plan Label
+ */
+.wc-deposits-wrapper .wc-deposits-payment-plans li.wc-deposits-payment-plan label {
+    max-width: none;
+    display: block;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1.05em;
+    color: var(--nosfir-deposit-text);
+    margin-bottom: 0.5em;
+}
+
+/**
+ * Payment Plan Description
+ */
+.wc-deposits-wrapper .wc-deposits-payment-plans li.wc-deposits-payment-plan .wc-deposits-payment-plan-description {
+    color: inherit;
+    display: block;
+    font-weight: 400;
+    opacity: 0.5;
+    font-size: 0.9em;
+    line-height: 1.5;
+}
+
+/* ==========================================================================
+   Payment Plan Schedule
+   ========================================================================== */
+
+/**
+ * Schedule Container
+ */
+.wc-deposits-wrapper .wc-deposits-payment-plans .wc-deposits-payment-schedule {
+    margin-top: var(--nosfir-deposit-spacing-sm);
+    padding-top: var(--nosfir-deposit-spacing-sm);
+    border-top: 1px solid var(--nosfir-deposit-border);
+}
+
+/**
+ * Schedule Table
+ */
+.wc-deposits-wrapper .wc-deposits-payment-schedule table {
+    width: 100%;
+    font-size: 0.9em;
+    border-collapse: collapse;
+}
+
+.wc-deposits-wrapper .wc-deposits-payment-schedule th,
+.wc-deposits-wrapper .wc-deposits-payment-schedule td {
+    padding: 0.5em;
+    text-align: left;
+    border-bottom: 1px solid var(--nosfir-deposit-border);
+}
+
+.wc-deposits-wrapper .wc-deposits-payment-schedule th {
+    font-weight: 600;
+    color: var(--nosfir-deposit-text);
+}
+
+.wc-deposits-wrapper .wc-deposits-payment-schedule td {
+    color: var(--nosfir-deposit-text-light);
+}
+
+.wc-deposits-wrapper .wc-deposits-payment-schedule tr:last-child td {
+    border-bottom: none;
+}
+
+/**
+ * Schedule Amount
+ */
+.wc-deposits-wrapper .wc-deposits-payment-schedule .amount {
+    font-weight: 600;
+    color: var(--nosfir-deposit-text);
+}
+
+/**
+ * Schedule - First Payment Highlight
+ */
+.wc-deposits-wrapper .wc-deposits-payment-schedule tr.first-payment {
+    background: var(--nosfir-deposit-bg-alt);
+}
+
+.wc-deposits-wrapper .wc-deposits-payment-schedule tr.first-payment td {
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   Optional Deposits
+   ========================================================================== */
+
+/**
+ * Optional Deposits Wrapper
+ */
+.wc-deposits-wrapper.wc-deposits-optional .wc-deposits-payment-plans {
+    margin-bottom: var(--nosfir-deposit-spacing);
+}
+
+.wc-deposits-wrapper.wc-deposits-optional .wc-deposits-payment-plans::after {
+    display: none;
+}
+
+.wc-deposits-wrapper.wc-deposits-optional .wc-deposits-payment-plans::before {
+    border-bottom-color: var(--nosfir-deposit-bg-active);
+    top: -1px;
+}
+
+/**
+ * Optional Badge
+ */
+.wc-deposits-wrapper.wc-deposits-optional .wc-deposits-optional-badge {
+    display: inline-block;
+    padding: 0.2em 0.6em;
+    background: var(--nosfir-deposit-info);
+    color: var(--nosfir-deposit-bg);
+    font-size: 0.75em;
+    font-weight: 600;
+    text-transform: uppercase;
+    border-radius: var(--nosfir-deposit-radius);
+    margin-left: 0.5em;
+    vertical-align: middle;
+}
+
+/* ==========================================================================
+   Deposit Summary
+   ========================================================================== */
+
+/**
+ * Summary Container
+ */
+.wc-deposits-wrapper .wc-deposits-summary {
+    margin-top: var(--nosfir-deposit-spacing);
+    padding: var(--nosfir-deposit-spacing-sm);
+    background: var(--nosfir-deposit-bg-alt);
+    border-radius: var(--nosfir-deposit-radius);
+}
+
+/**
+ * Summary Row
+ */
+.wc-deposits-wrapper .wc-deposits-summary .summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5em 0;
+    border-bottom: 1px solid var(--nosfir-deposit-border);
+}
+
+.wc-deposits-wrapper .wc-deposits-summary .summary-row:last-child {
+    border-bottom: none;
+}
+
+/**
+ * Summary Labels
+ */
+.wc-deposits-wrapper .wc-deposits-summary .summary-label {
+    color: var(--nosfir-deposit-text-light);
+    font-size: 0.9em;
+}
+
+/**
+ * Summary Values
+ */
+.wc-deposits-wrapper .wc-deposits-summary .summary-value {
+    font-weight: 600;
+    color: var(--nosfir-deposit-text);
+}
+
+/**
+ * Due Today Highlight
+ */
+.wc-deposits-wrapper .wc-deposits-summary .summary-row.due-today {
+    background: rgba(0, 115, 170, 0.1);
+    margin: 0 calc(-1 * var(--nosfir-deposit-spacing-sm));
+    padding: 0.75em var(--nosfir-deposit-spacing-sm);
+    border-radius: var(--nosfir-deposit-radius);
+}
+
+.wc-deposits-wrapper .wc-deposits-summary .summary-row.due-today .summary-label {
+    font-weight: 600;
+    color: var(--nosfir-deposit-text);
+}
+
+.wc-deposits-wrapper .wc-deposits-summary .summary-row.due-today .summary-value {
+    font-size: 1.2em;
+    color: var(--nosfir-deposit-primary);
+}
+
+/* ==========================================================================
+   Cart & Checkout - Deposit Info
+   ========================================================================== */
+
+/**
+ * Deposit Info in Cart
+ */
+.cart-deposit-info,
+.checkout-deposit-info {
+    padding: var(--nosfir-deposit-spacing-sm);
+    background: var(--nosfir-deposit-bg-alt);
+    border-radius: var(--nosfir-deposit-radius);
+    margin-top: 0.5em;
+    font-size: 0.9em;
+}
+
+.cart-deposit-info p,
+.checkout-deposit-info p {
+    margin: 0;
+    color: var(--nosfir-deposit-text-light);
+}
+
+.cart-deposit-info .amount,
+.checkout-deposit-info .amount {
+    font-weight: 600;
+    color: var(--nosfir-deposit-primary);
+}
+
+/**
+ * Deposit Badge in Cart Item
+ */
+.cart_item .deposit-badge {
+    display: inline-block;
+    padding: 0.15em 0.5em;
+    background: var(--nosfir-deposit-info);
+    color: var(--nosfir-deposit-bg);
+    font-size: 0.75em;
+    font-weight: 600;
+    border-radius: var(--nosfir-deposit-radius);
+    margin-left: 0.5em;
+}
+
+/* ==========================================================================
+   Order Details - Deposits
+   ========================================================================== */
+
+/**
+ * Deposit Payment Schedule in Order
+ */
+.woocommerce-order-details .deposit-schedule {
+    margin-top: var(--nosfir-deposit-spacing);
+    padding: var(--nosfir-deposit-spacing-sm);
+    background: var(--nosfir-deposit-bg-alt);
+    border-radius: var(--nosfir-deposit-radius);
+}
+
+.woocommerce-order-details .deposit-schedule h3 {
+    font-size: 1em;
+    font-weight: 600;
+    margin: 0 0 var(--nosfir-deposit-spacing-sm);
+    color: var(--nosfir-deposit-text);
+}
+
+/**
+ * Schedule Item
+ */
+.woocommerce-order-details .deposit-schedule .schedule-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5em 0;
+    border-bottom: 1px solid var(--nosfir-deposit-border);
+}
+
+.woocommerce-order-details .deposit-schedule .schedule-item:last-child {
+    border-bottom: none;
+}
+
+.woocommerce-order-details .deposit-schedule .schedule-item .date {
+    color: var(--nosfir-deposit-text-light);
+    font-size: 0.9em;
+}
+
+.woocommerce-order-details .deposit-schedule .schedule-item .amount {
+    font-weight: 600;
+    color: var(--nosfir-deposit-text);
+}
+
+/**
+ * Payment Status Badges
+ */
+.woocommerce-order-details .deposit-schedule .payment-status {
+    display: inline-block;
+    padding: 0.15em 0.5em;
+    font-size: 0.75em;
+    font-weight: 600;
+    border-radius: var(--nosfir-deposit-radius);
+    margin-left: 0.5em;
+}
+
+.woocommerce-order-details .deposit-schedule .payment-status.paid {
+    background: rgba(15, 131, 77, 0.1);
+    color: var(--nosfir-deposit-success);
+}
+
+.woocommerce-order-details .deposit-schedule .payment-status.pending {
+    background: rgba(255, 186, 0, 0.1);
+    color: #856404;
+}
+
+.woocommerce-order-details .deposit-schedule .payment-status.overdue {
+    background: rgba(226, 64, 28, 0.1);
+    color: var(--nosfir-deposit-error);
+}
+
+/* ==========================================================================
+   My Account - Deposits
+   ========================================================================== */
+
+/**
+ * Deposits Table in My Account
+ */
+table.my_account_deposits {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table.my_account_deposits th,
+table.my_account_deposits td {
+    padding: 0.75em;
+    text-align: left;
+    border-bottom: 1px solid var(--nosfir-deposit-border);
+}
+
+table.my_account_deposits th {
+    font-weight: 600;
+    background: var(--nosfir-deposit-bg-alt);
+}
+
+/**
+ * Pay Button
+ */
+table.my_account_deposits .pay-button {
+    display: inline-block;
+    padding: 0.4em 0.8em;
+    background: var(--nosfir-deposit-primary);
+    color: var(--nosfir-deposit-bg);
+    text-decoration: none;
+    border-radius: var(--nosfir-deposit-radius);
+    font-size: 0.85em;
+    font-weight: 500;
+    transition: background-color var(--nosfir-deposit-transition);
+}
+
+table.my_account_deposits .pay-button:hover {
+    background: var(--nosfir-deposit-primary-dark);
+    color: var(--nosfir-deposit-bg);
+}
+
+/* ==========================================================================
+   Deposit Notices
+   ========================================================================== */
+
+/**
+ * Deposit Notice
+ */
+.wc-deposits-notice {
+    padding: var(--nosfir-deposit-spacing-sm);
+    border-radius: var(--nosfir-deposit-radius);
+    margin-bottom: var(--nosfir-deposit-spacing-sm);
+    font-size: 0.9em;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.wc-deposits-notice::before {
+    font-size: 1.2em;
+    flex-shrink: 0;
+}
+
+.wc-deposits-notice.notice-info {
+    background: rgba(61, 156, 210, 0.1);
+    border-left: 4px solid var(--nosfir-deposit-info);
+    color: var(--nosfir-deposit-info);
+}
+
+.wc-deposits-notice.notice-info::before {
+    content: "ℹ";
+}
+
+.wc-deposits-notice.notice-warning {
+    background: rgba(255, 186, 0, 0.1);
+    border-left: 4px solid var(--nosfir-deposit-warning);
+    color: #856404;
+}
+
+.wc-deposits-notice.notice-warning::before {
+    content: "⚠";
+}
+
+.wc-deposits-notice.notice-success {
+    background: rgba(15, 131, 77, 0.1);
+    border-left: 4px solid var(--nosfir-deposit-success);
+    color: var(--nosfir-deposit-success);
+}
+
+.wc-deposits-notice.notice-success::before {
+    content: "✓";
+}
+
+/* ==========================================================================
+   Remaining Balance Display
+   ========================================================================== */
+
+/**
+ * Remaining Balance Container
+ */
+.wc-deposits-remaining-balance {
+    padding: var(--nosfir-deposit-spacing-sm);
+    background: linear-gradient(135deg, var(--nosfir-deposit-primary), var(--nosfir-deposit-primary-dark));
+    color: var(--nosfir-deposit-bg);
+    border-radius: var(--nosfir-deposit-radius-lg);
+    text-align: center;
+    margin-top: var(--nosfir-deposit-spacing);
+}
+
+.wc-deposits-remaining-balance .balance-label {
+    font-size: 0.85em;
+    opacity: 0.9;
+    margin-bottom: 0.25em;
+}
+
+.wc-deposits-remaining-balance .balance-amount {
+    font-size: 1.5em;
+    font-weight: 700;
+}
+
+.wc-deposits-remaining-balance .balance-due-date {
+    font-size: 0.8em;
+    opacity: 0.8;
+    margin-top: 0.5em;
+}
+
+/* ==========================================================================
+   Loading State
+   ========================================================================== */
+
+/**
+ * Deposits Loading
+ */
+.wc-deposits-wrapper.loading {
+    position: relative;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.wc-deposits-wrapper.loading::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 24px;
+    height: 24px;
+    margin: -12px 0 0 -12px;
+    border: 3px solid var(--nosfir-deposit-border-dark);
+    border-top-color: var(--nosfir-deposit-primary);
+    border-radius: 50%;
+    animation: nosfirDepositSpinner 0.8s linear infinite;
+}
+
+@keyframes nosfirDepositSpinner {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ==========================================================================
+   Dark Mode Support
+   ========================================================================== */
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --nosfir-deposit-text: #e5e5e5;
+        --nosfir-deposit-text-light: #aaa;
+        --nosfir-deposit-bg: #1a1a1a;
+        --nosfir-deposit-bg-alt: rgba(255, 255, 255, 0.05);
+        --nosfir-deposit-bg-hover: rgba(255, 255, 255, 0.08);
+        --nosfir-deposit-bg-active: rgba(255, 255, 255, 0.1);
+        --nosfir-deposit-border: rgba(255, 255, 255, 0.05);
+        --nosfir-deposit-border-dark: rgba(255, 255, 255, 0.1);
+    }
+
+    .wc-deposits-wrapper {
+        background: var(--nosfir-deposit-bg);
+        border-color: var(--nosfir-deposit-border-dark);
+    }
+}
+
+/* ==========================================================================
+   Responsive Styles
+   ========================================================================== */
+
+/**
+ * Tablet Breakpoint
+ */
+@media (max-width: 768px) {
+    .wc-deposits-wrapper .wc-deposits-payment-plans li.wc-deposits-payment-plan {
+        padding: var(--nosfir-deposit-spacing-sm);
+        border-width: 0.5em;
+    }
+
+    .wc-deposits-wrapper .wc-deposits-payment-schedule table {
+        font-size: 0.85em;
+    }
+
+    .wc-deposits-wrapper .wc-deposits-payment-schedule th,
+    .wc-deposits-wrapper .wc-deposits-payment-schedule td {
+        padding: 0.4em;
+    }
+}
+
+/**
+ * Mobile Breakpoint
+ */
+@media (max-width: 568px) {
+    .wc-deposits-wrapper {
+        padding: var(--nosfir-deposit-spacing-xs);
+    }
+
+    .wc-deposits-wrapper .wc-deposits-option li {
+        padding: var(--nosfir-deposit-spacing-xs);
+    }
+
+    .wc-deposits-wrapper .wc-deposits-option li label {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+
+    .wc-deposits-wrapper .wc-deposits-payment-plans li.wc-deposits-payment-plan {
+        padding: var(--nosfir-deposit-spacing-xs);
+    }
+
+    .wc-deposits-wrapper .wc-deposits-summary .summary-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+
+    .wc-deposits-wrapper .wc-deposits-summary .summary-row.due-today {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .woocommerce-order-details .deposit-schedule .schedule-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+
+    table.my_account_deposits {
+        font-size: 0.85em;
+    }
+
+    table.my_account_deposits th,
+    table.my_account_deposits td {
+        padding: 0.5em;
+    }
+
+    .wc-deposits-remaining-balance .balance-amount {
+        font-size: 1.3em;
+    }
+}
+
+/* ==========================================================================
+   Accessibility
+   ========================================================================== */
+
+/**
+ * Reduced Motion
+ */
+@media (prefers-reduced-motion: reduce) {
+    .wc-deposits-wrapper .wc-deposits-option li,
+    .wc-deposits-wrapper .wc-deposits-payment-plans li.wc-deposits-payment-plan,
+    .wc-deposits-wrapper.loading::after,
+    table.my_account_deposits .pay-button {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/**
+ * Focus Visible
+ */
+.wc-deposits-wrapper .wc-deposits-option li input:focus-visible,
+.wc-deposits-wrapper .wc-deposits-payment-plans li.wc-deposits-payment-plan input:focus-visible + label,
+table.my_account_deposits .pay-button:focus-visible {
+    outline: 2px solid var(--nosfir-deposit-primary);
+    outline-offset: 2px;
+}
+
+.wc-deposits-wrapper .wc-deposits-option li:focus-within,
+.wc-deposits-wrapper .wc-deposits-payment-plans li.wc-deposits-payment-plan:focus-within {
+    outline: 2px solid var(--nosfir-deposit-primary);
+    outline-offset: 2px;
+}
+
+/**
+ * High Contrast Mode
+ */
+@media (prefers-contrast: high) {
+    .wc-deposits-wrapper {
+        border-width: 2px;
+    }
+
+    .wc-deposits-wrapper .wc-deposits-option li.selected,
+    .wc-deposits-wrapper .wc-deposits-payment-plans li.wc-deposits-payment-plan.selected {
+        border-left-width: 5px;
+    }
+
+    .wc-deposits-notice {
+        border-left-width: 6px;
+    }
+
+    .cart_item .deposit-badge,
+    .woocommerce-order-details .deposit-schedule .payment-status {
+        border: 1px solid currentColor;
+    }
+}
+
+/* ==========================================================================
+   Print Styles
+   ========================================================================== */
+
+@media print {
+    .wc-deposits-wrapper {
+        border: 1px solid #000;
+        background: #fff !important;
+    }
+
+    .wc-deposits-wrapper .wc-deposits-option li,
+    .wc-deposits-wrapper .wc-deposits-payment-plans li.wc-deposits-payment-plan {
+        background: transparent !important;
+        border: 1px solid #ccc;
+    }
+
+    .wc-deposits-remaining-balance {
+        background: #f0f0f0 !important;
+        color: #000 !important;
+    }
+
+    .wc-deposits-wrapper.loading::after {
+        display: none;
+    }
+
+    .cart_item .deposit-badge,
+    .woocommerce-order-details .deposit-schedule .payment-status {
+        background: transparent !important;
+        border: 1px solid currentColor;
+    }
+}

@@ -1,0 +1,1052 @@
+/**
+ * Nosfir Theme - WooCommerce Advanced Product Labels
+ *
+ * Styles for the WooCommerce Advanced Product Labels extension.
+ * Provides custom styling for product badges, flash labels, and promotional tags.
+ *
+ * @package Nosfir
+ * @subpackage WooCommerce/Extensions
+ * @since 1.0.0
+ *
+ * @see https://woocommerce.com/products/woocommerce-advanced-product-labels/
+ */
+
+/* ==========================================================================
+   CSS Variables
+   ========================================================================== */
+
+:root {
+    /* Label Colors */
+    --nosfir-label-primary: #0073aa;
+    --nosfir-label-secondary: #43454b;
+    --nosfir-label-success: #0f834d;
+    --nosfir-label-warning: #ffba00;
+    --nosfir-label-danger: #e2401c;
+    --nosfir-label-info: #3d9cd2;
+    --nosfir-label-new: #7f54b3;
+    --nosfir-label-hot: #ff6b6b;
+    --nosfir-label-sale: #e2401c;
+
+    /* Label Text */
+    --nosfir-label-text: #fff;
+    --nosfir-label-text-dark: #43454b;
+
+    /* Spacing - Golden Ratio Based */
+    --nosfir-label-spacing: 0.6180469716em;
+    --nosfir-label-spacing-md: 0.875em;
+    --nosfir-label-spacing-lg: 1.41575em;
+
+    /* Sizes */
+    --nosfir-flash-size: 3.706325903em;
+    --nosfir-label-font-size: 0.875em;
+    --nosfir-label-font-size-sm: 0.75em;
+
+    /* Border Radius */
+    --nosfir-label-radius: 3px;
+    --nosfir-label-radius-full: 50%;
+
+    /* Transitions */
+    --nosfir-label-transition: 0.2s ease;
+
+    /* Shadows */
+    --nosfir-label-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    --nosfir-label-shadow-hover: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* ==========================================================================
+   Flash Labels (Circular Badges)
+   ========================================================================== */
+
+/**
+ * Flash Label Container
+ * Circular badge typically used for sale percentages
+ */
+.wapl-flash {
+    font-size: 1em;
+    width: var(--nosfir-flash-size);
+    height: var(--nosfir-flash-size);
+    line-height: var(--nosfir-flash-size);
+    border: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--nosfir-label-radius-full);
+    position: absolute;
+    z-index: 10;
+    box-shadow: var(--nosfir-label-shadow);
+    transition: transform var(--nosfir-label-transition),
+                box-shadow var(--nosfir-label-transition);
+}
+
+.wapl-flash:hover {
+    transform: scale(1.05);
+    box-shadow: var(--nosfir-label-shadow-hover);
+}
+
+/**
+ * Flash Label - Inner Product Label
+ */
+.wapl-flash .product-label {
+    font-size: 1em;
+    width: var(--nosfir-flash-size);
+    height: var(--nosfir-flash-size);
+    line-height: var(--nosfir-flash-size);
+    border: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--nosfir-label-radius-full);
+    text-align: center;
+    font-weight: 600;
+    color: var(--nosfir-label-text);
+    background: var(--nosfir-label-sale);
+}
+
+/**
+ * Flash Label Sizes
+ */
+.wapl-flash.wapl-flash--small {
+    width: 2.5em;
+    height: 2.5em;
+    line-height: 2.5em;
+}
+
+.wapl-flash.wapl-flash--small .product-label {
+    width: 2.5em;
+    height: 2.5em;
+    line-height: 2.5em;
+    font-size: var(--nosfir-label-font-size-sm);
+}
+
+.wapl-flash.wapl-flash--large {
+    width: 5em;
+    height: 5em;
+    line-height: 5em;
+}
+
+.wapl-flash.wapl-flash--large .product-label {
+    width: 5em;
+    height: 5em;
+    line-height: 5em;
+    font-size: 1.1em;
+}
+
+/* ==========================================================================
+   Standard Labels (Rectangular Badges)
+   ========================================================================== */
+
+/**
+ * Label Container
+ */
+.wapl-label {
+    margin-bottom: var(--nosfir-label-spacing-md);
+    position: relative;
+    z-index: 10;
+    display: inline-block;
+}
+
+/**
+ * Label - Product Label Element
+ */
+.wapl-label .product-label {
+    padding: var(--nosfir-label-spacing) var(--nosfir-label-spacing-md);
+    display: inline-block;
+    margin: 0 auto;
+    font-size: var(--nosfir-label-font-size);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: var(--nosfir-label-radius);
+    color: var(--nosfir-label-text);
+    background: var(--nosfir-label-primary);
+    box-shadow: var(--nosfir-label-shadow);
+    transition: all var(--nosfir-label-transition);
+}
+
+/**
+ * Hide Empty Labels
+ */
+.wapl-label .product-label:empty {
+    display: none;
+}
+
+/**
+ * Label Hover Effect
+ */
+.wapl-label .product-label:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--nosfir-label-shadow-hover);
+}
+
+/* ==========================================================================
+   Label Color Variations
+   ========================================================================== */
+
+/**
+ * Sale Label
+ */
+.wapl-label--sale .product-label,
+.wapl-flash--sale .product-label,
+.product-label.label-sale {
+    background: var(--nosfir-label-sale);
+    color: var(--nosfir-label-text);
+}
+
+/**
+ * New Label
+ */
+.wapl-label--new .product-label,
+.wapl-flash--new .product-label,
+.product-label.label-new {
+    background: var(--nosfir-label-new);
+    color: var(--nosfir-label-text);
+}
+
+/**
+ * Hot Label
+ */
+.wapl-label--hot .product-label,
+.wapl-flash--hot .product-label,
+.product-label.label-hot {
+    background: var(--nosfir-label-hot);
+    color: var(--nosfir-label-text);
+}
+
+/**
+ * Featured Label
+ */
+.wapl-label--featured .product-label,
+.wapl-flash--featured .product-label,
+.product-label.label-featured {
+    background: var(--nosfir-label-warning);
+    color: var(--nosfir-label-text-dark);
+}
+
+/**
+ * Bestseller Label
+ */
+.wapl-label--bestseller .product-label,
+.wapl-flash--bestseller .product-label,
+.product-label.label-bestseller {
+    background: var(--nosfir-label-success);
+    color: var(--nosfir-label-text);
+}
+
+/**
+ * Limited Label
+ */
+.wapl-label--limited .product-label,
+.wapl-flash--limited .product-label,
+.product-label.label-limited {
+    background: var(--nosfir-label-danger);
+    color: var(--nosfir-label-text);
+}
+
+/**
+ * Free Shipping Label
+ */
+.wapl-label--free-shipping .product-label,
+.wapl-flash--free-shipping .product-label,
+.product-label.label-free-shipping {
+    background: var(--nosfir-label-info);
+    color: var(--nosfir-label-text);
+}
+
+/**
+ * Out of Stock Label
+ */
+.wapl-label--out-of-stock .product-label,
+.wapl-flash--out-of-stock .product-label,
+.product-label.label-out-of-stock {
+    background: var(--nosfir-label-secondary);
+    color: var(--nosfir-label-text);
+    opacity: 0.9;
+}
+
+/**
+ * Custom Color Labels
+ */
+.wapl-label--primary .product-label {
+    background: var(--nosfir-label-primary);
+}
+
+.wapl-label--secondary .product-label {
+    background: var(--nosfir-label-secondary);
+}
+
+.wapl-label--success .product-label {
+    background: var(--nosfir-label-success);
+}
+
+.wapl-label--warning .product-label {
+    background: var(--nosfir-label-warning);
+    color: var(--nosfir-label-text-dark);
+}
+
+.wapl-label--danger .product-label {
+    background: var(--nosfir-label-danger);
+}
+
+.wapl-label--info .product-label {
+    background: var(--nosfir-label-info);
+}
+
+/* ==========================================================================
+   Label Positions
+   ========================================================================== */
+
+/**
+ * Position Container
+ * Labels are positioned relative to the product image
+ */
+.wapl-position-container {
+    position: absolute;
+    z-index: 10;
+}
+
+/**
+ * Top Left Position
+ */
+.wapl-position-top-left,
+.wapl-label--top-left,
+.wapl-flash--top-left {
+    top: 10px;
+    left: 10px;
+}
+
+/**
+ * Top Right Position
+ */
+.wapl-position-top-right,
+.wapl-label--top-right,
+.wapl-flash--top-right {
+    top: 10px;
+    right: 10px;
+    left: auto;
+}
+
+/**
+ * Bottom Left Position
+ */
+.wapl-position-bottom-left,
+.wapl-label--bottom-left,
+.wapl-flash--bottom-left {
+    bottom: 10px;
+    left: 10px;
+    top: auto;
+}
+
+/**
+ * Bottom Right Position
+ */
+.wapl-position-bottom-right,
+.wapl-label--bottom-right,
+.wapl-flash--bottom-right {
+    bottom: 10px;
+    right: 10px;
+    top: auto;
+    left: auto;
+}
+
+/**
+ * Center Position
+ */
+.wapl-position-center,
+.wapl-label--center,
+.wapl-flash--center {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.wapl-position-center:hover,
+.wapl-label--center:hover,
+.wapl-flash--center:hover {
+    transform: translate(-50%, -50%) scale(1.05);
+}
+
+/* ==========================================================================
+   Label Styles / Shapes
+   ========================================================================== */
+
+/**
+ * Rounded Label
+ */
+.wapl-label--rounded .product-label {
+    border-radius: 20px;
+}
+
+/**
+ * Square Label
+ */
+.wapl-label--square .product-label {
+    border-radius: 0;
+}
+
+/**
+ * Pill Label
+ */
+.wapl-label--pill .product-label {
+    border-radius: 50px;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+/**
+ * Ribbon Label
+ */
+.wapl-label--ribbon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    width: 100px;
+    height: 100px;
+}
+
+.wapl-label--ribbon .product-label {
+    display: block;
+    width: 150px;
+    padding: 8px 0;
+    text-align: center;
+    transform: rotate(-45deg) translateX(-30px) translateY(-10px);
+    border-radius: 0;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+/**
+ * Ribbon Right
+ */
+.wapl-label--ribbon-right {
+    left: auto;
+    right: 0;
+}
+
+.wapl-label--ribbon-right .product-label {
+    transform: rotate(45deg) translateX(30px) translateY(-10px);
+}
+
+/**
+ * Corner Label
+ */
+.wapl-label--corner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 60px 60px 0 0;
+    border-color: var(--nosfir-label-sale) transparent transparent transparent;
+}
+
+.wapl-label--corner .product-label {
+    position: absolute;
+    top: -55px;
+    left: 5px;
+    background: transparent;
+    box-shadow: none;
+    padding: 0;
+    font-size: var(--nosfir-label-font-size-sm);
+    transform: rotate(-45deg);
+}
+
+/**
+ * Corner Right
+ */
+.wapl-label--corner-right {
+    left: auto;
+    right: 0;
+    border-width: 0 60px 60px 0;
+    border-color: transparent var(--nosfir-label-sale) transparent transparent;
+}
+
+.wapl-label--corner-right .product-label {
+    left: auto;
+    right: 5px;
+    transform: rotate(45deg);
+}
+
+/* ==========================================================================
+   Label with Icon
+   ========================================================================== */
+
+/**
+ * Label Icon
+ */
+.wapl-label .product-label .label-icon,
+.wapl-flash .product-label .label-icon {
+    margin-right: 5px;
+    font-size: 1.1em;
+    vertical-align: middle;
+}
+
+.wapl-label .product-label .label-icon:only-child,
+.wapl-flash .product-label .label-icon:only-child {
+    margin-right: 0;
+}
+
+/**
+ * Icon Only Label
+ */
+.wapl-label--icon-only .product-label {
+    padding: var(--nosfir-label-spacing);
+    width: 2.5em;
+    height: 2.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wapl-label--icon-only .product-label .label-icon {
+    margin: 0;
+    font-size: 1.2em;
+}
+
+/* ==========================================================================
+   Multiple Labels
+   ========================================================================== */
+
+/**
+ * Labels Group Container
+ */
+.wapl-labels-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    position: absolute;
+    z-index: 10;
+}
+
+.wapl-labels-group--horizontal {
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.wapl-labels-group .wapl-label {
+    margin-bottom: 0;
+}
+
+/**
+ * Stacked Labels
+ */
+.wapl-labels-stacked {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 10;
+}
+
+.wapl-labels-stacked .wapl-label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.wapl-labels-stacked .wapl-label:last-child {
+    margin-bottom: 0;
+}
+
+/* ==========================================================================
+   Animation Effects
+   ========================================================================== */
+
+/**
+ * Pulse Animation
+ */
+.wapl-label--pulse .product-label,
+.wapl-flash--pulse .product-label {
+    animation: nosfirLabelPulse 2s ease-in-out infinite;
+}
+
+@keyframes nosfirLabelPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/**
+ * Bounce Animation
+ */
+.wapl-label--bounce .product-label,
+.wapl-flash--bounce .product-label {
+    animation: nosfirLabelBounce 2s ease infinite;
+}
+
+@keyframes nosfirLabelBounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-5px);
+    }
+    60% {
+        transform: translateY(-3px);
+    }
+}
+
+/**
+ * Shine Animation
+ */
+.wapl-label--shine .product-label,
+.wapl-flash--shine .product-label {
+    position: relative;
+    overflow: hidden;
+}
+
+.wapl-label--shine .product-label::after,
+.wapl-flash--shine .product-label::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    animation: nosfirLabelShine 3s ease-in-out infinite;
+}
+
+@keyframes nosfirLabelShine {
+    0% {
+        left: -100%;
+    }
+    50%, 100% {
+        left: 100%;
+    }
+}
+
+/**
+ * Fade In Animation
+ */
+.wapl-label--fade-in .product-label,
+.wapl-flash--fade-in .product-label {
+    animation: nosfirLabelFadeIn 0.5s ease-out;
+}
+
+@keyframes nosfirLabelFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/**
+ * Rotate Animation
+ */
+.wapl-flash--rotate .product-label {
+    animation: nosfirLabelRotate 10s linear infinite;
+}
+
+@keyframes nosfirLabelRotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ==========================================================================
+   Label in Product Loop
+   ========================================================================== */
+
+/**
+ * Labels on Product Archive
+ */
+ul.products li.product .wapl-label,
+ul.products li.product .wapl-flash,
+.wc-block-grid__product .wapl-label,
+.wc-block-grid__product .wapl-flash {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 10;
+}
+
+ul.products li.product .wapl-label--right,
+ul.products li.product .wapl-flash--right,
+.wc-block-grid__product .wapl-label--right,
+.wc-block-grid__product .wapl-flash--right {
+    left: auto;
+    right: 10px;
+}
+
+/**
+ * Labels Wrapper in Loop
+ */
+ul.products li.product .wapl-labels-wrapper,
+.wc-block-grid__product .wapl-labels-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 10;
+}
+
+ul.products li.product .wapl-labels-wrapper .wapl-label,
+ul.products li.product .wapl-labels-wrapper .wapl-flash,
+.wc-block-grid__product .wapl-labels-wrapper .wapl-label,
+.wc-block-grid__product .wapl-labels-wrapper .wapl-flash {
+    pointer-events: auto;
+}
+
+/* ==========================================================================
+   Label on Single Product
+   ========================================================================== */
+
+/**
+ * Single Product Labels
+ */
+.single-product .woocommerce-product-gallery .wapl-label,
+.single-product .woocommerce-product-gallery .wapl-flash {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    z-index: 100;
+}
+
+.single-product .woocommerce-product-gallery .wapl-label--right,
+.single-product .woocommerce-product-gallery .wapl-flash--right {
+    left: auto;
+    right: 15px;
+}
+
+/**
+ * Larger Labels on Single Product
+ */
+.single-product .wapl-flash {
+    width: 4.5em;
+    height: 4.5em;
+    line-height: 4.5em;
+}
+
+.single-product .wapl-flash .product-label {
+    width: 4.5em;
+    height: 4.5em;
+    line-height: 4.5em;
+    font-size: 1.1em;
+}
+
+.single-product .wapl-label .product-label {
+    font-size: 1em;
+    padding: 0.75em 1.25em;
+}
+
+/* ==========================================================================
+   Percentage Labels
+   ========================================================================== */
+
+/**
+ * Percentage Display
+ */
+.wapl-percentage {
+    font-size: 1.1em;
+    font-weight: 700;
+}
+
+.wapl-percentage-suffix {
+    font-size: 0.8em;
+    font-weight: 400;
+}
+
+/**
+ * Percentage with Original Price
+ */
+.wapl-label--with-price .product-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5em 1em;
+    line-height: 1.2;
+}
+
+.wapl-label--with-price .wapl-percentage {
+    font-size: 1.2em;
+}
+
+.wapl-label--with-price .wapl-original-price {
+    font-size: 0.7em;
+    text-decoration: line-through;
+    opacity: 0.8;
+}
+
+/* ==========================================================================
+   Countdown Labels
+   ========================================================================== */
+
+/**
+ * Countdown Timer Label
+ */
+.wapl-label--countdown .product-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.75em 1em;
+    line-height: 1.3;
+}
+
+.wapl-countdown-text {
+    font-size: 0.75em;
+    text-transform: uppercase;
+    margin-bottom: 3px;
+}
+
+.wapl-countdown-timer {
+    font-size: 1em;
+    font-weight: 700;
+    font-family: monospace;
+}
+
+/* ==========================================================================
+   Outline / Border Labels
+   ========================================================================== */
+
+/**
+ * Outline Style
+ */
+.wapl-label--outline .product-label {
+    background: transparent;
+    border: 2px solid currentColor;
+}
+
+.wapl-label--outline.wapl-label--sale .product-label {
+    color: var(--nosfir-label-sale);
+    border-color: var(--nosfir-label-sale);
+}
+
+.wapl-label--outline.wapl-label--new .product-label {
+    color: var(--nosfir-label-new);
+    border-color: var(--nosfir-label-new);
+}
+
+.wapl-label--outline.wapl-label--hot .product-label {
+    color: var(--nosfir-label-hot);
+    border-color: var(--nosfir-label-hot);
+}
+
+.wapl-label--outline.wapl-label--success .product-label {
+    color: var(--nosfir-label-success);
+    border-color: var(--nosfir-label-success);
+}
+
+/* ==========================================================================
+   Gradient Labels
+   ========================================================================== */
+
+/**
+ * Gradient Backgrounds
+ */
+.wapl-label--gradient-1 .product-label {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.wapl-label--gradient-2 .product-label {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.wapl-label--gradient-3 .product-label {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.wapl-label--gradient-4 .product-label {
+    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+}
+
+.wapl-label--gradient-5 .product-label {
+    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+}
+
+.wapl-label--gradient-6 .product-label {
+    background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+    color: var(--nosfir-label-text-dark);
+}
+
+/* ==========================================================================
+   Dark Mode Support
+   ========================================================================== */
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --nosfir-label-secondary: #6c757d;
+        --nosfir-label-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        --nosfir-label-shadow-hover: 0 4px 10px rgba(0, 0, 0, 0.4);
+    }
+}
+
+/* ==========================================================================
+   Responsive Styles
+   ========================================================================== */
+
+/**
+ * Tablet Breakpoint
+ */
+@media screen and (max-width: 900px) {
+    .wapl-flash {
+        width: 3em;
+        height: 3em;
+        line-height: 3em;
+    }
+
+    .wapl-flash .product-label {
+        width: 3em;
+        height: 3em;
+        line-height: 3em;
+        font-size: 0.85em;
+    }
+
+    .wapl-label .product-label {
+        font-size: 0.75em;
+        padding: 0.5em 0.75em;
+    }
+}
+
+/**
+ * Mobile Breakpoint
+ */
+@media screen and (max-width: 600px) {
+    .wapl-flash {
+        width: 2.5em;
+        height: 2.5em;
+        line-height: 2.5em;
+    }
+
+    .wapl-flash .product-label {
+        width: 2.5em;
+        height: 2.5em;
+        line-height: 2.5em;
+        font-size: 0.75em;
+    }
+
+    .wapl-label .product-label {
+        font-size: 0.7em;
+        padding: 0.4em 0.6em;
+    }
+
+    .wapl-label--ribbon {
+        width: 80px;
+        height: 80px;
+    }
+
+    .wapl-label--ribbon .product-label {
+        width: 120px;
+        font-size: 0.65em;
+        padding: 5px 0;
+    }
+
+    ul.products li.product .wapl-label,
+    ul.products li.product .wapl-flash,
+    .wc-block-grid__product .wapl-label,
+    .wc-block-grid__product .wapl-flash {
+        top: 5px;
+        left: 5px;
+    }
+
+    ul.products li.product .wapl-label--right,
+    ul.products li.product .wapl-flash--right,
+    .wc-block-grid__product .wapl-label--right,
+    .wc-block-grid__product .wapl-flash--right {
+        right: 5px;
+    }
+
+    .single-product .wapl-flash {
+        width: 3.5em;
+        height: 3.5em;
+        line-height: 3.5em;
+    }
+
+    .single-product .wapl-flash .product-label {
+        width: 3.5em;
+        height: 3.5em;
+        line-height: 3.5em;
+        font-size: 0.9em;
+    }
+}
+
+/* ==========================================================================
+   Accessibility
+   ========================================================================== */
+
+/**
+ * Reduced Motion
+ */
+@media (prefers-reduced-motion: reduce) {
+    .wapl-label .product-label,
+    .wapl-flash .product-label,
+    .wapl-label--pulse .product-label,
+    .wapl-flash--pulse .product-label,
+    .wapl-label--bounce .product-label,
+    .wapl-flash--bounce .product-label,
+    .wapl-label--shine .product-label::after,
+    .wapl-flash--shine .product-label::after,
+    .wapl-flash--rotate .product-label {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    .wapl-flash:hover,
+    .wapl-label .product-label:hover {
+        transform: none;
+    }
+}
+
+/**
+ * High Contrast Mode
+ */
+@media (prefers-contrast: high) {
+    .wapl-label .product-label,
+    .wapl-flash .product-label {
+        border: 2px solid currentColor;
+    }
+
+    .wapl-label--outline .product-label {
+        border-width: 3px;
+    }
+}
+
+/**
+ * Focus Visible
+ */
+.wapl-label .product-label:focus-visible,
+.wapl-flash .product-label:focus-visible {
+    outline: 2px solid var(--nosfir-label-primary);
+    outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Print Styles
+   ========================================================================== */
+
+@media print {
+    .wapl-label,
+    .wapl-flash {
+        position: static !important;
+        display: inline-block;
+        margin: 5px;
+    }
+
+    .wapl-label .product-label,
+    .wapl-flash .product-label {
+        box-shadow: none;
+        border: 1px solid #000;
+        background: #fff !important;
+        color: #000 !important;
+    }
+
+    .wapl-label--ribbon,
+    .wapl-label--corner {
+        display: none;
+    }
+}

@@ -1,0 +1,946 @@
+/**
+ * Nosfir Theme - WooCommerce Product Bundles
+ *
+ * Styles for the WooCommerce Product Bundles extension.
+ * Provides custom styling for bundled products, bundle forms, cart tables, and summaries.
+ *
+ * @package Nosfir
+ * @subpackage WooCommerce/Extensions
+ * @since 1.0.0
+ *
+ * @see https://woocommerce.com/products/product-bundles/
+ */
+
+/* ==========================================================================
+   CSS Variables
+   ========================================================================== */
+
+:root {
+    /* Colors */
+    --nosfir-bundle-primary: #0073aa;
+    --nosfir-bundle-primary-dark: #005a87;
+    --nosfir-bundle-text: #43454b;
+    --nosfir-bundle-text-light: #666;
+    --nosfir-bundle-bg: #fff;
+    --nosfir-bundle-bg-alt: #f7f7f7;
+    --nosfir-bundle-border: rgba(0, 0, 0, 0.05);
+    --nosfir-bundle-border-dark: rgba(0, 0, 0, 0.1);
+
+    /* Status Colors */
+    --nosfir-bundle-success: #0f834d;
+    --nosfir-bundle-warning: #ffba00;
+    --nosfir-bundle-error: #e2401c;
+    --nosfir-bundle-info: #3d9cd2;
+
+    /* Spacing */
+    --nosfir-bundle-spacing: 1.618em;
+    --nosfir-bundle-spacing-sm: 1em;
+    --nosfir-bundle-spacing-xs: 0.5em;
+
+    /* Border Radius */
+    --nosfir-bundle-radius: 3px;
+    --nosfir-bundle-radius-lg: 5px;
+
+    /* Transitions */
+    --nosfir-bundle-transition: 0.2s ease;
+
+    /* Shadows */
+    --nosfir-bundle-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+    /* Column Widths */
+    --nosfir-bundle-image-width: 15.7894736842%;
+    --nosfir-bundle-image-margin: 5.2631578947%;
+    --nosfir-bundle-details-width: 78.9473684211%;
+}
+
+/* ==========================================================================
+   Bundle Form Container
+   ========================================================================== */
+
+/**
+ * Bundle Form Wrapper
+ */
+.bundle_form {
+    margin-bottom: var(--nosfir-bundle-spacing);
+}
+
+/**
+ * Bundle Form Title
+ */
+.bundle_form .bundle_form_title {
+    font-size: 1.2em;
+    font-weight: 600;
+    margin-bottom: var(--nosfir-bundle-spacing-sm);
+    padding-bottom: var(--nosfir-bundle-spacing-xs);
+    border-bottom: 2px solid var(--nosfir-bundle-primary);
+    color: var(--nosfir-bundle-text);
+}
+
+/**
+ * Bundle Form Description
+ */
+.bundle_form .bundle_form_description {
+    margin-bottom: var(--nosfir-bundle-spacing);
+    color: var(--nosfir-bundle-text-light);
+    font-size: 0.95em;
+    line-height: 1.6;
+}
+
+/* ==========================================================================
+   Bundled Product Summary
+   ========================================================================== */
+
+/**
+ * Bundled Product Summary Container
+ */
+.bundle_form div.bundled_product_summary {
+    padding-bottom: var(--nosfir-bundle-spacing) !important;
+    margin-bottom: var(--nosfir-bundle-spacing);
+    border-bottom: 1px solid var(--nosfir-bundle-border);
+    padding-left: 0;
+    position: relative;
+}
+
+.bundle_form div.bundled_product_summary:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0 !important;
+}
+
+/**
+ * Bundled Product Summary - Clearfix
+ */
+.bundle_form div.bundled_product_summary::before,
+.bundle_form div.bundled_product_summary::after {
+    content: "";
+    display: table;
+}
+
+.bundle_form div.bundled_product_summary::after {
+    clear: both;
+}
+
+/* ==========================================================================
+   Bundled Product Images
+   ========================================================================== */
+
+/**
+ * Product Images Container
+ */
+.bundle_form div.bundled_product_summary .bundled_product_images {
+    margin-left: 0;
+}
+
+/**
+ * Product Images Link
+ */
+.bundle_form div.bundled_product_summary .bundled_product_images a {
+    margin: 0 !important;
+    display: block;
+    text-decoration: none;
+}
+
+/**
+ * Product Image
+ */
+.bundle_form div.bundled_product_summary .bundled_product_images img {
+    width: 100% !important;
+    height: auto;
+    margin-bottom: 0;
+    border-radius: var(--nosfir-bundle-radius);
+    transition: opacity var(--nosfir-bundle-transition);
+}
+
+.bundle_form div.bundled_product_summary .bundled_product_images a:hover img {
+    opacity: 0.85;
+}
+
+/**
+ * Product Images - WooCommerce Containers
+ */
+.woocommerce #content div.product .bundle_form div.bundled_product_summary .bundled_product_images,
+.woocommerce div.product .bundle_form div.bundled_product_summary .bundled_product_images,
+.woocommerce-page #content div.product .bundle_form div.bundled_product_summary .bundled_product_images,
+.woocommerce-page div.product .bundle_form div.bundled_product_summary .bundled_product_images {
+    width: var(--nosfir-bundle-image-width);
+    float: left;
+    margin-right: var(--nosfir-bundle-image-margin);
+}
+
+/* ==========================================================================
+   Bundled Product Details
+   ========================================================================== */
+
+/**
+ * Details Container
+ */
+.bundle_form div.bundled_product_summary .details,
+.bundle_form tr.bundled_product_summary .details {
+    font-size: 0.875em;
+}
+
+/**
+ * Details - With Thumbnail
+ */
+.bundle_form div.bundled_product_summary:not(.thumbnail_hidden) .details {
+    width: var(--nosfir-bundle-details-width);
+    float: right;
+    margin-right: 0;
+    padding: 0 !important;
+}
+
+/**
+ * Product Title in Details
+ */
+.bundle_form div.bundled_product_summary .details .bundled_product_title_inner {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: var(--nosfir-bundle-text);
+    margin-bottom: 0.5em;
+    display: block;
+}
+
+.bundle_form div.bundled_product_summary .details .bundled_product_title_inner a {
+    color: inherit;
+    text-decoration: none;
+    transition: color var(--nosfir-bundle-transition);
+}
+
+.bundle_form div.bundled_product_summary .details .bundled_product_title_inner a:hover {
+    color: var(--nosfir-bundle-primary);
+}
+
+/**
+ * Product Price in Details
+ */
+.bundle_form div.bundled_product_summary .details .price {
+    margin-bottom: 0.75em;
+    font-weight: 500;
+}
+
+.bundle_form div.bundled_product_summary .details .price del {
+    opacity: 0.6;
+}
+
+.bundle_form div.bundled_product_summary .details .price ins {
+    text-decoration: none;
+    font-weight: 600;
+    color: var(--nosfir-bundle-success);
+}
+
+/**
+ * Product Short Description
+ */
+.bundle_form div.bundled_product_summary .details .bundled_product_excerpt {
+    color: var(--nosfir-bundle-text-light);
+    line-height: 1.6;
+    margin-bottom: 0.75em;
+}
+
+/**
+ * Optional Badge
+ */
+.bundle_form div.bundled_product_summary .details .bundled_product_optional_suffix {
+    display: inline-block;
+    padding: 0.2em 0.6em;
+    background: var(--nosfir-bundle-bg-alt);
+    border-radius: var(--nosfir-bundle-radius);
+    font-size: 0.85em;
+    color: var(--nosfir-bundle-text-light);
+    margin-bottom: 0.5em;
+}
+
+/* ==========================================================================
+   Bundled Product Variations
+   ========================================================================== */
+
+/**
+ * Variations Table
+ */
+.bundle_form div.bundled_product_summary .bundled_item_cart_content table.variations {
+    margin-top: 0.75em;
+}
+
+.bundle_form div.bundled_product_summary .bundled_item_cart_content table.variations td {
+    padding: 0.5em 0;
+}
+
+.bundle_form div.bundled_product_summary .bundled_item_cart_content table.variations label {
+    font-weight: 600;
+    font-size: 0.9em;
+}
+
+.bundle_form div.bundled_product_summary .bundled_item_cart_content table.variations select {
+    width: 100%;
+    max-width: 250px;
+    padding: 0.5em;
+    border: 1px solid var(--nosfir-bundle-border-dark);
+    border-radius: var(--nosfir-bundle-radius);
+}
+
+/**
+ * Reset Variations Link
+ */
+.bundle_form div.bundled_product_summary .bundled_item_cart_content .reset_variations {
+    font-size: 0.85em;
+    color: var(--nosfir-bundle-primary);
+    text-decoration: none;
+    margin-left: 0.5em;
+}
+
+.bundle_form div.bundled_product_summary .bundled_item_cart_content .reset_variations:hover {
+    text-decoration: underline;
+}
+
+/* ==========================================================================
+   Bundled Product Quantity
+   ========================================================================== */
+
+/**
+ * Quantity Container
+ */
+.bundle_form div.bundled_product_summary .bundled_item_cart_content .bundled_item_wrap {
+    margin-top: 0.75em;
+}
+
+/**
+ * Quantity Input
+ */
+.bundle_form div.bundled_product_summary .bundled_item_cart_content .quantity {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.bundle_form div.bundled_product_summary .bundled_item_cart_content .quantity .qty {
+    width: 60px;
+    text-align: center;
+    padding: 0.5em;
+    border: 1px solid var(--nosfir-bundle-border-dark);
+    border-radius: var(--nosfir-bundle-radius);
+}
+
+/**
+ * Quantity Label
+ */
+.bundle_form div.bundled_product_summary .bundled_item_cart_content .bundled_item_qty_label {
+    font-size: 0.9em;
+    color: var(--nosfir-bundle-text-light);
+    margin-right: 0.5em;
+}
+
+/* ==========================================================================
+   Bundled Product Checkbox (Optional Items)
+   ========================================================================== */
+
+/**
+ * Optional Item Checkbox
+ */
+.bundle_form div.bundled_product_summary .bundled_item_optional_checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0.75em;
+    background: var(--nosfir-bundle-bg-alt);
+    border-radius: var(--nosfir-bundle-radius);
+    margin-top: 0.75em;
+}
+
+.bundle_form div.bundled_product_summary .bundled_item_optional_checkbox input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--nosfir-bundle-primary);
+    cursor: pointer;
+}
+
+.bundle_form div.bundled_product_summary .bundled_item_optional_checkbox label {
+    cursor: pointer;
+    font-size: 0.9em;
+    color: var(--nosfir-bundle-text);
+}
+
+/* ==========================================================================
+   Bundle Price Total
+   ========================================================================== */
+
+/**
+ * Bundle Price Container
+ */
+.bundle_form .bundle_price {
+    padding: var(--nosfir-bundle-spacing-sm);
+    background: var(--nosfir-bundle-bg-alt);
+    border-radius: var(--nosfir-bundle-radius-lg);
+    margin-top: var(--nosfir-bundle-spacing);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.bundle_form .bundle_price .price {
+    font-size: 1.3em;
+    font-weight: 700;
+    color: var(--nosfir-bundle-text);
+}
+
+.bundle_form .bundle_price .price del {
+    font-size: 0.85em;
+    opacity: 0.6;
+    margin-right: 0.5em;
+}
+
+.bundle_form .bundle_price .price ins {
+    text-decoration: none;
+    color: var(--nosfir-bundle-success);
+}
+
+/**
+ * Bundle Savings Badge
+ */
+.bundle_form .bundle_price .bundle_savings {
+    padding: 0.4em 0.8em;
+    background: var(--nosfir-bundle-success);
+    color: var(--nosfir-bundle-bg);
+    border-radius: var(--nosfir-bundle-radius);
+    font-size: 0.85em;
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   Bundle Button
+   ========================================================================== */
+
+/**
+ * Add Bundle to Cart Button
+ */
+.bundle_form .bundle_button {
+    margin-top: var(--nosfir-bundle-spacing);
+}
+
+.bundle_form .bundle_button .bundle_add_to_cart_button {
+    width: 100%;
+    padding: 1em 2em;
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
+.bundle_form .bundle_button .bundle_add_to_cart_button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* ==========================================================================
+   Bundle Validation Messages
+   ========================================================================== */
+
+/**
+ * Validation Notice
+ */
+.bundle_form .bundle_error,
+.bundle_form .bundle_validation_notice {
+    padding: 0.75em 1em;
+    margin-top: var(--nosfir-bundle-spacing-sm);
+    border-radius: var(--nosfir-bundle-radius);
+    font-size: 0.9em;
+}
+
+.bundle_form .bundle_error {
+    background: rgba(226, 64, 28, 0.1);
+    border-left: 4px solid var(--nosfir-bundle-error);
+    color: var(--nosfir-bundle-error);
+}
+
+.bundle_form .bundle_validation_notice {
+    background: rgba(255, 186, 0, 0.1);
+    border-left: 4px solid var(--nosfir-bundle-warning);
+    color: #856404;
+}
+
+/* ==========================================================================
+   Bundled Table (Table Layout)
+   ========================================================================== */
+
+/**
+ * Bundled Products Table
+ */
+.bundle_form table.bundled_products {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: var(--nosfir-bundle-spacing);
+}
+
+.bundle_form table.bundled_products thead th {
+    text-align: left;
+    padding: 0.75em;
+    background: var(--nosfir-bundle-bg-alt);
+    font-weight: 600;
+    font-size: 0.9em;
+    color: var(--nosfir-bundle-text);
+    border-bottom: 2px solid var(--nosfir-bundle-border-dark);
+}
+
+.bundle_form table.bundled_products tbody td {
+    padding: 1em 0.75em;
+    border-bottom: 1px solid var(--nosfir-bundle-border);
+    vertical-align: top;
+}
+
+.bundle_form table.bundled_products tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/**
+ * Table Columns
+ */
+.bundle_form table.bundled_products td.bundled_item_images_col {
+    width: 80px;
+}
+
+.bundle_form table.bundled_products td.bundled_item_images_col img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--nosfir-bundle-radius);
+}
+
+.bundle_form table.bundled_products td.bundled_item_qty_col {
+    width: 100px;
+    text-align: center;
+}
+
+/* ==========================================================================
+   Cart Table - Bundle Items
+   ========================================================================== */
+
+/**
+ * Bundled Table Item in Cart
+ */
+.bundled_table_item .product-name {
+    padding-left: 4rem;
+    position: relative;
+}
+
+.bundled_table_item .product-name::before {
+    content: "└";
+    position: absolute;
+    left: 2rem;
+    top: 0;
+    color: var(--nosfir-bundle-text-light);
+    font-size: 1.2em;
+}
+
+/**
+ * Hide Bundled Items in Responsive View
+ */
+table.shop_table_responsive tr.bundled_table_item {
+    display: none;
+}
+
+/**
+ * Bundle Parent Item
+ */
+.bundle_table_item {
+    background: var(--nosfir-bundle-bg-alt);
+}
+
+.bundle_table_item td {
+    font-weight: 500;
+}
+
+/**
+ * Bundle Configuration DL (in cart)
+ */
+.bundle_table_item dl.bundle_configuration {
+    margin: 0.5em 0 0;
+    font-size: 0.9em;
+    color: var(--nosfir-bundle-text-light);
+}
+
+.bundle_table_item dl.bundle_configuration dt {
+    font-weight: 600;
+    margin-top: 0.5em;
+}
+
+.bundle_table_item dl.bundle_configuration dd {
+    margin: 0.25em 0 0 1em;
+}
+
+.bundle_table_item dl.bundle_configuration dd p {
+    margin: 0;
+}
+
+/* ==========================================================================
+   Mini Cart - Bundle Items
+   ========================================================================== */
+
+/**
+ * Bundle in Mini Cart
+ */
+.widget_shopping_cart .bundled_table_item {
+    padding-left: 1.5em;
+    border-left: 2px solid var(--nosfir-bundle-border-dark);
+    margin-left: 0.5em;
+    font-size: 0.9em;
+}
+
+.widget_shopping_cart .bundle_table_item {
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   Order Details - Bundle Items
+   ========================================================================== */
+
+/**
+ * Bundle Items in Order
+ */
+.woocommerce-table--order-details .bundled_table_item td {
+    padding-left: 3em;
+}
+
+.woocommerce-table--order-details .bundled_table_item td::before {
+    content: "└ ";
+    color: var(--nosfir-bundle-text-light);
+}
+
+/* ==========================================================================
+   Grouped Bundle View
+   ========================================================================== */
+
+/**
+ * Grouped Bundle Container
+ */
+.bundle_form.bundle_form--grouped {
+    border: 1px solid var(--nosfir-bundle-border-dark);
+    border-radius: var(--nosfir-bundle-radius-lg);
+    padding: var(--nosfir-bundle-spacing);
+}
+
+.bundle_form.bundle_form--grouped .bundled_product_summary {
+    padding: var(--nosfir-bundle-spacing-sm);
+    margin-bottom: var(--nosfir-bundle-spacing-sm);
+    background: var(--nosfir-bundle-bg-alt);
+    border-radius: var(--nosfir-bundle-radius);
+    border-bottom: none;
+}
+
+.bundle_form.bundle_form--grouped .bundled_product_summary:last-of-type {
+    margin-bottom: 0;
+}
+
+/* ==========================================================================
+   Loading State
+   ========================================================================== */
+
+/**
+ * Bundle Loading Overlay
+ */
+.bundle_form.loading {
+    position: relative;
+    pointer-events: none;
+}
+
+.bundle_form.loading::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.8);
+    z-index: 10;
+}
+
+.bundle_form.loading::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30px;
+    height: 30px;
+    margin: -15px 0 0 -15px;
+    border: 3px solid var(--nosfir-bundle-border-dark);
+    border-top-color: var(--nosfir-bundle-primary);
+    border-radius: 50%;
+    z-index: 11;
+    animation: nosfirBundleSpinner 0.8s linear infinite;
+}
+
+@keyframes nosfirBundleSpinner {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ==========================================================================
+   Availability/Stock Status
+   ========================================================================== */
+
+/**
+ * Stock Status
+ */
+.bundle_form div.bundled_product_summary .stock {
+    font-size: 0.85em;
+    margin-top: 0.5em;
+}
+
+.bundle_form div.bundled_product_summary .stock.in-stock {
+    color: var(--nosfir-bundle-success);
+}
+
+.bundle_form div.bundled_product_summary .stock.out-of-stock {
+    color: var(--nosfir-bundle-error);
+}
+
+/**
+ * Unavailable Item Overlay
+ */
+.bundle_form div.bundled_product_summary.bundled_item_unavailable {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.bundle_form div.bundled_product_summary.bundled_item_unavailable::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 5px,
+        rgba(0, 0, 0, 0.03) 5px,
+        rgba(0, 0, 0, 0.03) 10px
+    );
+}
+
+/* ==========================================================================
+   Dark Mode Support
+   ========================================================================== */
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --nosfir-bundle-text: #e5e5e5;
+        --nosfir-bundle-text-light: #aaa;
+        --nosfir-bundle-bg: #1a1a1a;
+        --nosfir-bundle-bg-alt: #2d2d2d;
+        --nosfir-bundle-border: rgba(255, 255, 255, 0.05);
+        --nosfir-bundle-border-dark: rgba(255, 255, 255, 0.1);
+    }
+
+    .bundle_form.loading::after {
+        background: rgba(0, 0, 0, 0.8);
+    }
+}
+
+/* ==========================================================================
+   Responsive Styles - Tablet (768px+)
+   ========================================================================== */
+
+@media (min-width: 768px) {
+    /**
+     * Hide Bundle Configuration in Cart Table
+     */
+    .bundle_table_item dl.bundle_configuration {
+        display: none;
+    }
+
+    /**
+     * Show Bundled Items in Table View
+     */
+    table.shop_table_responsive tr.bundled_table_item {
+        display: table-row;
+    }
+
+    /**
+     * Full Width Content Adjustments
+     */
+    .sp-product-gallery-stacked .bundle_form .bundled_product_summary .details,
+    .nosfir-full-width-content .bundle_form .bundled_product_summary .details,
+    .storefront-full-width-content .bundle_form .bundled_product_summary .details,
+    .page-template-template-fullwidth-php .bundle_form .bundled_product_summary .details {
+        font-size: 1em;
+    }
+
+    .sp-product-gallery-stacked #content div.product .bundle_form div.bundled_product_summary .bundled_product_images,
+    .sp-product-gallery-stacked div.product .bundle_form div.bundled_product_summary .bundled_product_images,
+    .nosfir-full-width-content #content div.product .bundle_form div.bundled_product_summary .bundled_product_images,
+    .nosfir-full-width-content div.product .bundle_form div.bundled_product_summary .bundled_product_images,
+    .storefront-full-width-content #content div.product .bundle_form div.bundled_product_summary .bundled_product_images,
+    .storefront-full-width-content div.product .bundle_form div.bundled_product_summary .bundled_product_images,
+    .page-template-template-fullwidth-php #content div.product .bundle_form div.bundled_product_summary .bundled_product_images,
+    .page-template-template-fullwidth-php div.product .bundle_form div.bundled_product_summary .bundled_product_images {
+        width: 20%;
+        float: left;
+        margin-right: 6.6666666667%;
+    }
+
+    .sp-product-gallery-stacked .bundle_form div.bundled_product_summary:not(.thumbnail_hidden) .details,
+    .nosfir-full-width-content .bundle_form div.bundled_product_summary:not(.thumbnail_hidden) .details,
+    .storefront-full-width-content .bundle_form div.bundled_product_summary:not(.thumbnail_hidden) .details,
+    .page-template-template-fullwidth-php .bundle_form div.bundled_product_summary:not(.thumbnail_hidden) .details {
+        width: 73.3333333333%;
+        float: right;
+        margin-right: 0;
+    }
+}
+
+/* ==========================================================================
+   Responsive Styles - Mobile (max-width: 568px)
+   ========================================================================== */
+
+@media (max-width: 568px) {
+    /**
+     * Stack Layout on Mobile
+     */
+    .woocommerce #content div.product .bundle_form div.bundled_product_summary .bundled_product_images,
+    .woocommerce div.product .bundle_form div.bundled_product_summary .bundled_product_images,
+    .woocommerce-page #content div.product .bundle_form div.bundled_product_summary .bundled_product_images,
+    .woocommerce-page div.product .bundle_form div.bundled_product_summary .bundled_product_images {
+        width: 100%;
+        float: left;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .bundle_form div.bundled_product_summary:not(.thumbnail_hidden) .details {
+        width: 100%;
+        float: left;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    /**
+     * Image Constraints
+     */
+    .bundle_form div.bundled_product_summary .bundled_product_images {
+        max-width: 50%;
+        margin-bottom: var(--nosfir-bundle-spacing-sm);
+    }
+
+    .bundle_form div.bundled_product_summary .bundled_product_images img {
+        margin-bottom: 1em;
+    }
+
+    /**
+     * Table Layout Mobile
+     */
+    .bundle_form table.bundled_products td {
+        display: block;
+    }
+
+    .bundle_form table.bundled_products thead {
+        display: none;
+    }
+
+    .bundle_form table.bundled_products tr td.bundled_item_images_col {
+        width: 100%;
+        padding-bottom: 0;
+    }
+
+    .bundle_form table.bundled_products tr td.bundled_item_images_col img {
+        max-width: 100px;
+    }
+
+    .bundle_form table.bundled_products tr td.bundled_item_images_col,
+    .bundle_form table.bundled_products tr td.bundled_item_details_col {
+        padding-bottom: 0;
+    }
+
+    .bundle_form table.bundled_products tr td.bundled_item_qty_col {
+        max-width: 100%;
+        text-align: left;
+        padding-top: var(--nosfir-bundle-spacing-sm);
+    }
+
+    /**
+     * Bundle Price Mobile
+     */
+    .bundle_form .bundle_price {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    /**
+     * Cart Table Bundles
+     */
+    .bundled_table_item .product-name {
+        padding-left: 2rem;
+    }
+
+    .bundled_table_item .product-name::before {
+        left: 0.5rem;
+    }
+}
+
+/* ==========================================================================
+   Accessibility
+   ========================================================================== */
+
+/**
+ * Reduced Motion
+ */
+@media (prefers-reduced-motion: reduce) {
+    .bundle_form div.bundled_product_summary .bundled_product_images a:hover img,
+    .bundle_form.loading::before {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/**
+ * Focus Visible
+ */
+.bundle_form div.bundled_product_summary .bundled_product_images a:focus-visible,
+.bundle_form div.bundled_product_summary .bundled_item_optional_checkbox input:focus-visible,
+.bundle_form div.bundled_product_summary .bundled_item_cart_content select:focus-visible,
+.bundle_form div.bundled_product_summary .bundled_item_cart_content .qty:focus-visible,
+.bundle_form .bundle_button .bundle_add_to_cart_button:focus-visible {
+    outline: 2px solid var(--nosfir-bundle-primary);
+    outline-offset: 2px;
+}
+
+/**
+ * High Contrast Mode
+ */
+@media (prefers-contrast: high) {
+    .bundle_form div.bundled_product_summary {
+        border-bottom-width: 2px;
+    }
+
+    .bundle_form .bundle_price {
+        border: 2px solid var(--nosfir-bundle-text);
+    }
+
+    .bundle_form .bundle_error,
+    .bundle_form .bundle_validation_notice {
+        border-left-width: 6px;
+    }
+}
+
+/* ==========================================================================
+   Print Styles
+   ========================================================================== */
+
+@media print {
+    .bundle_form div.bundled_product_summary {
+        page-break-inside: avoid;
+        border-bottom: 1px solid #000;
+    }
+
+    .bundle_form .bundle_price {
+        background: transparent;
+        border: 1px solid #000;
+    }
+
+    .bundle_form.loading::before,
+    .bundle_form.loading::after {
+        display: none;
+    }
+
+    .bundled_table_item .product-name {
+        padding-left: 2em;
+    }
+}

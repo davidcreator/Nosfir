@@ -1,0 +1,1238 @@
+/**
+ * Nosfir Theme - WooCommerce Composite Products
+ *
+ * Styles for the WooCommerce Composite Products extension.
+ * Provides custom styling for composite forms, component summaries, 
+ * option thumbnails, and fixed summary widgets.
+ *
+ * @package Nosfir
+ * @subpackage WooCommerce/Extensions
+ * @since 1.0.0
+ *
+ * @see https://woocommerce.com/products/composite-products/
+ */
+
+/* ==========================================================================
+   CSS Variables
+   ========================================================================== */
+
+:root {
+    /* Colors */
+    --nosfir-composite-primary: #0073aa;
+    --nosfir-composite-primary-dark: #005a87;
+    --nosfir-composite-text: #43454b;
+    --nosfir-composite-text-light: #666;
+    --nosfir-composite-bg: #fff;
+    --nosfir-composite-bg-alt: #f7f7f7;
+    --nosfir-composite-border: rgba(0, 0, 0, 0.05);
+    --nosfir-composite-border-dark: rgba(0, 0, 0, 0.1);
+
+    /* Status Colors */
+    --nosfir-composite-success: #0f834d;
+    --nosfir-composite-warning: #ffba00;
+    --nosfir-composite-error: #e2401c;
+    --nosfir-composite-info: #3d9cd2;
+
+    /* Selection States */
+    --nosfir-composite-selected: rgba(0, 0, 0, 0.06);
+    --nosfir-composite-hover: rgba(0, 0, 0, 0.03);
+    --nosfir-composite-disabled: rgba(0, 0, 0, 0);
+
+    /* Spacing */
+    --nosfir-composite-spacing: 1.618em;
+    --nosfir-composite-spacing-sm: 1em;
+    --nosfir-composite-spacing-lg: 2.617924em;
+    --nosfir-composite-spacing-xl: 1.41575em;
+
+    /* Typography */
+    --nosfir-composite-font-size-lg: 1.41575em;
+
+    /* Border Radius */
+    --nosfir-composite-radius: 3px;
+    --nosfir-composite-radius-lg: 5px;
+    --nosfir-composite-radius-full: 50%;
+
+    /* Transitions */
+    --nosfir-composite-transition: 0.2s ease;
+
+    /* Shadows */
+    --nosfir-composite-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    --nosfir-composite-shadow-selected: 0 0 0 4px var(--nosfir-composite-selected);
+    --nosfir-composite-shadow-hover: 0 0 0 4px var(--nosfir-composite-hover);
+    --nosfir-composite-shadow-none: 0 0 0 4px transparent;
+
+    /* Column Widths */
+    --nosfir-composite-image-width: 15.7894736842%;
+    --nosfir-composite-image-margin: 5.2631578947%;
+    --nosfir-composite-details-width: 78.9473684211%;
+    --nosfir-composite-sidebar-width: 21.7391304348%;
+    --nosfir-composite-main-width: 73.9130434783%;
+    --nosfir-composite-gutter: 4.347826087%;
+
+    /* Fixed Widget */
+    --nosfir-composite-max-width: 1064px;
+}
+
+/* ==========================================================================
+   Composite Summary (Progress/Steps)
+   ========================================================================== */
+
+/**
+ * Summary Element Wrapper - Base
+ */
+.composite_summary .summary_element .summary_element_wrapper {
+    box-shadow: var(--nosfir-composite-shadow-none);
+    transition: box-shadow var(--nosfir-composite-transition);
+    border-radius: var(--nosfir-composite-radius);
+    padding: var(--nosfir-composite-spacing-sm);
+    cursor: pointer;
+}
+
+/**
+ * Summary Element - Selected State
+ */
+.composite_summary .summary_element .summary_element_wrapper.selected,
+.composite_summary .summary_element .summary_element_wrapper.selected:hover {
+    box-shadow: var(--nosfir-composite-shadow-selected);
+    background: var(--nosfir-composite-bg-alt);
+}
+
+/**
+ * Summary Element - Hover State
+ */
+.composite_summary .summary_element .summary_element_wrapper:hover {
+    box-shadow: var(--nosfir-composite-shadow-hover);
+}
+
+/**
+ * Summary Element - Disabled State
+ */
+.composite_summary .summary_element .summary_element_wrapper.disabled,
+.composite_summary .summary_element .summary_element_wrapper.disabled:hover {
+    box-shadow: var(--nosfir-composite-shadow-none);
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/**
+ * Summary Element Title
+ */
+.composite_summary .summary_element .summary_element_wrapper .summary_element_title {
+    font-weight: 600;
+    color: var(--nosfir-composite-text);
+    margin-bottom: 0.25em;
+}
+
+/**
+ * Summary Element Selection Info
+ */
+.composite_summary .summary_element .summary_element_wrapper .summary_element_selection {
+    font-size: 0.9em;
+    color: var(--nosfir-composite-text-light);
+}
+
+/**
+ * Summary Element - Complete Status Icon
+ */
+.composite_summary .summary_element .summary_element_wrapper.configured::after {
+    content: "✓";
+    color: var(--nosfir-composite-success);
+    font-weight: bold;
+    margin-left: 0.5em;
+}
+
+/* ==========================================================================
+   Composite Form Container
+   ========================================================================== */
+
+/**
+ * Composite Form
+ */
+.composite_form {
+    margin-bottom: var(--nosfir-composite-spacing);
+}
+
+/**
+ * Component Container
+ */
+.composite_form .component {
+    margin-bottom: var(--nosfir-composite-spacing);
+    padding-bottom: var(--nosfir-composite-spacing);
+    border-bottom: 1px solid var(--nosfir-composite-border);
+}
+
+.composite_form .component:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+/**
+ * Component Title
+ */
+.composite_form .component .component_title {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: var(--nosfir-composite-text);
+    margin-bottom: var(--nosfir-composite-spacing-sm);
+    padding-bottom: 0.5em;
+    border-bottom: 2px solid var(--nosfir-composite-primary);
+}
+
+/**
+ * Component Title - Step Number
+ */
+.composite_form .component .component_title .step_index {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5em;
+    height: 1.5em;
+    background: var(--nosfir-composite-primary);
+    color: var(--nosfir-composite-bg);
+    border-radius: var(--nosfir-composite-radius-full);
+    font-size: 0.85em;
+    margin-right: 0.5em;
+}
+
+/**
+ * Component Description
+ */
+.composite_form .component .component_description {
+    color: var(--nosfir-composite-text-light);
+    margin-bottom: var(--nosfir-composite-spacing-sm);
+    font-size: 0.95em;
+    line-height: 1.6;
+}
+
+/* ==========================================================================
+   Component Summary (Selected Product)
+   ========================================================================== */
+
+/**
+ * Component Summary Content
+ */
+.composite_form .component .component_summary .content {
+    margin-bottom: var(--nosfir-composite-spacing);
+}
+
+/**
+ * Composited Product Details Wrapper
+ */
+.composite_form .component .component_summary .composited_product_details_wrapper {
+    padding-left: 0;
+}
+
+.composite_form .component .component_summary .composited_product_details_wrapper::before,
+.composite_form .component .component_summary .composited_product_details_wrapper::after {
+    content: "";
+    display: table;
+}
+
+.composite_form .component .component_summary .composited_product_details_wrapper::after {
+    clear: both;
+}
+
+/**
+ * Composited Product Images
+ */
+.composite_form .component .component_summary .composited_product_details_wrapper .composited_product_images {
+    margin-left: 0;
+}
+
+.composite_form .component .component_summary .composited_product_details_wrapper .composited_product_images a {
+    margin: 0 !important;
+    display: block;
+    text-decoration: none;
+}
+
+.composite_form .component .component_summary .composited_product_details_wrapper .composited_product_images img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 0;
+    border-radius: var(--nosfir-composite-radius);
+    transition: opacity var(--nosfir-composite-transition);
+}
+
+.composite_form .component .component_summary .composited_product_details_wrapper .composited_product_images a:hover img {
+    opacity: 0.85;
+}
+
+/**
+ * Composited Product Details
+ */
+.composite_form .component:not(.selection_thumbnail_hidden) .component_summary .composited_product_details_wrapper > .details {
+    padding: 0;
+}
+
+/**
+ * Product Images - WooCommerce Containers
+ */
+.woocommerce #content div.product .component .composited_product_images,
+.woocommerce div.product .component .composited_product_images,
+.woocommerce-page #content div.product .component .composited_product_images,
+.woocommerce-page div.product .component .composited_product_images {
+    width: var(--nosfir-composite-image-width);
+    float: left;
+    margin-right: var(--nosfir-composite-image-margin);
+}
+
+/**
+ * Details - With Thumbnail
+ */
+.composite_form .component:not(.selection_thumbnail_hidden) .component_summary .composited_product_details_wrapper > .details {
+    width: var(--nosfir-composite-details-width);
+    float: right;
+    margin-right: 0;
+}
+
+/* ==========================================================================
+   Component Details Content
+   ========================================================================== */
+
+/**
+ * Product Title
+ */
+.composite_form .component .component_summary .details .composited_product_title {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: var(--nosfir-composite-text);
+    margin-bottom: 0.5em;
+}
+
+.composite_form .component .component_summary .details .composited_product_title a {
+    color: inherit;
+    text-decoration: none;
+    transition: color var(--nosfir-composite-transition);
+}
+
+.composite_form .component .component_summary .details .composited_product_title a:hover {
+    color: var(--nosfir-composite-primary);
+}
+
+/**
+ * Product Price
+ */
+.composite_form .component .component_summary .details .price {
+    margin-bottom: 0.75em;
+    font-weight: 500;
+}
+
+.composite_form .component .component_summary .details .price del {
+    opacity: 0.6;
+}
+
+.composite_form .component .component_summary .details .price ins {
+    text-decoration: none;
+    font-weight: 600;
+    color: var(--nosfir-composite-success);
+}
+
+/**
+ * Product Short Description
+ */
+.composite_form .component .component_summary .details .composited_product_excerpt {
+    color: var(--nosfir-composite-text-light);
+    line-height: 1.6;
+    margin-bottom: 0.75em;
+    font-size: 0.9em;
+}
+
+/**
+ * Stock Status
+ */
+.composite_form .component .component_summary .details .stock {
+    font-size: 0.85em;
+    margin-top: 0.5em;
+}
+
+.composite_form .component .component_summary .details .stock.in-stock {
+    color: var(--nosfir-composite-success);
+}
+
+.composite_form .component .component_summary .details .stock.out-of-stock {
+    color: var(--nosfir-composite-error);
+}
+
+/* ==========================================================================
+   Component Option Thumbnails
+   ========================================================================== */
+
+/**
+ * Option Thumbnails Container
+ */
+.composite_form .component .component_option_thumbnails {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: var(--nosfir-composite-spacing-sm);
+}
+
+/**
+ * Single Option Thumbnail
+ */
+.composite_form .component .component_option_thumbnails .component_option_thumbnail {
+    box-shadow: var(--nosfir-composite-shadow-none);
+    transition: box-shadow var(--nosfir-composite-transition),
+                transform var(--nosfir-composite-transition);
+    border-radius: var(--nosfir-composite-radius);
+    cursor: pointer;
+    position: relative;
+}
+
+/**
+ * Thumbnail - Selected State
+ */
+.composite_form .component .component_option_thumbnails .component_option_thumbnail.selected,
+.composite_form .component .component_option_thumbnails .component_option_thumbnail.selected:hover {
+    box-shadow: var(--nosfir-composite-shadow-selected);
+}
+
+/**
+ * Thumbnail Button - Selected Checkmark
+ */
+.composite_form .component .component_option_thumbnails .component_option_thumbnail.selected:not(.loading) button {
+    border-radius: var(--nosfir-composite-radius-full);
+    width: 0;
+    box-sizing: content-box;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: var(--nosfir-composite-success);
+    color: var(--nosfir-composite-bg);
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    border: none;
+    padding: 0;
+}
+
+.composite_form .component .component_option_thumbnails .component_option_thumbnail.selected:not(.loading) button::before {
+    content: "✓";
+}
+
+/**
+ * Thumbnail - Hover State
+ */
+.composite_form .component .component_option_thumbnails .component_option_thumbnail:hover {
+    box-shadow: var(--nosfir-composite-shadow-hover);
+    transform: translateY(-2px);
+}
+
+/**
+ * Thumbnail - Disabled State
+ */
+.composite_form .component .component_option_thumbnails .component_option_thumbnail.disabled,
+.composite_form .component .component_option_thumbnails .component_option_thumbnail.disabled:hover {
+    box-shadow: var(--nosfir-composite-shadow-none);
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/**
+ * Thumbnail - Loading State
+ */
+.composite_form .component .component_option_thumbnails .component_option_thumbnail.loading {
+    position: relative;
+    pointer-events: none;
+}
+
+.composite_form .component .component_option_thumbnails .component_option_thumbnail.loading::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid var(--nosfir-composite-border-dark);
+    border-top-color: var(--nosfir-composite-primary);
+    border-radius: 50%;
+    animation: nosfirCompositeSpinner 0.8s linear infinite;
+}
+
+/**
+ * Thumbnail Image
+ */
+.composite_form .component .component_option_thumbnails .component_option_thumbnail img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--nosfir-composite-radius);
+}
+
+/**
+ * Thumbnail Title
+ */
+.composite_form .component .component_option_thumbnails .component_option_thumbnail .thumbnail_title {
+    font-size: 0.85em;
+    text-align: center;
+    padding: 0.5em;
+    color: var(--nosfir-composite-text);
+    font-weight: 500;
+}
+
+/* ==========================================================================
+   Component Select Dropdown
+   ========================================================================== */
+
+/**
+ * Select Label
+ */
+.composite_form .component .select_label {
+    display: block;
+    margin-bottom: 1em;
+    font-weight: 600;
+    color: var(--nosfir-composite-text);
+}
+
+/**
+ * Component Select
+ */
+.composite_form .component .component_options_select {
+    width: 100%;
+    max-width: 400px;
+    padding: 0.75em 1em;
+    border: 1px solid var(--nosfir-composite-border-dark);
+    border-radius: var(--nosfir-composite-radius);
+    background: var(--nosfir-composite-bg);
+    font-size: 1em;
+    color: var(--nosfir-composite-text);
+    cursor: pointer;
+    transition: border-color var(--nosfir-composite-transition);
+}
+
+.composite_form .component .component_options_select:hover,
+.composite_form .component .component_options_select:focus {
+    border-color: var(--nosfir-composite-primary);
+    outline: none;
+}
+
+/* ==========================================================================
+   Component Variations
+   ========================================================================== */
+
+/**
+ * Variations Form
+ */
+.composite_form .component .variations_form {
+    margin-top: var(--nosfir-composite-spacing-sm);
+}
+
+.composite_form .component .variations_form table.variations {
+    margin-bottom: 0;
+}
+
+.composite_form .component .variations_form table.variations td {
+    padding: 0.5em 0;
+}
+
+.composite_form .component .variations_form table.variations label {
+    font-weight: 600;
+    font-size: 0.9em;
+}
+
+.composite_form .component .variations_form table.variations select {
+    width: 100%;
+    max-width: 250px;
+    padding: 0.5em;
+    border: 1px solid var(--nosfir-composite-border-dark);
+    border-radius: var(--nosfir-composite-radius);
+}
+
+/**
+ * Reset Variations
+ */
+.composite_form .component .variations_form .reset_variations {
+    font-size: 0.85em;
+    color: var(--nosfir-composite-primary);
+    text-decoration: none;
+}
+
+.composite_form .component .variations_form .reset_variations:hover {
+    text-decoration: underline;
+}
+
+/* ==========================================================================
+   Component Quantity
+   ========================================================================== */
+
+/**
+ * Quantity Wrapper
+ */
+.composite_form .component .component_wrap .quantity {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: var(--nosfir-composite-spacing-sm);
+}
+
+.composite_form .component .component_wrap .quantity .qty {
+    width: 60px;
+    text-align: center;
+    padding: 0.5em;
+    border: 1px solid var(--nosfir-composite-border-dark);
+    border-radius: var(--nosfir-composite-radius);
+}
+
+/* ==========================================================================
+   Composite Price Total
+   ========================================================================== */
+
+/**
+ * Composite Price Container
+ */
+.composite_form .composite_price {
+    padding: var(--nosfir-composite-spacing-sm);
+    background: var(--nosfir-composite-bg-alt);
+    border-radius: var(--nosfir-composite-radius-lg);
+    margin-top: var(--nosfir-composite-spacing);
+    margin-bottom: var(--nosfir-composite-spacing);
+}
+
+.composite_form .composite_price .price {
+    font-size: 1.3em;
+    font-weight: 700;
+    color: var(--nosfir-composite-text);
+}
+
+.composite_form .composite_price .price del {
+    font-size: 0.85em;
+    opacity: 0.6;
+    margin-right: 0.5em;
+}
+
+.composite_form .composite_price .price ins {
+    text-decoration: none;
+    color: var(--nosfir-composite-success);
+}
+
+/* ==========================================================================
+   Composite Add to Cart Button
+   ========================================================================== */
+
+/**
+ * Composite Button Container
+ */
+.composite_form .composite_button {
+    margin-top: var(--nosfir-composite-spacing);
+}
+
+.composite_form .composite_button .composite_add_to_cart_button {
+    width: 100%;
+    padding: 1em 2em;
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
+.composite_form .composite_button .composite_add_to_cart_button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* ==========================================================================
+   Composite Navigation
+   ========================================================================== */
+
+/**
+ * Navigation Container
+ */
+.composite_form .composite_navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: var(--nosfir-composite-spacing);
+    padding-top: var(--nosfir-composite-spacing);
+    border-top: 1px solid var(--nosfir-composite-border);
+}
+
+.composite_form .composite_navigation .composite_navigation_button {
+    padding: 0.75em 1.5em;
+    border: 1px solid var(--nosfir-composite-border-dark);
+    background: var(--nosfir-composite-bg);
+    color: var(--nosfir-composite-text);
+    border-radius: var(--nosfir-composite-radius);
+    cursor: pointer;
+    font-weight: 500;
+    transition: all var(--nosfir-composite-transition);
+}
+
+.composite_form .composite_navigation .composite_navigation_button:hover {
+    background: var(--nosfir-composite-primary);
+    border-color: var(--nosfir-composite-primary);
+    color: var(--nosfir-composite-bg);
+}
+
+.composite_form .composite_navigation .composite_navigation_button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.composite_form .composite_navigation .composite_navigation_button:disabled:hover {
+    background: var(--nosfir-composite-bg);
+    border-color: var(--nosfir-composite-border-dark);
+    color: var(--nosfir-composite-text);
+}
+
+/* ==========================================================================
+   Composite Validation Messages
+   ========================================================================== */
+
+/**
+ * Validation Notice
+ */
+.composite_form .composite_message {
+    padding: 0.75em 1em;
+    margin-top: var(--nosfir-composite-spacing-sm);
+    border-radius: var(--nosfir-composite-radius);
+    font-size: 0.9em;
+}
+
+.composite_form .composite_message.error {
+    background: rgba(226, 64, 28, 0.1);
+    border-left: 4px solid var(--nosfir-composite-error);
+    color: var(--nosfir-composite-error);
+}
+
+.composite_form .composite_message.info {
+    background: rgba(61, 156, 210, 0.1);
+    border-left: 4px solid var(--nosfir-composite-info);
+    color: var(--nosfir-composite-info);
+}
+
+.composite_form .composite_message.warning {
+    background: rgba(255, 186, 0, 0.1);
+    border-left: 4px solid var(--nosfir-composite-warning);
+    color: #856404;
+}
+
+/* ==========================================================================
+   Cart Table - Component Items
+   ========================================================================== */
+
+/**
+ * Component Table Item in Cart
+ */
+.component_table_item .product-name {
+    padding-left: 4rem;
+    position: relative;
+}
+
+.component_table_item .product-name::before {
+    content: "└";
+    position: absolute;
+    left: 2rem;
+    top: 0;
+    color: var(--nosfir-composite-text-light);
+    font-size: 1.2em;
+}
+
+/**
+ * Hide Component Items in Responsive View
+ */
+table.shop_table_responsive tr.component_table_item {
+    display: none;
+}
+
+/**
+ * Composite Parent Item
+ */
+.composite_container_table_item {
+    background: var(--nosfir-composite-bg-alt);
+}
+
+.composite_container_table_item td {
+    font-weight: 500;
+}
+
+/**
+ * Composite Configuration DL (in cart)
+ */
+.composite_container_table_item dl.composite_configuration {
+    margin: 0.5em 0 0;
+    font-size: 0.9em;
+    color: var(--nosfir-composite-text-light);
+}
+
+.composite_container_table_item dl.composite_configuration dt {
+    font-weight: 600;
+    margin-top: 0.5em;
+}
+
+.composite_container_table_item dl.composite_configuration dd {
+    margin: 0.25em 0 0 1em;
+}
+
+/* ==========================================================================
+   Mini Cart - Component Items
+   ========================================================================== */
+
+/**
+ * Component in Mini Cart
+ */
+.widget_shopping_cart .component_table_item {
+    padding-left: 1.5em;
+    border-left: 2px solid var(--nosfir-composite-border-dark);
+    margin-left: 0.5em;
+    font-size: 0.9em;
+}
+
+.widget_shopping_cart .composite_container_table_item {
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   Fixed Summary Widget
+   ========================================================================== */
+
+/**
+ * Fixed Widget Container
+ */
+.widget.widget_composite_summary.widget_position_fixed {
+    font-size: 1em;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--nosfir-composite-bg);
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+    padding: var(--nosfir-composite-spacing-sm) 0;
+}
+
+/**
+ * Fixed Widget Price
+ */
+.widget.widget_composite_summary.widget_position_fixed .widget_composite_summary_price {
+    font-size: var(--nosfir-composite-font-size-lg);
+    font-weight: 700;
+    color: var(--nosfir-composite-text);
+}
+
+/**
+ * Fixed Widget Content Container
+ */
+.widget.widget_composite_summary.widget_position_fixed .widget_composite_summary_content {
+    max-width: var(--nosfir-composite-max-width);
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 var(--nosfir-composite-spacing-lg);
+    box-sizing: content-box;
+}
+
+.widget.widget_composite_summary.widget_position_fixed .widget_composite_summary_content::before,
+.widget.widget_composite_summary.widget_position_fixed .widget_composite_summary_content::after {
+    content: "";
+    display: table;
+}
+
+.widget.widget_composite_summary.widget_position_fixed .widget_composite_summary_content::after {
+    clear: both;
+}
+
+/**
+ * Widget UI Wrapper
+ */
+.widget_composite_summary.widget_position_fixed .widget_composite_summary_content .widget_composite_summary_ui_wrapper > div {
+    margin-left: 0;
+}
+
+/**
+ * Widget Details Wrapper
+ */
+.widget_composite_summary.widget_position_fixed .widget_composite_summary_content .widget_composite_summary_details_wrapper {
+    width: var(--nosfir-composite-main-width);
+    float: left;
+    margin-right: var(--nosfir-composite-gutter);
+}
+
+/**
+ * Widget UI Wrapper Column
+ */
+.widget_composite_summary.widget_position_fixed .widget_composite_summary_content .widget_composite_summary_ui_wrapper {
+    width: var(--nosfir-composite-sidebar-width);
+    float: right;
+    margin-right: 0;
+}
+
+/**
+ * Composite Button in Widget
+ */
+.widget_composite_summary.widget_position_fixed .composite_button {
+    margin: 0;
+}
+
+.widget_composite_summary.widget_position_fixed .composite_button .composite_add_to_cart_button {
+    padding: 0.75em 1.5em;
+    font-size: 1em;
+}
+
+/* ==========================================================================
+   Fixed Widget - Sidebar Layouts
+   ========================================================================== */
+
+/**
+ * Right Sidebar Layout
+ */
+.right-sidebar .widget_composite_summary.widget_position_fixed .widget_composite_summary_content .widget_composite_summary_details_wrapper {
+    width: var(--nosfir-composite-main-width);
+    float: left;
+    margin-right: var(--nosfir-composite-gutter);
+}
+
+.right-sidebar .widget_composite_summary.widget_position_fixed .widget_composite_summary_content .widget_composite_summary_ui_wrapper {
+    width: var(--nosfir-composite-sidebar-width);
+    float: right;
+    margin-right: 0;
+}
+
+/**
+ * Left Sidebar Layout
+ */
+.left-sidebar .widget_composite_summary.widget_position_fixed .widget_composite_summary_content .widget_composite_summary_details_wrapper {
+    width: var(--nosfir-composite-main-width);
+    float: right;
+    margin-right: 0;
+}
+
+.left-sidebar .widget_composite_summary.widget_position_fixed .widget_composite_summary_content .widget_composite_summary_ui_wrapper {
+    width: var(--nosfir-composite-sidebar-width);
+    float: left;
+    margin-right: var(--nosfir-composite-gutter);
+}
+
+.left-sidebar .widget_composite_summary.widget_position_fixed .widget_composite_summary_content .composite_button {
+    float: left;
+}
+
+/* ==========================================================================
+   Progress Bar
+   ========================================================================== */
+
+/**
+ * Composite Progress Bar
+ */
+.composite_form .composite_progress {
+    margin-bottom: var(--nosfir-composite-spacing);
+}
+
+.composite_form .composite_progress .progress_bar {
+    height: 6px;
+    background: var(--nosfir-composite-bg-alt);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.composite_form .composite_progress .progress_bar_fill {
+    height: 100%;
+    background: var(--nosfir-composite-primary);
+    transition: width 0.3s ease;
+}
+
+.composite_form .composite_progress .progress_text {
+    font-size: 0.85em;
+    color: var(--nosfir-composite-text-light);
+    margin-top: 0.5em;
+    text-align: center;
+}
+
+/* ==========================================================================
+   Loading State
+   ========================================================================== */
+
+/**
+ * Composite Loading
+ */
+.composite_form.loading {
+    position: relative;
+    pointer-events: none;
+}
+
+.composite_form.loading::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.8);
+    z-index: 10;
+}
+
+.composite_form.loading::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    margin: -20px 0 0 -20px;
+    border: 3px solid var(--nosfir-composite-border-dark);
+    border-top-color: var(--nosfir-composite-primary);
+    border-radius: 50%;
+    z-index: 11;
+    animation: nosfirCompositeSpinner 0.8s linear infinite;
+}
+
+@keyframes nosfirCompositeSpinner {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ==========================================================================
+   Dark Mode Support
+   ========================================================================== */
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --nosfir-composite-text: #e5e5e5;
+        --nosfir-composite-text-light: #aaa;
+        --nosfir-composite-bg: #1a1a1a;
+        --nosfir-composite-bg-alt: #2d2d2d;
+        --nosfir-composite-border: rgba(255, 255, 255, 0.05);
+        --nosfir-composite-border-dark: rgba(255, 255, 255, 0.1);
+        --nosfir-composite-selected: rgba(255, 255, 255, 0.08);
+        --nosfir-composite-hover: rgba(255, 255, 255, 0.04);
+    }
+
+    .composite_form.loading::after,
+    .widget.widget_composite_summary.widget_position_fixed {
+        background: rgba(26, 26, 26, 0.95);
+    }
+}
+
+/* ==========================================================================
+   Responsive Styles - Tablet (768px+)
+   ========================================================================== */
+
+@media (min-width: 768px) {
+    /**
+     * Hide Composite Configuration in Cart Table
+     */
+    .composite_container_table_item dl.composite_configuration {
+        display: none;
+    }
+
+    /**
+     * Show Component Items in Table View
+     */
+    table.shop_table_responsive tr.component_table_item {
+        display: table-row;
+    }
+
+    /**
+     * Full Width Content Adjustments
+     */
+    .sp-product-gallery-stacked #content div.product .component .composited_product_images,
+    .sp-product-gallery-stacked div.product .component .composited_product_images,
+    .nosfir-full-width-content #content div.product .component .composited_product_images,
+    .nosfir-full-width-content div.product .component .composited_product_images,
+    .storefront-full-width-content #content div.product .component .composited_product_images,
+    .storefront-full-width-content div.product .component .composited_product_images,
+    .page-template-template-fullwidth-php #content div.product .component .composited_product_images,
+    .page-template-template-fullwidth-php div.product .component .composited_product_images {
+        width: 20%;
+        float: left;
+        margin-right: 6.6666666667%;
+    }
+
+    .sp-product-gallery-stacked .composite_form .component:not(.selection_thumbnail_hidden) .component_summary .composited_product_details_wrapper > .details,
+    .nosfir-full-width-content .composite_form .component:not(.selection_thumbnail_hidden) .component_summary .composited_product_details_wrapper > .details,
+    .storefront-full-width-content .composite_form .component:not(.selection_thumbnail_hidden) .component_summary .composited_product_details_wrapper > .details,
+    .page-template-template-fullwidth-php .composite_form .component:not(.selection_thumbnail_hidden) .component_summary .composited_product_details_wrapper > .details {
+        width: 73.3333333333%;
+        float: right;
+        margin-right: 0;
+    }
+}
+
+/* ==========================================================================
+   Responsive Styles - Large Screens
+   ========================================================================== */
+
+@media (max-width: 1200px) {
+    .widget.widget_composite_summary.widget_position_fixed .widget_composite_summary_content {
+        margin-left: var(--nosfir-composite-spacing-lg);
+        margin-right: var(--nosfir-composite-spacing-lg);
+        padding: 0;
+    }
+}
+
+/* ==========================================================================
+   Responsive Styles - Mobile (max-width: 568px)
+   ========================================================================== */
+
+@media (max-width: 568px) {
+    /**
+     * Stack Layout on Mobile
+     */
+    .woocommerce #content div.product .component .composited_product_images,
+    .woocommerce div.product .component .composited_product_images,
+    .woocommerce-page #content div.product .component .composited_product_images,
+    .woocommerce-page div.product .component .composited_product_images {
+        width: 100%;
+        float: left;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .composite_form .component:not(.selection_thumbnail_hidden) .component_summary .composited_product_details_wrapper > .details {
+        width: 100%;
+        float: left;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    /**
+     * Image Constraints
+     */
+    .composite_form .component .component_summary .composited_product_details_wrapper .composited_product_images {
+        max-width: 50%;
+        margin-bottom: var(--nosfir-composite-spacing-sm);
+    }
+
+    .composite_form .component .component_summary .composited_product_details_wrapper .composited_product_images img {
+        margin-bottom: 1em;
+    }
+
+    /**
+     * Option Thumbnails Grid
+     */
+    .composite_form .component .component_option_thumbnails {
+        gap: 8px;
+    }
+
+    .composite_form .component .component_option_thumbnails .component_option_thumbnail {
+        flex: 0 0 calc(33.333% - 6px);
+    }
+
+    /**
+     * Fixed Widget Mobile
+     */
+    .widget.widget_composite_summary.widget_position_fixed .widget_composite_summary_content {
+        margin-left: var(--nosfir-composite-spacing-xl);
+        margin-right: var(--nosfir-composite-spacing-xl);
+        padding: 0;
+    }
+
+    .widget_composite_summary.widget_position_fixed .widget_composite_summary_content .widget_composite_summary_details_wrapper,
+    .widget_composite_summary.widget_position_fixed .widget_composite_summary_content .widget_composite_summary_ui_wrapper {
+        width: 100%;
+        float: none;
+        margin: 0;
+    }
+
+    .widget_composite_summary.widget_position_fixed .widget_composite_summary_content .widget_composite_summary_ui_wrapper {
+        margin-top: var(--nosfir-composite-spacing-sm);
+    }
+
+    /**
+     * Navigation Mobile
+     */
+    .composite_form .composite_navigation {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .composite_form .composite_navigation .composite_navigation_button {
+        width: 100%;
+        text-align: center;
+    }
+
+    /**
+     * Cart Table Components
+     */
+    .component_table_item .product-name {
+        padding-left: 2rem;
+    }
+
+    .component_table_item .product-name::before {
+        left: 0.5rem;
+    }
+}
+
+/* ==========================================================================
+   Accessibility
+   ========================================================================== */
+
+/**
+ * Reduced Motion
+ */
+@media (prefers-reduced-motion: reduce) {
+    .composite_summary .summary_element .summary_element_wrapper,
+    .composite_form .component .component_option_thumbnails .component_option_thumbnail,
+    .composite_form .component .component_summary .composited_product_details_wrapper .composited_product_images a:hover img,
+    .composite_form.loading::before,
+    .composite_form .composite_progress .progress_bar_fill,
+    .composite_form .component .component_option_thumbnails .component_option_thumbnail.loading::after {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    .composite_form .component .component_option_thumbnails .component_option_thumbnail:hover {
+        transform: none;
+    }
+}
+
+/**
+ * Focus Visible
+ */
+.composite_summary .summary_element .summary_element_wrapper:focus-visible,
+.composite_form .component .component_option_thumbnails .component_option_thumbnail:focus-visible,
+.composite_form .component .component_options_select:focus-visible,
+.composite_form .composite_navigation .composite_navigation_button:focus-visible,
+.composite_form .composite_button .composite_add_to_cart_button:focus-visible {
+    outline: 2px solid var(--nosfir-composite-primary);
+    outline-offset: 2px;
+}
+
+/**
+ * High Contrast Mode
+ */
+@media (prefers-contrast: high) {
+    .composite_summary .summary_element .summary_element_wrapper,
+    .composite_form .component .component_option_thumbnails .component_option_thumbnail {
+        border: 2px solid var(--nosfir-composite-text);
+    }
+
+    .composite_form .component {
+        border-bottom-width: 2px;
+    }
+
+    .composite_form .composite_message {
+        border-left-width: 6px;
+    }
+}
+
+/* ==========================================================================
+   Print Styles
+   ========================================================================== */
+
+@media print {
+    .widget.widget_composite_summary.widget_position_fixed {
+        display: none;
+    }
+
+    .composite_form .component {
+        page-break-inside: avoid;
+        border-bottom: 1px solid #000;
+    }
+
+    .composite_form .component_option_thumbnails .component_option_thumbnail {
+        border: 1px solid #000;
+        box-shadow: none;
+    }
+
+    .composite_form.loading::before,
+    .composite_form.loading::after {
+        display: none;
+    }
+
+    .component_table_item .product-name {
+        padding-left: 2em;
+    }
+}

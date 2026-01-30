@@ -1,0 +1,140 @@
+/**
+ * Nosfir Theme - Jetpack Infinite Scroll Styles
+ *
+ * Minimal styles for Jetpack's Infinite Scroll feature.
+ * Hides pagination and controls footer visibility during infinite loading.
+ *
+ * @package Nosfir
+ * @subpackage Jetpack
+ * @since 1.0.0
+ *
+ * @see https://jetpack.com/support/infinite-scroll/
+ */
+
+/* ==========================================================================
+   Hide Pagination Elements When Infinite Scroll is Active
+   ========================================================================== */
+
+/**
+ * Hide all pagination elements
+ * These are replaced by the infinite scroll functionality
+ */
+.infinite-scroll .paging-navigation,
+.infinite-scroll .pagination,
+.infinite-scroll .posts-navigation,
+.infinite-scroll .post-navigation,
+.infinite-scroll .nav-links,
+.infinite-scroll .page-numbers {
+    display: none;
+}
+
+/* ==========================================================================
+   WooCommerce Compatibility
+   ========================================================================== */
+
+/**
+ * Hide WooCommerce pagination elements
+ */
+.infinite-scroll .woocommerce-pagination,
+.infinite-scroll ul.products + .storefront-sorting,
+.infinite-scroll .woocommerce-result-count {
+    display: none;
+}
+
+/* ==========================================================================
+   Footer Visibility Control
+   ========================================================================== */
+
+/**
+ * Hide footer while infinite scroll is loading
+ * Prevents footer from jumping around during content load
+ */
+.infinite-scroll.neverending .site-footer {
+    display: none;
+}
+
+/**
+ * Show footer when infinite scroll ends
+ * When all posts have been loaded
+ */
+.infinity-end.neverending .site-footer {
+    display: block;
+}
+
+/* ==========================================================================
+   Infinite Scroll Handle (Load More Button)
+   ========================================================================== */
+
+/**
+ * Load More button container
+ */
+#infinite-handle {
+    text-align: center;
+    padding: 2em 0;
+    margin: 1em 0;
+    clear: both;
+}
+
+/**
+ * Load More button styling
+ */
+#infinite-handle span button {
+    display: inline-block;
+    padding: 0.75em 2em;
+    background: #0073aa;
+    border: none;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+#infinite-handle span button:hover,
+#infinite-handle span button:focus {
+    background: #005a87;
+}
+
+/* ==========================================================================
+   Loading Spinner
+   ========================================================================== */
+
+/**
+ * Infinite loader container
+ */
+.infinite-loader {
+    text-align: center;
+    padding: 2em 0;
+    margin: 1em 0;
+    clear: both;
+}
+
+/**
+ * Simple CSS spinner
+ */
+.infinite-loader .spinner {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border: 3px solid rgba(0, 0, 0, 0.1);
+    border-top-color: #0073aa;
+    border-radius: 50%;
+    animation: nosfir-spin 0.8s linear infinite;
+}
+
+@keyframes nosfir-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ==========================================================================
+   Accessibility - Reduced Motion
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .infinite-loader .spinner {
+        animation-duration: 1.5s;
+    }
+}

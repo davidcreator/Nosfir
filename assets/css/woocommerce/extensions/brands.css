@@ -1,0 +1,1019 @@
+/**
+ * Nosfir Theme - WooCommerce Brands
+ *
+ * Styles for the WooCommerce Brands extension.
+ * Provides custom styling for brand thumbnails, A-Z index, brand archives, and widgets.
+ *
+ * @package Nosfir
+ * @subpackage WooCommerce/Extensions
+ * @since 1.0.0
+ *
+ * @see https://woocommerce.com/products/brands/
+ */
+
+/* ==========================================================================
+   CSS Variables
+   ========================================================================== */
+
+:root {
+    /* Colors */
+    --nosfir-brand-primary: #0073aa;
+    --nosfir-brand-primary-dark: #005a87;
+    --nosfir-brand-text: #43454b;
+    --nosfir-brand-text-light: #666;
+    --nosfir-brand-bg: #fff;
+    --nosfir-brand-bg-alt: #eee;
+    --nosfir-brand-border: rgba(0, 0, 0, 0.05);
+    --nosfir-brand-border-dark: rgba(0, 0, 0, 0.1);
+
+    /* Sizes */
+    --nosfir-brand-thumbnail-height: 2.2906835em;
+    --nosfir-brand-thumbnail-height-sm: 16px;
+    --nosfir-brand-index-size: 1.618em;
+
+    /* Spacing */
+    --nosfir-brand-spacing-xs: 0.2360828548em;
+    --nosfir-brand-spacing-sm: 0.3342343017em;
+    --nosfir-brand-spacing: 0.3819820591em;
+    --nosfir-brand-spacing-md: 0.5407911001em;
+    --nosfir-brand-spacing-lg: 0.6180469716em;
+    --nosfir-brand-spacing-xl: 1em;
+    --nosfir-brand-spacing-2xl: 2.2906835em;
+
+    /* Border Radius */
+    --nosfir-brand-radius: 3px;
+    --nosfir-brand-radius-lg: 5px;
+
+    /* Transitions */
+    --nosfir-brand-transition: 0.2s ease;
+    --nosfir-brand-transition-slow: 0.5s ease;
+
+    /* Shadows */
+    --nosfir-brand-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    --nosfir-brand-shadow-hover: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* ==========================================================================
+   Header Widget Region - Brand Thumbnails
+   ========================================================================== */
+
+/**
+ * Brand Thumbnails in Header
+ */
+.header-widget-region .widget_brand_thumbnails ul.brand-thumbnails {
+    text-align: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/**
+ * Clearfix
+ */
+.header-widget-region .widget_brand_thumbnails ul.brand-thumbnails::before,
+.header-widget-region .widget_brand_thumbnails ul.brand-thumbnails::after {
+    content: "";
+    display: table;
+}
+
+.header-widget-region .widget_brand_thumbnails ul.brand-thumbnails::after {
+    clear: both;
+}
+
+/**
+ * Brand Thumbnail Items
+ */
+.header-widget-region .widget_brand_thumbnails ul.brand-thumbnails li {
+    display: inline-block;
+    width: auto !important;
+    float: none !important;
+    margin-bottom: 0 !important;
+    margin-right: var(--nosfir-brand-spacing-md);
+    vertical-align: middle;
+}
+
+.header-widget-region .widget_brand_thumbnails ul.brand-thumbnails li:last-child {
+    margin-right: 0;
+}
+
+/**
+ * Brand Thumbnail Image
+ */
+.header-widget-region .widget_brand_thumbnails ul.brand-thumbnails li img {
+    max-height: var(--nosfir-brand-thumbnail-height-sm);
+    width: auto;
+    display: block;
+    opacity: 0.7;
+    transition: opacity var(--nosfir-brand-transition);
+}
+
+.header-widget-region .widget_brand_thumbnails ul.brand-thumbnails li a:hover img {
+    opacity: 1;
+}
+
+/* ==========================================================================
+   Brand Thumbnails Widget (General)
+   ========================================================================== */
+
+/**
+ * Brand Thumbnails Grid
+ */
+.widget_brand_thumbnails ul.brand-thumbnails {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    justify-content: flex-start;
+}
+
+.widget_brand_thumbnails ul.brand-thumbnails li {
+    margin: 0;
+}
+
+.widget_brand_thumbnails ul.brand-thumbnails li a {
+    display: block;
+    padding: 10px;
+    background: var(--nosfir-brand-bg);
+    border: 1px solid var(--nosfir-brand-border-dark);
+    border-radius: var(--nosfir-brand-radius);
+    transition: all var(--nosfir-brand-transition);
+}
+
+.widget_brand_thumbnails ul.brand-thumbnails li a:hover {
+    border-color: var(--nosfir-brand-primary);
+    box-shadow: var(--nosfir-brand-shadow);
+    transform: translateY(-2px);
+}
+
+.widget_brand_thumbnails ul.brand-thumbnails li img {
+    display: block;
+    max-height: 40px;
+    width: auto;
+    margin: 0 auto;
+}
+
+/**
+ * Brand Thumbnails - Centered Variant
+ */
+.widget_brand_thumbnails.brand-thumbnails--centered ul.brand-thumbnails {
+    justify-content: center;
+}
+
+/**
+ * Brand Thumbnails - Grid Variant
+ */
+.widget_brand_thumbnails.brand-thumbnails--grid ul.brand-thumbnails {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 15px;
+}
+
+.widget_brand_thumbnails.brand-thumbnails--grid ul.brand-thumbnails li a {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ==========================================================================
+   Brand Navigation Widget
+   ========================================================================== */
+
+/**
+ * Brand Nav List
+ */
+.widget_brand_nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.widget_brand_nav ul li {
+    margin-bottom: var(--nosfir-brand-spacing-xs);
+    padding: var(--nosfir-brand-spacing) 0;
+    border-bottom: 1px solid var(--nosfir-brand-border);
+}
+
+.widget_brand_nav ul li:last-child {
+    border-bottom: none;
+}
+
+/**
+ * Brand Nav Links
+ */
+.widget_brand_nav ul li a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--nosfir-brand-text);
+    text-decoration: none;
+    transition: color var(--nosfir-brand-transition);
+}
+
+.widget_brand_nav ul li a:hover {
+    color: var(--nosfir-brand-primary);
+}
+
+/**
+ * Brand Count Badge
+ */
+.widget_brand_nav ul li .count {
+    float: right;
+    background: var(--nosfir-brand-bg-alt);
+    padding: 0.15em 0.5em;
+    border-radius: 10px;
+    font-size: 0.85em;
+    color: var(--nosfir-brand-text-light);
+    min-width: 2em;
+    text-align: center;
+}
+
+.widget_brand_nav ul li a:hover .count {
+    background: var(--nosfir-brand-primary);
+    color: var(--nosfir-brand-bg);
+}
+
+/**
+ * Active/Current Brand
+ */
+.widget_brand_nav ul li.current-brand a {
+    font-weight: 600;
+    color: var(--nosfir-brand-primary);
+}
+
+.widget_brand_nav ul li.current-brand .count {
+    background: var(--nosfir-brand-primary);
+    color: var(--nosfir-brand-bg);
+}
+
+/**
+ * Nested Brands (Sub-brands)
+ */
+.widget_brand_nav ul li ul {
+    margin-top: var(--nosfir-brand-spacing);
+    margin-left: 1em;
+    padding-top: var(--nosfir-brand-spacing);
+    border-top: 1px dashed var(--nosfir-brand-border);
+}
+
+.widget_brand_nav ul li ul li {
+    font-size: 0.9em;
+}
+
+/* ==========================================================================
+   Brand Taxonomy Archive Page
+   ========================================================================== */
+
+/**
+ * Brand Archive Header
+ */
+.tax-product_brand .woocommerce-products-header {
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 var(--nosfir-brand-spacing-2xl);
+    text-align: center;
+}
+
+/**
+ * Brand Thumbnail in Archive
+ */
+.tax-product_brand .woocommerce-products-header .brand-thumbnail {
+    margin: 0 0 var(--nosfir-brand-spacing-xl);
+    width: auto;
+    max-height: var(--nosfir-brand-thumbnail-height);
+    align-self: center;
+    order: 1;
+}
+
+.tax-product_brand .woocommerce-products-header .brand-thumbnail img {
+    max-height: 80px;
+    width: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+/**
+ * Brand Archive Title & Description
+ */
+.tax-product_brand .woocommerce-products-header .woocommerce-products-header__title,
+.tax-product_brand .woocommerce-products-header .term-description {
+    order: 2;
+}
+
+.tax-product_brand .woocommerce-products-header .woocommerce-products-header__title {
+    margin-bottom: 0.5em;
+}
+
+.tax-product_brand .woocommerce-products-header .term-description {
+    max-width: 700px;
+    margin: 0 auto;
+    color: var(--nosfir-brand-text-light);
+    line-height: 1.6;
+}
+
+.tax-product_brand .woocommerce-products-header .term-description p:last-child {
+    margin-bottom: 0;
+}
+
+/* ==========================================================================
+   A-Z Brands Index
+   ========================================================================== */
+
+/**
+ * Brands A-Z Container
+ */
+div#brands_a_z {
+    margin-bottom: 2em;
+}
+
+div#brands_a_z::before,
+div#brands_a_z::after {
+    content: "";
+    display: table;
+}
+
+div#brands_a_z::after {
+    clear: both;
+}
+
+/**
+ * Brands Index Navigation
+ */
+div#brands_a_z ul.brands_index {
+    margin-left: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--nosfir-brand-spacing-xs);
+    margin-bottom: 1.5em;
+}
+
+div#brands_a_z ul.brands_index li {
+    float: none;
+    display: inline-block;
+    margin: 0 var(--nosfir-brand-spacing-sm) var(--nosfir-brand-spacing-xs) 0;
+    padding: 0;
+    text-transform: uppercase;
+}
+
+/**
+ * Index Links & Spans
+ */
+div#brands_a_z ul.brands_index li a,
+div#brands_a_z ul.brands_index li span {
+    float: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    padding: var(--nosfir-brand-spacing);
+    min-width: var(--nosfir-brand-index-size);
+    min-height: var(--nosfir-brand-index-size);
+    text-align: center;
+    background-color: var(--nosfir-brand-bg-alt);
+    color: var(--nosfir-brand-text);
+    line-height: 1;
+    border-radius: var(--nosfir-brand-radius);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9em;
+    transition: all var(--nosfir-brand-transition);
+}
+
+div#brands_a_z ul.brands_index li a:hover {
+    background-color: var(--nosfir-brand-primary);
+    color: var(--nosfir-brand-bg);
+}
+
+/**
+ * Inactive Index Letters
+ */
+div#brands_a_z ul.brands_index li span {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+/**
+ * Active Index Letter
+ */
+div#brands_a_z ul.brands_index li.active a {
+    background-color: var(--nosfir-brand-primary);
+    color: var(--nosfir-brand-bg);
+}
+
+/**
+ * Section Headers
+ */
+div#brands_a_z h3 {
+    text-transform: uppercase;
+    font-size: 1.5em;
+    margin: 1.5em 0 0.75em;
+    padding-bottom: 0.5em;
+    border-bottom: 2px solid var(--nosfir-brand-primary);
+    color: var(--nosfir-brand-text);
+}
+
+div#brands_a_z h3:first-of-type {
+    margin-top: 0;
+}
+
+/**
+ * Back to Top Link
+ */
+div#brands_a_z a.top {
+    padding: var(--nosfir-brand-spacing-lg);
+    background-color: var(--nosfir-brand-bg-alt);
+    color: var(--nosfir-brand-text);
+    border: 0;
+    line-height: 1;
+    display: inline-block;
+    border-radius: var(--nosfir-brand-radius);
+    text-decoration: none;
+    font-size: 0.85em;
+    margin-top: 1em;
+    transition: all var(--nosfir-brand-transition);
+}
+
+div#brands_a_z a.top:hover {
+    background-color: var(--nosfir-brand-primary);
+    color: var(--nosfir-brand-bg);
+}
+
+/**
+ * Brands List
+ */
+div#brands_a_z ul.brands {
+    margin-left: 0;
+    list-style: none;
+    padding: 0;
+}
+
+div#brands_a_z ul.brands li {
+    margin: 0 0 var(--nosfir-brand-spacing);
+    padding: 0 0 var(--nosfir-brand-spacing);
+    border-bottom: 1px solid var(--nosfir-brand-border);
+}
+
+div#brands_a_z ul.brands li:last-child {
+    border-bottom: none;
+}
+
+div#brands_a_z ul.brands li a {
+    color: var(--nosfir-brand-text);
+    text-decoration: none;
+    transition: color var(--nosfir-brand-transition);
+}
+
+div#brands_a_z ul.brands li a:hover {
+    color: var(--nosfir-brand-primary);
+}
+
+/**
+ * Brand Count in List
+ */
+div#brands_a_z ul.brands li .count {
+    color: var(--nosfir-brand-text-light);
+    font-size: 0.85em;
+    margin-left: 0.5em;
+}
+
+/* ==========================================================================
+   Single Product Brand Display
+   ========================================================================== */
+
+/**
+ * Brand on Single Product
+ */
+.nosfir-wc-brands-single-product,
+.storefront-wc-brands-single-product {
+    margin: 0 0 var(--nosfir-brand-spacing-md);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nosfir-wc-brands-single-product img,
+.storefront-wc-brands-single-product img {
+    max-height: var(--nosfir-brand-thumbnail-height);
+    width: auto;
+    display: block;
+}
+
+.nosfir-wc-brands-single-product a,
+.storefront-wc-brands-single-product a {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--nosfir-brand-text);
+    transition: color var(--nosfir-brand-transition);
+}
+
+.nosfir-wc-brands-single-product a:hover,
+.storefront-wc-brands-single-product a:hover {
+    color: var(--nosfir-brand-primary);
+}
+
+/**
+ * Brand Label
+ */
+.nosfir-wc-brands-single-product .brand-label {
+    font-size: 0.85em;
+    color: var(--nosfir-brand-text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/**
+ * Brand Name
+ */
+.nosfir-wc-brands-single-product .brand-name {
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   Brands Grid Layout
+   ========================================================================== */
+
+/**
+ * Brands Grid Container
+ */
+.wc-brands-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 20px;
+    margin-bottom: 2em;
+}
+
+/**
+ * Brand Grid Item
+ */
+.wc-brands-grid .brand-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    background: var(--nosfir-brand-bg);
+    border: 1px solid var(--nosfir-brand-border-dark);
+    border-radius: var(--nosfir-brand-radius-lg);
+    transition: all var(--nosfir-brand-transition);
+}
+
+.wc-brands-grid .brand-item:hover {
+    border-color: var(--nosfir-brand-primary);
+    box-shadow: var(--nosfir-brand-shadow-hover);
+    transform: translateY(-3px);
+}
+
+.wc-brands-grid .brand-item a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.wc-brands-grid .brand-item img {
+    max-height: 60px;
+    width: auto;
+    margin-bottom: 10px;
+    opacity: 0.9;
+    transition: opacity var(--nosfir-brand-transition);
+}
+
+.wc-brands-grid .brand-item:hover img {
+    opacity: 1;
+}
+
+.wc-brands-grid .brand-item .brand-name {
+    font-weight: 600;
+    font-size: 0.9em;
+    color: var(--nosfir-brand-text);
+}
+
+.wc-brands-grid .brand-item .brand-count {
+    font-size: 0.8em;
+    color: var(--nosfir-brand-text-light);
+    margin-top: 5px;
+}
+
+/* ==========================================================================
+   Brands Carousel/Slider
+   ========================================================================== */
+
+/**
+ * Brands Carousel Container
+ */
+.wc-brands-carousel {
+    position: relative;
+    overflow: hidden;
+    padding: 20px 0;
+}
+
+.wc-brands-carousel .brands-track {
+    display: flex;
+    gap: 30px;
+    animation: nosfirBrandsScroll 30s linear infinite;
+}
+
+.wc-brands-carousel:hover .brands-track {
+    animation-play-state: paused;
+}
+
+.wc-brands-carousel .brand-slide {
+    flex-shrink: 0;
+    opacity: 0.6;
+    transition: opacity var(--nosfir-brand-transition);
+}
+
+.wc-brands-carousel .brand-slide:hover {
+    opacity: 1;
+}
+
+.wc-brands-carousel .brand-slide img {
+    max-height: 50px;
+    width: auto;
+    display: block;
+    filter: grayscale(100%);
+    transition: filter var(--nosfir-brand-transition);
+}
+
+.wc-brands-carousel .brand-slide:hover img {
+    filter: grayscale(0%);
+}
+
+@keyframes nosfirBrandsScroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* ==========================================================================
+   Brand Filters
+   ========================================================================== */
+
+/**
+ * Brand Filter Dropdown
+ */
+.wc-brands-filter {
+    margin-bottom: 1.5em;
+}
+
+.wc-brands-filter select {
+    width: 100%;
+    max-width: 300px;
+    padding: 0.75em 1em;
+    border: 1px solid var(--nosfir-brand-border-dark);
+    border-radius: var(--nosfir-brand-radius);
+    background: var(--nosfir-brand-bg);
+    font-size: 1em;
+    color: var(--nosfir-brand-text);
+    cursor: pointer;
+    transition: border-color var(--nosfir-brand-transition);
+}
+
+.wc-brands-filter select:hover,
+.wc-brands-filter select:focus {
+    border-color: var(--nosfir-brand-primary);
+    outline: none;
+}
+
+/**
+ * Brand Filter Tags
+ */
+.wc-brands-filter-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 1.5em;
+}
+
+.wc-brands-filter-tags .brand-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 0.5em 1em;
+    background: var(--nosfir-brand-bg-alt);
+    border: 1px solid var(--nosfir-brand-border-dark);
+    border-radius: 20px;
+    font-size: 0.9em;
+    color: var(--nosfir-brand-text);
+    text-decoration: none;
+    transition: all var(--nosfir-brand-transition);
+}
+
+.wc-brands-filter-tags .brand-tag:hover,
+.wc-brands-filter-tags .brand-tag.active {
+    background: var(--nosfir-brand-primary);
+    border-color: var(--nosfir-brand-primary);
+    color: var(--nosfir-brand-bg);
+}
+
+.wc-brands-filter-tags .brand-tag img {
+    max-height: 16px;
+    width: auto;
+    border-radius: 50%;
+}
+
+/* ==========================================================================
+   Product Loop Brand Badge
+   ========================================================================== */
+
+/**
+ * Brand Badge on Products
+ */
+.product .brand-badge {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    padding: 5px 10px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: var(--nosfir-brand-radius);
+    font-size: 0.75em;
+    font-weight: 600;
+    color: var(--nosfir-brand-text);
+    box-shadow: var(--nosfir-brand-shadow);
+    z-index: 5;
+}
+
+.product .brand-badge img {
+    max-height: 20px;
+    width: auto;
+    display: block;
+}
+
+/* ==========================================================================
+   Dark Mode Support
+   ========================================================================== */
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --nosfir-brand-text: #e5e5e5;
+        --nosfir-brand-text-light: #aaa;
+        --nosfir-brand-bg: #1a1a1a;
+        --nosfir-brand-bg-alt: #2d2d2d;
+        --nosfir-brand-border: rgba(255, 255, 255, 0.05);
+        --nosfir-brand-border-dark: rgba(255, 255, 255, 0.1);
+    }
+
+    .widget_brand_thumbnails ul.brand-thumbnails li a,
+    .wc-brands-grid .brand-item {
+        background: var(--nosfir-brand-bg-alt);
+    }
+
+    .wc-brands-carousel .brand-slide img {
+        filter: grayscale(100%) invert(1);
+    }
+
+    .wc-brands-carousel .brand-slide:hover img {
+        filter: grayscale(0%) invert(0);
+    }
+
+    .product .brand-badge {
+        background: rgba(0, 0, 0, 0.9);
+    }
+}
+
+/* ==========================================================================
+   Responsive Styles
+   ========================================================================== */
+
+/**
+ * Tablet Breakpoint (768px+)
+ */
+@media (min-width: 768px) {
+    /**
+     * A-Z Brands Layout - Sidebar Style
+     */
+    div#brands_a_z ul.brands_index {
+        width: 21.7391304348%;
+        float: left;
+        margin-right: 4.347826087%;
+        flex-direction: column;
+        position: sticky;
+        top: 100px;
+        transition: all var(--nosfir-brand-transition-slow);
+    }
+
+    div#brands_a_z ul.brands_index li {
+        margin-right: 0;
+    }
+
+    div#brands_a_z h3 {
+        width: 73.9130434783%;
+        float: right;
+        margin-right: 0;
+        clear: right;
+        text-transform: uppercase;
+    }
+
+    div#brands_a_z h3:first-of-type {
+        margin-top: 0;
+    }
+
+    div#brands_a_z a.top {
+        clear: right;
+    }
+
+    div#brands_a_z ul.brands {
+        width: 73.9130434783%;
+        float: right;
+        margin-right: 0;
+        clear: right;
+    }
+
+    /**
+     * Brand Archive Header
+     */
+    .tax-product_brand .woocommerce-products-header {
+        flex-direction: row;
+        text-align: left;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .tax-product_brand .woocommerce-products-header .brand-thumbnail {
+        order: 0;
+        margin: 0;
+    }
+
+    .tax-product_brand .woocommerce-products-header .brand-thumbnail img {
+        max-height: 100px;
+    }
+
+    /**
+     * Brands Grid - Larger Items
+     */
+    .wc-brands-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    }
+}
+
+/**
+ * Desktop Breakpoint (1024px+)
+ */
+@media (min-width: 1024px) {
+    .wc-brands-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 25px;
+    }
+
+    .wc-brands-carousel .brand-slide img {
+        max-height: 60px;
+    }
+}
+
+/**
+ * Mobile Breakpoint (max-width: 600px)
+ */
+@media (max-width: 600px) {
+    .header-widget-region .widget_brand_thumbnails ul.brand-thumbnails li {
+        margin-right: var(--nosfir-brand-spacing-xs);
+    }
+
+    .header-widget-region .widget_brand_thumbnails ul.brand-thumbnails li img {
+        max-height: 12px;
+    }
+
+    div#brands_a_z ul.brands_index {
+        justify-content: center;
+        margin-bottom: 1em;
+    }
+
+    div#brands_a_z ul.brands_index li a,
+    div#brands_a_z ul.brands_index li span {
+        min-width: 2em;
+        min-height: 2em;
+        font-size: 0.8em;
+    }
+
+    div#brands_a_z h3 {
+        font-size: 1.2em;
+    }
+
+    .wc-brands-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .wc-brands-grid .brand-item {
+        padding: 15px;
+    }
+
+    .wc-brands-grid .brand-item img {
+        max-height: 40px;
+    }
+
+    .nosfir-wc-brands-single-product img,
+    .storefront-wc-brands-single-product img {
+        max-height: 1.5em;
+    }
+
+    .wc-brands-filter-tags {
+        gap: 5px;
+    }
+
+    .wc-brands-filter-tags .brand-tag {
+        padding: 0.4em 0.8em;
+        font-size: 0.8em;
+    }
+}
+
+/* ==========================================================================
+   Accessibility
+   ========================================================================== */
+
+/**
+ * Reduced Motion
+ */
+@media (prefers-reduced-motion: reduce) {
+    .widget_brand_thumbnails ul.brand-thumbnails li a,
+    .widget_brand_thumbnails ul.brand-thumbnails li img,
+    div#brands_a_z ul.brands_index li a,
+    div#brands_a_z a.top,
+    .wc-brands-grid .brand-item,
+    .wc-brands-carousel .brands-track,
+    .wc-brands-carousel .brand-slide,
+    .wc-brands-carousel .brand-slide img,
+    .wc-brands-filter-tags .brand-tag {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    .widget_brand_thumbnails ul.brand-thumbnails li a:hover,
+    .wc-brands-grid .brand-item:hover {
+        transform: none;
+    }
+}
+
+/**
+ * Focus Visible
+ */
+.widget_brand_thumbnails ul.brand-thumbnails li a:focus-visible,
+.widget_brand_nav ul li a:focus-visible,
+div#brands_a_z ul.brands_index li a:focus-visible,
+div#brands_a_z a.top:focus-visible,
+div#brands_a_z ul.brands li a:focus-visible,
+.wc-brands-grid .brand-item a:focus-visible,
+.wc-brands-filter select:focus-visible,
+.wc-brands-filter-tags .brand-tag:focus-visible {
+    outline: 2px solid var(--nosfir-brand-primary);
+    outline-offset: 2px;
+}
+
+/**
+ * High Contrast Mode
+ */
+@media (prefers-contrast: high) {
+    .widget_brand_thumbnails ul.brand-thumbnails li a,
+    div#brands_a_z ul.brands_index li a,
+    .wc-brands-grid .brand-item,
+    .wc-brands-filter-tags .brand-tag {
+        border-width: 2px;
+    }
+
+    div#brands_a_z h3 {
+        border-bottom-width: 3px;
+    }
+}
+
+/* ==========================================================================
+   Print Styles
+   ========================================================================== */
+
+@media print {
+    .header-widget-region .widget_brand_thumbnails {
+        display: none;
+    }
+
+    div#brands_a_z ul.brands_index {
+        float: none;
+        width: 100%;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    div#brands_a_z h3,
+    div#brands_a_z ul.brands {
+        float: none;
+        width: 100%;
+    }
+
+    .wc-brands-carousel {
+        display: none;
+    }
+
+    .wc-brands-grid .brand-item {
+        border: 1px solid #000;
+        box-shadow: none;
+    }
+
+    .widget_brand_nav ul li .count {
+        background: transparent;
+        border: 1px solid currentColor;
+    }
+}
