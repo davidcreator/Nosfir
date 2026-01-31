@@ -1,1 +1,903 @@
-.woocommerce .coupon-container,.woocommerce-page .coupon-container{margin:0;box-shadow:none}.woocommerce .coupon-container.medium,.woocommerce-page .coupon-container.medium{line-height:inherit;padding:.6180469716em}.woocommerce .generated_coupon_summary,.woocommerce-page .generated_coupon_summary{margin:0}.woocommerce .coupon-content.small,.woocommerce-page .coupon-content.small{padding:.6180469716em 1.41575em}.woocommerce .coupon-content .coupon-expire,.woocommerce .coupon-content .discount-info,.woocommerce-page .coupon-content .coupon-expire,.woocommerce-page .coupon-content .discount-info{font-family:inherit}.woocommerce #coupons_list,.woocommerce-page #coupons_list{margin-bottom:1.618em}.sd-buttons-transparent.woocommerce .coupon-container,.sd-buttons-transparent.woocommerce-page .coupon-container{background:rgba(0,0,0,0) !important;padding:0}@media(min-width: 768px){.sc_info_box{width:41.1764705882%;float:right;margin-right:0;padding-left:2.0833333333%;padding-right:2.0833333333%}.page-template-template-fullwidth-php .sc_info_box{width:39.1304347826%;float:right;margin-right:0;margin-left:0}}
+/**
+ * WooCommerce Smart Coupons Extension Styles
+ * 
+ * @package     Nosfir
+ * @subpackage  WooCommerce/Extensions
+ * @version     1.0.0
+ * @author      David Creator
+ * 
+ * Este arquivo contém todos os estilos para a extensão Smart Coupons do WooCommerce
+ * Compatível com WooCommerce Smart Coupons 4.0+
+ */
+
+/* ==========================================================================
+   VARIÁVEIS CSS CUSTOMIZADAS - SMART COUPONS
+   ========================================================================== */
+
+:root {
+    /* Cores do sistema de cupons */
+    --sc-primary-color: #2c3e50;
+    --sc-secondary-color: #3498db;
+    --sc-accent-color: #27ae60;
+    --sc-warning-color: #f39c12;
+    --sc-danger-color: #e74c3c;
+    --sc-info-color: #16a085;
+    --sc-success-color: #2ecc71;
+    
+    /* Cores de background */
+    --sc-bg-light: rgba(0, 0, 0, 0.025);
+    --sc-bg-medium: rgba(0, 0, 0, 0.05);
+    --sc-bg-dark: rgba(0, 0, 0, 0.1);
+    --sc-bg-transparent: rgba(0, 0, 0, 0);     /* Valor da referência */
+    --sc-bg-white: #ffffff;
+    --sc-bg-coupon: #f8f9fa;
+    
+    /* Cores de cupons por tipo */
+    --sc-bg-percent: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --sc-bg-fixed: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --sc-bg-free-shipping: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    --sc-bg-gift: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+    
+    /* Cores de texto */
+    --sc-text-primary: #2c2d33;
+    --sc-text-secondary: #6c757d;
+    --sc-text-muted: #999999;
+    --sc-text-light: #ffffff;
+    --sc-text-dark: #1a1a1a;
+    
+    /* Espaçamentos (Golden Ratio) */
+    --sc-spacing-xs: 0.382rem;
+    --sc-spacing-sm: 0.6180469716rem;      /* Valor da referência - Golden Ratio */
+    --sc-spacing-md: 1rem;
+    --sc-spacing-lg: 1.41575rem;           /* Valor da referência */
+    --sc-spacing-xl: 1.618rem;             /* Golden Ratio */
+    --sc-spacing-xxl: 2.618rem;
+    
+    /* Layout responsivo */
+    --sc-info-width: 41.1764705882%;       /* Valor da referência */
+    --sc-info-width-full: 39.1304347826%;  /* Valor da referência */
+    --sc-info-padding: 2.0833333333%;      /* Valor da referência */
+    
+    /* Tamanhos de fonte */
+    --sc-font-xs: 0.75rem;
+    --sc-font-sm: 0.875rem;
+    --sc-font-md: 1rem;
+    --sc-font-lg: 1.125rem;
+    --sc-font-xl: 1.25rem;
+    --sc-font-xxl: 1.5rem;
+    
+    /* Bordas e efeitos */
+    --sc-border-radius: 8px;
+    --sc-border-radius-sm: 4px;
+    --sc-border-radius-lg: 12px;
+    --sc-border-radius-pill: 30px;
+    --sc-border-width: 2px;
+    --sc-border-style: dashed;
+    --sc-border-color: rgba(0, 0, 0, 0.1);
+    
+    /* Sombras */
+    --sc-shadow-none: none;                /* Valor da referência */
+    --sc-shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.08);
+    --sc-shadow-md: 0 4px 8px rgba(0, 0, 0, 0.12);
+    --sc-shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.16);
+    --sc-shadow-xl: 0 12px 24px rgba(0, 0, 0, 0.2);
+    
+    /* Transições */
+    --sc-transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --sc-transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --sc-transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==========================================================================
+   CONTAINER DE CUPOM - Estilos da referência
+   ========================================================================== */
+
+/**
+ * Container base - Estilos da referência
+ */
+.woocommerce .coupon-container,
+.woocommerce-page .coupon-container {
+    margin: 0;                              /* Valor da referência */
+    box-shadow: none;                       /* Valor da referência */
+    background: var(--sc-bg-coupon);
+    border: var(--sc-border-width) var(--sc-border-style) var(--sc-border-color);
+    border-radius: var(--sc-border-radius);
+    position: relative;
+    overflow: hidden;
+    transition: all var(--sc-transition-normal);
+}
+
+/* Hover effect */
+.coupon-container:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--sc-shadow-lg);
+    border-color: var(--sc-accent-color);
+}
+
+/* Estado selecionado */
+.coupon-container.selected {
+    border-color: var(--sc-success-color);
+    background: linear-gradient(135deg, rgba(46, 204, 113, 0.1) 0%, rgba(39, 174, 96, 0.1) 100%);
+}
+
+/* Estado expirado */
+.coupon-container.expired {
+    opacity: 0.6;
+    filter: grayscale(100%);
+    pointer-events: none;
+}
+
+/**
+ * Tamanho médio - Estilos da referência
+ */
+.woocommerce .coupon-container.medium,
+.woocommerce-page .coupon-container.medium {
+    line-height: inherit;                   /* Valor da referência */
+    padding: 0.6180469716em;                /* Valor da referência - Golden Ratio */
+}
+
+/* Tamanho grande */
+.coupon-container.large {
+    padding: var(--sc-spacing-lg);
+}
+
+/* Tamanho pequeno */
+.coupon-container.small {
+    padding: var(--sc-spacing-xs);
+}
+
+/* ==========================================================================
+   CONTEÚDO DO CUPOM - Estilos da referência
+   ========================================================================== */
+
+/**
+ * Conteúdo pequeno - Estilos da referência
+ */
+.woocommerce .coupon-content.small,
+.woocommerce-page .coupon-content.small {
+    padding: 0.6180469716em 1.41575em;      /* Valores da referência */
+}
+
+/* Conteúdo médio */
+.coupon-content.medium {
+    padding: var(--sc-spacing-md) var(--sc-spacing-lg);
+}
+
+/* Conteúdo grande */
+.coupon-content.large {
+    padding: var(--sc-spacing-lg) var(--sc-spacing-xl);
+}
+
+/* Layout do conteúdo */
+.coupon-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sc-spacing-sm);
+}
+
+/* Código do cupom */
+.coupon-content .coupon-code {
+    font-size: var(--sc-font-xl);
+    font-weight: 700;
+    color: var(--sc-primary-color);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: var(--sc-spacing-sm) var(--sc-spacing-md);
+    background: var(--sc-bg-white);
+    border: 2px dashed var(--sc-accent-color);
+    border-radius: var(--sc-border-radius-sm);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Efeito de cópia */
+.coupon-code::after {
+    content: 'Click to Copy';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--sc-primary-color);
+    color: var(--sc-text-light);
+    padding: var(--sc-spacing-xs) var(--sc-spacing-sm);
+    border-radius: var(--sc-border-radius-sm);
+    font-size: var(--sc-font-xs);
+    opacity: 0;
+    transition: opacity var(--sc-transition-fast);
+    pointer-events: none;
+}
+
+.coupon-code:hover::after {
+    opacity: 1;
+}
+
+/* Código copiado */
+.coupon-code.copied::after {
+    content: 'Copied!';
+    background: var(--sc-success-color);
+    opacity: 1;
+}
+
+/* Descrição do cupom */
+.coupon-content .coupon-description {
+    color: var(--sc-text-secondary);
+    font-size: var(--sc-font-md);
+    line-height: 1.5;
+    margin-bottom: var(--sc-spacing-sm);
+}
+
+/**
+ * Informações do cupom - Estilos da referência
+ */
+.woocommerce .coupon-content .coupon-expire,
+.woocommerce .coupon-content .discount-info,
+.woocommerce-page .coupon-content .coupon-expire,
+.woocommerce-page .coupon-content .discount-info {
+    font-family: inherit;                   /* Valor da referência */
+    font-size: var(--sc-font-sm);
+    color: var(--sc-text-muted);
+    display: flex;
+    align-items: center;
+    gap: var(--sc-spacing-xs);
+}
+
+/* Ícones informativos */
+.coupon-expire::before,
+.discount-info::before {
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    margin-right: var(--sc-spacing-xs);
+}
+
+.coupon-expire::before {
+    content: '\f017'; /* Clock icon */
+    color: var(--sc-warning-color);
+}
+
+.discount-info::before {
+    content: '\f02b'; /* Tag icon */
+    color: var(--sc-accent-color);
+}
+
+/* Valor do desconto */
+.coupon-content .coupon-amount {
+    font-size: var(--sc-font-xxl);
+    font-weight: 700;
+    color: var(--sc-accent-color);
+    display: flex;
+    align-items: baseline;
+    gap: var(--sc-spacing-xs);
+}
+
+.coupon-amount .currency {
+    font-size: var(--sc-font-lg);
+    font-weight: 400;
+}
+
+.coupon-amount .percentage {
+    font-size: var(--sc-font-xl);
+}
+
+/* ==========================================================================
+   RESUMO DE CUPONS GERADOS - Estilos da referência
+   ========================================================================== */
+
+.woocommerce .generated_coupon_summary,
+.woocommerce-page .generated_coupon_summary {
+    margin: 0;                              /* Valor da referência */
+    padding: var(--sc-spacing-lg);
+    background: linear-gradient(135deg, var(--sc-bg-light) 0%, var(--sc-bg-white) 100%);
+    border-radius: var(--sc-border-radius);
+    box-shadow: var(--sc-shadow-sm);
+}
+
+/* Título do resumo */
+.generated_coupon_summary h3 {
+    margin: 0 0 var(--sc-spacing-md);
+    color: var(--sc-text-primary);
+    font-size: var(--sc-font-xl);
+    padding-bottom: var(--sc-spacing-sm);
+    border-bottom: 2px solid var(--sc-accent-color);
+}
+
+/* Lista de cupons gerados */
+.generated_coupon_summary .coupon-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: var(--sc-spacing-sm);
+}
+
+.generated_coupon_summary .coupon-item {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--sc-spacing-sm);
+    background: var(--sc-bg-white);
+    border-radius: var(--sc-border-radius-sm);
+    transition: all var(--sc-transition-fast);
+}
+
+.generated_coupon_summary .coupon-item:hover {
+    background: var(--sc-bg-light);
+    transform: translateX(4px);
+}
+
+/* ==========================================================================
+   LISTA DE CUPONS - Estilos da referência
+   ========================================================================== */
+
+.woocommerce #coupons_list,
+.woocommerce-page #coupons_list {
+    margin-bottom: 1.618em;                 /* Valor da referência - Golden Ratio */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--sc-spacing-lg);
+}
+
+/* Item de cupom na lista */
+#coupons_list .coupon-item {
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform var(--sc-transition-normal);
+}
+
+#coupons_list .coupon-item:hover {
+    transform: rotateY(5deg);
+}
+
+/* Frente do cupom (card style) */
+#coupons_list .coupon-front {
+    background: var(--sc-bg-white);
+    border-radius: var(--sc-border-radius);
+    padding: var(--sc-spacing-lg);
+    box-shadow: var(--sc-shadow-md);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Padrão decorativo */
+#coupons_list .coupon-front::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, var(--sc-accent-color) 20%, transparent 20%);
+    background-size: 20px 20px;
+    opacity: 0.05;
+    transform: rotate(45deg);
+}
+
+/* Badge de tipo */
+#coupons_list .coupon-type-badge {
+    position: absolute;
+    top: var(--sc-spacing-sm);
+    right: var(--sc-spacing-sm);
+    padding: var(--sc-spacing-xs) var(--sc-spacing-sm);
+    border-radius: var(--sc-border-radius-pill);
+    font-size: var(--sc-font-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--sc-text-light);
+    z-index: 1;
+}
+
+.coupon-type-badge.percent {
+    background: var(--sc-bg-percent);
+}
+
+.coupon-type-badge.fixed_cart {
+    background: var(--sc-bg-fixed);
+}
+
+.coupon-type-badge.free_shipping {
+    background: var(--sc-bg-free-shipping);
+}
+
+.coupon-type-badge.gift_card {
+    background: var(--sc-bg-gift);
+}
+
+/* ==========================================================================
+   BOTÕES TRANSPARENTES - Estilos da referência
+   ========================================================================== */
+
+.sd-buttons-transparent.woocommerce .coupon-container,
+.sd-buttons-transparent.woocommerce-page .coupon-container {
+    background: rgba(0, 0, 0, 0) !important; /* Valor da referência */
+    padding: 0;                              /* Valor da referência */
+    border: none;
+}
+
+/* Estilo de botão para cupons transparentes */
+.sd-buttons-transparent .coupon-content {
+    background: transparent;
+    border: 2px solid var(--sc-primary-color);
+    border-radius: var(--sc-border-radius-pill);
+    padding: var(--sc-spacing-sm) var(--sc-spacing-lg);
+    text-align: center;
+    transition: all var(--sc-transition-fast);
+}
+
+.sd-buttons-transparent .coupon-content:hover {
+    background: var(--sc-primary-color);
+    color: var(--sc-text-light);
+}
+
+/* ==========================================================================
+   CAIXA DE INFORMAÇÕES - Estilos da referência (Responsivo)
+   ========================================================================== */
+
+/**
+ * Desktop (min-width: 768px) - Estilos da referência
+ */
+@media (min-width: 768px) {
+    .sc_info_box {
+        width: 41.1764705882%;              /* Valor da referência */
+        float: right;                       /* Valor da referência */
+        margin-right: 0;                    /* Valor da referência */
+        padding-left: 2.0833333333%;        /* Valor da referência */
+        padding-right: 2.0833333333%;       /* Valor da referência */
+        background: var(--sc-bg-white);
+        border: 1px solid var(--sc-border-color);
+        border-radius: var(--sc-border-radius);
+        box-shadow: var(--sc-shadow-sm);
+    }
+    
+    /* Template fullwidth - Estilos da referência */
+    .page-template-template-fullwidth-php .sc_info_box {
+        width: 39.1304347826%;              /* Valor da referência */
+        float: right;                       /* Valor da referência */
+        margin-right: 0;                    /* Valor da referência */
+        margin-left: 0;                     /* Valor da referência */
+    }
+}
+
+/* Conteúdo da caixa de informações */
+.sc_info_box h4 {
+    margin: 0 0 var(--sc-spacing-md);
+    color: var(--sc-text-primary);
+    font-size: var(--sc-font-lg);
+    padding-bottom: var(--sc-spacing-sm);
+    border-bottom: 1px solid var(--sc-border-color);
+}
+
+.sc_info_box .info-content {
+    line-height: 1.6;
+    color: var(--sc-text-secondary);
+    font-size: var(--sc-font-sm);
+}
+
+.sc_info_box .info-list {
+    list-style: none;
+    padding: 0;
+    margin: var(--sc-spacing-md) 0;
+}
+
+.sc_info_box .info-list li {
+    padding: var(--sc-spacing-xs) 0;
+    padding-left: var(--sc-spacing-lg);
+    position: relative;
+}
+
+.sc_info_box .info-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--sc-success-color);
+    font-weight: 700;
+}
+
+/* ==========================================================================
+   FORMULÁRIOS DE CUPOM
+   ========================================================================== */
+
+/**
+ * Campo de aplicar cupom
+ */
+.coupon-input-form {
+    display: flex;
+    gap: var(--sc-spacing-sm);
+    margin: var(--sc-spacing-lg) 0;
+}
+
+.coupon-input-form input[type="text"] {
+    flex: 1;
+    padding: var(--sc-spacing-sm) var(--sc-spacing-md);
+    border: 2px solid var(--sc-border-color);
+    border-radius: var(--sc-border-radius-sm);
+    font-size: var(--sc-font-md);
+    transition: all var(--sc-transition-fast);
+}
+
+.coupon-input-form input[type="text"]:focus {
+    outline: none;
+    border-color: var(--sc-accent-color);
+    box-shadow: 0 0 0 3px rgba(39, 174, 96, 0.1);
+}
+
+.coupon-input-form button {
+    padding: var(--sc-spacing-sm) var(--sc-spacing-lg);
+    background: var(--sc-accent-color);
+    color: var(--sc-text-light);
+    border: none;
+    border-radius: var(--sc-border-radius-sm);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--sc-transition-fast);
+}
+
+.coupon-input-form button:hover {
+    background: var(--sc-success-color);
+    transform: translateY(-2px);
+    box-shadow: var(--sc-shadow-md);
+}
+
+/* ==========================================================================
+   CUPONS DISPONÍVEIS
+   ========================================================================== */
+
+/**
+ * Slider de cupons disponíveis
+ */
+.available-coupons {
+    margin: var(--sc-spacing-xl) 0;
+    padding: var(--sc-spacing-lg);
+    background: var(--sc-bg-light);
+    border-radius: var(--sc-border-radius);
+}
+
+.available-coupons h3 {
+    margin: 0 0 var(--sc-spacing-lg);
+    color: var(--sc-text-primary);
+    font-size: var(--sc-font-xl);
+    text-align: center;
+}
+
+.available-coupons .coupons-slider {
+    display: flex;
+    gap: var(--sc-spacing-md);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: var(--sc-spacing-sm) 0;
+    -webkit-overflow-scrolling: touch;
+}
+
+.coupons-slider::-webkit-scrollbar {
+    height: 6px;
+}
+
+.coupons-slider::-webkit-scrollbar-track {
+    background: var(--sc-bg-light);
+    border-radius: 3px;
+}
+
+.coupons-slider::-webkit-scrollbar-thumb {
+    background: var(--sc-accent-color);
+    border-radius: 3px;
+}
+
+.coupons-slider .slider-item {
+    flex: 0 0 250px;
+    scroll-snap-align: start;
+}
+
+/* ==========================================================================
+   EMAIL DE CUPOM
+   ========================================================================== */
+
+/**
+ * Template de email
+ */
+.email-coupon-container {
+    background: var(--sc-bg-white);
+    padding: var(--sc-spacing-xl);
+    border: 1px solid var(--sc-border-color);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.email-coupon-header {
+    text-align: center;
+    padding-bottom: var(--sc-spacing-lg);
+    border-bottom: 2px solid var(--sc-border-color);
+    margin-bottom: var(--sc-spacing-lg);
+}
+
+.email-coupon-header h1 {
+    color: var(--sc-primary-color);
+    font-size: var(--sc-font-xxl);
+    margin: 0 0 var(--sc-spacing-sm);
+}
+
+.email-coupon-body {
+    text-align: center;
+    padding: var(--sc-spacing-lg) 0;
+}
+
+.email-coupon-code {
+    display: inline-block;
+    padding: var(--sc-spacing-md) var(--sc-spacing-xl);
+    background: var(--sc-accent-color);
+    color: var(--sc-text-light);
+    font-size: var(--sc-font-xl);
+    font-weight: 700;
+    letter-spacing: 2px;
+    border-radius: var(--sc-border-radius-sm);
+    margin: var(--sc-spacing-lg) 0;
+}
+
+/* ==========================================================================
+   ESTADOS E FEEDBACK
+   ========================================================================== */
+
+/**
+ * Mensagens de sucesso/erro
+ */
+.coupon-message {
+    padding: var(--sc-spacing-md);
+    margin: var(--sc-spacing-md) 0;
+    border-radius: var(--sc-border-radius-sm);
+    display: flex;
+    align-items: center;
+    gap: var(--sc-spacing-sm);
+    animation: slideInDown 0.3s ease;
+}
+
+.coupon-message.success {
+    background: var(--sc-bg-success);
+    color: var(--sc-success-color);
+    border-left: 4px solid var(--sc-success-color);
+}
+
+.coupon-message.error {
+    background: rgba(231, 76, 60, 0.1);
+    color: var(--sc-danger-color);
+    border-left: 4px solid var(--sc-danger-color);
+}
+
+.coupon-message.info {
+    background: rgba(52, 152, 219, 0.1);
+    color: var(--sc-info-color);
+    border-left: 4px solid var(--sc-info-color);
+}
+
+/* Loading state */
+.coupon-loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid var(--sc-bg-light);
+    border-top-color: var(--sc-accent-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE
+   ========================================================================== */
+
+/**
+ * Tablets (768px - 1024px)
+ */
+@media screen and (max-width: 1024px) {
+    /* Grid de cupons */
+    #coupons_list {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    }
+    
+    /* Info box */
+    .sc_info_box {
+        width: 45%;
+    }
+}
+
+/**
+ * Mobile (menor que 768px)
+ */
+@media screen and (max-width: 768px) {
+    /* Lista de cupons em coluna única */
+    #coupons_list {
+        grid-template-columns: 1fr;
+        gap: var(--sc-spacing-md);
+    }
+    
+    /* Info box full width */
+    .sc_info_box {
+        width: 100%;
+        float: none;
+        margin: var(--sc-spacing-lg) 0;
+        padding: var(--sc-spacing-md);
+    }
+    
+    /* Ajuste de padding para containers */
+    .coupon-container {
+        padding: var(--sc-spacing-sm);
+    }
+    
+    .coupon-content .coupon-code {
+        font-size: var(--sc-font-lg);
+        letter-spacing: 1px;
+    }
+    
+    /* Formulário de cupom responsivo */
+    .coupon-input-form {
+        flex-direction: column;
+    }
+    
+    .coupon-input-form button {
+        width: 100%;
+    }
+    
+    /* Slider de cupons */
+    .coupons-slider .slider-item {
+        flex: 0 0 200px;
+    }
+}
+
+/**
+ * Mobile pequeno (menor que 480px)
+ */
+@media screen and (max-width: 480px) {
+    /* Reduzir fontes */
+    .coupon-content .coupon-code {
+        font-size: var(--sc-font-md);
+    }
+    
+    .coupon-content .coupon-amount {
+        font-size: var(--sc-font-xl);
+    }
+    
+    /* Reduzir espaçamentos */
+    :root {
+        --sc-spacing-lg: 1rem;
+        --sc-spacing-xl: 1.25rem;
+    }
+    
+    /* Coupons list */
+    #coupons_list {
+        margin-bottom: var(--sc-spacing-md);
+    }
+}
+
+/* ==========================================================================
+   MODO ESCURO (Dark Mode)
+   ========================================================================== */
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --sc-bg-white: #1a1a1a;
+        --sc-bg-coupon: #2a2a2a;
+        --sc-bg-light: rgba(255, 255, 255, 0.05);
+        --sc-text-primary: #e0e0e0;
+        --sc-text-secondary: #999;
+        --sc-border-color: #444;
+    }
+    
+    .coupon-container {
+        background: var(--sc-bg-coupon);
+        border-color: var(--sc-border-color);
+    }
+    
+    .coupon-content .coupon-code {
+        background: #1a1a1a;
+        color: #e0e0e0;
+    }
+    
+    .sc_info_box {
+        background: #2a2a2a;
+        border-color: #444;
+    }
+    
+    .generated_coupon_summary {
+        background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+    }
+    
+    #coupons_list .coupon-front {
+        background: #2a2a2a;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+}
+
+/* ==========================================================================
+   IMPRESSÃO
+   ========================================================================== */
+
+@media print {
+    /* Ocultar elementos interativos */
+    .coupon-input-form,
+    .available-coupons,
+    .coupon-message,
+    button {
+        display: none !important;
+    }
+    
+    /* Ajustar layout */
+    .coupon-container {
+        page-break-inside: avoid;
+        border: 1px solid #ddd;
+        box-shadow: none;
+    }
+    
+    #coupons_list {
+        display: block;
+    }
+    
+    #coupons_list .coupon-item {
+        page-break-inside: avoid;
+        margin-bottom: 1em;
+    }
+}
+
+/* ==========================================================================
+   ANIMAÇÕES
+   ========================================================================== */
+
+@keyframes slideInDown {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* Animação de aplicar cupom */
+.coupon-container.applying {
+    animation: pulse 1s ease infinite;
+}
+
+/* ==========================================================================
+   ACESSIBILIDADE
+   ========================================================================== */
+
+/* Focus visible */
+.coupon-container:focus-within,
+.coupon-code:focus,
+button:focus-visible {
+    outline: 3px solid var(--sc-accent-color);
+    outline-offset: 2px;
+}
+
+/* Screen reader text */
+.sc-screen-reader-text {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ==========================================================================
+   FIM DO ARQUIVO
+   ========================================================================== */

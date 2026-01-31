@@ -1,1 +1,916 @@
-.woocommerce-page .woocommerce-checkout-review-order-table th.product-name{width:70%}.woocommerce-page #shipping_addresses{padding-top:1.618em}.woocommerce-page .ship_address,.woocommerce-page .no_shipping_address{float:none;width:auto;margin:0 0 1.618em;background-color:rgba(0,0,0,.025);border:0;padding:1em;line-height:inherit;border-radius:0;font-size:.875em}.woocommerce-page .ship_address dl,.woocommerce-page .no_shipping_address dl{margin-top:0}.woocommerce-page .ship_address dl dd,.woocommerce-page .no_shipping_address dl dd{margin-bottom:1em}.woocommerce-page .ship_address address,.woocommerce-page .no_shipping_address address{margin:0}.woocommerce-page .ship_address .note-form,.woocommerce-page .no_shipping_address .note-form{margin-bottom:1.618em;padding-top:1em}.woocommerce-page .ship_address .modify-address-button,.woocommerce-page .no_shipping_address .modify-address-button{display:block;margin-top:1em}.woocommerce-page .addresses{clear:both}.woocommerce-page .addresses::before,.woocommerce-page .addresses::after{content:"";display:table}.woocommerce-page .addresses::after{clear:both}.woocommerce-page .addresses .address-block{margin:0 0 1.618em;width:47.0588235294%;float:left;margin-right:5.8823529412%}.woocommerce-page .addresses .address-block:nth-child(3),.woocommerce-page .addresses .address-block:nth-child(5),.woocommerce-page .addresses .address-block:nth-child(7){margin-right:0 !important}.woocommerce-page .addresses .address-block .buttons{text-align:inherit;position:static}.woocommerce-page .addresses .address-block .buttons .button{width:auto}.woocommerce-page.page-template-template-fullwidth-php .ship_address,.woocommerce-page.page-template-template-fullwidth-php .no_shipping_address{font-size:1em}.woocommerce-page.page-template-template-fullwidth-php .address-block{width:47.8260869565%;float:left;margin-right:4.347826087%}
+/**
+ * WooCommerce Ship to Multiple Addresses Extension Styles
+ * 
+ * @package     Nosfir
+ * @subpackage  WooCommerce/Extensions
+ * @version     1.0.0
+ * @author      David Creator
+ * 
+ * Este arquivo contém todos os estilos para a extensão Ship to Multiple Addresses do WooCommerce
+ * Compatível com WooCommerce Ship to Multiple Addresses 3.0+
+ */
+
+/* ==========================================================================
+   VARIÁVEIS CSS CUSTOMIZADAS - SHIP MULTIPLE ADDRESSES
+   ========================================================================== */
+
+:root {
+    /* Cores do sistema */
+    --sma-primary-color: #2c3e50;
+    --sma-secondary-color: #3498db;
+    --sma-accent-color: #27ae60;
+    --sma-warning-color: #f39c12;
+    --sma-danger-color: #e74c3c;
+    --sma-info-color: #16a085;
+    
+    /* Cores de background */
+    --sma-bg-light: rgba(0, 0, 0, 0.025);    /* Valor da referência */
+    --sma-bg-medium: rgba(0, 0, 0, 0.05);
+    --sma-bg-dark: rgba(0, 0, 0, 0.1);
+    --sma-bg-white: #ffffff;
+    --sma-bg-success: rgba(39, 174, 96, 0.1);
+    --sma-bg-warning: rgba(243, 156, 18, 0.1);
+    
+    /* Cores de texto */
+    --sma-text-primary: #2c2d33;
+    --sma-text-secondary: #6c757d;
+    --sma-text-muted: #999999;
+    --sma-text-light: #ffffff;
+    
+    /* Espaçamentos (Golden Ratio) */
+    --sma-spacing-xs: 0.382rem;
+    --sma-spacing-sm: 0.618rem;
+    --sma-spacing-md: 1rem;                  /* Valor da referência */
+    --sma-spacing-lg: 1.618rem;              /* Valor da referência - Golden Ratio */
+    --sma-spacing-xl: 2.618rem;
+    
+    /* Grid e Layout */
+    --sma-grid-gap: 5.8823529412%;          /* Valor da referência */
+    --sma-column-width: 47.0588235294%;     /* Valor da referência */
+    --sma-column-width-full: 47.8260869565%; /* Valor da referência */
+    --sma-column-gap-full: 4.347826087%;    /* Valor da referência */
+    
+    /* Tamanhos de fonte */
+    --sma-font-xs: 0.75rem;
+    --sma-font-sm: 0.875rem;                /* Valor da referência */
+    --sma-font-md: 1rem;                     /* Valor da referência */
+    --sma-font-lg: 1.125rem;
+    --sma-font-xl: 1.25rem;
+    
+    /* Bordas e efeitos */
+    --sma-border-radius: 0;                  /* Valor da referência */
+    --sma-border-radius-sm: 4px;
+    --sma-border-radius-md: 8px;
+    --sma-border-color: rgba(0, 0, 0, 0.1);
+    --sma-border-width: 1px;
+    
+    /* Sombras */
+    --sma-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
+    --sma-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.16);
+    --sma-shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.2);
+    --sma-shadow-hover: 0 8px 16px rgba(0, 0, 0, 0.15);
+    
+    /* Transições */
+    --sma-transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --sma-transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --sma-transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==========================================================================
+   TABELA DE REVISÃO DE PEDIDO - Estilos da referência
+   ========================================================================== */
+
+/**
+ * Tabela de checkout - Estilo da referência
+ */
+.woocommerce-page .woocommerce-checkout-review-order-table th.product-name {
+    width: 70%; /* Valor da referência */
+    padding: var(--sma-spacing-md);
+    font-weight: 600;
+    color: var(--sma-text-primary);
+    background: var(--sma-bg-light);
+}
+
+/* Outras colunas da tabela */
+.woocommerce-page .woocommerce-checkout-review-order-table th.product-total {
+    width: 30%;
+    text-align: right;
+}
+
+/* Linhas da tabela */
+.woocommerce-page .woocommerce-checkout-review-order-table tr {
+    border-bottom: 1px solid var(--sma-border-color);
+    transition: background var(--sma-transition-fast);
+}
+
+.woocommerce-page .woocommerce-checkout-review-order-table tr:hover {
+    background: var(--sma-bg-light);
+}
+
+/* Células da tabela */
+.woocommerce-page .woocommerce-checkout-review-order-table td {
+    padding: var(--sma-spacing-md);
+    vertical-align: middle;
+}
+
+/* Produtos agrupados por endereço */
+.woocommerce-page .woocommerce-checkout-review-order-table .shipping-group-header {
+    background: var(--sma-bg-medium);
+    font-weight: 600;
+    color: var(--sma-text-primary);
+}
+
+.woocommerce-page .woocommerce-checkout-review-order-table .shipping-group-header td {
+    padding: var(--sma-spacing-md);
+    border-top: 2px solid var(--sma-accent-color);
+}
+
+/* ==========================================================================
+   CONTAINER DE ENDEREÇOS DE ENVIO - Estilos da referência
+   ========================================================================== */
+
+/**
+ * Container principal - Estilo da referência
+ */
+.woocommerce-page #shipping_addresses {
+    padding-top: 1.618em; /* Valor da referência - Golden Ratio */
+    margin-bottom: var(--sma-spacing-xl);
+}
+
+/* Título da seção */
+#shipping_addresses h3 {
+    color: var(--sma-text-primary);
+    font-size: var(--sma-font-xl);
+    margin-bottom: var(--sma-spacing-lg);
+    padding-bottom: var(--sma-spacing-md);
+    border-bottom: 2px solid var(--sma-accent-color);
+    position: relative;
+}
+
+#shipping_addresses h3::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 60px;
+    height: 2px;
+    background: var(--sma-accent-color);
+}
+
+/**
+ * Endereços de envio individuais - Estilos da referência
+ */
+.woocommerce-page .ship_address,
+.woocommerce-page .no_shipping_address {
+    float: none;                            /* Valor da referência */
+    width: auto;                           /* Valor da referência */
+    margin: 0 0 1.618em;                   /* Valor da referência - Golden Ratio */
+    background-color: rgba(0, 0, 0, 0.025); /* Valor da referência */
+    border: 0;                              /* Valor da referência */
+    padding: 1em;                           /* Valor da referência */
+    line-height: inherit;                   /* Valor da referência */
+    border-radius: 0;                       /* Valor da referência */
+    font-size: 0.875em;                     /* Valor da referência */
+    transition: all var(--sma-transition-normal);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Hover effect */
+.ship_address:hover,
+.no_shipping_address:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    box-shadow: var(--sma-shadow-sm);
+    transform: translateY(-2px);
+}
+
+/* Indicador de endereço selecionado */
+.ship_address.selected {
+    background-color: var(--sma-bg-success);
+    border-left: 4px solid var(--sma-accent-color);
+}
+
+/* Badge de endereço principal */
+.ship_address .primary-badge {
+    position: absolute;
+    top: var(--sma-spacing-sm);
+    right: var(--sma-spacing-sm);
+    background: var(--sma-accent-color);
+    color: var(--sma-text-light);
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--sma-border-radius-sm);
+    font-size: var(--sma-font-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+/**
+ * Lista de definição de endereços - Estilos da referência
+ */
+.woocommerce-page .ship_address dl,
+.woocommerce-page .no_shipping_address dl {
+    margin-top: 0; /* Valor da referência */
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--sma-spacing-sm);
+}
+
+/* Termos da lista */
+.ship_address dl dt,
+.no_shipping_address dl dt {
+    font-weight: 600;
+    color: var(--sma-text-secondary);
+    min-width: 100px;
+}
+
+/* Definições da lista - Estilos da referência */
+.woocommerce-page .ship_address dl dd,
+.woocommerce-page .no_shipping_address dl dd {
+    margin-bottom: 1em; /* Valor da referência */
+    color: var(--sma-text-primary);
+    margin-left: 0;
+}
+
+/**
+ * Endereço formatado - Estilos da referência
+ */
+.woocommerce-page .ship_address address,
+.woocommerce-page .no_shipping_address address {
+    margin: 0; /* Valor da referência */
+    font-style: normal;
+    line-height: 1.6;
+    color: var(--sma-text-primary);
+}
+
+/* Ícone de endereço */
+.ship_address address::before {
+    content: "📍";
+    margin-right: var(--sma-spacing-sm);
+    font-size: 1.2em;
+}
+
+/**
+ * Formulário de nota - Estilos da referência
+ */
+.woocommerce-page .ship_address .note-form,
+.woocommerce-page .no_shipping_address .note-form {
+    margin-bottom: 1.618em; /* Valor da referência - Golden Ratio */
+    padding-top: 1em;      /* Valor da referência */
+    border-top: 1px dashed var(--sma-border-color);
+}
+
+/* Campo de nota */
+.note-form textarea {
+    width: 100%;
+    min-height: 80px;
+    padding: var(--sma-spacing-sm);
+    border: 1px solid var(--sma-border-color);
+    border-radius: var(--sma-border-radius-sm);
+    font-size: var(--sma-font-sm);
+    resize: vertical;
+    transition: all var(--sma-transition-fast);
+}
+
+.note-form textarea:focus {
+    outline: none;
+    border-color: var(--sma-accent-color);
+    box-shadow: 0 0 0 3px rgba(39, 174, 96, 0.1);
+}
+
+/* Label da nota */
+.note-form label {
+    display: block;
+    margin-bottom: var(--sma-spacing-sm);
+    font-weight: 600;
+    color: var(--sma-text-secondary);
+}
+
+/**
+ * Botão modificar endereço - Estilos da referência
+ */
+.woocommerce-page .ship_address .modify-address-button,
+.woocommerce-page .no_shipping_address .modify-address-button {
+    display: block;      /* Valor da referência */
+    margin-top: 1em;    /* Valor da referência */
+    padding: var(--sma-spacing-sm) var(--sma-spacing-md);
+    background: var(--sma-primary-color);
+    color: var(--sma-text-light);
+    text-align: center;
+    text-decoration: none;
+    border-radius: var(--sma-border-radius-sm);
+    font-weight: 500;
+    transition: all var(--sma-transition-fast);
+    border: 2px solid var(--sma-primary-color);
+}
+
+.modify-address-button:hover {
+    background: transparent;
+    color: var(--sma-primary-color);
+}
+
+/* Botões de ação adicionais */
+.ship_address .address-actions,
+.no_shipping_address .address-actions {
+    display: flex;
+    gap: var(--sma-spacing-sm);
+    margin-top: var(--sma-spacing-md);
+    padding-top: var(--sma-spacing-md);
+    border-top: 1px solid var(--sma-border-color);
+}
+
+.address-actions .button {
+    flex: 1;
+    padding: var(--sma-spacing-sm);
+    text-align: center;
+    border-radius: var(--sma-border-radius-sm);
+    font-size: var(--sma-font-sm);
+    font-weight: 500;
+    transition: all var(--sma-transition-fast);
+}
+
+.address-actions .button.edit {
+    background: var(--sma-info-color);
+    color: var(--sma-text-light);
+}
+
+.address-actions .button.delete {
+    background: var(--sma-danger-color);
+    color: var(--sma-text-light);
+}
+
+/* ==========================================================================
+   GRID DE ENDEREÇOS - Estilos da referência
+   ========================================================================== */
+
+/**
+ * Container de endereços - Estilos da referência
+ */
+.woocommerce-page .addresses {
+    clear: both; /* Valor da referência */
+    margin-bottom: var(--sma-spacing-xl);
+}
+
+/* Clearfix - Estilos da referência */
+.woocommerce-page .addresses::before,
+.woocommerce-page .addresses::after {
+    content: "";     /* Valor da referência */
+    display: table;  /* Valor da referência */
+}
+
+.woocommerce-page .addresses::after {
+    clear: both;     /* Valor da referência */
+}
+
+/**
+ * Blocos de endereço - Estilos da referência
+ */
+.woocommerce-page .addresses .address-block {
+    margin: 0 0 1.618em;              /* Valor da referência - Golden Ratio */
+    width: 47.0588235294%;           /* Valor da referência */
+    float: left;                     /* Valor da referência */
+    margin-right: 5.8823529412%;     /* Valor da referência */
+    background: var(--sma-bg-white);
+    border: 1px solid var(--sma-border-color);
+    padding: var(--sma-spacing-md);
+    border-radius: var(--sma-border-radius-sm);
+    transition: all var(--sma-transition-normal);
+    position: relative;
+    min-height: 200px;
+}
+
+/* Nth-child para remover margem - Estilos da referência */
+.woocommerce-page .addresses .address-block:nth-child(3),
+.woocommerce-page .addresses .address-block:nth-child(5),
+.woocommerce-page .addresses .address-block:nth-child(7) {
+    margin-right: 0 !important; /* Valor da referência */
+}
+
+/* Hover effect nos blocos */
+.addresses .address-block:hover {
+    box-shadow: var(--sma-shadow-hover);
+    transform: translateY(-4px);
+    border-color: var(--sma-accent-color);
+}
+
+/* Título do bloco */
+.address-block h4 {
+    margin: 0 0 var(--sma-spacing-md);
+    color: var(--sma-text-primary);
+    font-size: var(--sma-font-lg);
+    padding-bottom: var(--sma-spacing-sm);
+    border-bottom: 1px solid var(--sma-border-color);
+}
+
+/* Conteúdo do endereço */
+.address-block .address-content {
+    margin-bottom: var(--sma-spacing-md);
+    line-height: 1.6;
+    color: var(--sma-text-secondary);
+}
+
+/**
+ * Botões do bloco - Estilos da referência
+ */
+.woocommerce-page .addresses .address-block .buttons {
+    text-align: inherit;  /* Valor da referência */
+    position: static;     /* Valor da referência */
+    display: flex;
+    gap: var(--sma-spacing-sm);
+    margin-top: auto;
+}
+
+.woocommerce-page .addresses .address-block .buttons .button {
+    width: auto;         /* Valor da referência */
+    flex: 1;
+    padding: var(--sma-spacing-sm);
+    border-radius: var(--sma-border-radius-sm);
+    text-align: center;
+    font-size: var(--sma-font-sm);
+    transition: all var(--sma-transition-fast);
+}
+
+/* Botão primário */
+.address-block .buttons .button.primary {
+    background: var(--sma-accent-color);
+    color: var(--sma-text-light);
+    border: 2px solid var(--sma-accent-color);
+}
+
+.address-block .buttons .button.primary:hover {
+    background: transparent;
+    color: var(--sma-accent-color);
+}
+
+/* Botão secundário */
+.address-block .buttons .button.secondary {
+    background: transparent;
+    color: var(--sma-text-secondary);
+    border: 2px solid var(--sma-border-color);
+}
+
+.address-block .buttons .button.secondary:hover {
+    border-color: var(--sma-text-secondary);
+    color: var(--sma-text-primary);
+}
+
+/* ==========================================================================
+   TEMPLATE FULLWIDTH - Estilos da referência
+   ========================================================================== */
+
+/**
+ * Ajustes para template fullwidth - Estilos da referência
+ */
+.woocommerce-page.page-template-template-fullwidth-php .ship_address,
+.woocommerce-page.page-template-template-fullwidth-php .no_shipping_address {
+    font-size: 1em; /* Valor da referência */
+    padding: var(--sma-spacing-lg);
+}
+
+.woocommerce-page.page-template-template-fullwidth-php .address-block {
+    width: 47.8260869565%;        /* Valor da referência */
+    float: left;                  /* Valor da referência */
+    margin-right: 4.347826087%;   /* Valor da referência */
+}
+
+.woocommerce-page.page-template-template-fullwidth-php .address-block:nth-child(even) {
+    margin-right: 0;
+}
+
+/* ==========================================================================
+   FORMULÁRIO DE NOVO ENDEREÇO
+   ========================================================================== */
+
+/**
+ * Modal/Form de adicionar endereço
+ */
+.add-address-form {
+    background: var(--sma-bg-white);
+    border: 2px dashed var(--sma-accent-color);
+    border-radius: var(--sma-border-radius-sm);
+    padding: var(--sma-spacing-lg);
+    margin-bottom: var(--sma-spacing-lg);
+    position: relative;
+}
+
+.add-address-form h3 {
+    margin-top: 0;
+    margin-bottom: var(--sma-spacing-lg);
+    color: var(--sma-text-primary);
+    font-size: var(--sma-font-lg);
+}
+
+/* Campos do formulário */
+.add-address-form .form-row {
+    margin-bottom: var(--sma-spacing-md);
+}
+
+.add-address-form .form-row label {
+    display: block;
+    margin-bottom: var(--sma-spacing-xs);
+    font-weight: 600;
+    color: var(--sma-text-secondary);
+}
+
+.add-address-form .form-row input,
+.add-address-form .form-row select {
+    width: 100%;
+    padding: var(--sma-spacing-sm);
+    border: 1px solid var(--sma-border-color);
+    border-radius: var(--sma-border-radius-sm);
+    font-size: var(--sma-font-md);
+    transition: all var(--sma-transition-fast);
+}
+
+.add-address-form .form-row input:focus,
+.add-address-form .form-row select:focus {
+    outline: none;
+    border-color: var(--sma-accent-color);
+    box-shadow: 0 0 0 3px rgba(39, 174, 96, 0.1);
+}
+
+/* Grid de campos */
+.add-address-form .form-row-first,
+.add-address-form .form-row-last {
+    width: 48%;
+    float: left;
+}
+
+.add-address-form .form-row-last {
+    float: right;
+}
+
+/* Botões do formulário */
+.add-address-form .form-actions {
+    display: flex;
+    gap: var(--sma-spacing-md);
+    margin-top: var(--sma-spacing-lg);
+    padding-top: var(--sma-spacing-lg);
+    border-top: 1px solid var(--sma-border-color);
+}
+
+.add-address-form .form-actions button {
+    flex: 1;
+    padding: var(--sma-spacing-md);
+    border-radius: var(--sma-border-radius-sm);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--sma-transition-fast);
+}
+
+/* ==========================================================================
+   INDICADORES E STATUS
+   ========================================================================== */
+
+/**
+ * Contador de endereços
+ */
+.address-counter {
+    background: var(--sma-bg-light);
+    padding: var(--sma-spacing-md);
+    border-radius: var(--sma-border-radius-sm);
+    margin-bottom: var(--sma-spacing-lg);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.address-counter .count {
+    font-size: var(--sma-font-lg);
+    font-weight: 600;
+    color: var(--sma-text-primary);
+}
+
+.address-counter .limit {
+    color: var(--sma-text-secondary);
+    font-size: var(--sma-font-sm);
+}
+
+/**
+ * Mensagens de aviso
+ */
+.shipping-notice {
+    background: var(--sma-bg-warning);
+    border-left: 4px solid var(--sma-warning-color);
+    padding: var(--sma-spacing-md);
+    margin-bottom: var(--sma-spacing-lg);
+    border-radius: var(--sma-border-radius-sm);
+}
+
+.shipping-notice .notice-title {
+    font-weight: 600;
+    color: var(--sma-warning-color);
+    margin-bottom: var(--sma-spacing-sm);
+}
+
+.shipping-notice .notice-content {
+    color: var(--sma-text-secondary);
+    line-height: 1.5;
+}
+
+/* ==========================================================================
+   PRODUTOS AGRUPADOS POR ENDEREÇO
+   ========================================================================== */
+
+/**
+ * Lista de produtos por endereço
+ */
+.products-by-address {
+    margin-top: var(--sma-spacing-md);
+    padding-top: var(--sma-spacing-md);
+    border-top: 1px solid var(--sma-border-color);
+}
+
+.products-by-address h5 {
+    font-size: var(--sma-font-sm);
+    color: var(--sma-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: var(--sma-spacing-sm);
+}
+
+.products-by-address .product-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.products-by-address .product-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--sma-spacing-xs) 0;
+    font-size: var(--sma-font-sm);
+}
+
+.products-by-address .product-name {
+    color: var(--sma-text-primary);
+}
+
+.products-by-address .product-quantity {
+    color: var(--sma-text-secondary);
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE
+   ========================================================================== */
+
+/**
+ * Tablets (768px - 1024px)
+ */
+@media screen and (max-width: 1024px) {
+    /* Ajuste de colunas */
+    .woocommerce-page .addresses .address-block {
+        width: 48%;
+        margin-right: 4%;
+    }
+    
+    .woocommerce-page .addresses .address-block:nth-child(even) {
+        margin-right: 0;
+    }
+    
+    .woocommerce-page .addresses .address-block:nth-child(3),
+    .woocommerce-page .addresses .address-block:nth-child(5),
+    .woocommerce-page .addresses .address-block:nth-child(7) {
+        margin-right: 4%;
+    }
+    
+    .woocommerce-page .addresses .address-block:nth-child(4),
+    .woocommerce-page .addresses .address-block:nth-child(6),
+    .woocommerce-page .addresses .address-block:nth-child(8) {
+        margin-right: 0 !important;
+    }
+}
+
+/**
+ * Mobile (menor que 768px)
+ */
+@media screen and (max-width: 768px) {
+    /* Tabela responsiva */
+    .woocommerce-page .woocommerce-checkout-review-order-table {
+        font-size: var(--sma-font-sm);
+    }
+    
+    .woocommerce-page .woocommerce-checkout-review-order-table th.product-name {
+        width: 60%;
+    }
+    
+    /* Endereços em coluna única */
+    .woocommerce-page .addresses .address-block {
+        width: 100%;
+        float: none;
+        margin-right: 0;
+    }
+    
+    .woocommerce-page .addresses .address-block:nth-child(n) {
+        margin-right: 0 !important;
+    }
+    
+    /* Ajuste de padding */
+    .woocommerce-page .ship_address,
+    .woocommerce-page .no_shipping_address {
+        padding: var(--sma-spacing-md);
+        font-size: var(--sma-font-md);
+    }
+    
+    /* Formulário responsivo */
+    .add-address-form .form-row-first,
+    .add-address-form .form-row-last {
+        width: 100%;
+        float: none;
+    }
+    
+    /* Botões em coluna */
+    .address-actions,
+    .form-actions {
+        flex-direction: column;
+    }
+    
+    /* Lista de definição responsiva */
+    .ship_address dl,
+    .no_shipping_address dl {
+        grid-template-columns: 1fr;
+    }
+    
+    .ship_address dl dt,
+    .no_shipping_address dl dt {
+        font-size: var(--sma-font-xs);
+        margin-bottom: 0.25rem;
+    }
+}
+
+/**
+ * Mobile pequeno (menor que 480px)
+ */
+@media screen and (max-width: 480px) {
+    /* Reduzir espaçamentos */
+    #shipping_addresses {
+        padding-top: var(--sma-spacing-md);
+    }
+    
+    .woocommerce-page .ship_address,
+    .woocommerce-page .no_shipping_address {
+        margin-bottom: var(--sma-spacing-md);
+        padding: var(--sma-spacing-sm);
+    }
+    
+    /* Fontes menores */
+    #shipping_addresses h3 {
+        font-size: var(--sma-font-lg);
+    }
+    
+    .address-block h4 {
+        font-size: var(--sma-font-md);
+    }
+    
+    /* Ocultar badges em telas muito pequenas */
+    .ship_address .primary-badge {
+        font-size: 0.625rem;
+        padding: 0.125rem 0.375rem;
+    }
+}
+
+/* ==========================================================================
+   MODO ESCURO (Dark Mode)
+   ========================================================================== */
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --sma-bg-white: #1a1a1a;
+        --sma-bg-light: rgba(255, 255, 255, 0.05);
+        --sma-text-primary: #e0e0e0;
+        --sma-text-secondary: #999;
+        --sma-border-color: #333;
+    }
+    
+    .woocommerce-page .ship_address,
+    .woocommerce-page .no_shipping_address {
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+    
+    .woocommerce-page .addresses .address-block {
+        background: #2a2a2a;
+        border-color: #444;
+    }
+    
+    .add-address-form {
+        background: #2a2a2a;
+        border-color: var(--sma-accent-color);
+    }
+    
+    .add-address-form input,
+    .add-address-form select {
+        background: #1a1a1a;
+        color: #e0e0e0;
+        border-color: #444;
+    }
+    
+    .note-form textarea {
+        background: #1a1a1a;
+        color: #e0e0e0;
+        border-color: #444;
+    }
+}
+
+/* ==========================================================================
+   IMPRESSÃO
+   ========================================================================== */
+
+@media print {
+    /* Ocultar elementos interativos */
+    .modify-address-button,
+    .address-actions,
+    .buttons,
+    .add-address-form,
+    .note-form {
+        display: none !important;
+    }
+    
+    /* Ajustar layout para impressão */
+    .woocommerce-page .addresses .address-block {
+        width: 45%;
+        page-break-inside: avoid;
+        border: 1px solid #ddd;
+    }
+    
+    .woocommerce-page .ship_address,
+    .woocommerce-page .no_shipping_address {
+        background: none;
+        border: 1px solid #ddd;
+        page-break-inside: avoid;
+    }
+}
+
+/* ==========================================================================
+   ANIMAÇÕES
+   ========================================================================== */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* Animação de entrada para endereços */
+.ship_address,
+.no_shipping_address,
+.address-block {
+    animation: fadeInUp 0.5s ease;
+}
+
+/* Animação de seleção */
+.ship_address.selected {
+    animation: pulse 0.5s ease;
+}
+
+/* ==========================================================================
+   ACESSIBILIDADE
+   ========================================================================== */
+
+/* Focus visible */
+.ship_address:focus-within,
+.address-block:focus-within {
+    outline: 3px solid var(--sma-accent-color);
+    outline-offset: 2px;
+}
+
+/* Screen reader text */
+.sma-screen-reader-text {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+/* Skip links */
+.sma-skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--sma-primary-color);
+    color: var(--sma-text-light);
+    padding: 8px;
+    text-decoration: none;
+    z-index: 100;
+}
+
+.sma-skip-link:focus {
+    top: 0;
+}
+
+/* ==========================================================================
+   FIM DO ARQUIVO
+   ========================================================================== */

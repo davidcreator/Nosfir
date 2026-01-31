@@ -1,1 +1,1060 @@
-#wl-wrapper.wl-button-wrap{padding:1.618em 0 0 0}.wl-add-link{padding-left:0 !important;background:none !important}#wl-wrapper .wl-tabs{border-bottom:0 !important}#wl-wrapper .wl-tabs>li{float:none !important}#wl-wrapper .wl-tabs>li>a{padding:1em 1.41575em;border:0 !important;margin:0 !important;border-top-left-radius:0;border-top-right-radius:0;background-color:rgba(0,0,0,0) !important}#wl-wrapper .wl-tabs>li.active a{box-shadow:inset 0 -3px 0 rgba(0,0,0,.1)}#wl-wrapper .wl-table td{padding:.875em 1.41575em !important}#wl-wrapper .wl-table td:first-child{padding-left:1.41575em !important}#wl-wrapper .wl-table.manage td{padding:.5407911001em !important}#wl-wrapper .wl-meta-share,#wl-wrapper .wl-share-url{border-bottom-color:rgba(0,0,0,.05)}.wl-tab-wrap ul.tabs,.wl-tab-wrap .panel{width:100%;margin:0}.wl-tab-wrap ul.tabs li::after{display:none !important}@media(min-width: 768px){#wl-wrapper .wl-tabs>li a{padding-left:0}#wl-wrapper .wl-tabs>li.active a{box-shadow:none}}
+/**
+ * WooCommerce Wishlists Extension Styles
+ * 
+ * @package     Nosfir
+ * @subpackage  WooCommerce/Extensions
+ * @version     1.0.0
+ * @author      David Creator
+ * 
+ * Este arquivo contém todos os estilos para a extensão Wishlists do WooCommerce
+ * Compatível com WooCommerce Wishlists 2.0+
+ */
+
+/* ==========================================================================
+   VARIÁVEIS CSS CUSTOMIZADAS - WISHLISTS
+   ========================================================================== */
+
+:root {
+    /* Cores do sistema */
+    --wl-primary-color: #2c3e50;
+    --wl-secondary-color: #3498db;
+    --wl-accent-color: #e74c3c;
+    --wl-success-color: #27ae60;
+    --wl-warning-color: #f39c12;
+    --wl-danger-color: #c0392b;
+    --wl-info-color: #16a085;
+    --wl-heart-color: #e74c3c;
+    
+    /* Cores de background */
+    --wl-bg-transparent: rgba(0, 0, 0, 0);       /* Valor da referência */
+    --wl-bg-white: #ffffff;
+    --wl-bg-light: rgba(0, 0, 0, 0.025);
+    --wl-bg-medium: rgba(0, 0, 0, 0.05);         /* Valor da referência */
+    --wl-bg-dark: rgba(0, 0, 0, 0.1);            /* Valor da referência */
+    --wl-bg-hover: #f8f9fa;
+    --wl-bg-active: rgba(0, 0, 0, 0.02);
+    
+    /* Cores de borda */
+    --wl-border-color: rgba(0, 0, 0, 0.05);      /* Valor da referência */
+    --wl-border-hover: rgba(0, 0, 0, 0.1);
+    --wl-border-active: rgba(0, 0, 0, 0.15);
+    --wl-border-width: 1px;
+    --wl-border-style: solid;
+    
+    /* Cores de texto */
+    --wl-text-primary: #2c2d33;
+    --wl-text-secondary: #6c757d;
+    --wl-text-muted: #999999;
+    --wl-text-light: #ffffff;
+    --wl-text-dark: #1a1a1a;
+    
+    /* Espaçamentos (Golden Ratio) */
+    --wl-spacing-xs: 0.382rem;
+    --wl-spacing-sm: 0.5407911001rem;            /* Valor da referência */
+    --wl-spacing-md: 0.875rem;                   /* Valor da referência */
+    --wl-spacing-lg: 1rem;                       /* Valor da referência */
+    --wl-spacing-xl: 1.41575rem;                 /* Valor da referência */
+    --wl-spacing-xxl: 1.618rem;                  /* Valor da referência - Golden Ratio */
+    
+    /* Tamanhos de fonte */
+    --wl-font-xs: 0.75rem;
+    --wl-font-sm: 0.875rem;
+    --wl-font-md: 1rem;
+    --wl-font-lg: 1.125rem;
+    --wl-font-xl: 1.25rem;
+    --wl-font-xxl: 1.5rem;
+    
+    /* Bordas e efeitos */
+    --wl-border-radius: 0;                       /* Valor da referência */
+    --wl-border-radius-sm: 4px;
+    --wl-border-radius-md: 8px;
+    --wl-border-radius-lg: 12px;
+    --wl-border-radius-circle: 50%;
+    
+    /* Sombras */
+    --wl-shadow-none: none;
+    --wl-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
+    --wl-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.16);
+    --wl-shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.2);
+    --wl-shadow-tab: inset 0 -3px 0 rgba(0, 0, 0, 0.1); /* Valor da referência */
+    
+    /* Transições */
+    --wl-transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --wl-transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --wl-transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==========================================================================
+   WRAPPER PRINCIPAL - Estilos da referência
+   ========================================================================== */
+
+/**
+ * Container do botão - Estilo da referência
+ */
+#wl-wrapper.wl-button-wrap {
+    padding: 1.618em 0 0 0;                      /* Valor da referência - Golden Ratio */
+    margin-bottom: var(--wl-spacing-xl);
+    position: relative;
+}
+
+/* Container principal */
+#wl-wrapper {
+    background: var(--wl-bg-white);
+    border-radius: var(--wl-border-radius-md);
+    overflow: hidden;
+    box-shadow: var(--wl-shadow-sm);
+    transition: all var(--wl-transition-normal);
+}
+
+#wl-wrapper:hover {
+    box-shadow: var(--wl-shadow-md);
+}
+
+/* ==========================================================================
+   LINK DE ADICIONAR À WISHLIST - Estilos da referência
+   ========================================================================== */
+
+/**
+ * Botão de adicionar - Estilos da referência
+ */
+.wl-add-link {
+    padding-left: 0 !important;                  /* Valor da referência */
+    background: none !important;                 /* Valor da referência */
+    border: 2px solid var(--wl-heart-color);
+    border-radius: var(--wl-border-radius-sm);
+    padding: var(--wl-spacing-sm) var(--wl-spacing-lg) !important;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--wl-spacing-sm);
+    color: var(--wl-heart-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all var(--wl-transition-fast);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Hover effect */
+.wl-add-link:hover {
+    background: var(--wl-heart-color) !important;
+    color: var(--wl-text-light);
+    transform: translateY(-2px);
+    box-shadow: var(--wl-shadow-md);
+}
+
+/* Ícone de coração */
+.wl-add-link::before {
+    content: '♡';
+    font-size: 1.25em;
+    transition: all var(--wl-transition-normal);
+}
+
+.wl-add-link:hover::before,
+.wl-add-link.added::before {
+    content: '❤';
+    animation: heartBeat 0.5s ease;
+}
+
+/* Estado adicionado */
+.wl-add-link.added {
+    background: var(--wl-heart-color) !important;
+    color: var(--wl-text-light);
+    border-color: var(--wl-heart-color);
+}
+
+/* Loading state */
+.wl-add-link.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* ==========================================================================
+   TABS DE NAVEGAÇÃO - Estilos da referência
+   ========================================================================== */
+
+/**
+ * Container de tabs - Estilos da referência
+ */
+#wl-wrapper .wl-tabs {
+    border-bottom: 0 !important;                 /* Valor da referência */
+    display: flex;
+    background: var(--wl-bg-light);
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/**
+ * Items de tab - Estilos da referência
+ */
+#wl-wrapper .wl-tabs > li {
+    float: none !important;                      /* Valor da referência */
+    margin: 0;
+    position: relative;
+}
+
+/**
+ * Links de tab - Estilos da referência
+ */
+#wl-wrapper .wl-tabs > li > a {
+    padding: 1em 1.41575em;                      /* Valores da referência */
+    border: 0 !important;                        /* Valor da referência */
+    margin: 0 !important;                        /* Valor da referência */
+    border-top-left-radius: 0;                   /* Valor da referência */
+    border-top-right-radius: 0;                  /* Valor da referência */
+    background-color: rgba(0, 0, 0, 0) !important; /* Valor da referência */
+    color: var(--wl-text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all var(--wl-transition-fast);
+    display: block;
+    white-space: nowrap;
+}
+
+/* Hover na tab */
+#wl-wrapper .wl-tabs > li > a:hover {
+    background-color: var(--wl-bg-hover) !important;
+    color: var(--wl-text-primary);
+}
+
+/**
+ * Tab ativa - Estilos da referência
+ */
+#wl-wrapper .wl-tabs > li.active a {
+    box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.1); /* Valor da referência */
+    color: var(--wl-text-primary);
+    font-weight: 600;
+    background-color: var(--wl-bg-white) !important;
+}
+
+/* Indicador de tab ativa alternativo */
+#wl-wrapper .wl-tabs > li.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--wl-accent-color);
+    animation: slideIn 0.3s ease;
+}
+
+/* Badge contador na tab */
+#wl-wrapper .wl-tabs > li > a .count {
+    display: inline-block;
+    background: var(--wl-accent-color);
+    color: var(--wl-text-light);
+    padding: 0.125rem 0.375rem;
+    border-radius: 10px;
+    font-size: 0.75rem;
+    margin-left: 0.5rem;
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   TABELA DE WISHLIST - Estilos da referência
+   ========================================================================== */
+
+/**
+ * Células da tabela - Estilos da referência
+ */
+#wl-wrapper .wl-table td {
+    padding: 0.875em 1.41575em !important;       /* Valores da referência */
+    vertical-align: middle;
+    border-bottom: 1px solid var(--wl-border-color);
+    transition: background var(--wl-transition-fast);
+}
+
+/* Hover na linha */
+#wl-wrapper .wl-table tr:hover td {
+    background: var(--wl-bg-hover);
+}
+
+/**
+ * Primeira célula - Estilo da referência
+ */
+#wl-wrapper .wl-table td:first-child {
+    padding-left: 1.41575em !important;          /* Valor da referência */
+}
+
+/* Última célula */
+#wl-wrapper .wl-table td:last-child {
+    padding-right: 1.41575em !important;
+    text-align: right;
+}
+
+/**
+ * Tabela de gerenciamento - Estilos da referência
+ */
+#wl-wrapper .wl-table.manage td {
+    padding: 0.5407911001em !important;          /* Valor da referência */
+    font-size: var(--wl-font-sm);
+}
+
+/* Cabeçalho da tabela */
+#wl-wrapper .wl-table thead th {
+    background: var(--wl-bg-light);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: var(--wl-font-sm);
+    letter-spacing: 0.5px;
+    color: var(--wl-text-secondary);
+    padding: var(--wl-spacing-md) var(--wl-spacing-xl);
+    border-bottom: 2px solid var(--wl-border-color);
+}
+
+/* Imagem do produto */
+#wl-wrapper .wl-table .product-thumbnail {
+    width: 80px;
+    text-align: center;
+}
+
+#wl-wrapper .wl-table .product-thumbnail img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: var(--wl-border-radius-sm);
+    transition: transform var(--wl-transition-fast);
+}
+
+#wl-wrapper .wl-table tr:hover .product-thumbnail img {
+    transform: scale(1.1);
+}
+
+/* Nome do produto */
+#wl-wrapper .wl-table .product-name {
+    font-weight: 500;
+    min-width: 200px;
+}
+
+#wl-wrapper .wl-table .product-name a {
+    color: var(--wl-text-primary);
+    text-decoration: none;
+    transition: color var(--wl-transition-fast);
+}
+
+#wl-wrapper .wl-table .product-name a:hover {
+    color: var(--wl-accent-color);
+}
+
+/* Preço do produto */
+#wl-wrapper .wl-table .product-price {
+    font-weight: 600;
+    color: var(--wl-text-primary);
+    white-space: nowrap;
+}
+
+#wl-wrapper .wl-table .product-price .sale-price {
+    color: var(--wl-accent-color);
+    margin-right: 0.5rem;
+}
+
+#wl-wrapper .wl-table .product-price del {
+    color: var(--wl-text-muted);
+    font-weight: 400;
+}
+
+/* Status do estoque */
+#wl-wrapper .wl-table .stock-status {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--wl-border-radius-sm);
+    font-size: var(--wl-font-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.stock-status.in-stock {
+    background: rgba(39, 174, 96, 0.1);
+    color: var(--wl-success-color);
+}
+
+.stock-status.out-of-stock {
+    background: rgba(231, 76, 60, 0.1);
+    color: var(--wl-danger-color);
+}
+
+/* Ações do produto */
+#wl-wrapper .wl-table .product-actions {
+    display: flex;
+    gap: var(--wl-spacing-sm);
+    justify-content: flex-end;
+}
+
+.product-actions .button {
+    padding: 0.375rem 0.75rem;
+    border-radius: var(--wl-border-radius-sm);
+    font-size: var(--wl-font-sm);
+    font-weight: 500;
+    transition: all var(--wl-transition-fast);
+    text-decoration: none;
+    border: 1px solid transparent;
+}
+
+.product-actions .add-to-cart {
+    background: var(--wl-success-color);
+    color: var(--wl-text-light);
+}
+
+.product-actions .add-to-cart:hover {
+    background: #229954;
+    transform: translateY(-2px);
+    box-shadow: var(--wl-shadow-sm);
+}
+
+.product-actions .remove {
+    background: transparent;
+    color: var(--wl-danger-color);
+    border-color: var(--wl-danger-color);
+}
+
+.product-actions .remove:hover {
+    background: var(--wl-danger-color);
+    color: var(--wl-text-light);
+}
+
+/* ==========================================================================
+   META E COMPARTILHAMENTO - Estilos da referência
+   ========================================================================== */
+
+/**
+ * Meta e URL de compartilhamento - Estilos da referência
+ */
+#wl-wrapper .wl-meta-share,
+#wl-wrapper .wl-share-url {
+    border-bottom-color: rgba(0, 0, 0, 0.05);    /* Valor da referência */
+    padding: var(--wl-spacing-lg);
+    background: var(--wl-bg-light);
+    border-radius: var(--wl-border-radius-sm);
+    margin: var(--wl-spacing-lg) 0;
+}
+
+/* Título da seção */
+.wl-meta-share h3,
+.wl-share-url h3 {
+    margin: 0 0 var(--wl-spacing-md);
+    font-size: var(--wl-font-lg);
+    color: var(--wl-text-primary);
+}
+
+/* Campo de URL */
+.wl-share-url input[type="text"] {
+    width: 100%;
+    padding: var(--wl-spacing-sm) var(--wl-spacing-md);
+    border: 1px solid var(--wl-border-color);
+    border-radius: var(--wl-border-radius-sm);
+    font-family: monospace;
+    font-size: var(--wl-font-sm);
+    background: var(--wl-bg-white);
+    transition: all var(--wl-transition-fast);
+}
+
+.wl-share-url input[type="text"]:focus {
+    outline: none;
+    border-color: var(--wl-accent-color);
+    box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+}
+
+/* Botões de compartilhamento social */
+.wl-share-buttons {
+    display: flex;
+    gap: var(--wl-spacing-sm);
+    margin-top: var(--wl-spacing-md);
+}
+
+.wl-share-buttons a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--wl-border-radius-circle);
+    color: white;
+    text-decoration: none;
+    transition: all var(--wl-transition-fast);
+}
+
+.wl-share-buttons a:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--wl-shadow-md);
+}
+
+/* Cores específicas de redes sociais */
+.wl-share-buttons .facebook {
+    background: #3b5998;
+}
+
+.wl-share-buttons .twitter {
+    background: #1da1f2;
+}
+
+.wl-share-buttons .pinterest {
+    background: #bd081c;
+}
+
+.wl-share-buttons .whatsapp {
+    background: #25d366;
+}
+
+.wl-share-buttons .email {
+    background: var(--wl-text-secondary);
+}
+
+/* ==========================================================================
+   TAB WRAP - Estilos da referência
+   ========================================================================== */
+
+/**
+ * Container de tabs e painéis - Estilos da referência
+ */
+.wl-tab-wrap ul.tabs,
+.wl-tab-wrap .panel {
+    width: 100%;                                 /* Valor da referência */
+    margin: 0;                                   /* Valor da referência */
+}
+
+/* Painéis de conteúdo */
+.wl-tab-wrap .panel {
+    padding: var(--wl-spacing-xl);
+    background: var(--wl-bg-white);
+    min-height: 300px;
+    animation: fadeIn 0.3s ease;
+}
+
+.wl-tab-wrap .panel.hidden {
+    display: none;
+}
+
+/**
+ * Remover pseudo-elemento - Estilo da referência
+ */
+.wl-tab-wrap ul.tabs li::after {
+    display: none !important;                    /* Valor da referência */
+}
+
+/* ==========================================================================
+   WISHLIST VAZIA
+   ========================================================================== */
+
+.wl-empty-wishlist {
+    text-align: center;
+    padding: var(--wl-spacing-xxl) var(--wl-spacing-xl);
+    background: var(--wl-bg-light);
+    border-radius: var(--wl-border-radius-md);
+    margin: var(--wl-spacing-xl) 0;
+}
+
+.wl-empty-wishlist .empty-icon {
+    font-size: 4rem;
+    color: var(--wl-text-muted);
+    margin-bottom: var(--wl-spacing-lg);
+}
+
+.wl-empty-wishlist h3 {
+    color: var(--wl-text-primary);
+    margin-bottom: var(--wl-spacing-md);
+}
+
+.wl-empty-wishlist p {
+    color: var(--wl-text-secondary);
+    margin-bottom: var(--wl-spacing-xl);
+}
+
+.wl-empty-wishlist .button {
+    display: inline-block;
+    padding: var(--wl-spacing-md) var(--wl-spacing-xl);
+    background: var(--wl-accent-color);
+    color: var(--wl-text-light);
+    border-radius: var(--wl-border-radius-sm);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all var(--wl-transition-fast);
+}
+
+.wl-empty-wishlist .button:hover {
+    background: var(--wl-danger-color);
+    transform: translateY(-2px);
+    box-shadow: var(--wl-shadow-md);
+}
+
+/* ==========================================================================
+   CRIAR/EDITAR WISHLIST
+   ========================================================================== */
+
+.wl-create-form,
+.wl-edit-form {
+    background: var(--wl-bg-white);
+    padding: var(--wl-spacing-xl);
+    border-radius: var(--wl-border-radius-md);
+    box-shadow: var(--wl-shadow-sm);
+    margin: var(--wl-spacing-xl) 0;
+}
+
+.wl-create-form h3,
+.wl-edit-form h3 {
+    margin: 0 0 var(--wl-spacing-lg);
+    color: var(--wl-text-primary);
+    padding-bottom: var(--wl-spacing-md);
+    border-bottom: 2px solid var(--wl-accent-color);
+}
+
+.wl-form-row {
+    margin-bottom: var(--wl-spacing-lg);
+}
+
+.wl-form-row label {
+    display: block;
+    margin-bottom: var(--wl-spacing-sm);
+    font-weight: 600;
+    color: var(--wl-text-secondary);
+}
+
+.wl-form-row input[type="text"],
+.wl-form-row textarea,
+.wl-form-row select {
+    width: 100%;
+    padding: var(--wl-spacing-sm) var(--wl-spacing-md);
+    border: 1px solid var(--wl-border-color);
+    border-radius: var(--wl-border-radius-sm);
+    font-size: var(--wl-font-md);
+    transition: all var(--wl-transition-fast);
+}
+
+.wl-form-row input:focus,
+.wl-form-row textarea:focus,
+.wl-form-row select:focus {
+    outline: none;
+    border-color: var(--wl-accent-color);
+    box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+}
+
+.wl-form-actions {
+    display: flex;
+    gap: var(--wl-spacing-md);
+    margin-top: var(--wl-spacing-xl);
+    padding-top: var(--wl-spacing-xl);
+    border-top: 1px solid var(--wl-border-color);
+}
+
+.wl-form-actions button {
+    padding: var(--wl-spacing-md) var(--wl-spacing-xl);
+    border-radius: var(--wl-border-radius-sm);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--wl-transition-fast);
+    border: none;
+}
+
+.wl-form-actions .save-button {
+    background: var(--wl-success-color);
+    color: var(--wl-text-light);
+}
+
+.wl-form-actions .save-button:hover {
+    background: #229954;
+    transform: translateY(-2px);
+    box-shadow: var(--wl-shadow-md);
+}
+
+.wl-form-actions .cancel-button {
+    background: transparent;
+    color: var(--wl-text-secondary);
+    border: 1px solid var(--wl-border-color);
+}
+
+.wl-form-actions .cancel-button:hover {
+    background: var(--wl-bg-light);
+}
+
+/* ==========================================================================
+   PRIVACY SETTINGS
+   ========================================================================== */
+
+.wl-privacy-settings {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--wl-spacing-lg);
+    padding: var(--wl-spacing-md);
+    background: var(--wl-bg-light);
+    border-radius: var(--wl-border-radius-sm);
+}
+
+.privacy-option {
+    display: flex;
+    align-items: center;
+    gap: var(--wl-spacing-sm);
+}
+
+.privacy-option input[type="radio"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.privacy-option label {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: var(--wl-spacing-xs);
+}
+
+.privacy-option .icon {
+    width: 20px;
+    height: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--wl-text-secondary);
+}
+
+/* ==========================================================================
+   NOTIFICAÇÕES E MENSAGENS
+   ========================================================================== */
+
+.wl-notification {
+    padding: var(--wl-spacing-md) var(--wl-spacing-lg);
+    border-radius: var(--wl-border-radius-sm);
+    margin: var(--wl-spacing-md) 0;
+    display: flex;
+    align-items: center;
+    gap: var(--wl-spacing-md);
+    animation: slideDown 0.3s ease;
+}
+
+.wl-notification.success {
+    background: rgba(39, 174, 96, 0.1);
+    border-left: 4px solid var(--wl-success-color);
+    color: var(--wl-success-color);
+}
+
+.wl-notification.error {
+    background: rgba(231, 76, 60, 0.1);
+    border-left: 4px solid var(--wl-danger-color);
+    color: var(--wl-danger-color);
+}
+
+.wl-notification.info {
+    background: rgba(52, 152, 219, 0.1);
+    border-left: 4px solid var(--wl-info-color);
+    color: var(--wl-info-color);
+}
+
+.wl-notification .close-btn {
+    margin-left: auto;
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity var(--wl-transition-fast);
+}
+
+.wl-notification .close-btn:hover {
+    opacity: 1;
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE - Estilos da referência
+   ========================================================================== */
+
+/**
+ * Desktop (min-width: 768px) - Estilos da referência
+ */
+@media (min-width: 768px) {
+    #wl-wrapper .wl-tabs > li a {
+        padding-left: 0;                         /* Valor da referência */
+    }
+    
+    #wl-wrapper .wl-tabs > li.active a {
+        box-shadow: none;                        /* Valor da referência */
+        border-bottom: 3px solid var(--wl-accent-color);
+    }
+    
+    /* Grid de wishlists */
+    .wishlists-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: var(--wl-spacing-lg);
+    }
+}
+
+/**
+ * Tablets (768px - 1024px)
+ */
+@media screen and (max-width: 1024px) {
+    #wl-wrapper .wl-table {
+        font-size: var(--wl-font-sm);
+    }
+    
+    #wl-wrapper .wl-table td {
+        padding: var(--wl-spacing-sm) var(--wl-spacing-md) !important;
+    }
+}
+
+/**
+ * Mobile (menor que 768px)
+ */
+@media screen and (max-width: 768px) {
+    /* Tabs responsivas */
+    #wl-wrapper .wl-tabs {
+        flex-direction: column;
+    }
+    
+    #wl-wrapper .wl-tabs > li {
+        width: 100%;
+    }
+    
+    #wl-wrapper .wl-tabs > li > a {
+        padding: var(--wl-spacing-md);
+        border-bottom: 1px solid var(--wl-border-color);
+    }
+    
+    /* Tabela responsiva */
+    #wl-wrapper .wl-table {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    #wl-wrapper .wl-table td {
+        white-space: nowrap;
+    }
+    
+    /* Alternativa: Cards no mobile */
+    .wl-mobile-cards .wl-table {
+        display: block;
+    }
+    
+    .wl-mobile-cards .wl-table tbody {
+        display: block;
+    }
+    
+    .wl-mobile-cards .wl-table tr {
+        display: block;
+        margin-bottom: var(--wl-spacing-lg);
+        background: var(--wl-bg-white);
+        border: 1px solid var(--wl-border-color);
+        border-radius: var(--wl-border-radius-md);
+        padding: var(--wl-spacing-md);
+    }
+    
+    .wl-mobile-cards .wl-table td {
+        display: block;
+        padding: var(--wl-spacing-sm) 0 !important;
+        border: none;
+    }
+    
+    .wl-mobile-cards .wl-table td:before {
+        content: attr(data-label);
+        font-weight: 600;
+        display: inline-block;
+        margin-right: var(--wl-spacing-sm);
+    }
+    
+    /* Ações responsivas */
+    .product-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .product-actions .button {
+        width: 100%;
+        text-align: center;
+    }
+    
+    /* Compartilhamento responsivo */
+    .wl-share-buttons {
+        justify-content: center;
+    }
+}
+
+/**
+ * Mobile pequeno (menor que 480px)
+ */
+@media screen and (max-width: 480px) {
+    #wl-wrapper {
+        border-radius: 0;
+    }
+    
+    #wl-wrapper .wl-tabs > li > a {
+        padding: var(--wl-spacing-sm);
+        font-size: var(--wl-font-sm);
+    }
+    
+    .wl-add-link {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .wl-form-actions {
+        flex-direction: column;
+    }
+    
+    .wl-form-actions button {
+        width: 100%;
+    }
+}
+
+/* ==========================================================================
+   MODO ESCURO (Dark Mode)
+   ========================================================================== */
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --wl-bg-white: #1a1a1a;
+        --wl-bg-light: rgba(255, 255, 255, 0.05);
+        --wl-bg-hover: #2a2a2a;
+        --wl-text-primary: #e0e0e0;
+        --wl-text-secondary: #999;
+        --wl-border-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    #wl-wrapper {
+        background: var(--wl-bg-white);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    }
+    
+    #wl-wrapper .wl-tabs {
+        background: #2a2a2a;
+    }
+    
+    #wl-wrapper .wl-table td {
+        border-color: #333;
+    }
+    
+    .wl-create-form,
+    .wl-edit-form {
+        background: #2a2a2a;
+    }
+    
+    .wl-form-row input,
+    .wl-form-row textarea,
+    .wl-form-row select {
+        background: #1a1a1a;
+        color: #e0e0e0;
+        border-color: #444;
+    }
+}
+
+/* ==========================================================================
+   IMPRESSÃO
+   ========================================================================== */
+
+@media print {
+    #wl-wrapper .wl-tabs,
+    .wl-add-link,
+    .product-actions,
+    .wl-share-buttons,
+    .wl-form-actions {
+        display: none !important;
+    }
+    
+    #wl-wrapper .wl-table {
+        border: 1px solid #ddd;
+    }
+    
+    #wl-wrapper .wl-table td {
+        border: 1px solid #ddd;
+        padding: 0.5rem !important;
+    }
+}
+
+/* ==========================================================================
+   ANIMAÇÕES
+   ========================================================================== */
+
+@keyframes heartBeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+    25% {
+        transform: scale(1.3);
+    }
+    50% {
+        transform: scale(1);
+    }
+    75% {
+        transform: scale(1.3);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ==========================================================================
+   ACESSIBILIDADE
+   ========================================================================== */
+
+/* Focus visible */
+.wl-add-link:focus-visible,
+#wl-wrapper .wl-tabs > li > a:focus-visible,
+.button:focus-visible {
+    outline: 3px solid var(--wl-accent-color);
+    outline-offset: 2px;
+}
+
+/* Screen reader text */
+.wl-screen-reader-text {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ==========================================================================
+   FIM DO ARQUIVO
+   ========================================================================== */

@@ -1,1 +1,846 @@
-.quick-view-button span{display:none}div.quick-view div.quick-view-image a.button{border:0;background:none;background-color:#43454b;border-color:#43454b;color:#fff;cursor:pointer;padding:.6180469716em 1.41575em;text-decoration:none;font-weight:600;text-shadow:none;display:inline-block;outline:none;-webkit-appearance:none;border-radius:0;box-shadow:inset 0 -1px 0 rgba(0,0,0,.3);line-height:inherit;display:block}
+/**
+ * WooCommerce Quick View Extension Styles
+ * 
+ * @package     Nosfir
+ * @subpackage  WooCommerce/Extensions
+ * @version     1.0.0
+ * @author      David Creator
+ * 
+ * Este arquivo contém todos os estilos para a extensão Quick View do WooCommerce
+ * Compatível com WooCommerce Quick View 1.0+ e YITH Quick View
+ */
+
+/* ==========================================================================
+   VARIÁVEIS CSS CUSTOMIZADAS - QUICK VIEW
+   ========================================================================== */
+
+:root {
+    /* Cores do Quick View */
+    --qv-primary-color: #43454b;        /* Valor da referência */
+    --qv-secondary-color: #2c2d33;
+    --qv-accent-color: #3498db;
+    --qv-hover-color: #5a5c63;
+    --qv-success-color: #27ae60;
+    --qv-warning-color: #f39c12;
+    --qv-danger-color: #e74c3c;
+    
+    /* Cores de background */
+    --qv-bg-overlay: rgba(0, 0, 0, 0.85);
+    --qv-bg-modal: #ffffff;
+    --qv-bg-button: #43454b;            /* Valor da referência */
+    --qv-bg-light: #f8f9fa;
+    --qv-bg-dark: #1a1a1a;
+    
+    /* Cores de texto */
+    --qv-text-primary: #2c2d33;
+    --qv-text-secondary: #6c757d;
+    --qv-text-light: #ffffff;
+    --qv-text-muted: #999999;
+    
+    /* Espaçamentos (Golden Ratio) */
+    --qv-spacing-xs: 0.382rem;
+    --qv-spacing-sm: 0.6180469716rem;   /* Valor da referência - Golden Ratio */
+    --qv-spacing-md: 1rem;
+    --qv-spacing-lg: 1.41575rem;        /* Valor da referência */
+    --qv-spacing-xl: 1.618rem;
+    --qv-spacing-xxl: 2.618rem;
+    
+    /* Bordas e efeitos */
+    --qv-border-radius: 0;               /* Valor da referência */
+    --qv-border-radius-sm: 4px;
+    --qv-border-radius-lg: 8px;
+    --qv-border-color: #43454b;         /* Valor da referência */
+    --qv-border-width: 2px;
+    
+    /* Sombras */
+    --qv-shadow-button: inset 0 -1px 0 rgba(0, 0, 0, 0.3); /* Valor da referência */
+    --qv-shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --qv-shadow-md: 0 4px 8px rgba(0, 0, 0, 0.15);
+    --qv-shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.2);
+    --qv-shadow-xl: 0 12px 24px rgba(0, 0, 0, 0.25);
+    
+    /* Transições */
+    --qv-transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --qv-transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --qv-transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==========================================================================
+   BOTÃO QUICK VIEW - Estilos da referência
+   ========================================================================== */
+
+/**
+ * Botão Quick View base - Estilo da referência
+ */
+.quick-view-button {
+    position: relative;
+    display: inline-block;
+    transition: all var(--qv-transition-normal);
+}
+
+/* Ocultar span - Estilo da referência */
+.quick-view-button span {
+    display: none; /* Valor da referência */
+}
+
+/* Texto alternativo visível */
+.quick-view-button::after {
+    content: attr(data-text);
+    display: inline-block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/**
+ * Botão Quick View em produtos
+ */
+.products .product .quick-view-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    z-index: 10;
+    background: var(--qv-bg-button);
+    color: var(--qv-text-light);
+    padding: var(--qv-spacing-sm) var(--qv-spacing-lg);
+    border: 2px solid var(--qv-border-color);
+    border-radius: var(--qv-border-radius-sm);
+    cursor: pointer;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    box-shadow: var(--qv-shadow-md);
+    transition: all var(--qv-transition-normal);
+}
+
+/* Mostrar botão no hover do produto */
+.products .product:hover .quick-view-button {
+    opacity: 1;
+}
+
+/* Hover do botão */
+.quick-view-button:hover {
+    background: var(--qv-hover-color);
+    border-color: var(--qv-hover-color);
+    transform: translate(-50%, -50%) scale(1.05);
+    box-shadow: var(--qv-shadow-lg);
+}
+
+/* Ícone do botão */
+.quick-view-button::before {
+    content: "\f06e"; /* Font Awesome eye icon */
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    margin-right: var(--qv-spacing-xs);
+    display: inline-block;
+    animation: qvPulse 2s infinite;
+}
+
+/* Versão alternativa com ícone SVG */
+.quick-view-button.icon-svg::before {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: var(--qv-spacing-xs);
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>') no-repeat center;
+    background-size: contain;
+    vertical-align: middle;
+}
+
+/* ==========================================================================
+   MODAL QUICK VIEW - Estilos da referência expandidos
+   ========================================================================== */
+
+/**
+ * Container do Quick View - Estilos da referência
+ */
+div.quick-view {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--qv-bg-overlay);
+    z-index: 99999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: var(--qv-spacing-lg);
+    opacity: 0;
+    transition: opacity var(--qv-transition-normal);
+}
+
+/* Estado ativo */
+div.quick-view.active {
+    display: flex;
+    opacity: 1;
+}
+
+/**
+ * Modal Content
+ */
+div.quick-view .quick-view-content {
+    background: var(--qv-bg-modal);
+    max-width: 1200px;
+    width: 100%;
+    max-height: 90vh;
+    overflow: auto;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-radius: var(--qv-border-radius-lg);
+    box-shadow: var(--qv-shadow-xl);
+    animation: qvSlideIn 0.3s ease-out;
+}
+
+/**
+ * Imagem do Quick View - Container da referência
+ */
+div.quick-view div.quick-view-image {
+    position: relative;
+    background: var(--qv-bg-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--qv-spacing-xl);
+    overflow: hidden;
+}
+
+/* Imagem principal */
+div.quick-view .quick-view-image img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    transition: transform var(--qv-transition-slow);
+}
+
+/* Zoom na imagem */
+div.quick-view .quick-view-image:hover img {
+    transform: scale(1.1);
+}
+
+/* Gallery thumbnails */
+div.quick-view .quick-view-gallery {
+    display: flex;
+    gap: var(--qv-spacing-sm);
+    margin-top: var(--qv-spacing-md);
+    padding: var(--qv-spacing-sm);
+    background: var(--qv-bg-modal);
+    border-top: 1px solid var(--qv-border-color);
+    overflow-x: auto;
+}
+
+div.quick-view .quick-view-gallery img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    cursor: pointer;
+    border: 2px solid transparent;
+    border-radius: var(--qv-border-radius-sm);
+    transition: all var(--qv-transition-fast);
+}
+
+div.quick-view .quick-view-gallery img:hover,
+div.quick-view .quick-view-gallery img.active {
+    border-color: var(--qv-accent-color);
+    transform: scale(1.1);
+}
+
+/**
+ * Botão Add to Cart no Quick View - Estilos da referência
+ */
+div.quick-view div.quick-view-image a.button {
+    border: 0;                           /* Valor da referência */
+    background: none;                    /* Valor da referência */
+    background-color: #43454b;          /* Valor da referência */
+    border-color: #43454b;               /* Valor da referência */
+    color: #fff;                        /* Valor da referência */
+    cursor: pointer;                    /* Valor da referência */
+    padding: 0.6180469716em 1.41575em;  /* Valores da referência */
+    text-decoration: none;              /* Valor da referência */
+    font-weight: 600;                   /* Valor da referência */
+    text-shadow: none;                  /* Valor da referência */
+    display: inline-block;              /* Valor da referência */
+    outline: none;                      /* Valor da referência */
+    -webkit-appearance: none;           /* Valor da referência */
+    border-radius: 0;                   /* Valor da referência */
+    box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.3); /* Valor da referência */
+    line-height: inherit;               /* Valor da referência */
+    display: block;                     /* Valor da referência */
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all var(--qv-transition-fast);
+    margin-top: var(--qv-spacing-md);
+}
+
+/* Hover do botão */
+div.quick-view div.quick-view-image a.button:hover {
+    background-color: var(--qv-hover-color);
+    border-color: var(--qv-hover-color);
+    box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.5), 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Active/Click do botão */
+div.quick-view div.quick-view-image a.button:active {
+    transform: translateY(0);
+    box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* Loading state */
+div.quick-view div.quick-view-image a.button.loading {
+    position: relative;
+    color: transparent;
+    pointer-events: none;
+}
+
+div.quick-view div.quick-view-image a.button.loading::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: qvSpin 0.8s linear infinite;
+}
+
+/**
+ * Detalhes do produto no Quick View
+ */
+div.quick-view .quick-view-details {
+    padding: var(--qv-spacing-xl);
+    overflow-y: auto;
+}
+
+/* Título do produto */
+div.quick-view .quick-view-details h1,
+div.quick-view .quick-view-details .product-title {
+    margin: 0 0 var(--qv-spacing-md);
+    font-size: 1.75rem;
+    color: var(--qv-text-primary);
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+/* Rating */
+div.quick-view .quick-view-details .woocommerce-product-rating {
+    display: flex;
+    align-items: center;
+    gap: var(--qv-spacing-sm);
+    margin-bottom: var(--qv-spacing-md);
+}
+
+/* Preço */
+div.quick-view .quick-view-details .price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--qv-accent-color);
+    margin-bottom: var(--qv-spacing-lg);
+}
+
+div.quick-view .quick-view-details .price del {
+    color: var(--qv-text-muted);
+    font-size: 1.125rem;
+    margin-right: var(--qv-spacing-sm);
+}
+
+/* Descrição curta */
+div.quick-view .quick-view-details .short-description {
+    color: var(--qv-text-secondary);
+    line-height: 1.6;
+    margin-bottom: var(--qv-spacing-lg);
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+/* Formulário de variações */
+div.quick-view .quick-view-details .variations_form {
+    margin-bottom: var(--qv-spacing-lg);
+}
+
+div.quick-view .variations_form .variations {
+    margin-bottom: var(--qv-spacing-md);
+}
+
+div.quick-view .variations_form .variations td {
+    padding: var(--qv-spacing-sm) 0;
+}
+
+div.quick-view .variations_form .variations label {
+    font-weight: 600;
+    color: var(--qv-text-primary);
+    margin-bottom: var(--qv-spacing-xs);
+}
+
+div.quick-view .variations_form .variations select {
+    width: 100%;
+    padding: var(--qv-spacing-sm);
+    border: 1px solid var(--qv-border-color);
+    border-radius: var(--qv-border-radius-sm);
+    background: var(--qv-bg-modal);
+    font-size: 0.9375rem;
+}
+
+/* Quantidade */
+div.quick-view .quick-view-details .quantity {
+    display: inline-flex;
+    align-items: center;
+    margin-right: var(--qv-spacing-md);
+}
+
+div.quick-view .quantity input[type="number"] {
+    width: 60px;
+    padding: var(--qv-spacing-sm);
+    border: 1px solid var(--qv-border-color);
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+/* Meta do produto */
+div.quick-view .quick-view-details .product_meta {
+    padding-top: var(--qv-spacing-lg);
+    border-top: 1px solid var(--qv-border-color);
+    font-size: 0.875rem;
+    color: var(--qv-text-secondary);
+}
+
+div.quick-view .product_meta span {
+    display: block;
+    margin-bottom: var(--qv-spacing-sm);
+}
+
+div.quick-view .product_meta a {
+    color: var(--qv-accent-color);
+    text-decoration: none;
+}
+
+/**
+ * Botão fechar Quick View
+ */
+div.quick-view .quick-view-close {
+    position: absolute;
+    top: var(--qv-spacing-md);
+    right: var(--qv-spacing-md);
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.8);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: all var(--qv-transition-fast);
+}
+
+div.quick-view .quick-view-close:hover {
+    background: var(--qv-danger-color);
+    transform: rotate(90deg) scale(1.1);
+}
+
+/* ==========================================================================
+   BOTÕES ALTERNATIVOS E VARIAÇÕES
+   ========================================================================== */
+
+/**
+ * Botão Quick View estilo minimalista
+ */
+.quick-view-button.minimal {
+    background: transparent;
+    border: 1px solid var(--qv-border-color);
+    color: var(--qv-text-primary);
+    padding: var(--qv-spacing-xs) var(--qv-spacing-sm);
+}
+
+.quick-view-button.minimal:hover {
+    background: var(--qv-bg-button);
+    color: var(--qv-text-light);
+}
+
+/**
+ * Botão Quick View estilo circular
+ */
+.quick-view-button.circular {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.quick-view-button.circular::after {
+    display: none;
+}
+
+/**
+ * Botão Quick View com gradiente
+ */
+.quick-view-button.gradient {
+    background: linear-gradient(135deg, var(--qv-primary-color), var(--qv-accent-color));
+    border: none;
+}
+
+.quick-view-button.gradient:hover {
+    background: linear-gradient(135deg, var(--qv-accent-color), var(--qv-primary-color));
+}
+
+/* ==========================================================================
+   INDICADORES E FEEDBACK
+   ========================================================================== */
+
+/**
+ * Badge de Quick View
+ */
+.quick-view-badge {
+    position: absolute;
+    top: var(--qv-spacing-sm);
+    right: var(--qv-spacing-sm);
+    background: var(--qv-accent-color);
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--qv-border-radius-sm);
+    font-size: 0.75rem;
+    font-weight: 600;
+    z-index: 5;
+    animation: qvBounce 2s infinite;
+}
+
+/**
+ * Loading overlay
+ */
+.quick-view-loading {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100000;
+    background: var(--qv-bg-modal);
+    padding: var(--qv-spacing-xl);
+    border-radius: var(--qv-border-radius-lg);
+    box-shadow: var(--qv-shadow-lg);
+    display: none;
+}
+
+.quick-view-loading.active {
+    display: block;
+}
+
+.quick-view-loading .spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid var(--qv-bg-light);
+    border-top-color: var(--qv-accent-color);
+    border-radius: 50%;
+    animation: qvSpin 1s linear infinite;
+}
+
+/* ==========================================================================
+   INTEGRAÇÃO COM GRID DE PRODUTOS
+   ========================================================================== */
+
+/**
+ * Container de produto com Quick View
+ */
+.products .product.has-quick-view {
+    position: relative;
+}
+
+.products .product.has-quick-view .product-image-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Overlay no hover */
+.products .product.has-quick-view:hover .product-image-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 1;
+    transition: all var(--qv-transition-normal);
+}
+
+/* Múltiplos botões de ação */
+.product-actions {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    gap: var(--qv-spacing-sm);
+    opacity: 0;
+    transition: opacity var(--qv-transition-normal);
+    z-index: 10;
+}
+
+.product:hover .product-actions {
+    opacity: 1;
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE
+   ========================================================================== */
+
+/**
+ * Tablets (768px - 1024px)
+ */
+@media screen and (max-width: 1024px) {
+    div.quick-view .quick-view-content {
+        max-width: 90%;
+    }
+    
+    div.quick-view .quick-view-details h1 {
+        font-size: 1.5rem;
+    }
+    
+    div.quick-view .quick-view-details .price {
+        font-size: 1.25rem;
+    }
+}
+
+/**
+ * Mobile (menor que 768px)
+ */
+@media screen and (max-width: 768px) {
+    /* Modal em tela cheia no mobile */
+    div.quick-view {
+        padding: 0;
+    }
+    
+    div.quick-view .quick-view-content {
+        max-width: 100%;
+        max-height: 100vh;
+        border-radius: 0;
+        grid-template-columns: 1fr;
+    }
+    
+    /* Imagem mobile */
+    div.quick-view .quick-view-image {
+        max-height: 40vh;
+        padding: var(--qv-spacing-md);
+    }
+    
+    /* Detalhes mobile */
+    div.quick-view .quick-view-details {
+        padding: var(--qv-spacing-md);
+    }
+    
+    div.quick-view .quick-view-details h1 {
+        font-size: 1.25rem;
+    }
+    
+    /* Botão sempre visível no mobile */
+    .products .product .quick-view-button {
+        opacity: 1;
+        position: static;
+        transform: none;
+        width: 100%;
+        margin-top: var(--qv-spacing-sm);
+    }
+    
+    .products .product:hover .quick-view-button {
+        transform: none;
+    }
+    
+    /* Gallery horizontal scroll */
+    div.quick-view .quick-view-gallery {
+        justify-content: flex-start;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+/**
+ * Mobile pequeno (menor que 480px)
+ */
+@media screen and (max-width: 480px) {
+    div.quick-view .quick-view-details {
+        padding: var(--qv-spacing-sm);
+    }
+    
+    div.quick-view .quick-view-details h1 {
+        font-size: 1.125rem;
+    }
+    
+    div.quick-view .quick-view-details .price {
+        font-size: 1.125rem;
+    }
+    
+    .quick-view-button {
+        font-size: 0.75rem;
+        padding: var(--qv-spacing-xs) var(--qv-spacing-sm);
+    }
+}
+
+/* ==========================================================================
+   MODO ESCURO (Dark Mode)
+   ========================================================================== */
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --qv-bg-modal: #1a1a1a;
+        --qv-bg-light: #2a2a2a;
+        --qv-text-primary: #e0e0e0;
+        --qv-text-secondary: #999;
+        --qv-border-color: #444;
+    }
+    
+    div.quick-view .quick-view-content {
+        background: var(--qv-bg-modal);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+    }
+    
+    div.quick-view .quick-view-image {
+        background: var(--qv-bg-light);
+    }
+    
+    div.quick-view .variations_form select {
+        background: var(--qv-bg-light);
+        border-color: var(--qv-border-color);
+        color: var(--qv-text-primary);
+    }
+    
+    div.quick-view .quantity input[type="number"] {
+        background: var(--qv-bg-light);
+        border-color: var(--qv-border-color);
+        color: var(--qv-text-primary);
+    }
+    
+    div.quick-view .quick-view-close {
+        background: rgba(255, 255, 255, 0.1);
+    }
+}
+
+/* ==========================================================================
+   IMPRESSÃO
+   ========================================================================== */
+
+@media print {
+    .quick-view-button,
+    div.quick-view {
+        display: none !important;
+    }
+}
+
+/* ==========================================================================
+   ANIMAÇÕES
+   ========================================================================== */
+
+/* Slide in */
+@keyframes qvSlideIn {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Spin */
+@keyframes qvSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Pulse */
+@keyframes qvPulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+/* Bounce */
+@keyframes qvBounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+/* ==========================================================================
+   ACESSIBILIDADE
+   ========================================================================== */
+
+/* Focus visible */
+.quick-view-button:focus-visible,
+div.quick-view button:focus-visible,
+div.quick-view a:focus-visible {
+    outline: 3px solid var(--qv-accent-color);
+    outline-offset: 2px;
+}
+
+/* Screen reader text */
+.qv-screen-reader-text {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .quick-view-button,
+    div.quick-view,
+    div.quick-view * {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ==========================================================================
+   COMPATIBILIDADE COM PLUGINS
+   ========================================================================== */
+
+/**
+ * YITH Quick View
+ */
+.yith-wcqv-button {
+    @extend .quick-view-button;
+}
+
+#yith-quick-view-modal {
+    @extend div.quick-view;
+}
+
+/**
+ * WooCommerce Quick View Pro
+ */
+.wc-quick-view-button {
+    @extend .quick-view-button;
+}
+
+.wc-quick-view-modal {
+    @extend div.quick-view;
+}
+
+/* ==========================================================================
+   FIM DO ARQUIVO
+   ========================================================================== */

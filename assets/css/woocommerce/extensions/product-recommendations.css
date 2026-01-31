@@ -1,1 +1,835 @@
-.wc-prl-recommendations h2{font-size:1.618em}.wc-prl-recommendations.wc-prl-page-product_details.wc-prl-location-before_tabs h2,.wc-prl-recommendations.wc-prl-page-product_details.wc-prl-location-after_tabs h2{margin-bottom:1em;text-align:center}.wc-prl-recommendations.wc-prl-page-product_details.wc-prl-location-after_summary{margin-top:1.41575em}.wc-prl-recommendations.wc-prl-location-after_pay_button{margin-top:1.41575em}.wc-prl-recommendations.wc-prl-page-checkout.wc-prl-location-order_review{margin-top:2.617924em}
+/**
+ * WooCommerce Product Recommendations Extension Styles
+ * 
+ * @package     Nosfir
+ * @subpackage  WooCommerce/Extensions
+ * @version     1.0.0
+ * @author      David Creator
+ * 
+ * Este arquivo contém todos os estilos para a extensão Product Recommendations do WooCommerce
+ * Compatível com WooCommerce Product Recommendations 2.0+
+ */
+
+/* ==========================================================================
+   VARIÁVEIS CSS CUSTOMIZADAS - RECOMMENDATIONS
+   ========================================================================== */
+
+:root {
+    /* Cores do sistema de recomendações */
+    --prl-primary-color: #2c3e50;
+    --prl-secondary-color: #3498db;
+    --prl-accent-color: #e74c3c;
+    --prl-success-color: #27ae60;
+    --prl-warning-color: #f39c12;
+    --prl-bg-light: #f8f9fa;
+    --prl-bg-dark: #343a40;
+    --prl-text-primary: #212529;
+    --prl-text-secondary: #6c757d;
+    --prl-border-color: #dee2e6;
+    
+    /* Espaçamentos (Golden Ratio) */
+    --prl-spacing-xs: 0.382rem;      /* 6.112px */
+    --prl-spacing-sm: 0.618rem;      /* 9.888px */
+    --prl-spacing-md: 1rem;          /* 16px */
+    --prl-spacing-lg: 1.41575rem;    /* 22.652px - Valor da referência */
+    --prl-spacing-xl: 1.618rem;      /* 25.888px - Golden Ratio */
+    --prl-spacing-xxl: 2.617924rem;  /* 41.887px - Valor da referência */
+    
+    /* Tamanhos de fonte */
+    --prl-font-xs: 0.75rem;
+    --prl-font-sm: 0.875rem;
+    --prl-font-md: 1rem;
+    --prl-font-lg: 1.25rem;
+    --prl-font-xl: 1.618rem;         /* Golden Ratio - Valor da referência */
+    --prl-font-xxl: 2rem;
+    
+    /* Bordas e Sombras */
+    --prl-border-radius: 8px;
+    --prl-border-width: 1px;
+    --prl-shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.08);
+    --prl-shadow-md: 0 4px 8px rgba(0, 0, 0, 0.12);
+    --prl-shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.16);
+    --prl-shadow-hover: 0 12px 24px rgba(0, 0, 0, 0.2);
+    
+    /* Transições */
+    --prl-transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --prl-transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --prl-transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==========================================================================
+   ESTILOS BASE - CONTAINER DE RECOMENDAÇÕES
+   ========================================================================== */
+
+/**
+ * Container principal de recomendações
+ */
+.wc-prl-recommendations {
+    position: relative;
+    padding: var(--prl-spacing-xl) 0;
+    margin: var(--prl-spacing-xl) 0;
+    background: transparent;
+    animation: prlFadeIn 0.6s ease-out;
+}
+
+/**
+ * Título de recomendações - Estilo da referência
+ */
+.wc-prl-recommendations h2 {
+    font-size: 1.618em; /* Golden Ratio - Valor da referência */
+    font-weight: 600;
+    color: var(--prl-text-primary);
+    margin: 0 0 var(--prl-spacing-lg) 0;
+    position: relative;
+    line-height: 1.3;
+}
+
+/* Linha decorativa no título */
+.wc-prl-recommendations h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--prl-secondary-color), var(--prl-accent-color));
+    margin-top: var(--prl-spacing-sm);
+    transition: width var(--prl-transition-normal);
+}
+
+.wc-prl-recommendations:hover h2::after {
+    width: 100px;
+}
+
+/* Subtítulo opcional */
+.wc-prl-recommendations .prl-subtitle {
+    color: var(--prl-text-secondary);
+    font-size: var(--prl-font-md);
+    margin-top: calc(var(--prl-spacing-sm) * -1);
+    margin-bottom: var(--prl-spacing-lg);
+}
+
+/* ==========================================================================
+   LOCALIZAÇÕES ESPECÍFICAS - PÁGINA DE PRODUTO
+   ========================================================================== */
+
+/**
+ * Before/After Tabs - Estilos da referência
+ */
+.wc-prl-recommendations.wc-prl-page-product_details.wc-prl-location-before_tabs h2,
+.wc-prl-recommendations.wc-prl-page-product_details.wc-prl-location-after_tabs h2 {
+    margin-bottom: 1em; /* Valor da referência */
+    text-align: center;
+    font-size: 1.8em;
+}
+
+/* Estilo especial para centralização */
+.wc-prl-recommendations.wc-prl-page-product_details.wc-prl-location-before_tabs h2::after,
+.wc-prl-recommendations.wc-prl-page-product_details.wc-prl-location-after_tabs h2::after {
+    margin: var(--prl-spacing-md) auto 0;
+}
+
+/**
+ * After Summary - Estilo da referência
+ */
+.wc-prl-recommendations.wc-prl-page-product_details.wc-prl-location-after_summary {
+    margin-top: 1.41575em; /* Valor da referência */
+    padding: var(--prl-spacing-xl);
+    background: var(--prl-bg-light);
+    border-radius: var(--prl-border-radius);
+}
+
+/**
+ * Before/After Single Product
+ */
+.wc-prl-recommendations.wc-prl-page-product_details.wc-prl-location-before_single_product {
+    margin-bottom: var(--prl-spacing-xxl);
+    padding: var(--prl-spacing-lg);
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.05) 0%, rgba(231, 76, 60, 0.05) 100%);
+    border-left: 4px solid var(--prl-secondary-color);
+}
+
+.wc-prl-recommendations.wc-prl-page-product_details.wc-prl-location-after_single_product {
+    margin-top: var(--prl-spacing-xxl);
+    border-top: 1px solid var(--prl-border-color);
+    padding-top: var(--prl-spacing-xxl);
+}
+
+/* ==========================================================================
+   LOCALIZAÇÕES ESPECÍFICAS - CARRINHO
+   ========================================================================== */
+
+/**
+ * After Cart Table
+ */
+.wc-prl-recommendations.wc-prl-page-cart.wc-prl-location-after_cart_table {
+    margin-top: var(--prl-spacing-xxl);
+    padding: var(--prl-spacing-xl);
+    background: #fff;
+    border: 1px solid var(--prl-border-color);
+    border-radius: var(--prl-border-radius);
+    box-shadow: var(--prl-shadow-sm);
+}
+
+/**
+ * After Cart Totals
+ */
+.wc-prl-recommendations.wc-prl-page-cart.wc-prl-location-after_cart_totals {
+    margin-top: var(--prl-spacing-xl);
+}
+
+/**
+ * Cross-sells Override
+ */
+.wc-prl-recommendations.wc-prl-page-cart.wc-prl-location-cross_sells {
+    clear: both;
+    margin-top: var(--prl-spacing-xxl);
+}
+
+/* ==========================================================================
+   LOCALIZAÇÕES ESPECÍFICAS - CHECKOUT
+   ========================================================================== */
+
+/**
+ * After Pay Button - Estilo da referência
+ */
+.wc-prl-recommendations.wc-prl-location-after_pay_button {
+    margin-top: 1.41575em; /* Valor da referência */
+    padding: var(--prl-spacing-lg);
+    background: rgba(39, 174, 96, 0.05);
+    border: 1px dashed var(--prl-success-color);
+    border-radius: var(--prl-border-radius);
+}
+
+/**
+ * Order Review - Estilo da referência
+ */
+.wc-prl-recommendations.wc-prl-page-checkout.wc-prl-location-order_review {
+    margin-top: 2.617924em; /* Valor da referência */
+}
+
+/**
+ * Before/After Checkout Form
+ */
+.wc-prl-recommendations.wc-prl-page-checkout.wc-prl-location-before_checkout_form {
+    margin-bottom: var(--prl-spacing-xxl);
+    padding: var(--prl-spacing-lg);
+    background: linear-gradient(to right, #f8f9fa, #ffffff);
+    border-radius: var(--prl-border-radius);
+}
+
+.wc-prl-recommendations.wc-prl-page-checkout.wc-prl-location-after_checkout_form {
+    margin-top: var(--prl-spacing-xxl);
+}
+
+/* ==========================================================================
+   GRID DE PRODUTOS RECOMENDADOS
+   ========================================================================== */
+
+/**
+ * Container do grid
+ */
+.wc-prl-recommendations .products {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: var(--prl-spacing-lg);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* Variações de layout */
+.wc-prl-recommendations.prl-columns-2 .products {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.wc-prl-recommendations.prl-columns-3 .products {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.wc-prl-recommendations.prl-columns-4 .products {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.wc-prl-recommendations.prl-columns-5 .products {
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.wc-prl-recommendations.prl-columns-6 .products {
+    grid-template-columns: repeat(6, 1fr);
+}
+
+/**
+ * Item de produto individual
+ */
+.wc-prl-recommendations .product {
+    position: relative;
+    background: #fff;
+    border-radius: var(--prl-border-radius);
+    overflow: hidden;
+    transition: all var(--prl-transition-normal);
+    box-shadow: var(--prl-shadow-sm);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.wc-prl-recommendations .product:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--prl-shadow-hover);
+}
+
+/* Imagem do produto */
+.wc-prl-recommendations .product .woocommerce-loop-product__link {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    background: var(--prl-bg-light);
+}
+
+.wc-prl-recommendations .product img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform var(--prl-transition-slow);
+}
+
+.wc-prl-recommendations .product:hover img {
+    transform: scale(1.08);
+}
+
+/* Conteúdo do produto */
+.wc-prl-recommendations .product .woocommerce-loop-product__title {
+    font-size: var(--prl-font-md);
+    font-weight: 500;
+    margin: var(--prl-spacing-md);
+    color: var(--prl-text-primary);
+    line-height: 1.4;
+    min-height: 2.8em;
+}
+
+.wc-prl-recommendations .product .price {
+    margin: 0 var(--prl-spacing-md) var(--prl-spacing-md);
+    font-size: var(--prl-font-lg);
+    font-weight: 600;
+    color: var(--prl-primary-color);
+}
+
+.wc-prl-recommendations .product .price del {
+    color: var(--prl-text-secondary);
+    font-size: var(--prl-font-sm);
+    margin-right: var(--prl-spacing-xs);
+}
+
+.wc-prl-recommendations .product .price ins {
+    text-decoration: none;
+    color: var(--prl-accent-color);
+}
+
+/* Botão adicionar ao carrinho */
+.wc-prl-recommendations .product .add_to_cart_button,
+.wc-prl-recommendations .product .product_type_grouped,
+.wc-prl-recommendations .product .product_type_external,
+.wc-prl-recommendations .product .product_type_variable {
+    display: block;
+    margin: auto var(--prl-spacing-md) var(--prl-spacing-md);
+    padding: var(--prl-spacing-sm) var(--prl-spacing-md);
+    background: var(--prl-primary-color);
+    color: #fff;
+    text-align: center;
+    border-radius: calc(var(--prl-border-radius) / 2);
+    font-weight: 500;
+    font-size: var(--prl-font-sm);
+    transition: all var(--prl-transition-fast);
+    border: 2px solid var(--prl-primary-color);
+    margin-top: auto;
+}
+
+.wc-prl-recommendations .product .add_to_cart_button:hover {
+    background: transparent;
+    color: var(--prl-primary-color);
+}
+
+/* Badge de recomendação */
+.wc-prl-recommendations .product .prl-badge {
+    position: absolute;
+    top: var(--prl-spacing-sm);
+    left: var(--prl-spacing-sm);
+    background: var(--prl-accent-color);
+    color: #fff;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: var(--prl-font-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    z-index: 2;
+    animation: prlPulse 2s infinite;
+}
+
+/* Badges específicos */
+.wc-prl-recommendations .product .prl-badge.recommended {
+    background: linear-gradient(135deg, var(--prl-secondary-color), var(--prl-accent-color));
+}
+
+.wc-prl-recommendations .product .prl-badge.trending {
+    background: var(--prl-warning-color);
+}
+
+.wc-prl-recommendations .product .prl-badge.bestseller {
+    background: var(--prl-success-color);
+}
+
+/* ==========================================================================
+   SLIDER/CAROUSEL DE RECOMENDAÇÕES
+   ========================================================================== */
+
+/**
+ * Container do slider
+ */
+.wc-prl-recommendations.prl-slider {
+    position: relative;
+    padding: var(--prl-spacing-xl) 0;
+}
+
+.wc-prl-recommendations.prl-slider .products {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    gap: var(--prl-spacing-lg);
+    padding: var(--prl-spacing-sm) 0;
+    -webkit-overflow-scrolling: touch;
+}
+
+.wc-prl-recommendations.prl-slider .product {
+    flex: 0 0 280px;
+    scroll-snap-align: start;
+}
+
+/* Botões de navegação do slider */
+.wc-prl-recommendations .prl-slider-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid var(--prl-border-color);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--prl-transition-fast);
+    box-shadow: var(--prl-shadow-md);
+    z-index: 2;
+}
+
+.wc-prl-recommendations .prl-slider-nav:hover {
+    background: var(--prl-primary-color);
+    color: #fff;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.wc-prl-recommendations .prl-slider-nav.prev {
+    left: -20px;
+}
+
+.wc-prl-recommendations .prl-slider-nav.next {
+    right: -20px;
+}
+
+/* Indicadores do slider */
+.wc-prl-recommendations .prl-slider-dots {
+    display: flex;
+    justify-content: center;
+    gap: var(--prl-spacing-sm);
+    margin-top: var(--prl-spacing-lg);
+}
+
+.wc-prl-recommendations .prl-slider-dots .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--prl-border-color);
+    cursor: pointer;
+    transition: all var(--prl-transition-fast);
+}
+
+.wc-prl-recommendations .prl-slider-dots .dot.active {
+    width: 24px;
+    border-radius: 4px;
+    background: var(--prl-secondary-color);
+}
+
+/* ==========================================================================
+   ESTILOS DE LOADING
+   ========================================================================== */
+
+/**
+ * Estado de carregamento
+ */
+.wc-prl-recommendations.loading {
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wc-prl-recommendations.loading::before {
+    content: '';
+    width: 40px;
+    height: 40px;
+    border: 4px solid var(--prl-border-color);
+    border-top-color: var(--prl-secondary-color);
+    border-radius: 50%;
+    animation: prlSpin 1s linear infinite;
+}
+
+/* Skeleton loading */
+.wc-prl-recommendations .prl-skeleton {
+    background: linear-gradient(
+        90deg,
+        #f0f0f0 25%,
+        #e0e0e0 50%,
+        #f0f0f0 75%
+    );
+    background-size: 200% 100%;
+    animation: prlShimmer 1.5s infinite;
+    border-radius: var(--prl-border-radius);
+}
+
+.wc-prl-recommendations .prl-skeleton-product {
+    height: 350px;
+}
+
+/* ==========================================================================
+   MENSAGENS E NOTIFICAÇÕES
+   ========================================================================== */
+
+/**
+ * Mensagem quando não há recomendações
+ */
+.wc-prl-recommendations .prl-no-products {
+    text-align: center;
+    padding: var(--prl-spacing-xxl);
+    color: var(--prl-text-secondary);
+    background: var(--prl-bg-light);
+    border-radius: var(--prl-border-radius);
+    border: 2px dashed var(--prl-border-color);
+}
+
+.wc-prl-recommendations .prl-no-products .icon {
+    font-size: 3rem;
+    margin-bottom: var(--prl-spacing-md);
+    opacity: 0.5;
+}
+
+/**
+ * Notificação de produto adicionado
+ */
+.wc-prl-recommendations .prl-added-notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--prl-success-color);
+    color: #fff;
+    padding: var(--prl-spacing-md) var(--prl-spacing-lg);
+    border-radius: var(--prl-border-radius);
+    box-shadow: var(--prl-shadow-lg);
+    display: none;
+    align-items: center;
+    gap: var(--prl-spacing-md);
+    z-index: 9999;
+    animation: slideInRight 0.3s ease;
+}
+
+.wc-prl-recommendations .prl-added-notification.show {
+    display: flex;
+}
+
+/* ==========================================================================
+   FILTROS E CONTROLES
+   ========================================================================== */
+
+/**
+ * Barra de filtros
+ */
+.wc-prl-recommendations .prl-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--prl-spacing-sm);
+    margin-bottom: var(--prl-spacing-lg);
+    padding: var(--prl-spacing-md);
+    background: var(--prl-bg-light);
+    border-radius: var(--prl-border-radius);
+}
+
+.wc-prl-recommendations .prl-filter-button {
+    padding: var(--prl-spacing-sm) var(--prl-spacing-md);
+    background: #fff;
+    border: 1px solid var(--prl-border-color);
+    border-radius: calc(var(--prl-border-radius) / 2);
+    font-size: var(--prl-font-sm);
+    cursor: pointer;
+    transition: all var(--prl-transition-fast);
+}
+
+.wc-prl-recommendations .prl-filter-button:hover {
+    border-color: var(--prl-secondary-color);
+    color: var(--prl-secondary-color);
+}
+
+.wc-prl-recommendations .prl-filter-button.active {
+    background: var(--prl-secondary-color);
+    color: #fff;
+    border-color: var(--prl-secondary-color);
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE
+   ========================================================================== */
+
+/**
+ * Tablets (768px - 1024px)
+ */
+@media screen and (max-width: 1024px) {
+    /* Grid adaptativo */
+    .wc-prl-recommendations .products {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+    
+    .wc-prl-recommendations.prl-columns-5 .products,
+    .wc-prl-recommendations.prl-columns-6 .products {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    /* Tamanhos de fonte ajustados */
+    .wc-prl-recommendations h2 {
+        font-size: 1.4em;
+    }
+}
+
+/**
+ * Mobile (menor que 768px)
+ */
+@media screen and (max-width: 768px) {
+    /* Grid mobile */
+    .wc-prl-recommendations .products {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--prl-spacing-md);
+    }
+    
+    .wc-prl-recommendations.prl-columns-3 .products,
+    .wc-prl-recommendations.prl-columns-4 .products,
+    .wc-prl-recommendations.prl-columns-5 .products,
+    .wc-prl-recommendations.prl-columns-6 .products {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    /* Ajustes de espaçamento mobile */
+    .wc-prl-recommendations {
+        padding: var(--prl-spacing-md) 0;
+        margin: var(--prl-spacing-md) 0;
+    }
+    
+    /* Título centralizado no mobile */
+    .wc-prl-recommendations h2 {
+        text-align: center;
+        font-size: 1.3em;
+    }
+    
+    .wc-prl-recommendations h2::after {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    /* Slider mobile */
+    .wc-prl-recommendations.prl-slider .product {
+        flex: 0 0 200px;
+    }
+    
+    /* Ocultar navegação do slider no mobile */
+    .wc-prl-recommendations .prl-slider-nav {
+        display: none;
+    }
+    
+    /* Filtros em coluna no mobile */
+    .wc-prl-recommendations .prl-filters {
+        flex-direction: column;
+    }
+    
+    .wc-prl-recommendations .prl-filter-button {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/**
+ * Mobile pequeno (menor que 480px)
+ */
+@media screen and (max-width: 480px) {
+    /* Grid single column */
+    .wc-prl-recommendations .products {
+        grid-template-columns: 1fr;
+    }
+    
+    .wc-prl-recommendations.prl-columns-2 .products,
+    .wc-prl-recommendations.prl-columns-3 .products,
+    .wc-prl-recommendations.prl-columns-4 .products,
+    .wc-prl-recommendations.prl-columns-5 .products,
+    .wc-prl-recommendations.prl-columns-6 .products {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Slider full width */
+    .wc-prl-recommendations.prl-slider .product {
+        flex: 0 0 calc(100vw - 2rem);
+    }
+    
+    /* Notificação mobile */
+    .wc-prl-recommendations .prl-added-notification {
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        font-size: var(--prl-font-sm);
+    }
+}
+
+/* ==========================================================================
+   MODO ESCURO (Dark Mode)
+   ========================================================================== */
+
+@media (prefers-color-scheme: dark) {
+    .wc-prl-recommendations {
+        --prl-bg-light: #1a1a1a;
+        --prl-text-primary: #e0e0e0;
+        --prl-text-secondary: #999;
+        --prl-border-color: #333;
+    }
+    
+    .wc-prl-recommendations .product {
+        background: #2a2a2a;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    
+    .wc-prl-recommendations .product:hover {
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    }
+    
+    .wc-prl-recommendations .prl-filters {
+        background: #1a1a1a;
+    }
+    
+    .wc-prl-recommendations .prl-filter-button {
+        background: #2a2a2a;
+        border-color: #444;
+        color: #e0e0e0;
+    }
+    
+    .wc-prl-recommendations .prl-slider-nav {
+        background: rgba(42, 42, 42, 0.95);
+        border-color: #444;
+    }
+}
+
+/* ==========================================================================
+   ANIMAÇÕES
+   ========================================================================== */
+
+@keyframes prlFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes prlSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes prlShimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+@keyframes prlPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+/* ==========================================================================
+   IMPRESSÃO
+   ========================================================================== */
+
+@media print {
+    .wc-prl-recommendations .prl-slider-nav,
+    .wc-prl-recommendations .prl-slider-dots,
+    .wc-prl-recommendations .prl-filters,
+    .wc-prl-recommendations .add_to_cart_button {
+        display: none !important;
+    }
+    
+    .wc-prl-recommendations .products {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+}
+
+/* ==========================================================================
+   ACESSIBILIDADE
+   ========================================================================== */
+
+/* Focus visible */
+.wc-prl-recommendations a:focus-visible,
+.wc-prl-recommendations button:focus-visible {
+    outline: 3px solid var(--prl-secondary-color);
+    outline-offset: 2px;
+}
+
+/* Screen reader only */
+.wc-prl-recommendations .screen-reader-text {
+    position: absolute !important;
+    clip: rect(1px, 1px, 1px, 1px);
+    padding: 0 !important;
+    border: 0 !important;
+    height: 1px !important;
+    width: 1px !important;
+    overflow: hidden;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .wc-prl-recommendations,
+    .wc-prl-recommendations * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ==========================================================================
+   FIM DO ARQUIVO
+   ========================================================================== */

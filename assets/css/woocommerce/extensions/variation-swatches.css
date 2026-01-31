@@ -1,1 +1,919 @@
-.variations-table{margin:0}.variations-table th,.variations-table td{display:block;padding:0;background-color:rgba(0,0,0,0)}.variations-table td.label{margin-bottom:1em}.variations-table .swatch-wrapper{padding:.6180469716em;background-color:rgba(0,0,0,0);border:1px solid rgba(0,0,0,.1);float:left;display:inline-block;margin:0 .327em 1em 0}.variations-table .swatch-wrapper img{opacity:.5}.variations-table .swatch-wrapper .swatch-anchor:focus{outline:none}.variations-table .swatch-wrapper.selected,.variations-table .swatch-wrapper:hover{padding:.6180469716em;background-color:#fff}.variations-table .swatch-wrapper.selected img,.variations-table .swatch-wrapper:hover img{opacity:1}.variations-table .swatch-wrapper.selected{border-width:1px;border-color:rgba(0,0,0,.1)}a#variations_clear{display:block;margin:1em 0 1.618em}
+/**
+ * WooCommerce Variation Swatches Extension Styles
+ * 
+ * @package     Nosfir
+ * @subpackage  WooCommerce/Extensions
+ * @version     1.0.0
+ * @author      David Creator
+ * 
+ * Este arquivo contém todos os estilos para a extensão Variation Swatches do WooCommerce
+ * Compatível com WooCommerce Variation Swatches 2.0+
+ */
+
+/* ==========================================================================
+   VARIÁVEIS CSS CUSTOMIZADAS - VARIATION SWATCHES
+   ========================================================================== */
+
+:root {
+    /* Cores do sistema */
+    --vs-primary-color: #2c3e50;
+    --vs-secondary-color: #3498db;
+    --vs-accent-color: #27ae60;
+    --vs-warning-color: #f39c12;
+    --vs-danger-color: #e74c3c;
+    --vs-success-color: #2ecc71;
+    --vs-info-color: #16a085;
+    
+    /* Cores de background */
+    --vs-bg-transparent: rgba(0, 0, 0, 0);     /* Valor da referência */
+    --vs-bg-white: #ffffff;                    /* Valor da referência */
+    --vs-bg-light: rgba(0, 0, 0, 0.025);
+    --vs-bg-medium: rgba(0, 0, 0, 0.05);
+    --vs-bg-dark: rgba(0, 0, 0, 0.1);          /* Valor da referência */
+    --vs-bg-hover: #f8f9fa;
+    --vs-bg-selected: #ffffff;
+    
+    /* Cores de borda */
+    --vs-border-color: rgba(0, 0, 0, 0.1);     /* Valor da referência */
+    --vs-border-hover: rgba(0, 0, 0, 0.2);
+    --vs-border-selected: rgba(0, 0, 0, 0.3);
+    --vs-border-width: 1px;                    /* Valor da referência */
+    --vs-border-width-selected: 2px;
+    
+    /* Cores de texto */
+    --vs-text-primary: #2c2d33;
+    --vs-text-secondary: #6c757d;
+    --vs-text-muted: #999999;
+    --vs-text-light: #ffffff;
+    --vs-text-dark: #1a1a1a;
+    
+    /* Espaçamentos (Golden Ratio) */
+    --vs-spacing-xs: 0.327rem;                 /* Valor próximo da referência */
+    --vs-spacing-sm: 0.6180469716rem;          /* Valor da referência - Golden Ratio */
+    --vs-spacing-md: 1rem;                     /* Valor da referência */
+    --vs-spacing-lg: 1.618rem;                 /* Valor da referência - Golden Ratio */
+    --vs-spacing-xl: 2.618rem;
+    
+    /* Opacidade */
+    --vs-opacity-disabled: 0.3;
+    --vs-opacity-normal: 0.5;                  /* Valor da referência */
+    --vs-opacity-hover: 0.8;
+    --vs-opacity-active: 1;                    /* Valor da referência */
+    
+    /* Tamanhos de swatch */
+    --vs-swatch-size-xs: 24px;
+    --vs-swatch-size-sm: 32px;
+    --vs-swatch-size-md: 40px;
+    --vs-swatch-size-lg: 48px;
+    --vs-swatch-size-xl: 56px;
+    
+    /* Bordas e efeitos */
+    --vs-border-radius: 4px;
+    --vs-border-radius-circle: 50%;
+    --vs-border-radius-pill: 30px;
+    
+    /* Sombras */
+    --vs-shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.08);
+    --vs-shadow-md: 0 4px 8px rgba(0, 0, 0, 0.12);
+    --vs-shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.16);
+    --vs-shadow-hover: 0 6px 12px rgba(0, 0, 0, 0.15);
+    --vs-shadow-selected: 0 0 0 3px rgba(39, 174, 96, 0.2);
+    
+    /* Transições */
+    --vs-transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --vs-transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --vs-transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==========================================================================
+   TABELA DE VARIAÇÕES - Estilos da referência
+   ========================================================================== */
+
+/**
+ * Tabela base - Estilo da referência
+ */
+.variations-table {
+    margin: 0;                                  /* Valor da referência */
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/**
+ * Células da tabela - Estilos da referência
+ */
+.variations-table th,
+.variations-table td {
+    display: block;                            /* Valor da referência */
+    padding: 0;                                /* Valor da referência */
+    background-color: rgba(0, 0, 0, 0);       /* Valor da referência */
+    vertical-align: top;
+    border: none;
+}
+
+/**
+ * Label da variação - Estilo da referência
+ */
+.variations-table td.label {
+    margin-bottom: 1em;                        /* Valor da referência */
+    font-weight: 600;
+    color: var(--vs-text-primary);
+    font-size: 0.9375rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative;
+}
+
+/* Indicador de campo obrigatório */
+.variations-table td.label .required {
+    color: var(--vs-danger-color);
+    margin-left: 0.25rem;
+}
+
+/* Label com tooltip */
+.variations-table td.label .tooltip-icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background: var(--vs-info-color);
+    color: var(--vs-text-light);
+    border-radius: 50%;
+    text-align: center;
+    line-height: 16px;
+    font-size: 0.75rem;
+    margin-left: 0.5rem;
+    cursor: help;
+}
+
+/* ==========================================================================
+   WRAPPER DE SWATCH - Estilos da referência
+   ========================================================================== */
+
+/**
+ * Container do Swatch - Estilos da referência
+ */
+.variations-table .swatch-wrapper {
+    padding: 0.6180469716em;                   /* Valor da referência - Golden Ratio */
+    background-color: rgba(0, 0, 0, 0);       /* Valor da referência */
+    border: 1px solid rgba(0, 0, 0, 0.1);     /* Valores da referência */
+    float: left;                              /* Valor da referência */
+    display: inline-block;                    /* Valor da referência */
+    margin: 0 0.327em 1em 0;                  /* Valores da referência */
+    cursor: pointer;
+    position: relative;
+    transition: all var(--vs-transition-normal);
+    border-radius: var(--vs-border-radius);
+    overflow: hidden;
+}
+
+/* Tipos de swatch */
+.swatch-wrapper.swatch-color,
+.swatch-wrapper.swatch-image {
+    width: var(--vs-swatch-size-md);
+    height: var(--vs-swatch-size-md);
+    padding: 2px;
+}
+
+.swatch-wrapper.swatch-label {
+    height: auto;
+    min-width: 60px;
+    text-align: center;
+}
+
+.swatch-wrapper.swatch-radio {
+    border-radius: var(--vs-border-radius-circle);
+}
+
+/**
+ * Imagens dentro do swatch - Estilo da referência
+ */
+.variations-table .swatch-wrapper img {
+    opacity: 0.5;                              /* Valor da referência */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity var(--vs-transition-fast);
+    border-radius: calc(var(--vs-border-radius) - 2px);
+}
+
+/**
+ * Âncora do swatch - Estilo da referência
+ */
+.variations-table .swatch-wrapper .swatch-anchor {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+}
+
+.variations-table .swatch-wrapper .swatch-anchor:focus {
+    outline: none;                             /* Valor da referência */
+}
+
+/* Focus visible para acessibilidade */
+.swatch-wrapper:focus-within {
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.3);
+}
+
+/**
+ * Estados Hover e Selected - Estilos da referência
+ */
+.variations-table .swatch-wrapper.selected,
+.variations-table .swatch-wrapper:hover {
+    padding: 0.6180469716em;                   /* Valor da referência */
+    background-color: #fff;                   /* Valor da referência */
+    transform: scale(1.1);
+    box-shadow: var(--vs-shadow-hover);
+    z-index: 1;
+}
+
+/* Imagens em estado hover/selected - Estilos da referência */
+.variations-table .swatch-wrapper.selected img,
+.variations-table .swatch-wrapper:hover img {
+    opacity: 1;                                /* Valor da referência */
+}
+
+/**
+ * Estado Selected específico - Estilos da referência
+ */
+.variations-table .swatch-wrapper.selected {
+    border-width: 1px;                         /* Valor da referência */
+    border-color: rgba(0, 0, 0, 0.1);        /* Valor da referência */
+    box-shadow: var(--vs-shadow-selected);
+}
+
+/* Checkmark para item selecionado */
+.swatch-wrapper.selected::after {
+    content: '✓';
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    background: var(--vs-success-color);
+    color: var(--vs-text-light);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    box-shadow: var(--vs-shadow-sm);
+    animation: checkmarkPop 0.3s ease;
+}
+
+/* Estado disabled */
+.swatch-wrapper.disabled {
+    opacity: var(--vs-opacity-disabled);
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.swatch-wrapper.disabled::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -5%;
+    width: 110%;
+    height: 2px;
+    background: var(--vs-danger-color);
+    transform: rotate(-45deg);
+}
+
+/* Estado out of stock */
+.swatch-wrapper.out-of-stock {
+    position: relative;
+    opacity: 0.4;
+}
+
+.swatch-wrapper.out-of-stock::before {
+    content: 'Out';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 2px 4px;
+    border-radius: 2px;
+    font-size: 10px;
+    font-weight: bold;
+    z-index: 2;
+}
+
+/* ==========================================================================
+   TIPOS ESPECÍFICOS DE SWATCHES
+   ========================================================================== */
+
+/**
+ * Color Swatches
+ */
+.swatch-color .swatch-inner {
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Padrão para cores não definidas */
+.swatch-color .swatch-inner.no-color {
+    background: repeating-linear-gradient(
+        45deg,
+        #ddd,
+        #ddd 5px,
+        #fff 5px,
+        #fff 10px
+    );
+}
+
+/* Gradiente para múltiplas cores */
+.swatch-color.multi-color .swatch-inner {
+    background: linear-gradient(
+        45deg,
+        var(--color-1) 0%,
+        var(--color-1) 50%,
+        var(--color-2) 50%,
+        var(--color-2) 100%
+    );
+}
+
+/**
+ * Image Swatches
+ */
+.swatch-image {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.swatch-image.loading {
+    background: var(--vs-bg-light);
+    position: relative;
+}
+
+.swatch-image.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--vs-bg-dark);
+    border-top-color: var(--vs-accent-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/**
+ * Label/Text Swatches
+ */
+.swatch-label .swatch-text {
+    display: block;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    white-space: nowrap;
+    color: var(--vs-text-primary);
+    transition: all var(--vs-transition-fast);
+}
+
+.swatch-label:hover .swatch-text,
+.swatch-label.selected .swatch-text {
+    color: var(--vs-accent-color);
+}
+
+/**
+ * Radio Button Swatches
+ */
+.swatch-radio .radio-inner {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid var(--vs-border-color);
+    position: relative;
+    transition: all var(--vs-transition-fast);
+}
+
+.swatch-radio.selected .radio-inner::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    height: 50%;
+    background: var(--vs-accent-color);
+    border-radius: 50%;
+    animation: radioSelect 0.3s ease;
+}
+
+/* ==========================================================================
+   BOTÃO LIMPAR SELEÇÃO - Estilos da referência
+   ========================================================================== */
+
+/**
+ * Link de limpar variações - Estilo da referência
+ */
+a#variations_clear {
+    display: block;                            /* Valor da referência */
+    margin: 1em 0 1.618em;                    /* Valores da referência - Golden Ratio */
+    color: var(--vs-text-secondary);
+    text-decoration: none;
+    font-size: 0.875rem;
+    padding: 0.5rem 1rem;
+    background: var(--vs-bg-light);
+    border: 1px solid var(--vs-border-color);
+    border-radius: var(--vs-border-radius);
+    text-align: center;
+    transition: all var(--vs-transition-fast);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Hover effect */
+a#variations_clear:hover {
+    background: var(--vs-danger-color);
+    color: var(--vs-text-light);
+    border-color: var(--vs-danger-color);
+}
+
+/* Ícone de limpar */
+a#variations_clear::before {
+    content: '×';
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-right: 0.5rem;
+    display: inline-block;
+    transition: transform var(--vs-transition-fast);
+}
+
+a#variations_clear:hover::before {
+    transform: rotate(90deg);
+}
+
+/* ==========================================================================
+   CONTAINER DE SWATCHES AGRUPADOS
+   ========================================================================== */
+
+/**
+ * Grupo de swatches
+ */
+.swatch-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--vs-spacing-xs);
+    margin-bottom: var(--vs-spacing-md);
+    align-items: center;
+}
+
+/* Título do grupo */
+.swatch-group-title {
+    width: 100%;
+    margin-bottom: var(--vs-spacing-sm);
+    font-weight: 600;
+    color: var(--vs-text-primary);
+    font-size: 0.9375rem;
+}
+
+/* Container com scroll */
+.swatch-scroll-container {
+    display: flex;
+    overflow-x: auto;
+    gap: var(--vs-spacing-xs);
+    padding: var(--vs-spacing-xs) 0;
+    -webkit-overflow-scrolling: touch;
+}
+
+.swatch-scroll-container::-webkit-scrollbar {
+    height: 6px;
+}
+
+.swatch-scroll-container::-webkit-scrollbar-track {
+    background: var(--vs-bg-light);
+    border-radius: 3px;
+}
+
+.swatch-scroll-container::-webkit-scrollbar-thumb {
+    background: var(--vs-accent-color);
+    border-radius: 3px;
+}
+
+.swatch-scroll-container .swatch-wrapper {
+    flex: 0 0 auto;
+}
+
+/* ==========================================================================
+   TOOLTIP DE SWATCH
+   ========================================================================== */
+
+/**
+ * Tooltip para swatches
+ */
+.swatch-tooltip {
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--vs-border-radius);
+    font-size: 0.75rem;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity var(--vs-transition-fast);
+    z-index: 10;
+}
+
+.swatch-wrapper:hover .swatch-tooltip {
+    opacity: 1;
+}
+
+/* Arrow do tooltip */
+.swatch-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: rgba(0, 0, 0, 0.9);
+}
+
+/* ==========================================================================
+   PREVIEW DE VARIAÇÃO
+   ========================================================================== */
+
+/**
+ * Container de preview
+ */
+.variation-preview {
+    margin-top: var(--vs-spacing-lg);
+    padding: var(--vs-spacing-md);
+    background: var(--vs-bg-light);
+    border-radius: var(--vs-border-radius);
+    display: none;
+    animation: slideDown 0.3s ease;
+}
+
+.variation-preview.active {
+    display: block;
+}
+
+/* Informações da variação */
+.variation-preview .preview-info {
+    display: flex;
+    align-items: center;
+    gap: var(--vs-spacing-md);
+}
+
+.variation-preview .preview-image {
+    width: 80px;
+    height: 80px;
+    border-radius: var(--vs-border-radius);
+    overflow: hidden;
+}
+
+.variation-preview .preview-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.variation-preview .preview-details {
+    flex: 1;
+}
+
+.variation-preview .preview-title {
+    font-weight: 600;
+    color: var(--vs-text-primary);
+    margin-bottom: 0.25rem;
+}
+
+.variation-preview .preview-price {
+    color: var(--vs-accent-color);
+    font-size: 1.125rem;
+    font-weight: bold;
+}
+
+.variation-preview .preview-stock {
+    color: var(--vs-text-secondary);
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+/* ==========================================================================
+   INDICADORES DE ESTADO
+   ========================================================================== */
+
+/**
+ * Badge de desconto
+ */
+.swatch-wrapper .sale-badge {
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    background: var(--vs-danger-color);
+    color: white;
+    padding: 2px 6px;
+    border-radius: var(--vs-border-radius);
+    font-size: 10px;
+    font-weight: bold;
+    z-index: 2;
+}
+
+/**
+ * Indicador de novo
+ */
+.swatch-wrapper .new-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: var(--vs-success-color);
+    color: white;
+    padding: 2px 6px;
+    border-radius: var(--vs-border-radius);
+    font-size: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    z-index: 2;
+}
+
+/**
+ * Contador de estoque
+ */
+.swatch-wrapper .stock-count {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 2px 4px;
+    border-radius: 2px;
+    font-size: 10px;
+}
+
+/* ==========================================================================
+   TAMANHOS PERSONALIZADOS
+   ========================================================================== */
+
+/* Extra pequeno */
+.swatches-size-xs .swatch-wrapper {
+    width: var(--vs-swatch-size-xs);
+    height: var(--vs-swatch-size-xs);
+}
+
+/* Pequeno */
+.swatches-size-sm .swatch-wrapper {
+    width: var(--vs-swatch-size-sm);
+    height: var(--vs-swatch-size-sm);
+}
+
+/* Grande */
+.swatches-size-lg .swatch-wrapper {
+    width: var(--vs-swatch-size-lg);
+    height: var(--vs-swatch-size-lg);
+}
+
+/* Extra grande */
+.swatches-size-xl .swatch-wrapper {
+    width: var(--vs-swatch-size-xl);
+    height: var(--vs-swatch-size-xl);
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE
+   ========================================================================== */
+
+/**
+ * Tablets (768px - 1024px)
+ */
+@media screen and (max-width: 1024px) {
+    .swatch-wrapper {
+        margin: 0 0.25rem 0.75rem 0;
+    }
+}
+
+/**
+ * Mobile (menor que 768px)
+ */
+@media screen and (max-width: 768px) {
+    /* Ajustar tamanho dos swatches */
+    .swatch-wrapper.swatch-color,
+    .swatch-wrapper.swatch-image {
+        width: var(--vs-swatch-size-sm);
+        height: var(--vs-swatch-size-sm);
+    }
+    
+    /* Labels responsivas */
+    .variations-table td.label {
+        margin-bottom: 0.5rem;
+        font-size: 0.875rem;
+    }
+    
+    /* Margens menores */
+    .swatch-wrapper {
+        margin: 0 0.25rem 0.5rem 0;
+        padding: 0.375rem;
+    }
+    
+    /* Clear button full width */
+    a#variations_clear {
+        width: 100%;
+        margin: 0.5rem 0 1rem;
+    }
+    
+    /* Preview responsivo */
+    .variation-preview .preview-info {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .variation-preview .preview-image {
+        width: 120px;
+        height: 120px;
+        margin: 0 auto;
+    }
+}
+
+/**
+ * Mobile pequeno (menor que 480px)
+ */
+@media screen and (max-width: 480px) {
+    /* Swatches ainda menores */
+    :root {
+        --vs-swatch-size-xs: 20px;
+        --vs-swatch-size-sm: 28px;
+        --vs-swatch-size-md: 36px;
+    }
+    
+    /* Reduzir espaçamentos */
+    .swatch-wrapper {
+        margin: 0 0.125rem 0.375rem 0;
+        padding: 0.25rem;
+    }
+    
+    /* Label swatches em coluna */
+    .swatch-wrapper.swatch-label {
+        min-width: auto;
+        width: 100%;
+        margin: 0 0 0.5rem 0;
+    }
+}
+
+/* ==========================================================================
+   MODO ESCURO (Dark Mode)
+   ========================================================================== */
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --vs-bg-white: #1a1a1a;
+        --vs-bg-light: rgba(255, 255, 255, 0.05);
+        --vs-bg-hover: #2a2a2a;
+        --vs-text-primary: #e0e0e0;
+        --vs-text-secondary: #999;
+        --vs-border-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    .swatch-wrapper {
+        background-color: #2a2a2a;
+        border-color: #444;
+    }
+    
+    .swatch-wrapper:hover,
+    .swatch-wrapper.selected {
+        background-color: #3a3a3a;
+        border-color: var(--vs-accent-color);
+    }
+    
+    .variation-preview {
+        background: #2a2a2a;
+    }
+    
+    a#variations_clear {
+        background: #2a2a2a;
+        color: #e0e0e0;
+        border-color: #444;
+    }
+    
+    .swatch-tooltip {
+        background: rgba(255, 255, 255, 0.9);
+        color: #1a1a1a;
+    }
+    
+    .swatch-tooltip::after {
+        border-top-color: rgba(255, 255, 255, 0.9);
+    }
+}
+
+/* ==========================================================================
+   IMPRESSÃO
+   ========================================================================== */
+
+@media print {
+    .swatch-wrapper {
+        border: 1px solid #ddd !important;
+        padding: 0.25rem !important;
+    }
+    
+    .swatch-wrapper.selected {
+        border-width: 2px !important;
+        border-color: #000 !important;
+    }
+    
+    a#variations_clear,
+    .swatch-tooltip,
+    .variation-preview {
+        display: none !important;
+    }
+}
+
+/* ==========================================================================
+   ANIMAÇÕES
+   ========================================================================== */
+
+@keyframes checkmarkPop {
+    0% {
+        transform: scale(0);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes radioSelect {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ==========================================================================
+   ACESSIBILIDADE
+   ========================================================================== */
+
+/* Focus visible */
+.swatch-wrapper:focus-visible {
+    outline: 3px solid var(--vs-accent-color);
+    outline-offset: 2px;
+}
+
+/* Screen reader text */
+.vs-screen-reader-text {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* High contrast */
+@media (prefers-contrast: high) {
+    .swatch-wrapper {
+        border-width: 2px;
+    }
+    
+    .swatch-wrapper.selected {
+        border-width: 3px;
+        border-color: #000;
+    }
+}
+
+/* ==========================================================================
+   FIM DO ARQUIVO
+   ========================================================================== */

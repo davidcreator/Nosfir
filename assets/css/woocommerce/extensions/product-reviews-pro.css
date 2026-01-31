@@ -1,1 +1,1063 @@
-.woocommerce #reviews .product-rating .product-rating-summary,.woocommerce #reviews .product-rating .product-rating-details,.woocommerce-page #reviews .product-rating .product-rating-summary,.woocommerce-page #reviews .product-rating .product-rating-details{display:block;width:100%}.woocommerce #reviews .product-rating .product-rating-summary,.woocommerce-page #reviews .product-rating .product-rating-summary{text-align:left}.woocommerce #reviews .product-rating .product-rating-details table td,.woocommerce-page #reviews .product-rating .product-rating-details table td{padding:.202em .5407911001em}.woocommerce #reviews .product-rating .product-rating-details table td.rating-graph .bar,.woocommerce-page #reviews .product-rating .product-rating-details table td.rating-graph .bar{background-color:#43454b}.woocommerce #reviews .product-rating .product-rating-details table td.rating-count a,.woocommerce-page #reviews .product-rating .product-rating-details table td.rating-count a{text-decoration:none}.woocommerce #reviews .form-contribution,.woocommerce-page #reviews .form-contribution{border-color:rgba(0,0,0,.05);padding:1em}.woocommerce #reviews .form-contribution #review_rating_field fieldset,.woocommerce-page #reviews .form-contribution #review_rating_field fieldset{float:left}.woocommerce #reviews .form-contribution #review_rating_field fieldset label,.woocommerce-page #reviews .form-contribution #review_rating_field fieldset label{display:inline-block;float:right}.woocommerce #reviews .form-contribution #review_rating_field fieldset label.checkbox::before,.woocommerce-page #reviews .form-contribution #review_rating_field fieldset label.checkbox::before{font-size:.875em}.woocommerce #reviews .form-contribution #review_rating_field fieldset .star-label,.woocommerce-page #reviews .form-contribution #review_rating_field fieldset .star-label{float:none;margin-left:.6180469716em}.woocommerce #reviews .form-contribution .form-row,.woocommerce-page #reviews .form-contribution .form-row{clear:both}.woocommerce #reviews .contribution-karma,.woocommerce-page #reviews .contribution-karma{margin-left:0}.woocommerce #reviews #comments ol.commentlist li,.woocommerce-page #reviews #comments ol.commentlist li{padding-top:0}.woocommerce #reviews #comments ol.commentlist li img.avatar,.woocommerce-page #reviews #comments ol.commentlist li img.avatar{width:2.617924em;height:auto;margin:0;float:right}.woocommerce #reviews #comments ol.commentlist li .description,.woocommerce-page #reviews #comments ol.commentlist li .description{padding-bottom:0}.woocommerce #reviews #comments ol.commentlist li .comment-text,.woocommerce-page #reviews #comments ol.commentlist li .comment-text{margin-left:0}.woocommerce #reviews #comments ol.commentlist li .comment-text img,.woocommerce #reviews #comments ol.commentlist li .comment-text iframe,.woocommerce-page #reviews #comments ol.commentlist li .comment-text img,.woocommerce-page #reviews #comments ol.commentlist li .comment-text iframe{margin-bottom:1.618em}.woocommerce #reviews #comments ol.commentlist li h3.contribution-title,.woocommerce-page #reviews #comments ol.commentlist li h3.contribution-title{margin:0;font-size:1em}.woocommerce #reviews #comments ol.commentlist li .contribution-actions a,.woocommerce-page #reviews #comments ol.commentlist li .contribution-actions a{color:#2c2d33}.woocommerce #reviews #comments ol.commentlist li .contribution-actions a.done,.woocommerce-page #reviews #comments ol.commentlist li .contribution-actions a.done{opacity:.5}.woocommerce #reviews #comments ol.commentlist li ul.children li,.woocommerce-page #reviews #comments ol.commentlist li ul.children li{margin-bottom:1.618em}.woocommerce #reviews #comments .form-contribution_comment,.woocommerce-page #reviews #comments .form-contribution_comment{width:81.8181818182%;float:right;margin-right:0;margin-bottom:3.706325903em;padding-top:1.618em}.woocommerce #reviews #comments ul.children+.form-contribution_comment,.woocommerce-page #reviews #comments ul.children+.form-contribution_comment{border-top:0;padding-top:0}.woocommerce #reviews .contribution-flag-form,.woocommerce-page #reviews .contribution-flag-form{background-color:rgba(0,0,0,.1);padding:1.618em;margin-bottom:1.618em}.woocommerce .form-photo #photo_attachment_file,.woocommerce-page .form-photo #photo_attachment_file{color:inherit;margin:1em 0}.woocommerce .contribution-type-selector,.woocommerce-page .contribution-type-selector{margin:0}.woocommerce .contribution-type-selector>a,.woocommerce-page .contribution-type-selector>a{display:inline-block;margin-right:1em;padding:.5407911001em 0;border-bottom:.202em solid rgba(0,0,0,.05)}.woocommerce .contribution-type-selector>a.active,.woocommerce-page .contribution-type-selector>a.active{border-bottom-color:rgba(0,0,0,.05)}.woocommerce .star-rating-selector fieldset,.woocommerce-page .star-rating-selector fieldset{float:none;clear:both}.woocommerce .star-rating-selector>label:first-child,.woocommerce-page .star-rating-selector>label:first-child{display:block !important}.woocommerce .star-rating-selector:not(:checked) label.checkbox,.woocommerce-page .star-rating-selector:not(:checked) label.checkbox{float:none}.woocommerce #wc-product-reviews-pro-modal #customer_login .col-1,.woocommerce #wc-product-reviews-pro-modal #customer_login .col-2,.woocommerce-page #wc-product-reviews-pro-modal #customer_login .col-1,.woocommerce-page #wc-product-reviews-pro-modal #customer_login .col-2{width:100%}#tiptip_content,.chart-tooltip{font-size:.875em;padding:.6180469716em 1em;background-color:rgba(0,0,0,.8)}#tiptip_holder.tip_bottom #tiptip_arrow_inner{border-bottom-color:rgba(0,0,0,.8);margin-top:-6px}
+/**
+ * WooCommerce Product Reviews Pro Extension Styles
+ * 
+ * @package     Nosfir
+ * @subpackage  WooCommerce/Extensions
+ * @version     1.0.0
+ * @author      David Creator
+ * 
+ * Este arquivo contém todos os estilos para a extensão Product Reviews Pro do WooCommerce
+ * Compatível com WooCommerce Product Reviews Pro 1.0+
+ */
+
+/* ==========================================================================
+   VARIÁVEIS CSS CUSTOMIZADAS - REVIEWS PRO
+   ========================================================================== */
+
+:root {
+    /* Cores do sistema de reviews */
+    --prp-primary-color: #2c2d33;
+    --prp-secondary-color: #43454b;
+    --prp-accent-color: #f39c12;
+    --prp-success-color: #27ae60;
+    --prp-warning-color: #e67e22;
+    --prp-danger-color: #e74c3c;
+    --prp-info-color: #3498db;
+    
+    /* Cores de background */
+    --prp-bg-light: rgba(0, 0, 0, 0.05);
+    --prp-bg-medium: rgba(0, 0, 0, 0.1);
+    --prp-bg-dark: rgba(0, 0, 0, 0.8);
+    --prp-bg-white: #ffffff;
+    
+    /* Cores de texto */
+    --prp-text-primary: #2c2d33;
+    --prp-text-secondary: #6c757d;
+    --prp-text-muted: #999999;
+    --prp-text-light: #ffffff;
+    
+    /* Espaçamentos (Golden Ratio) */
+    --prp-spacing-xs: 0.202rem;        /* Valor da referência */
+    --prp-spacing-sm: 0.382rem;
+    --prp-spacing-md: 0.5407911001rem; /* Valor da referência */
+    --prp-spacing-lg: 0.6180469716rem; /* Valor da referência - Golden Ratio */
+    --prp-spacing-xl: 1rem;
+    --prp-spacing-xxl: 1.618rem;       /* Golden Ratio */
+    --prp-spacing-3xl: 2.617924rem;    /* Valor da referência */
+    --prp-spacing-4xl: 3.706325903rem; /* Valor da referência */
+    
+    /* Tamanhos de fonte */
+    --prp-font-xs: 0.75rem;
+    --prp-font-sm: 0.875rem;  /* Valor da referência */
+    --prp-font-md: 1rem;       /* Valor da referência */
+    --prp-font-lg: 1.25rem;
+    --prp-font-xl: 1.5rem;
+    
+    /* Bordas e efeitos */
+    --prp-border-radius: 4px;
+    --prp-border-width: 1px;
+    --prp-border-width-thick: 0.202em; /* Valor da referência */
+    --prp-border-color: rgba(0, 0, 0, 0.05);
+    
+    /* Sombras */
+    --prp-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
+    --prp-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.16);
+    --prp-shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.2);
+    
+    /* Transições */
+    --prp-transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --prp-transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --prp-transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==========================================================================
+   RATING SUMMARY E DETALHES - Estilos da referência
+   ========================================================================== */
+
+/**
+ * Container de Rating
+ */
+.woocommerce #reviews .product-rating,
+.woocommerce-page #reviews .product-rating {
+    background: var(--prp-bg-white);
+    border-radius: var(--prp-border-radius);
+    padding: var(--prp-spacing-xl);
+    margin-bottom: var(--prp-spacing-xxl);
+    box-shadow: var(--prp-shadow-sm);
+}
+
+/**
+ * Rating Summary - Estilos da referência
+ */
+.woocommerce #reviews .product-rating .product-rating-summary,
+.woocommerce-page #reviews .product-rating .product-rating-summary {
+    display: block;
+    width: 100%;
+    text-align: left; /* Valor da referência */
+    padding-bottom: var(--prp-spacing-xl);
+    border-bottom: 1px solid var(--prp-border-color);
+    margin-bottom: var(--prp-spacing-xl);
+}
+
+/* Título do summary */
+.product-rating-summary h3 {
+    font-size: var(--prp-font-xl);
+    color: var(--prp-text-primary);
+    margin-bottom: var(--prp-spacing-md);
+}
+
+/* Média de rating grande */
+.product-rating-summary .average-rating {
+    display: flex;
+    align-items: center;
+    gap: var(--prp-spacing-md);
+}
+
+.product-rating-summary .rating-number {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--prp-accent-color);
+    line-height: 1;
+}
+
+.product-rating-summary .rating-stars {
+    display: flex;
+    flex-direction: column;
+    gap: var(--prp-spacing-sm);
+}
+
+.product-rating-summary .total-reviews {
+    color: var(--prp-text-secondary);
+    font-size: var(--prp-font-sm);
+}
+
+/**
+ * Rating Details - Estilos da referência
+ */
+.woocommerce #reviews .product-rating .product-rating-details,
+.woocommerce-page #reviews .product-rating .product-rating-details {
+    display: block;
+    width: 100%;
+}
+
+/* Tabela de detalhes - Estilos da referência */
+.woocommerce #reviews .product-rating .product-rating-details table,
+.woocommerce-page #reviews .product-rating .product-rating-details table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.woocommerce #reviews .product-rating .product-rating-details table td,
+.woocommerce-page #reviews .product-rating .product-rating-details table td {
+    padding: 0.202em 0.5407911001em; /* Valores da referência */
+    vertical-align: middle;
+    border: none;
+}
+
+/* Labels de estrelas */
+.product-rating-details .rating-label {
+    display: flex;
+    align-items: center;
+    gap: var(--prp-spacing-sm);
+    font-size: var(--prp-font-sm);
+    color: var(--prp-text-secondary);
+    white-space: nowrap;
+}
+
+/**
+ * Barra de progresso do rating - Estilos da referência
+ */
+.woocommerce #reviews .product-rating .product-rating-details table td.rating-graph,
+.woocommerce-page #reviews .product-rating .product-rating-details table td.rating-graph {
+    width: 100%;
+    position: relative;
+}
+
+/* Container da barra */
+.rating-graph .bar-container {
+    width: 100%;
+    height: 8px;
+    background: var(--prp-bg-light);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Barra de progresso - Estilo da referência */
+.woocommerce #reviews .product-rating .product-rating-details table td.rating-graph .bar,
+.woocommerce-page #reviews .product-rating .product-rating-details table td.rating-graph .bar {
+    background-color: #43454b; /* Valor da referência */
+    height: 100%;
+    border-radius: 4px;
+    transition: width var(--prp-transition-normal);
+    background: linear-gradient(90deg, #43454b, #5a5c63);
+}
+
+/* Hover na barra */
+.rating-graph:hover .bar {
+    background: linear-gradient(90deg, var(--prp-accent-color), #f5b041);
+}
+
+/**
+ * Contador de rating - Estilos da referência
+ */
+.woocommerce #reviews .product-rating .product-rating-details table td.rating-count,
+.woocommerce-page #reviews .product-rating .product-rating-details table td.rating-count {
+    text-align: right;
+    min-width: 50px;
+}
+
+.woocommerce #reviews .product-rating .product-rating-details table td.rating-count a,
+.woocommerce-page #reviews .product-rating .product-rating-details table td.rating-count a {
+    text-decoration: none; /* Valor da referência */
+    color: var(--prp-text-secondary);
+    font-size: var(--prp-font-sm);
+    transition: color var(--prp-transition-fast);
+}
+
+.rating-count a:hover {
+    color: var(--prp-accent-color);
+}
+
+/* ==========================================================================
+   FORMULÁRIO DE CONTRIBUIÇÃO - Estilos da referência
+   ========================================================================== */
+
+/**
+ * Container do formulário - Estilos da referência
+ */
+.woocommerce #reviews .form-contribution,
+.woocommerce-page #reviews .form-contribution {
+    border-color: rgba(0, 0, 0, 0.05); /* Valor da referência */
+    padding: 1em; /* Valor da referência */
+    background: var(--prp-bg-white);
+    border: 1px solid var(--prp-border-color);
+    border-radius: var(--prp-border-radius);
+    margin: var(--prp-spacing-xxl) 0;
+    box-shadow: var(--prp-shadow-sm);
+}
+
+/* Título do formulário */
+.form-contribution h3 {
+    margin-bottom: var(--prp-spacing-xl);
+    color: var(--prp-text-primary);
+    font-size: var(--prp-font-lg);
+    border-bottom: 2px solid var(--prp-accent-color);
+    padding-bottom: var(--prp-spacing-md);
+}
+
+/**
+ * Campo de rating - Estilos da referência
+ */
+.woocommerce #reviews .form-contribution #review_rating_field fieldset,
+.woocommerce-page #reviews .form-contribution #review_rating_field fieldset {
+    float: left; /* Valor da referência */
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+.woocommerce #reviews .form-contribution #review_rating_field fieldset label,
+.woocommerce-page #reviews .form-contribution #review_rating_field fieldset label {
+    display: inline-block; /* Valor da referência */
+    float: right; /* Valor da referência */
+}
+
+/* Checkbox de estrelas - Estilos da referência */
+.woocommerce #reviews .form-contribution #review_rating_field fieldset label.checkbox::before,
+.woocommerce-page #reviews .form-contribution #review_rating_field fieldset label.checkbox::before {
+    font-size: 0.875em; /* Valor da referência */
+    content: '☆';
+    display: inline-block;
+    margin-right: var(--prp-spacing-sm);
+    color: var(--prp-accent-color);
+    transition: all var(--prp-transition-fast);
+}
+
+.review_rating_field fieldset label.checkbox.checked::before {
+    content: '★';
+    color: var(--prp-accent-color);
+}
+
+/* Star label - Estilos da referência */
+.woocommerce #reviews .form-contribution #review_rating_field fieldset .star-label,
+.woocommerce-page #reviews .form-contribution #review_rating_field fieldset .star-label {
+    float: none; /* Valor da referência */
+    margin-left: 0.6180469716em; /* Valor da referência - Golden Ratio */
+    color: var(--prp-text-secondary);
+    font-size: var(--prp-font-sm);
+}
+
+/**
+ * Form rows - Estilos da referência
+ */
+.woocommerce #reviews .form-contribution .form-row,
+.woocommerce-page #reviews .form-contribution .form-row {
+    clear: both; /* Valor da referência */
+    margin-bottom: var(--prp-spacing-xl);
+}
+
+/* Labels dos campos */
+.form-contribution .form-row label {
+    display: block;
+    margin-bottom: var(--prp-spacing-sm);
+    font-weight: 500;
+    color: var(--prp-text-primary);
+}
+
+/* Inputs e textareas */
+.form-contribution .form-row input[type="text"],
+.form-contribution .form-row input[type="email"],
+.form-contribution .form-row textarea {
+    width: 100%;
+    padding: var(--prp-spacing-md);
+    border: 1px solid var(--prp-border-color);
+    border-radius: var(--prp-border-radius);
+    font-size: var(--prp-font-md);
+    transition: all var(--prp-transition-fast);
+}
+
+.form-contribution .form-row input:focus,
+.form-contribution .form-row textarea:focus {
+    outline: none;
+    border-color: var(--prp-accent-color);
+    box-shadow: 0 0 0 3px rgba(243, 156, 18, 0.1);
+}
+
+/* ==========================================================================
+   KARMA DE CONTRIBUIÇÃO - Estilos da referência
+   ========================================================================== */
+
+.woocommerce #reviews .contribution-karma,
+.woocommerce-page #reviews .contribution-karma {
+    margin-left: 0; /* Valor da referência */
+    display: flex;
+    align-items: center;
+    gap: var(--prp-spacing-md);
+    padding: var(--prp-spacing-md);
+    background: var(--prp-bg-light);
+    border-radius: var(--prp-border-radius);
+    margin-top: var(--prp-spacing-md);
+}
+
+/* Botões de karma */
+.contribution-karma .karma-button {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--prp-spacing-sm);
+    padding: var(--prp-spacing-sm) var(--prp-spacing-md);
+    background: var(--prp-bg-white);
+    border: 1px solid var(--prp-border-color);
+    border-radius: var(--prp-border-radius);
+    cursor: pointer;
+    transition: all var(--prp-transition-fast);
+    font-size: var(--prp-font-sm);
+}
+
+.karma-button:hover {
+    border-color: var(--prp-accent-color);
+    color: var(--prp-accent-color);
+}
+
+.karma-button.upvoted {
+    background: var(--prp-success-color);
+    color: var(--prp-text-light);
+    border-color: var(--prp-success-color);
+}
+
+.karma-button.downvoted {
+    background: var(--prp-danger-color);
+    color: var(--prp-text-light);
+    border-color: var(--prp-danger-color);
+}
+
+/* ==========================================================================
+   LISTA DE COMENTÁRIOS - Estilos da referência
+   ========================================================================== */
+
+/**
+ * Lista de comentários - Estilos da referência
+ */
+.woocommerce #reviews #comments ol.commentlist li,
+.woocommerce-page #reviews #comments ol.commentlist li {
+    padding-top: 0; /* Valor da referência */
+    margin-bottom: var(--prp-spacing-xxl);
+    background: var(--prp-bg-white);
+    border: 1px solid var(--prp-border-color);
+    border-radius: var(--prp-border-radius);
+    padding: var(--prp-spacing-xl);
+    position: relative;
+    transition: all var(--prp-transition-normal);
+}
+
+.commentlist li:hover {
+    box-shadow: var(--prp-shadow-md);
+}
+
+/**
+ * Avatar - Estilos da referência
+ */
+.woocommerce #reviews #comments ol.commentlist li img.avatar,
+.woocommerce-page #reviews #comments ol.commentlist li img.avatar {
+    width: 2.617924em; /* Valor da referência */
+    height: auto; /* Valor da referência */
+    margin: 0; /* Valor da referência */
+    float: right; /* Valor da referência */
+    border-radius: 50%;
+    border: 3px solid var(--prp-bg-white);
+    box-shadow: var(--prp-shadow-sm);
+}
+
+/**
+ * Descrição - Estilos da referência
+ */
+.woocommerce #reviews #comments ol.commentlist li .description,
+.woocommerce-page #reviews #comments ol.commentlist li .description {
+    padding-bottom: 0; /* Valor da referência */
+    margin-bottom: var(--prp-spacing-md);
+}
+
+/**
+ * Texto do comentário - Estilos da referência
+ */
+.woocommerce #reviews #comments ol.commentlist li .comment-text,
+.woocommerce-page #reviews #comments ol.commentlist li .comment-text {
+    margin-left: 0; /* Valor da referência */
+    line-height: 1.6;
+    color: var(--prp-text-primary);
+}
+
+/* Media embeds - Estilos da referência */
+.woocommerce #reviews #comments ol.commentlist li .comment-text img,
+.woocommerce #reviews #comments ol.commentlist li .comment-text iframe,
+.woocommerce-page #reviews #comments ol.commentlist li .comment-text img,
+.woocommerce-page #reviews #comments ol.commentlist li .comment-text iframe {
+    margin-bottom: 1.618em; /* Valor da referência - Golden Ratio */
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--prp-border-radius);
+}
+
+/**
+ * Título da contribuição - Estilos da referência
+ */
+.woocommerce #reviews #comments ol.commentlist li h3.contribution-title,
+.woocommerce-page #reviews #comments ol.commentlist li h3.contribution-title {
+    margin: 0; /* Valor da referência */
+    font-size: 1em; /* Valor da referência */
+    color: var(--prp-text-primary);
+    font-weight: 600;
+    margin-bottom: var(--prp-spacing-md);
+}
+
+/**
+ * Ações de contribuição - Estilos da referência
+ */
+.woocommerce #reviews #comments ol.commentlist li .contribution-actions,
+.woocommerce-page #reviews #comments ol.commentlist li .contribution-actions {
+    display: flex;
+    gap: var(--prp-spacing-md);
+    margin-top: var(--prp-spacing-md);
+    padding-top: var(--prp-spacing-md);
+    border-top: 1px solid var(--prp-border-color);
+}
+
+.woocommerce #reviews #comments ol.commentlist li .contribution-actions a,
+.woocommerce-page #reviews #comments ol.commentlist li .contribution-actions a {
+    color: #2c2d33; /* Valor da referência */
+    font-size: var(--prp-font-sm);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--prp-spacing-xs);
+    transition: all var(--prp-transition-fast);
+}
+
+.contribution-actions a:hover {
+    color: var(--prp-accent-color);
+}
+
+/* Estado "done" - Estilos da referência */
+.woocommerce #reviews #comments ol.commentlist li .contribution-actions a.done,
+.woocommerce-page #reviews #comments ol.commentlist li .contribution-actions a.done {
+    opacity: 0.5; /* Valor da referência */
+    pointer-events: none;
+}
+
+/**
+ * Comentários filhos - Estilos da referência
+ */
+.woocommerce #reviews #comments ol.commentlist li ul.children li,
+.woocommerce-page #reviews #comments ol.commentlist li ul.children li {
+    margin-bottom: 1.618em; /* Valor da referência - Golden Ratio */
+    margin-left: var(--prp-spacing-3xl);
+    background: var(--prp-bg-light);
+    border-left: 3px solid var(--prp-accent-color);
+}
+
+/* ==========================================================================
+   FORMULÁRIO DE COMENTÁRIO DE CONTRIBUIÇÃO - Estilos da referência
+   ========================================================================== */
+
+.woocommerce #reviews #comments .form-contribution_comment,
+.woocommerce-page #reviews #comments .form-contribution_comment {
+    width: 81.8181818182%; /* Valor da referência */
+    float: right; /* Valor da referência */
+    margin-right: 0; /* Valor da referência */
+    margin-bottom: 3.706325903em; /* Valor da referência */
+    padding-top: 1.618em; /* Valor da referência - Golden Ratio */
+    border-top: 2px solid var(--prp-border-color);
+}
+
+/* Sem borda quando após children - Estilos da referência */
+.woocommerce #reviews #comments ul.children+.form-contribution_comment,
+.woocommerce-page #reviews #comments ul.children+.form-contribution_comment {
+    border-top: 0; /* Valor da referência */
+    padding-top: 0; /* Valor da referência */
+}
+
+/* ==========================================================================
+   FORMULÁRIO DE FLAG - Estilos da referência
+   ========================================================================== */
+
+.woocommerce #reviews .contribution-flag-form,
+.woocommerce-page #reviews .contribution-flag-form {
+    background-color: rgba(0, 0, 0, 0.1); /* Valor da referência */
+    padding: 1.618em; /* Valor da referência - Golden Ratio */
+    margin-bottom: 1.618em; /* Valor da referência - Golden Ratio */
+    border-radius: var(--prp-border-radius);
+    border-left: 4px solid var(--prp-danger-color);
+}
+
+.contribution-flag-form h4 {
+    color: var(--prp-danger-color);
+    margin-bottom: var(--prp-spacing-md);
+}
+
+.contribution-flag-form .flag-reason {
+    margin-bottom: var(--prp-spacing-md);
+}
+
+.contribution-flag-form label {
+    display: block;
+    margin-bottom: var(--prp-spacing-sm);
+    cursor: pointer;
+    padding: var(--prp-spacing-sm);
+    transition: background var(--prp-transition-fast);
+}
+
+.contribution-flag-form label:hover {
+    background: rgba(231, 76, 60, 0.1);
+}
+
+/* ==========================================================================
+   FORMULÁRIO DE FOTO - Estilos da referência
+   ========================================================================== */
+
+.woocommerce .form-photo #photo_attachment_file,
+.woocommerce-page .form-photo #photo_attachment_file {
+    color: inherit; /* Valor da referência */
+    margin: 1em 0; /* Valor da referência */
+    padding: var(--prp-spacing-md);
+    border: 2px dashed var(--prp-border-color);
+    border-radius: var(--prp-border-radius);
+    text-align: center;
+    transition: all var(--prp-transition-fast);
+}
+
+.form-photo #photo_attachment_file:hover {
+    border-color: var(--prp-accent-color);
+    background: var(--prp-bg-light);
+}
+
+/* Preview da foto */
+.form-photo .photo-preview {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: var(--prp-spacing-md);
+    margin-top: var(--prp-spacing-md);
+}
+
+.photo-preview img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    border-radius: var(--prp-border-radius);
+    border: 2px solid var(--prp-border-color);
+}
+
+/* ==========================================================================
+   SELETOR DE TIPO DE CONTRIBUIÇÃO - Estilos da referência
+   ========================================================================== */
+
+.woocommerce .contribution-type-selector,
+.woocommerce-page .contribution-type-selector {
+    margin: 0; /* Valor da referência */
+    display: flex;
+    gap: var(--prp-spacing-xs);
+    margin-bottom: var(--prp-spacing-xl);
+}
+
+.woocommerce .contribution-type-selector>a,
+.woocommerce-page .contribution-type-selector>a {
+    display: inline-block; /* Valor da referência */
+    margin-right: 1em; /* Valor da referência */
+    padding: 0.5407911001em 0; /* Valor da referência */
+    border-bottom: 0.202em solid rgba(0, 0, 0, 0.05); /* Valores da referência */
+    color: var(--prp-text-secondary);
+    text-decoration: none;
+    transition: all var(--prp-transition-fast);
+    position: relative;
+}
+
+.contribution-type-selector>a:hover {
+    color: var(--prp-text-primary);
+}
+
+/* Estado ativo - Estilos da referência */
+.woocommerce .contribution-type-selector>a.active,
+.woocommerce-page .contribution-type-selector>a.active {
+    border-bottom-color: rgba(0, 0, 0, 0.05); /* Valor da referência */
+    color: var(--prp-accent-color);
+    font-weight: 600;
+}
+
+.contribution-type-selector>a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -0.202em;
+    left: 0;
+    right: 0;
+    height: 0.202em;
+    background: var(--prp-accent-color);
+}
+
+/* ==========================================================================
+   SELETOR DE RATING COM ESTRELAS - Estilos da referência
+   ========================================================================== */
+
+.woocommerce .star-rating-selector fieldset,
+.woocommerce-page .star-rating-selector fieldset {
+    float: none; /* Valor da referência */
+    clear: both; /* Valor da referência */
+    border: none;
+    padding: 0;
+}
+
+.woocommerce .star-rating-selector>label:first-child,
+.woocommerce-page .star-rating-selector>label:first-child {
+    display: block !important; /* Valor da referência */
+    margin-bottom: var(--prp-spacing-md);
+    font-weight: 600;
+    color: var(--prp-text-primary);
+}
+
+.woocommerce .star-rating-selector:not(:checked) label.checkbox,
+.woocommerce-page .star-rating-selector:not(:checked) label.checkbox {
+    float: none; /* Valor da referência */
+    display: inline-block;
+    cursor: pointer;
+    font-size: 2rem;
+    color: #ddd;
+    transition: color var(--prp-transition-fast);
+}
+
+.star-rating-selector label.checkbox:hover,
+.star-rating-selector label.checkbox:hover ~ label.checkbox {
+    color: var(--prp-accent-color);
+}
+
+.star-rating-selector input:checked ~ label.checkbox {
+    color: var(--prp-accent-color);
+}
+
+/* ==========================================================================
+   MODAL DE LOGIN - Estilos da referência
+   ========================================================================== */
+
+.woocommerce #wc-product-reviews-pro-modal #customer_login .col-1,
+.woocommerce #wc-product-reviews-pro-modal #customer_login .col-2,
+.woocommerce-page #wc-product-reviews-pro-modal #customer_login .col-1,
+.woocommerce-page #wc-product-reviews-pro-modal #customer_login .col-2 {
+    width: 100%; /* Valor da referência */
+    float: none;
+    margin-bottom: var(--prp-spacing-xl);
+}
+
+/* Modal overlay */
+#wc-product-reviews-pro-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+    padding: var(--prp-spacing-xl);
+}
+
+#wc-product-reviews-pro-modal.active {
+    display: flex;
+}
+
+/* Modal content */
+#wc-product-reviews-pro-modal .modal-content {
+    background: var(--prp-bg-white);
+    max-width: 500px;
+    width: 100%;
+    border-radius: var(--prp-border-radius);
+    padding: var(--prp-spacing-xxl);
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+/* Modal close button */
+#wc-product-reviews-pro-modal .modal-close {
+    position: absolute;
+    top: var(--prp-spacing-md);
+    right: var(--prp-spacing-md);
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--prp-bg-light);
+    border-radius: 50%;
+    transition: all var(--prp-transition-fast);
+}
+
+#wc-product-reviews-pro-modal .modal-close:hover {
+    background: var(--prp-danger-color);
+    color: var(--prp-text-light);
+}
+
+/* ==========================================================================
+   TOOLTIP - Estilos da referência
+   ========================================================================== */
+
+#tiptip_content,
+.chart-tooltip {
+    font-size: 0.875em; /* Valor da referência */
+    padding: 0.6180469716em 1em; /* Valores da referência */
+    background-color: rgba(0, 0, 0, 0.8); /* Valor da referência */
+    color: var(--prp-text-light);
+    border-radius: var(--prp-border-radius);
+    box-shadow: var(--prp-shadow-lg);
+    max-width: 200px;
+    line-height: 1.4;
+}
+
+/* Arrow do tooltip - Estilos da referência */
+#tiptip_holder.tip_bottom #tiptip_arrow_inner {
+    border-bottom-color: rgba(0, 0, 0, 0.8); /* Valor da referência */
+    margin-top: -6px; /* Valor da referência */
+}
+
+#tiptip_holder.tip_top #tiptip_arrow_inner {
+    border-top-color: rgba(0, 0, 0, 0.8);
+    margin-bottom: -6px;
+}
+
+/* ==========================================================================
+   FILTROS E ORDENAÇÃO
+   ========================================================================== */
+
+.reviews-filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--prp-spacing-md);
+    margin-bottom: var(--prp-spacing-xl);
+    padding: var(--prp-spacing-md);
+    background: var(--prp-bg-light);
+    border-radius: var(--prp-border-radius);
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Filtros de rating */
+.reviews-filter-rating {
+    display: flex;
+    gap: var(--prp-spacing-sm);
+}
+
+.filter-star {
+    padding: var(--prp-spacing-sm) var(--prp-spacing-md);
+    background: var(--prp-bg-white);
+    border: 1px solid var(--prp-border-color);
+    border-radius: var(--prp-border-radius);
+    cursor: pointer;
+    transition: all var(--prp-transition-fast);
+}
+
+.filter-star:hover {
+    border-color: var(--prp-accent-color);
+    color: var(--prp-accent-color);
+}
+
+.filter-star.active {
+    background: var(--prp-accent-color);
+    color: var(--prp-text-light);
+    border-color: var(--prp-accent-color);
+}
+
+/* Dropdown de ordenação */
+.reviews-sort-select {
+    padding: var(--prp-spacing-sm) var(--prp-spacing-md);
+    border: 1px solid var(--prp-border-color);
+    border-radius: var(--prp-border-radius);
+    background: var(--prp-bg-white);
+    font-size: var(--prp-font-sm);
+    cursor: pointer;
+}
+
+/* ==========================================================================
+   BADGES E VERIFICAÇÕES
+   ========================================================================== */
+
+.review-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--prp-spacing-xs);
+    padding: var(--prp-spacing-xs) var(--prp-spacing-sm);
+    background: var(--prp-success-color);
+    color: var(--prp-text-light);
+    border-radius: var(--prp-border-radius);
+    font-size: var(--prp-font-xs);
+    font-weight: 600;
+}
+
+.review-badge.verified {
+    background: var(--prp-success-color);
+}
+
+.review-badge.featured {
+    background: var(--prp-warning-color);
+}
+
+.review-badge.staff {
+    background: var(--prp-info-color);
+}
+
+/* ==========================================================================
+   GALERIA DE IMAGENS DE REVIEWS
+   ========================================================================== */
+
+.review-images-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: var(--prp-spacing-sm);
+    margin-top: var(--prp-spacing-md);
+}
+
+.review-images-gallery img {
+    width: 100%;
+    height: 80px;
+    object-fit: cover;
+    border-radius: var(--prp-border-radius);
+    cursor: pointer;
+    transition: transform var(--prp-transition-fast);
+}
+
+.review-images-gallery img:hover {
+    transform: scale(1.05);
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE
+   ========================================================================== */
+
+/**
+ * Tablets (768px - 1024px)
+ */
+@media screen and (max-width: 1024px) {
+    .product-rating {
+        padding: var(--prp-spacing-md);
+    }
+    
+    .product-rating-summary .rating-number {
+        font-size: 2.5rem;
+    }
+    
+    .woocommerce #reviews #comments .form-contribution_comment,
+    .woocommerce-page #reviews #comments .form-contribution_comment {
+        width: 100%;
+        float: none;
+    }
+}
+
+/**
+ * Mobile (menor que 768px)
+ */
+@media screen and (max-width: 768px) {
+    /* Rating summary mobile */
+    .product-rating-summary .average-rating {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    /* Avatar mobile */
+    .woocommerce #reviews #comments ol.commentlist li img.avatar,
+    .woocommerce-page #reviews #comments ol.commentlist li img.avatar {
+        float: none;
+        margin-bottom: var(--prp-spacing-md);
+    }
+    
+    /* Contribution type selector mobile */
+    .contribution-type-selector {
+        flex-direction: column;
+    }
+    
+    .contribution-type-selector>a {
+        width: 100%;
+        text-align: center;
+        margin-right: 0;
+    }
+    
+    /* Reviews filter mobile */
+    .reviews-filter-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .reviews-filter-rating {
+        justify-content: space-between;
+    }
+    
+    /* Children comments mobile */
+    .woocommerce #reviews #comments ol.commentlist li ul.children li {
+        margin-left: var(--prp-spacing-md);
+    }
+    
+    /* Modal mobile */
+    #wc-product-reviews-pro-modal {
+        padding: var(--prp-spacing-md);
+    }
+    
+    #wc-product-reviews-pro-modal .modal-content {
+        padding: var(--prp-spacing-xl);
+    }
+}
+
+/**
+ * Mobile pequeno (menor que 480px)
+ */
+@media screen and (max-width: 480px) {
+    .product-rating-summary .rating-number {
+        font-size: 2rem;
+    }
+    
+    .reviews-filter-rating {
+        flex-wrap: wrap;
+    }
+    
+    .filter-star {
+        flex: 1;
+        text-align: center;
+        min-width: 60px;
+    }
+    
+    .commentlist li {
+        padding: var(--prp-spacing-md);
+    }
+}
+
+/* ==========================================================================
+   MODO ESCURO (Dark Mode)
+   ========================================================================== */
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --prp-bg-white: #1a1a1a;
+        --prp-text-primary: #e0e0e0;
+        --prp-text-secondary: #999;
+        --prp-border-color: #333;
+        --prp-bg-light: rgba(255, 255, 255, 0.05);
+    }
+    
+    .product-rating,
+    .form-contribution,
+    .commentlist li {
+        background: #2a2a2a;
+    }
+    
+    .form-contribution input,
+    .form-contribution textarea {
+        background: #1a1a1a;
+        color: #e0e0e0;
+        border-color: #444;
+    }
+    
+    .rating-graph .bar-container {
+        background: #1a1a1a;
+    }
+    
+    .contribution-karma {
+        background: rgba(255, 255, 255, 0.05);
+    }
+    
+    .karma-button {
+        background: #2a2a2a;
+        border-color: #444;
+        color: #e0e0e0;
+    }
+}
+
+/* ==========================================================================
+   IMPRESSÃO
+   ========================================================================== */
+
+@media print {
+    .contribution-actions,
+    .contribution-karma,
+    .reviews-filter-bar,
+    .form-contribution {
+        display: none !important;
+    }
+    
+    .commentlist li {
+        page-break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+}
+
+/* ==========================================================================
+   ANIMAÇÕES
+   ========================================================================== */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes starPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+.commentlist li {
+    animation: fadeInUp 0.5s ease;
+}
+
+.star-rating-selector label.checkbox:hover {
+    animation: starPulse 0.5s ease;
+}
+
+/* ==========================================================================
+   FIM DO ARQUIVO
+   ========================================================================== */

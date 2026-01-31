@@ -1,1 +1,689 @@
-.mnm_table .product-thumbnail,.mnm_table .product-name,.mnm_table .product-quantity,.mnm_table .container-quantity{padding:.6180469716em .875em !important}.mnm_table .mnm_item img{max-width:100%}.mnm_table .product-name{vertical-align:middle}.cart .mnm_table_item .product-thumbnail img,.shop_table .mnm_table_item .product-thumbnail img{max-width:2.617924em !important}.cart .mnm_table_item .mnm_table_item_indent,.shop_table .mnm_table_item .mnm_table_item_indent{padding-left:0}.cart .mnm_table_item .product-name,.cart .mnm_table_item .product-price,.cart .mnm_table_item .product-quantity,.shop_table .mnm_table_item .product-name,.shop_table .mnm_table_item .product-price,.shop_table .mnm_table_item .product-quantity{font-size:1em}
+/**
+ * WooCommerce Mix and Match Extension Styles
+ * 
+ * @package     Nosfir
+ * @subpackage  WooCommerce/Extensions
+ * @version     1.0.0
+ * @author      David Creator
+ * 
+ * Este arquivo contém todos os estilos para a extensão Mix and Match do WooCommerce
+ * Compatível com WooCommerce Mix and Match 2.0+
+ */
+
+/* ==========================================================================
+   VARIÁVEIS CSS CUSTOMIZADAS
+   ========================================================================== */
+
+:root {
+    /* Cores Mix and Match */
+    --mnm-primary-color: #2c3e50;
+    --mnm-secondary-color: #3498db;
+    --mnm-success-color: #27ae60;
+    --mnm-warning-color: #f39c12;
+    --mnm-danger-color: #e74c3c;
+    --mnm-info-color: #16a085;
+    
+    /* Espaçamentos (Golden Ratio) */
+    --mnm-spacing-xs: 0.382rem;      /* 6.112px */
+    --mnm-spacing-sm: 0.618rem;      /* 9.888px - Proporção Áurea */
+    --mnm-spacing-md: 0.875rem;      /* 14px */
+    --mnm-spacing-lg: 1.618rem;      /* 25.888px - Proporção Áurea */
+    --mnm-spacing-xl: 2.618rem;      /* 41.888px */
+    
+    /* Bordas e Sombras */
+    --mnm-border-radius: 4px;
+    --mnm-border-color: #e1e4e8;
+    --mnm-shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
+    --mnm-shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+    --mnm-shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+    
+    /* Transições */
+    --mnm-transition-fast: 0.2s ease;
+    --mnm-transition-normal: 0.3s ease;
+    --mnm-transition-slow: 0.5s ease;
+}
+
+/* ==========================================================================
+   ESTILOS BASE DA TABELA MIX AND MATCH
+   ========================================================================== */
+
+/**
+ * Tabela Principal Mix and Match
+ */
+.mnm_table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: #fff;
+    border-radius: var(--mnm-border-radius);
+    box-shadow: var(--mnm-shadow-sm);
+    overflow: hidden;
+    margin: var(--mnm-spacing-lg) 0;
+}
+
+/* Células da tabela - Estilos base da referência */
+.mnm_table .product-thumbnail,
+.mnm_table .product-name,
+.mnm_table .product-quantity,
+.mnm_table .container-quantity {
+    padding: 0.6180469716em 0.875em !important; /* Proporção Áurea */
+    vertical-align: middle;
+    border-bottom: 1px solid var(--mnm-border-color);
+    transition: background-color var(--mnm-transition-fast);
+}
+
+/* Cabeçalho da tabela */
+.mnm_table thead th {
+    background: linear-gradient(180deg, #f8f9fa 0%, #f1f3f5 100%);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    color: var(--mnm-primary-color);
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid var(--mnm-border-color);
+}
+
+/* ==========================================================================
+   ITENS MIX AND MATCH
+   ========================================================================== */
+
+/**
+ * Linha de Item Individual
+ */
+.mnm_table .mnm_item {
+    transition: all var(--mnm-transition-normal);
+    position: relative;
+}
+
+/* Hover effect */
+.mnm_table .mnm_item:hover {
+    background-color: rgba(52, 152, 219, 0.05);
+}
+
+/* Item selecionado */
+.mnm_table .mnm_item.selected {
+    background-color: rgba(39, 174, 96, 0.08);
+    border-left: 3px solid var(--mnm-success-color);
+}
+
+/* Imagens responsivas - Estilo da referência */
+.mnm_table .mnm_item img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--mnm-border-radius);
+    transition: transform var(--mnm-transition-normal);
+}
+
+.mnm_table .mnm_item:hover img {
+    transform: scale(1.05);
+}
+
+/* ==========================================================================
+   COLUNAS ESPECÍFICAS
+   ========================================================================== */
+
+/**
+ * Coluna de Thumbnail
+ */
+.mnm_table .product-thumbnail {
+    width: 80px;
+    text-align: center;
+}
+
+.mnm_table .product-thumbnail img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border: 2px solid transparent;
+    transition: border-color var(--mnm-transition-fast);
+}
+
+.mnm_table .mnm_item:hover .product-thumbnail img {
+    border-color: var(--mnm-secondary-color);
+}
+
+/**
+ * Coluna de Nome do Produto - Estilo da referência
+ */
+.mnm_table .product-name {
+    vertical-align: middle;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.mnm_table .product-name a {
+    color: var(--mnm-primary-color);
+    text-decoration: none;
+    transition: color var(--mnm-transition-fast);
+}
+
+.mnm_table .product-name a:hover {
+    color: var(--mnm-secondary-color);
+}
+
+/* Descrição do produto */
+.mnm_table .product-name .product-description {
+    display: block;
+    font-size: 0.875rem;
+    color: #6c757d;
+    margin-top: 0.25rem;
+    font-weight: 400;
+}
+
+/**
+ * Coluna de Quantidade
+ */
+.mnm_table .product-quantity {
+    width: 120px;
+    text-align: center;
+}
+
+/* Input de quantidade */
+.mnm_table .product-quantity input[type="number"] {
+    width: 60px;
+    padding: 0.5rem;
+    border: 1px solid var(--mnm-border-color);
+    border-radius: var(--mnm-border-radius);
+    text-align: center;
+    font-size: 1rem;
+    transition: all var(--mnm-transition-fast);
+}
+
+.mnm_table .product-quantity input[type="number"]:focus {
+    outline: none;
+    border-color: var(--mnm-secondary-color);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+/* Botões de quantidade +/- */
+.mnm_table .quantity-buttons {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.mnm_table .quantity-buttons button {
+    width: 30px;
+    height: 30px;
+    border: 1px solid var(--mnm-border-color);
+    background: #fff;
+    border-radius: var(--mnm-border-radius);
+    cursor: pointer;
+    transition: all var(--mnm-transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mnm_table .quantity-buttons button:hover {
+    background: var(--mnm-secondary-color);
+    color: #fff;
+    border-color: var(--mnm-secondary-color);
+}
+
+/**
+ * Coluna de Preço
+ */
+.mnm_table .product-price {
+    font-weight: 600;
+    color: var(--mnm-primary-color);
+    white-space: nowrap;
+}
+
+.mnm_table .product-price .sale-price {
+    color: var(--mnm-danger-color);
+    margin-right: 0.5rem;
+}
+
+.mnm_table .product-price .regular-price {
+    text-decoration: line-through;
+    color: #6c757d;
+    font-weight: 400;
+    font-size: 0.875rem;
+}
+
+/* ==========================================================================
+   CARRINHO E CHECKOUT - Estilos da referência
+   ========================================================================== */
+
+/* Itens Mix and Match no carrinho */
+.cart .mnm_table_item .product-thumbnail img,
+.shop_table .mnm_table_item .product-thumbnail img {
+    max-width: 2.617924em !important; /* ~42px */
+    height: auto;
+}
+
+/* Reset de indentação - Estilo da referência */
+.cart .mnm_table_item .mnm_table_item_indent,
+.shop_table .mnm_table_item .mnm_table_item_indent {
+    padding-left: 0;
+}
+
+/* Tamanho de fonte normalizado - Estilo da referência */
+.cart .mnm_table_item .product-name,
+.cart .mnm_table_item .product-price,
+.cart .mnm_table_item .product-quantity,
+.shop_table .mnm_table_item .product-name,
+.shop_table .mnm_table_item .product-price,
+.shop_table .mnm_table_item .product-quantity {
+    font-size: 1em;
+}
+
+/* Container de items no carrinho */
+.cart .mnm_table_container,
+.shop_table .mnm_table_container {
+    border: 1px solid var(--mnm-border-color);
+    border-radius: var(--mnm-border-radius);
+    padding: var(--mnm-spacing-md);
+    margin: var(--mnm-spacing-md) 0;
+    background: #f8f9fa;
+}
+
+/* ==========================================================================
+   VALIDAÇÃO E MENSAGENS
+   ========================================================================== */
+
+/**
+ * Mensagens de validação
+ */
+.mnm_table .mnm-validation-message {
+    display: none;
+    padding: 0.75rem;
+    margin: 0.5rem 0;
+    border-radius: var(--mnm-border-radius);
+    font-size: 0.875rem;
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Tipos de mensagens */
+.mnm_table .mnm-validation-message.error {
+    background: rgba(231, 76, 60, 0.1);
+    color: var(--mnm-danger-color);
+    border-left: 3px solid var(--mnm-danger-color);
+}
+
+.mnm_table .mnm-validation-message.success {
+    background: rgba(39, 174, 96, 0.1);
+    color: var(--mnm-success-color);
+    border-left: 3px solid var(--mnm-success-color);
+}
+
+.mnm_table .mnm-validation-message.warning {
+    background: rgba(243, 156, 18, 0.1);
+    color: var(--mnm-warning-color);
+    border-left: 3px solid var(--mnm-warning-color);
+}
+
+/* ==========================================================================
+   CONTADOR E PROGRESSO
+   ========================================================================== */
+
+/**
+ * Contador de seleção
+ */
+.mnm-selection-counter {
+    background: linear-gradient(135deg, var(--mnm-primary-color), var(--mnm-secondary-color));
+    color: #fff;
+    padding: 1rem;
+    border-radius: var(--mnm-border-radius);
+    margin-bottom: var(--mnm-spacing-lg);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--mnm-shadow-md);
+}
+
+.mnm-selection-counter .counter-text {
+    font-size: 1.125rem;
+    font-weight: 500;
+}
+
+.mnm-selection-counter .counter-numbers {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+/**
+ * Barra de progresso
+ */
+.mnm-progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #e9ecef;
+    border-radius: 4px;
+    overflow: hidden;
+    margin: var(--mnm-spacing-md) 0;
+}
+
+.mnm-progress-bar .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--mnm-success-color), var(--mnm-secondary-color));
+    border-radius: 4px;
+    transition: width var(--mnm-transition-normal);
+}
+
+/* ==========================================================================
+   ESTADOS DE LOADING
+   ========================================================================== */
+
+/**
+ * Estado de carregamento
+ */
+.mnm_table.loading {
+    position: relative;
+    pointer-events: none;
+}
+
+.mnm_table.loading::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+/* Spinner de loading */
+.mnm-loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(52, 152, 219, 0.3);
+    border-top-color: var(--mnm-secondary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE
+   ========================================================================== */
+
+/**
+ * Tablets (768px - 1024px)
+ */
+@media screen and (max-width: 1024px) {
+    .mnm_table {
+        font-size: 0.95rem;
+    }
+    
+    .mnm_table .product-thumbnail {
+        width: 70px;
+    }
+    
+    .mnm_table .product-thumbnail img {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+/**
+ * Mobile (menor que 768px)
+ */
+@media screen and (max-width: 768px) {
+    /* Converter tabela em layout de cards */
+    .mnm_table {
+        display: block;
+        box-shadow: none;
+    }
+    
+    .mnm_table thead {
+        display: none;
+    }
+    
+    .mnm_table tbody {
+        display: block;
+    }
+    
+    .mnm_table .mnm_item {
+        display: block;
+        margin-bottom: var(--mnm-spacing-md);
+        border: 1px solid var(--mnm-border-color);
+        border-radius: var(--mnm-border-radius);
+        padding: var(--mnm-spacing-md);
+        background: #fff;
+        box-shadow: var(--mnm-shadow-sm);
+    }
+    
+    .mnm_table .mnm_item > td {
+        display: block;
+        padding: 0.5rem 0 !important;
+        border: none;
+    }
+    
+    /* Labels móveis */
+    .mnm_table .mnm_item td:before {
+        content: attr(data-label);
+        font-weight: 600;
+        display: inline-block;
+        margin-right: 0.5rem;
+        color: var(--mnm-primary-color);
+    }
+    
+    /* Thumbnail em destaque no mobile */
+    .mnm_table .product-thumbnail {
+        width: 100%;
+        text-align: center;
+        padding-bottom: 1rem !important;
+        border-bottom: 1px solid var(--mnm-border-color);
+        margin-bottom: 1rem;
+    }
+    
+    .mnm_table .product-thumbnail img {
+        width: 100px;
+        height: 100px;
+    }
+    
+    /* Ajustes de quantidade no mobile */
+    .mnm_table .product-quantity {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .mnm_table .product-quantity input[type="number"] {
+        width: 80px;
+    }
+    
+    /* Contador responsivo */
+    .mnm-selection-counter {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+    }
+}
+
+/**
+ * Mobile pequeno (menor que 480px)
+ */
+@media screen and (max-width: 480px) {
+    .mnm_table {
+        margin: var(--mnm-spacing-md) -15px;
+    }
+    
+    .mnm_table .mnm_item {
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+    }
+}
+
+/* ==========================================================================
+   ACESSIBILIDADE
+   ========================================================================== */
+
+/**
+ * Focus styles para acessibilidade
+ */
+.mnm_table a:focus,
+.mnm_table button:focus,
+.mnm_table input:focus {
+    outline: 2px solid var(--mnm-secondary-color);
+    outline-offset: 2px;
+}
+
+/* Screen readers only */
+.mnm-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Indicadores visuais para validação */
+.mnm_table .mnm_item.error {
+    border-left: 3px solid var(--mnm-danger-color);
+    background: rgba(231, 76, 60, 0.05);
+}
+
+.mnm_table .mnm_item.valid {
+    border-left: 3px solid var(--mnm-success-color);
+}
+
+/* ==========================================================================
+   ANIMAÇÕES E EFEITOS
+   ========================================================================== */
+
+/**
+ * Animação de entrada
+ */
+.mnm_table .mnm_item {
+    animation: fadeInUp 0.5s ease;
+    animation-fill-mode: both;
+}
+
+.mnm_table .mnm_item:nth-child(1) { animation-delay: 0.1s; }
+.mnm_table .mnm_item:nth-child(2) { animation-delay: 0.2s; }
+.mnm_table .mnm_item:nth-child(3) { animation-delay: 0.3s; }
+.mnm_table .mnm_item:nth-child(4) { animation-delay: 0.4s; }
+.mnm_table .mnm_item:nth-child(5) { animation-delay: 0.5s; }
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Pulse para chamar atenção */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.mnm_table .attention {
+    animation: pulse 1s ease infinite;
+}
+
+/* ==========================================================================
+   MODO ESCURO (Dark Mode)
+   ========================================================================== */
+
+@media (prefers-color-scheme: dark) {
+    .mnm_table {
+        background: #1a1a1a;
+        color: #e0e0e0;
+    }
+    
+    .mnm_table thead th {
+        background: linear-gradient(180deg, #2a2a2a 0%, #1f1f1f 100%);
+        color: #fff;
+    }
+    
+    .mnm_table .mnm_item {
+        border-color: #333;
+    }
+    
+    .mnm_table .mnm_item:hover {
+        background-color: rgba(52, 152, 219, 0.1);
+    }
+    
+    .mnm_table .product-name a {
+        color: #e0e0e0;
+    }
+    
+    .mnm_table .product-quantity input[type="number"] {
+        background: #2a2a2a;
+        color: #e0e0e0;
+        border-color: #444;
+    }
+    
+    .mnm-selection-counter {
+        background: linear-gradient(135deg, #2a2a2a, #3a3a3a);
+    }
+}
+
+/* ==========================================================================
+   IMPRESSÃO
+   ========================================================================== */
+
+@media print {
+    .mnm_table {
+        box-shadow: none;
+        border: 1px solid #000;
+    }
+    
+    .mnm_table .quantity-buttons {
+        display: none;
+    }
+    
+    .mnm-selection-counter,
+    .mnm-progress-bar {
+        display: none;
+    }
+}
+
+/* ==========================================================================
+   COMPATIBILIDADE COM PLUGINS
+   ========================================================================== */
+
+/**
+ * Compatibilidade com YITH Wishlist
+ */
+.mnm_table .yith-wcwl-add-to-wishlist {
+    display: inline-block;
+    margin-left: 0.5rem;
+}
+
+/**
+ * Compatibilidade com Product Add-ons
+ */
+.mnm_table .product-addon {
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    background: #f8f9fa;
+    border-radius: var(--mnm-border-radius);
+}
+
+/* ==========================================================================
+   FIM DO ARQUIVO
+   ========================================================================== */
