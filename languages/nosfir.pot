@@ -1,0 +1,850 @@
+# Copyright (C) 2025 David Creator
+# This file is distributed under the GNU General Public License v3 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Nosfir 1.0.0\n"
+"Report-Msgid-Bugs-To: https://github.com/davidcreator/Nosfir/issues\n"
+"POT-Creation-Date: 2025-01-01 00:00:00+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2025-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"X-Generator: Poedit 3.0\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-WPHeader: style.css\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: 404.php:19
+msgid "Oops! That page can't be found."
+msgstr ""
+
+#: 404.php:22
+msgid "It looks like nothing was found at this location. Maybe try one of the links below or a search?"
+msgstr ""
+
+#: 404.php:25
+msgid "404"
+msgstr ""
+
+#: archive.php:29
+msgid "Archives"
+msgstr ""
+
+#: comments.php:31
+#. translators: 1: number of comments, 2: post title
+msgctxt "comments title"
+msgid "%1$s thought on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
+msgstr[0] ""
+msgstr[1] ""
+
+#: comments.php:40 comments.php:60
+msgid "Comment navigation"
+msgstr ""
+
+#: comments.php:41 comments.php:61
+msgid "&larr; Older Comments"
+msgstr ""
+
+#: comments.php:42 comments.php:62
+msgid "Newer Comments &rarr;"
+msgstr ""
+
+#: comments.php:72
+msgid "Comments are closed."
+msgstr ""
+
+#: inc/class-nosfir.php:234
+msgid "Primary Menu"
+msgstr ""
+
+#: inc/class-nosfir.php:235
+msgid "Secondary Menu"
+msgstr ""
+
+#: inc/class-nosfir.php:236
+msgid "Mobile Menu"
+msgstr ""
+
+#: inc/class-nosfir.php:237
+msgid "Footer Menu"
+msgstr ""
+
+#: inc/class-nosfir.php:238
+msgid "Social Menu"
+msgstr ""
+
+#: inc/class-nosfir.php:340
+msgid "Small"
+msgstr ""
+
+#: inc/class-nosfir.php:345
+msgid "Normal"
+msgstr ""
+
+#: inc/class-nosfir.php:350
+msgid "Medium"
+msgstr ""
+
+#: inc/class-nosfir.php:355
+msgid "Large"
+msgstr ""
+
+#: inc/class-nosfir.php:360
+msgid "Extra Large"
+msgstr ""
+
+#: inc/class-nosfir.php:365
+msgid "Huge"
+msgstr ""
+
+#: inc/class-nosfir.php:379
+msgid "Primary"
+msgstr ""
+
+#: inc/class-nosfir.php:384
+msgid "Secondary"
+msgstr ""
+
+#: inc/class-nosfir.php:389
+msgid "Dark"
+msgstr ""
+
+#: inc/class-nosfir.php:394
+msgid "Light"
+msgstr ""
+
+#: inc/class-nosfir.php:399
+msgid "White"
+msgstr ""
+
+#: inc/class-nosfir.php:470
+msgid "Sidebar"
+msgstr ""
+
+#: inc/class-nosfir.php:472
+msgid "Main sidebar that appears on the left or right."
+msgstr ""
+
+#: inc/class-nosfir.php:476
+msgid "Header Widget Area"
+msgstr ""
+
+#: inc/class-nosfir.php:478
+msgid "Widgets in this area will be shown in the header."
+msgstr ""
+
+#: inc/class-nosfir.php:483
+msgid "Shop Sidebar"
+msgstr ""
+
+#: inc/class-nosfir.php:485
+msgid "Widgets for WooCommerce shop pages."
+msgstr ""
+
+#: inc/class-nosfir.php:495
+#. translators: 1: column number
+msgid "Footer Column %1$d"
+msgstr ""
+
+#: inc/class-nosfir.php:496
+#. translators: 1: column number
+msgid "Widgets added here will appear in column %1$d of the footer."
+msgstr ""
+
+#: inc/class-nosfir.php:498
+#. translators: 1: row number, 2: column number
+msgid "Footer Row %1$d - Column %2$d"
+msgstr ""
+
+#: inc/class-nosfir.php:499
+#. translators: 1: column number, 2: row number
+msgid "Widgets added here will appear in column %1$d of footer row %2$d."
+msgstr ""
+
+#: inc/class-nosfir.php:596
+msgid "Loading..."
+msgstr ""
+
+#: inc/class-nosfir.php:597
+msgid "Load More"
+msgstr ""
+
+#: inc/class-nosfir.php:598
+msgid "No more posts"
+msgstr ""
+
+#: inc/class-nosfir.php:599
+msgid "Something went wrong. Please try again."
+msgstr ""
+
+#: inc/class-nosfir.php:846
+msgid "Back to top"
+msgstr ""
+
+#: inc/nosfir-template-functions.php:49
+msgid "Your comment is awaiting moderation."
+msgstr ""
+
+#: inc/nosfir-template-functions.php:70
+msgid "Edit"
+msgstr ""
+
+#: inc/nosfir-template-functions.php:76
+msgid "Spam"
+msgstr ""
+
+#: inc/nosfir-template-functions.php:84
+msgid "Trash"
+msgstr ""
+
+#: inc/nosfir-template-functions.php:138
+#. translators: 1: Current year, 2: Site name
+msgid "&copy; %1$s %2$s. All rights reserved."
+msgstr ""
+
+#: inc/nosfir-template-functions.php:150
+#. translators: 1: Theme name, 2: Theme author
+msgid "Theme: %1$s by %2$s"
+msgstr ""
+
+#: inc/nosfir-template-functions.php:252
+msgid "Menu"
+msgstr ""
+
+#: inc/nosfir-template-functions.php:262
+msgid "Primary Navigation"
+msgstr ""
+
+#: inc/nosfir-template-functions.php:288
+msgid "Secondary Navigation"
+msgstr ""
+
+#: inc/nosfir-template-functions.php:313
+msgid "Mobile Navigation"
+msgstr ""
+
+#: inc/nosfir-template-functions.php:318
+msgid "Close Menu"
+msgstr ""
+
+#: inc/nosfir-template-functions.php:371
+msgid "Skip to navigation"
+msgstr ""
+
+#: inc/nosfir-template-functions.php:372
+msgid "Skip to content"
+msgstr ""
+
+#: inc/nosfir-template-functions.php:373
+msgid "Skip to footer"
+msgstr ""
+
+#: inc/nosfir-template-functions.php:385
+msgid "Search for:"
+msgstr ""
+
+#: inc/nosfir-template-functions.php:390
+msgctxt "placeholder"
+msgid "Search &hellip;"
+msgstr ""
+
+#: inc/nosfir-template-functions.php:400
+msgctxt "submit button"
+msgid "Search"
+msgstr ""
+
+#: inc/nosfir-template-functions.php:436
+msgid "Edit this section"
+msgstr ""
+
+#: inc/nosfir-template-functions.php:476
+msgid "Pages:"
+msgstr ""
+
+#: inc/nosfir-template-functions.php:517
+#. translators: %s: Name of current post. Only visible to screen readers
+msgid "Continue reading<span class=\"screen-reader-text\"> \"%s\"</span>"
+msgstr ""
+
+#: inc/nosfir-template-functions.php:561
+msgid "Featured"
+msgstr ""
+
+#: inc/nosfir-template-functions.php:579
+msgctxt "post author"
+msgid "by %s"
+msgstr ""
+
+#: inc/nosfir-template-functions.php:596
+msgid "Leave a comment"
+msgstr ""
+
+#: inc/nosfir-template-functions.php:596
+msgid "1 Comment"
+msgstr ""
+
+#: inc/nosfir-template-functions.php:596
+msgid "% Comments"
+msgstr ""
+
+#: inc/nosfir-template-functions.php:603
+#. translators: %s: reading time
+msgid "%s min read"
+msgid_plural "%s min read"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/nosfir-template-functions.php:625
+msgid "Tags:"
+msgstr ""
+
+#: inc/nosfir-template-functions.php:631
+msgid "Share:"
+msgstr ""
+
+#: inc/nosfir-template-functions.php:690
+msgid "Post navigation"
+msgstr ""
+
+#: inc/nosfir-template-functions.php:698
+msgid "Previous Post"
+msgstr ""
+
+#: inc/nosfir-template-functions.php:709
+msgid "Next Post"
+msgstr ""
+
+#: inc/nosfir-template-functions.php:771
+msgid "Related Posts"
+msgstr ""
+
+#: inc/nosfir-template-functions.php:809
+msgid "Breadcrumb"
+msgstr ""
+
+#: inc/nosfir-template-functions.php:814
+msgid "Home"
+msgstr ""
+
+#: inc/nosfir-template-functions.php:835
+msgid "Search Results"
+msgstr ""
+
+#: inc/nosfir-template-functions.php:837
+msgid "404 Error"
+msgstr ""
+
+#: inc/nosfir-template-hooks.php:174
+msgid "Toggle search"
+msgstr ""
+
+#: inc/nosfir-template-hooks.php:199
+msgid "My Account"
+msgstr ""
+
+#: inc/nosfir-template-hooks.php:245
+msgid "Footer Menu"
+msgstr ""
+
+#: inc/nosfir-template-hooks.php:265
+msgid "Follow Us"
+msgstr ""
+
+#: inc/nosfir-template-hooks.php:357
+msgid "Scroll to top"
+msgstr ""
+
+#: inc/nosfir-template-hooks.php:388
+msgid "Read More"
+msgstr ""
+
+#: inc/nosfir-template-hooks.php:426
+#. translators: %s: search query
+msgid "Search Results for: %s"
+msgstr ""
+
+#: inc/nosfir-template-hooks.php:443
+msgid "Oops! That page can't be found."
+msgstr ""
+
+#: inc/nosfir-template-hooks.php:455
+msgid "It looks like nothing was found at this location. Maybe try one of the links below or a search?"
+msgstr ""
+
+#: inc/nosfir-template-hooks.php:477
+msgid "Recent Posts"
+msgstr ""
+
+#: inc/nosfir-functions.php:751
+msgid "Share on Facebook"
+msgstr ""
+
+#: inc/nosfir-functions.php:762
+msgid "Share on Twitter"
+msgstr ""
+
+#: inc/nosfir-functions.php:773
+msgid "Share on LinkedIn"
+msgstr ""
+
+#: inc/nosfir-functions.php:785
+msgid "Share on Pinterest"
+msgstr ""
+
+#: inc/nosfir-functions.php:796
+msgid "Share on WhatsApp"
+msgstr ""
+
+#: inc/nosfir-functions.php:806
+msgid "Share via Email"
+msgstr ""
+
+#: inc/nosfir-functions.php:870
+msgid "Pagination"
+msgstr ""
+
+#: inc/woocommerce/class-nosfir-woocommerce.php:472
+msgid "Edit this product"
+msgstr ""
+
+#: inc/woocommerce/class-nosfir-woocommerce.php:563
+msgid "Sale!"
+msgstr ""
+
+#: inc/woocommerce/class-nosfir-woocommerce.php:569
+msgid "New"
+msgstr ""
+
+#: inc/woocommerce/class-nosfir-woocommerce.php:574
+msgid "Featured"
+msgstr ""
+
+#: inc/woocommerce/class-nosfir-woocommerce.php:579
+msgid "Out of Stock"
+msgstr ""
+
+#: inc/woocommerce/class-nosfir-woocommerce.php:598
+msgid "Quick View"
+msgstr ""
+
+#: inc/woocommerce/class-nosfir-woocommerce.php:615
+msgid "In Wishlist"
+msgstr ""
+
+#: inc/woocommerce/class-nosfir-woocommerce.php:615
+msgid "Add to Wishlist"
+msgstr ""
+
+#: inc/woocommerce/class-nosfir-woocommerce.php:631
+msgid "Compare"
+msgstr ""
+
+#: inc/woocommerce/class-nosfir-woocommerce.php:726 inc/woocommerce/class-nosfir-woocommerce.php:727
+msgid "Product added to wishlist"
+msgstr ""
+
+#: inc/woocommerce/class-nosfir-woocommerce.php:727 inc/woocommerce/class-nosfir-woocommerce.php:728
+msgid "Product removed from wishlist"
+msgstr ""
+
+#: inc/woocommerce/class-nosfir-woocommerce-customizer.php:78
+msgid "Shop Page"
+msgstr ""
+
+#: inc/woocommerce/class-nosfir-woocommerce-customizer.php:97
+msgid "Products per Row"
+msgstr ""
+
+#: inc/woocommerce/class-nosfir-woocommerce-customizer.php:98
+msgid "How many products should be shown per row on shop pages?"
+msgstr ""
+
+#: inc/woocommerce/class-nosfir-woocommerce-customizer.php:116
+msgid "Products per Page"
+msgstr ""
+
+#: inc/woocommerce/class-nosfir-woocommerce-customizer.php:117
+msgid "How many products should be shown per page?"
+msgstr ""
+
+#: inc/woocommerce/class-nosfir-woocommerce-customizer.php:135
+msgid "Shop Sidebar Position"
+msgstr ""
+
+#: inc/woocommerce/class-nosfir-woocommerce-customizer.php:137
+msgid "No Sidebar"
+msgstr ""
+
+#: inc/woocommerce/class-nosfir-woocommerce-customizer.php:138
+msgid "Left Sidebar"
+msgstr ""
+
+#: inc/woocommerce/class-nosfir-woocommerce-customizer.php:139
+msgid "Right Sidebar"
+msgstr ""
+
+#: inc/woocommerce/class-nosfir-woocommerce-customizer.php:157
+msgid "Enable AJAX Add to Cart"
+msgstr ""
+
+#: inc/woocommerce/class-nosfir-woocommerce-customizer.php:158
+msgid "Add products to cart without page reload."
+msgstr ""
+
+#: inc/woocommerce/class-nosfir-woocommerce-customizer.php:174
+msgid "Enable Quick View"
+msgstr ""
+
+#: inc/woocommerce/class-nosfir-woocommerce-customizer.php:175
+msgid "Allow customers to quickly view product details in a modal."
+msgstr ""
+
+#: inc/woocommerce/class-nosfir-woocommerce-customizer.php:191
+msgid "Show Wishlist Button"
+msgstr ""
+
+#: inc/woocommerce/class-nosfir-woocommerce-customizer.php:192
+msgid "Display wishlist button on product cards."
+msgstr ""
+
+#: inc/woocommerce/class-nosfir-woocommerce-customizer.php:208
+msgid "Show Compare Button"
+msgstr ""
+
+#: inc/woocommerce/class-nosfir-woocommerce-customizer.php:209
+msgid "Display compare button on product cards."
+msgstr ""
+
+#: inc/woocommerce/class-nosfir-woocommerce-customizer.php:225
+msgid "Sale Badge Style"
+msgstr ""
+
+#: inc/woocommerce/class-nosfir-woocommerce-customizer.php:227
+msgid "Sale Text"
+msgstr ""
+
+#: inc/woocommerce/class-nosfir-woocommerce-customizer.php:228
+msgid "Percentage Off"
+msgstr ""
+
+#: inc/woocommerce/class-nosfir-woocommerce-customizer.php:229
+msgid "Amount Saved"
+msgstr ""
+
+#: inc/woocommerce/class-nosfir-woocommerce-customizer.php:239
+msgid "Product Page"
+msgstr ""
+
+#: inc/woocommerce/class-nosfir-woocommerce-customizer.php:257
+msgid "Product Navigation"
+msgstr ""
+
+#: inc/woocommerce/class-nosfir-woocommerce-customizer.php:258
+msgid "Display next/previous product navigation."
+msgstr ""
+
+#: inc/woocommerce/class-nosfir-woocommerce-customizer.php:274
+msgid "Sticky Add to Cart"
+msgstr ""
+
+#: inc/woocommerce/class-nosfir-woocommerce-customizer.php:275
+msgid "Show sticky add to cart bar when scrolling."
+msgstr ""
+
+#: inc/woocommerce/class-nosfir-woocommerce-customizer.php:291
+msgid "Product Image Zoom"
+msgstr ""
+
+#: inc/woocommerce/class-nosfir-woocommerce-customizer.php:292
+msgid "Enable zoom on product images."
+msgstr ""
+
+#: inc/woocommerce/class-nosfir-woocommerce-customizer.php:308
+msgid "Gallery Slider"
+msgstr ""
+
+#: inc/woocommerce/class-nosfir-woocommerce-customizer.php:309
+msgid "Enable slider for product gallery."
+msgstr ""
+
+#: inc/woocommerce/class-nosfir-woocommerce-customizer.php:325
+msgid "Product Page Sidebar"
+msgstr ""
+
+#: inc/woocommerce/class-nosfir-woocommerce-customizer.php:341
+msgid "Cart & Checkout"
+msgstr ""
+
+#: inc/woocommerce/class-nosfir-woocommerce-customizer.php:358
+msgid "Cart Icon Style"
+msgstr ""
+
+#: inc/woocommerce/class-nosfir-woocommerce-customizer.php:360
+msgid "Outline"
+msgstr ""
+
+#: inc/woocommerce/class-nosfir-woocommerce-customizer.php:361
+msgid "Filled"
+msgstr ""
+
+#: inc/woocommerce/class-nosfir-woocommerce-customizer.php:362
+msgid "Shopping Bag"
+msgstr ""
+
+#: inc/woocommerce/class-nosfir-woocommerce-customizer.php:363
+msgid "Basket"
+msgstr ""
+
+#: inc/woocommerce/class-nosfir-woocommerce-customizer.php:380
+msgid "Show Cart Item Count"
+msgstr ""
+
+#: inc/woocommerce/class-nosfir-woocommerce-customizer.php:381
+msgid "Display number of items in cart."
+msgstr ""
+
+#: inc/woocommerce/class-nosfir-woocommerce-customizer.php:397
+msgid "Mini Cart Style"
+msgstr ""
+
+#: inc/woocommerce/class-nosfir-woocommerce-customizer.php:399
+msgid "Dropdown"
+msgstr ""
+
+#: inc/woocommerce/class-nosfir-woocommerce-customizer.php:400
+msgid "Sidebar Slide"
+msgstr ""
+
+#: inc/woocommerce/class-nosfir-woocommerce-customizer.php:401
+msgid "Modal Popup"
+msgstr ""
+
+#: inc/woocommerce/class-nosfir-woocommerce-customizer.php:410
+msgid "Store Colors"
+msgstr ""
+
+#: inc/woocommerce/class-nosfir-woocommerce-customizer.php:426
+msgid "Sale Badge Color"
+msgstr ""
+
+#: inc/woocommerce/class-nosfir-woocommerce-customizer.php:443
+msgid "Add to Cart Button Color"
+msgstr ""
+
+#: inc/woocommerce/class-nosfir-woocommerce-customizer.php:460
+msgid "Price Color"
+msgstr ""
+
+#: inc/woocommerce/class-nosfir-woocommerce-customizer.php:477
+msgid "Star Rating Color"
+msgstr ""
+
+#: inc/woocommerce/nosfir-woocommerce-functions.php:87
+msgid "View your shopping cart"
+msgstr ""
+
+#: inc/woocommerce/nosfir-woocommerce-functions.php:380
+msgid "Remove from Wishlist"
+msgstr ""
+
+#: inc/woocommerce/nosfir-woocommerce-functions.php:380
+msgid "Add to Wishlist"
+msgstr ""
+
+#: inc/woocommerce/nosfir-woocommerce-functions.php:439
+msgid "Shop"
+msgstr ""
+
+#: inc/woocommerce/nosfir-woocommerce-functions.php:456
+msgid "Wishlist"
+msgstr ""
+
+#: inc/woocommerce/nosfir-woocommerce-functions.php:474
+msgid "Account"
+msgstr ""
+
+#: inc/woocommerce/nosfir-woocommerce-functions.php:488
+msgid "More products"
+msgstr ""
+
+#: inc/woocommerce/nosfir-woocommerce-functions.php:493
+msgid "Previous"
+msgstr ""
+
+#: inc/woocommerce/nosfir-woocommerce-functions.php:502
+msgid "Next"
+msgstr ""
+
+#: inc/woocommerce/nosfir-woocommerce-template-functions.php:139
+msgid "Breadcrumbs"
+msgstr ""
+
+#: inc/woocommerce/nosfir-woocommerce-template-functions.php:397
+msgid "Product Categories"
+msgstr ""
+
+#: inc/woocommerce/nosfir-woocommerce-template-functions.php:424
+msgid "Shop by Category"
+msgstr ""
+
+#: inc/woocommerce/nosfir-woocommerce-template-functions.php:450
+msgid "Recent Products"
+msgstr ""
+
+#: inc/woocommerce/nosfir-woocommerce-template-functions.php:454
+msgid "New Arrivals"
+msgstr ""
+
+#: inc/woocommerce/nosfir-woocommerce-template-functions.php:509
+msgid "Top Rated"
+msgstr ""
+
+#: inc/woocommerce/nosfir-woocommerce-template-functions.php:537
+msgid "Popular Products"
+msgstr ""
+
+#: inc/woocommerce/nosfir-woocommerce-template-functions.php:572
+msgid "Special Offers"
+msgstr ""
+
+#: inc/woocommerce/nosfir-woocommerce-template-functions.php:600
+msgid "On Sale Products"
+msgstr ""
+
+#: inc/woocommerce/nosfir-woocommerce-template-functions.php:635
+msgid "Best Sellers"
+msgstr ""
+
+#: inc/woocommerce/nosfir-woocommerce-template-functions.php:663
+msgid "Best Selling Products"
+msgstr ""
+
+#: inc/woocommerce/nosfir-woocommerce-template-functions.php:698
+msgid "Featured Products"
+msgstr ""
+
+#: inc/woocommerce/nosfir-woocommerce-template-functions.php:711
+msgid "On Sale Now"
+msgstr ""
+
+#: inc/woocommerce/nosfir-woocommerce-template-functions.php:724
+msgid "New In Store"
+msgstr ""
+
+#: inc/woocommerce/nosfir-woocommerce-template-functions.php:812
+msgid "Cart"
+msgstr ""
+
+#: inc/woocommerce/nosfir-woocommerce-template-functions.php:860
+msgid "Your Order"
+msgstr ""
+
+#: inc/woocommerce/nosfir-woocommerce-template-functions.php:1012
+msgid "Sold by:"
+msgstr ""
+
+#: inc/woocommerce/nosfir-woocommerce-template-functions.php:1071
+msgid "Cancel"
+msgstr ""
+
+#: inc/woocommerce/nosfir-woocommerce-template-functions.php:1142
+msgid "Shop by Brand"
+msgstr ""
+
+#: inc/woocommerce/nosfir-woocommerce-template-functions.php:1201
+msgid "Custom Tab"
+msgstr ""
+
+#: inc/woocommerce/nosfir-woocommerce-template-functions.php:1208
+msgid "Details"
+msgstr ""
+
+#: inc/woocommerce/nosfir-woocommerce-template-functions.php:1212
+msgid "Specifications"
+msgstr ""
+
+#: inc/wordpress-shims.php:334
+msgid "Privacy Policy"
+msgstr ""
+
+#: search.php:19
+#. translators: %s: search term
+msgid "Search Results for: %s"
+msgstr ""
+
+#: searchform.php:13
+msgctxt "label"
+msgid "Search for:"
+msgstr ""
+
+#: searchform.php:14
+msgctxt "placeholder"
+msgid "Search &hellip;"
+msgstr ""
+
+#: searchform.php:16
+msgctxt "submit button"
+msgid "Search"
+msgstr ""
+
+#. Theme Name of the plugin/theme
+msgid "Nosfir"
+msgstr ""
+
+#. Theme URI of the plugin/theme
+msgid "https://github.com/davidcreator/Nosfir"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Nosfir is a modern, responsive WordPress theme designed for flexibility and performance. Built with clean code and best practices, it offers seamless WooCommerce integration, customization options, and a beautiful design. Perfect for blogs, business sites, and online stores."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "David Creator"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://github.com/davidcreator"
+msgstr ""
+
+#. Template Name of the plugin/theme
+msgid "Full Width"
+msgstr ""
+
+#. Template Name of the plugin/theme
+msgid "Homepage"
+msgstr ""
+
+#. Template Name of the plugin/theme
+msgid "Landing Page"
+msgstr ""
+
+#: comments.php:31
+msgctxt "comments title"
+msgid "%1$s thought on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/nosfir-template-functions.php:579
+msgctxt "post date"
+msgid "on %s"
+msgstr ""
+
+#: inc/storefront-template-functions.php:593
+msgctxt "Next post"
+msgid "Next"
+msgstr ""
+
+#: inc/storefront-template-functions.php:594
+msgctxt "Previous post"
+msgid "Previous"
+msgstr ""
