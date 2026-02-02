@@ -505,10 +505,9 @@ if ( ! class_exists( 'Nosfir' ) ) :
 			wp_style_add_data( 'nosfir-style', 'rtl', 'replace' );
 
 			// Icons
-			wp_enqueue_style( 'nosfir-icons', get_template_directory_uri() . '/assets/css/icons' . $suffix . '.css', array(), $this->version );
+			wp_enqueue_style( 'nosfir-icons', get_template_directory_uri() . '/assets/css/base/icons' . $suffix . '.css', array(), $this->version );
 
 			// Main styles
-			wp_enqueue_style( 'nosfir-main', get_template_directory_uri() . '/assets/css/main' . $suffix . '.css', array(), $this->version );
 			// Fonts
 			wp_enqueue_style( 'nosfir-fonts', $this->google_fonts(), array(), null );
 
@@ -581,12 +580,14 @@ if ( ! class_exists( 'Nosfir' ) ) :
 		 * Enqueue block assets
 		 */
 		public function block_assets() {
-			wp_enqueue_style( 
-				'nosfir-block-styles', 
-				get_template_directory_uri() . '/assets/css/blocks.css', 
-				array(), 
-				$this->version 
-			);
+			$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
+			$rel    = '/assets/css/base/gutenberg-blocks' . $suffix . '.css';
+			$path   = get_template_directory() . $rel;
+			$uri    = file_exists( $path )
+				? get_template_directory_uri() . $rel
+				: get_template_directory_uri() . '/assets/css/base/gutenberg-blocks.css';
+
+			wp_enqueue_style( 'nosfir-block-styles', $uri, array(), $this->version );
 		}
 
 		/**
@@ -642,7 +643,7 @@ if ( ! class_exists( 'Nosfir' ) ) :
 				}
 			";
 
-			wp_add_inline_style( 'nosfir-main', $custom_css );
+			wp_add_inline_style( 'nosfir-style', $custom_css );
 		}
 
 		/**

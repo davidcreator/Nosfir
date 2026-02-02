@@ -153,6 +153,8 @@ if (!class_exists('Nosfir_Customizer')) :
                 'nosfir_header_search' => true,
                 'nosfir_header_cart' => true,
                 'nosfir_header_account' => true,
+                'nosfir_header_border' => false,
+                'nosfir_header_shadow' => false,
                 
                 // Navigation
                 'nosfir_nav_background' => '#ffffff',
@@ -161,6 +163,10 @@ if (!class_exists('Nosfir_Customizer')) :
                 'nosfir_nav_dropdown_background' => '#ffffff',
                 'nosfir_nav_dropdown_link_color' => '#4b5563',
                 'nosfir_mobile_menu_breakpoint' => '1024',
+                'nosfir_nav_position' => 'left',
+                'nosfir_nav_type' => 'standard',
+                'nosfir_nav_icon_style' => 'none',
+                'nosfir_nav_border_style' => 'none',
                 
                 // Footer
                 'nosfir_footer_layout' => 'layout-1',
@@ -174,12 +180,15 @@ if (!class_exists('Nosfir_Customizer')) :
                 // Layout
                 'nosfir_site_layout' => 'wide',
                 'nosfir_container_width' => '1280px',
+                'nosfir_site_size_mode' => 'max',
                 'nosfir_sidebar_layout' => 'right',
                 'nosfir_sidebar_width' => '30',
                 'nosfir_blog_layout' => 'grid',
                 'nosfir_blog_columns' => '3',
                 'nosfir_single_layout' => 'right-sidebar',
                 'nosfir_page_layout' => 'no-sidebar',
+                'nosfir_portfolio_layout' => 'grid',
+                'nosfir_portfolio_columns' => '3',
                 
                 // Buttons
                 'nosfir_button_background' => '#2563eb',
@@ -675,6 +684,32 @@ if (!class_exists('Nosfir_Customizer')) :
                 'priority' => 40,
             ));
 
+            // Header Border
+            $wp_customize->add_setting('nosfir_header_border', array(
+                'default' => $this->get_default('nosfir_header_border'),
+                'sanitize_callback' => 'nosfir_sanitize_checkbox',
+                'transport' => 'refresh',
+            ));
+            $wp_customize->add_control('nosfir_header_border', array(
+                'label' => __('Header Bottom Border', 'nosfir'),
+                'section' => 'nosfir_header',
+                'type' => 'checkbox',
+                'priority' => 45,
+            ));
+
+            // Header Shadow
+            $wp_customize->add_setting('nosfir_header_shadow', array(
+                'default' => $this->get_default('nosfir_header_shadow'),
+                'sanitize_callback' => 'nosfir_sanitize_checkbox',
+                'transport' => 'refresh',
+            ));
+            $wp_customize->add_control('nosfir_header_shadow', array(
+                'label' => __('Header Drop Shadow', 'nosfir'),
+                'section' => 'nosfir_header',
+                'type' => 'checkbox',
+                'priority' => 46,
+            ));
+
             // Header Colors
             $wp_customize->add_setting('nosfir_header_background', array(
                 'default' => $this->get_default('nosfir_header_background'),
@@ -978,12 +1013,157 @@ if (!class_exists('Nosfir_Customizer')) :
                 'type' => 'number',
                 'priority' => 35,
             ));
+
+            // Navigation Position
+            $wp_customize->add_setting('nosfir_nav_position', array(
+                'default' => $this->get_default('nosfir_nav_position'),
+                'sanitize_callback' => 'sanitize_key',
+                'transport' => 'refresh',
+            ));
+            $wp_customize->add_control('nosfir_nav_position', array(
+                'label' => __('Navigation Position', 'nosfir'),
+                'section' => 'nosfir_navigation',
+                'type' => 'select',
+                'choices' => array(
+                    'left' => __('Left', 'nosfir'),
+                    'center' => __('Center', 'nosfir'),
+                    'right' => __('Right', 'nosfir'),
+                ),
+                'priority' => 40,
+            ));
+
+            // Navigation Type
+            $wp_customize->add_setting('nosfir_nav_type', array(
+                'default' => $this->get_default('nosfir_nav_type'),
+                'sanitize_callback' => 'sanitize_key',
+                'transport' => 'refresh',
+            ));
+            $wp_customize->add_control('nosfir_nav_type', array(
+                'label' => __('Navigation Type', 'nosfir'),
+                'section' => 'nosfir_navigation',
+                'type' => 'select',
+                'choices' => array(
+                    'standard' => __('Standard', 'nosfir'),
+                    'underline' => __('Underline', 'nosfir'),
+                    'pill' => __('Pill', 'nosfir'),
+                    'boxed' => __('Boxed', 'nosfir'),
+                ),
+                'priority' => 45,
+            ));
+
+            // Navigation Icons
+            $wp_customize->add_setting('nosfir_nav_icon_style', array(
+                'default' => $this->get_default('nosfir_nav_icon_style'),
+                'sanitize_callback' => 'sanitize_key',
+                'transport' => 'refresh',
+            ));
+            $wp_customize->add_control('nosfir_nav_icon_style', array(
+                'label' => __('Dropdown Icon Style', 'nosfir'),
+                'section' => 'nosfir_navigation',
+                'type' => 'select',
+                'choices' => array(
+                    'none' => __('None', 'nosfir'),
+                    'chevron' => __('Chevron', 'nosfir'),
+                    'arrow' => __('Arrow', 'nosfir'),
+                ),
+                'priority' => 50,
+            ));
+
+            // Navigation Borders
+            $wp_customize->add_setting('nosfir_nav_border_style', array(
+                'default' => $this->get_default('nosfir_nav_border_style'),
+                'sanitize_callback' => 'sanitize_key',
+                'transport' => 'refresh',
+            ));
+            $wp_customize->add_control('nosfir_nav_border_style', array(
+                'label' => __('Navigation Border Style', 'nosfir'),
+                'section' => 'nosfir_navigation',
+                'type' => 'select',
+                'choices' => array(
+                    'none' => __('None', 'nosfir'),
+                    'underline' => __('Underline', 'nosfir'),
+                    'top' => __('Top', 'nosfir'),
+                    'bottom' => __('Bottom', 'nosfir'),
+                    'box' => __('Box', 'nosfir'),
+                ),
+                'priority' => 55,
+            ));
         }
 
         /**
          * Registra settings de layout
          */
         private function register_layout_settings($wp_customize) {
+            // Page Layout
+            $wp_customize->add_setting('nosfir_page_layout', array(
+                'default' => $this->get_default('nosfir_page_layout'),
+                'sanitize_callback' => 'sanitize_key',
+                'transport' => 'refresh',
+            ));
+            $wp_customize->add_control('nosfir_page_layout', array(
+                'label' => __('Default Page Layout', 'nosfir'),
+                'section' => 'nosfir_layout_site',
+                'type' => 'select',
+                'choices' => array(
+                    'full-width' => __('Full Width', 'nosfir'),
+                    'no-sidebar' => __('No Sidebar', 'nosfir'),
+                    'left' => __('Sidebar Left', 'nosfir'),
+                    'right' => __('Sidebar Right', 'nosfir'),
+                    'landing' => __('Landing Page', 'nosfir'),
+                    'grid' => __('Grid (Portfolio)', 'nosfir'),
+                ),
+                'priority' => 8,
+            ));
+
+            // Portfolio Grid
+            $wp_customize->add_setting('nosfir_portfolio_layout', array(
+                'default' => $this->get_default('nosfir_portfolio_layout'),
+                'sanitize_callback' => 'sanitize_key',
+                'transport' => 'refresh',
+            ));
+            $wp_customize->add_control('nosfir_portfolio_layout', array(
+                'label' => __('Portfolio Layout', 'nosfir'),
+                'section' => 'nosfir_layout_site',
+                'type' => 'select',
+                'choices' => array(
+                    'grid' => __('Grid', 'nosfir'),
+                ),
+                'priority' => 9,
+            ));
+
+            $wp_customize->add_setting('nosfir_portfolio_columns', array(
+                'default' => $this->get_default('nosfir_portfolio_columns'),
+                'sanitize_callback' => 'absint',
+                'transport' => 'refresh',
+            ));
+            $wp_customize->add_control('nosfir_portfolio_columns', array(
+                'label' => __('Portfolio Grid Columns', 'nosfir'),
+                'section' => 'nosfir_layout_site',
+                'type' => 'number',
+                'input_attrs' => array(
+                    'min' => 2,
+                    'max' => 6,
+                    'step' => 1,
+                ),
+                'priority' => 10,
+            ));
+            // Site Size Mode
+            $wp_customize->add_setting('nosfir_site_size_mode', array(
+                'default' => $this->get_default('nosfir_site_size_mode'),
+                'sanitize_callback' => 'sanitize_key',
+                'transport' => 'refresh',
+            ));
+            $wp_customize->add_control('nosfir_site_size_mode', array(
+                'label' => __('Site Size Mode', 'nosfir'),
+                'section' => 'nosfir_layout_site',
+                'type' => 'select',
+                'choices' => array(
+                    'max' => __('Maximum Width', 'nosfir'),
+                    'adaptive' => __('Adaptive (viewport-based)', 'nosfir'),
+                ),
+                'priority' => 5,
+            ));
+
             // Sidebar Layout
             $wp_customize->add_setting('nosfir_sidebar_layout', array(
                 'default' => $this->get_default('nosfir_sidebar_layout'),
@@ -1255,7 +1435,13 @@ if (!class_exists('Nosfir_Customizer')) :
             
             // Container
             $container_width = get_theme_mod('nosfir_container_width', $this->get_default('nosfir_container_width'));
+            $site_size_mode = get_theme_mod('nosfir_site_size_mode', $this->get_default('nosfir_site_size_mode'));
             $css .= '--nosfir-container-width: ' . $container_width . ';';
+            if ($site_size_mode === 'adaptive') {
+                $css .= '--nosfir-container-max-width: 90vw;';
+            } else {
+                $css .= '--nosfir-container-max-width: ' . $container_width . ';';
+            }
 
             // Header Variables
             $css .= '--nosfir-header-bg: ' . get_theme_mod('nosfir_header_background', $this->get_default('nosfir_header_background')) . ';';
@@ -1280,9 +1466,90 @@ if (!class_exists('Nosfir_Customizer')) :
             $css .= '.main-navigation ul ul{background-color:' . $nav_dd_bg . ';}';
             $css .= '.main-navigation ul ul a{color:' . $nav_dd_link . ';}';
 
+            // Navigation position
+            $nav_position = get_theme_mod('nosfir_nav_position', $this->get_default('nosfir_nav_position'));
+            if ($nav_position === 'center') {
+                $css .= '.main-navigation{display:flex;justify-content:center;}';
+            } elseif ($nav_position === 'right') {
+                $css .= '.main-navigation{display:flex;justify-content:flex-end;}';
+            } else {
+                $css .= '.main-navigation{display:flex;justify-content:flex-start;}';
+            }
+
+            // Navigation type
+            $nav_type = get_theme_mod('nosfir_nav_type', $this->get_default('nosfir_nav_type'));
+            if ($nav_type === 'underline') {
+                $css .= '.main-navigation a{border-bottom:2px solid currentColor;}';
+            } elseif ($nav_type === 'pill') {
+                $css .= '.main-navigation a{border-radius:var(--nosfir-border-radius-full);padding:0.5em 0.75em;}';
+            } elseif ($nav_type === 'boxed') {
+                $css .= '.main-navigation a{border:1px solid currentColor;border-radius:var(--nosfir-border-radius);padding:0.5em 0.75em;}';
+            }
+
+            // Navigation border style
+            $nav_border = get_theme_mod('nosfir_nav_border_style', $this->get_default('nosfir_nav_border_style'));
+            if ($nav_border === 'top') {
+                $css .= '.main-navigation{border-top:1px solid var(--nosfir-border-color-dark);}';
+            } elseif ($nav_border === 'bottom') {
+                $css .= '.main-navigation{border-bottom:1px solid var(--nosfir-border-color-dark);}';
+            } elseif ($nav_border === 'box') {
+                $css .= '.main-navigation{border:1px solid var(--nosfir-border-color-dark);border-radius:var(--nosfir-border-radius);}';
+            }
+
+            // Navigation dropdown icons
+            $nav_icon = get_theme_mod('nosfir_nav_icon_style', $this->get_default('nosfir_nav_icon_style'));
+            if ($nav_icon === 'chevron') {
+                $css .= '.main-navigation .menu-item-has-children > a::after{content:"\\25BE";margin-left:0.35em;font-size:0.85em;display:inline-block;}';
+            } elseif ($nav_icon === 'arrow') {
+                $css .= '.main-navigation .menu-item-has-children > a::after{content:"\\203A";margin-left:0.35em;font-size:0.85em;display:inline-block;}';
+            } else {
+                $css .= '.main-navigation .menu-item-has-children > a::after{content:none;}';
+            }
+
             // Header link color
             $header_link = get_theme_mod('nosfir_header_link_color', $this->get_default('nosfir_header_link_color'));
             $css .= '.site-header a{color:' . $header_link . ';}';
+
+            // Page layouts
+            $page_layout = get_theme_mod('nosfir_page_layout', $this->get_default('nosfir_page_layout'));
+            if ($page_layout === 'full-width') {
+                $css .= 'body.nosfir-full-width-content .content-area{width:100%;float:none;margin:0;}';
+                $css .= 'body.nosfir-full-width-content .widget-area{display:none;}';
+            } elseif ($page_layout === 'no-sidebar') {
+                $css .= 'body.sidebar-none .widget-area{display:none;}';
+                $css .= 'body.sidebar-none .content-area{width:100%;float:none;margin:0;}';
+            } elseif ($page_layout === 'left') {
+                $css .= 'body.sidebar-left .content-area{float:right;margin-right:0;margin-left:var(--nosfir-gutter);}';
+                $css .= 'body.sidebar-left .widget-area{float:left;margin-right:var(--nosfir-gutter);}';
+            } elseif ($page_layout === 'right') {
+                $css .= 'body.sidebar-right .content-area{float:left;margin-right:var(--nosfir-gutter);}';
+                $css .= 'body.sidebar-right .widget-area{float:right;margin-right:0;}';
+            } elseif ($page_layout === 'landing') {
+                $css .= 'body.layout-landing .site-header{padding-top:var(--nosfir-spacing-6);padding-bottom:var(--nosfir-spacing-6);}';
+                $css .= 'body.layout-landing .widget-area{display:none;}';
+                $css .= 'body.layout-landing .content-area{width:100%;float:none;margin:0;}';
+            } elseif ($page_layout === 'grid') {
+                $css .= 'body.layout-grid .widget-area{display:none;}';
+                $css .= 'body.layout-grid .content-area{width:100%;float:none;margin:0;}';
+            }
+
+            // Portfolio grid
+            $portfolio_layout = get_theme_mod('nosfir_portfolio_layout', $this->get_default('nosfir_portfolio_layout'));
+            $portfolio_cols = max(2, min(6, intval(get_theme_mod('nosfir_portfolio_columns', $this->get_default('nosfir_portfolio_columns')))));
+            if ($portfolio_layout === 'grid') {
+                $css .= '.post-type-archive-portfolio .site-main, body.layout-grid .site-main{display:grid;grid-template-columns:repeat(' . $portfolio_cols . ', minmax(240px, 1fr));gap:var(--nosfir-spacing-8);align-items:stretch;}';
+                $css .= '.post-type-archive-portfolio .site-main > article, body.layout-grid .site-main > article{margin:0;box-shadow:var(--nosfir-shadow-sm);border:1px solid var(--nosfir-border-color);border-radius:var(--nosfir-border-radius);}';
+                $css .= '@media (max-width: 1024px){.post-type-archive-portfolio .site-main, body.layout-grid .site-main{grid-template-columns:repeat(' . max(2, $portfolio_cols - 1) . ', minmax(200px, 1fr));}}';
+                $css .= '@media (max-width: 640px){.post-type-archive-portfolio .site-main, body.layout-grid .site-main{grid-template-columns:repeat(1, 1fr);}}';
+            }
+
+            // Header border/shadow
+            if (get_theme_mod('nosfir_header_border', $this->get_default('nosfir_header_border'))) {
+                $css .= '.site-header{border-bottom:1px solid var(--nosfir-border-color-dark);}';
+            }
+            if (get_theme_mod('nosfir_header_shadow', $this->get_default('nosfir_header_shadow'))) {
+                $css .= '.site-header{box-shadow:var(--nosfir-shadow);}';
+            }
 
             // Footer detailed colors
             $footer_heading = get_theme_mod('nosfir_footer_heading_color', $this->get_default('nosfir_footer_heading_color'));
@@ -1322,9 +1589,28 @@ if (!class_exists('Nosfir_Customizer')) :
             // Layout classes
             $site_layout = get_theme_mod('nosfir_site_layout', $this->get_default('nosfir_site_layout'));
             $classes[] = 'site-layout-' . $site_layout;
+            $classes[] = 'site-size-' . get_theme_mod('nosfir_site_size_mode', $this->get_default('nosfir_site_size_mode'));
             
             $sidebar_layout = get_theme_mod('nosfir_sidebar_layout', $this->get_default('nosfir_sidebar_layout'));
             $classes[] = 'sidebar-' . $sidebar_layout;
+            // Override by page layout choice
+            $page_layout = get_theme_mod('nosfir_page_layout', $this->get_default('nosfir_page_layout'));
+            if ($page_layout === 'full-width') {
+                $classes[] = 'nosfir-full-width-content';
+                $classes[] = 'sidebar-none';
+            } elseif ($page_layout === 'no-sidebar') {
+                $classes[] = 'sidebar-none';
+            } elseif ($page_layout === 'left') {
+                $classes[] = 'sidebar-left';
+            } elseif ($page_layout === 'right') {
+                $classes[] = 'sidebar-right';
+            } elseif ($page_layout === 'landing') {
+                $classes[] = 'layout-landing';
+                $classes[] = 'sidebar-none';
+            } elseif ($page_layout === 'grid') {
+                $classes[] = 'layout-grid';
+                $classes[] = 'sidebar-none';
+            }
             
             // Header classes
             $header_layout = get_theme_mod('nosfir_header_layout', $this->get_default('nosfir_header_layout'));
@@ -1337,6 +1623,12 @@ if (!class_exists('Nosfir_Customizer')) :
                 $classes[] = 'header-transparent';
             }
             $classes[] = 'header-width-' . get_theme_mod('nosfir_header_width', $this->get_default('nosfir_header_width'));
+
+            // Navigation classes
+            $classes[] = 'nav-pos-' . get_theme_mod('nosfir_nav_position', $this->get_default('nosfir_nav_position'));
+            $classes[] = 'nav-type-' . get_theme_mod('nosfir_nav_type', $this->get_default('nosfir_nav_type'));
+            $classes[] = 'nav-icons-' . get_theme_mod('nosfir_nav_icon_style', $this->get_default('nosfir_nav_icon_style'));
+            $classes[] = 'nav-border-' . get_theme_mod('nosfir_nav_border_style', $this->get_default('nosfir_nav_border_style'));
             
             return $classes;
         }
