@@ -293,8 +293,8 @@ if ( class_exists( 'Jetpack' ) ) {
  * @since 1.0.0
  */
 if ( function_exists( 'nosfir_is_woocommerce_activated' ) && nosfir_is_woocommerce_activated() ) {
-    $nosfir->woocommerce            = nosfir_require_file( NOSFIR_INC_DIR . '/woocommerce/class-nosfir-woocommerce.php' );
-    $nosfir->woocommerce_customizer = nosfir_require_file( NOSFIR_INC_DIR . '/woocommerce/class-nosfir-woocommerce-customizer.php' );
+    $nosfir->woocommerce            = nosfir_require_file( NOSFIR_INC_DIR . '/inc/woocommerce/class-nosfir-woocommerce.php' );
+    $nosfir->woocommerce_customizer = nosfir_require_file( NOSFIR_INC_DIR . '/inc/woocommerce/class-nosfir-woocommerce-customizer.php' );
     
     nosfir_require_files( array(
         '/woocommerce/nosfir-woocommerce-template-hooks.php',
