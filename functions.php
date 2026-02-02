@@ -336,3 +336,4 @@ if ( function_exists( 'register_block_type' ) ) {
  * Note: Do not add any custom code here. Please use a child theme or
  * a custom plugin so that your customizations aren't lost during updates.
  */
+
