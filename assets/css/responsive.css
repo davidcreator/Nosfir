@@ -1,0 +1,996 @@
+/**
+ * Nosfir Theme - Responsive Styles
+ *
+ * @package Nosfir
+ * @version 1.0.0
+ *
+ * Breakpoints:
+ * - Extra Small (xs): < 576px
+ * - Small (sm): >= 576px
+ * - Medium (md): >= 768px
+ * - Large (lg): >= 992px
+ * - Extra Large (xl): >= 1200px
+ * - XXL: >= 1400px
+ */
+
+/* ==========================================================================
+   EXTRA SMALL DEVICES (Portrait phones, less than 576px)
+   ========================================================================== */
+
+@media (max-width: 575.98px) {
+    /* Typography */
+    html {
+        font-size: 14px;
+    }
+    
+    h1 { font-size: 1.75rem; }
+    h2 { font-size: 1.5rem; }
+    h3 { font-size: 1.25rem; }
+    h4 { font-size: 1.125rem; }
+    
+    /* Container */
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    /* Header */
+    .site-header .container,
+    .site-header .header-inner {
+        min-height: 60px;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+    
+    .site-branding .custom-logo {
+        max-height: 35px;
+    }
+    
+    .site-title {
+        font-size: 1.125rem;
+    }
+    
+    .site-description {
+        display: none;
+    }
+    
+    /* Navigation */
+    .main-navigation .nav-menu,
+    .main-navigation .primary-menu {
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .nav-menu > li > a,
+    .primary-menu > li > a {
+        padding: 0.875rem 1rem;
+        font-size: 0.9375rem;
+    }
+    
+    /* Header Actions */
+    .header-actions {
+        gap: 0.25rem;
+    }
+    
+    .search-toggle,
+    .header-account .account-link,
+    .header-cart .cart-link {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .search-dropdown {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        right: 0;
+        width: 100%;
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+    }
+    
+    /* Content */
+    .site-content {
+        padding-top: 1.5rem;
+        padding-bottom: 2rem;
+    }
+    
+    .entry-title {
+        font-size: 1.5rem;
+    }
+    
+    .entry-meta {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    /* Posts Grid */
+    .posts-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    /* Pagination */
+    .nav-links {
+        gap: 0.25rem;
+    }
+    
+    .nav-links a,
+    .nav-links span {
+        min-width: 36px;
+        height: 36px;
+        padding: 0 0.5rem;
+        font-size: 0.875rem;
+    }
+    
+    .post-navigation .nav-links {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .post-navigation .nav-next {
+        text-align: left;
+        align-items: flex-start;
+    }
+    
+    /* Sidebar */
+    .widget {
+        padding: 1rem;
+    }
+    
+    /* Footer */
+    .footer-main {
+        padding: 2rem 0;
+    }
+    
+    .footer-widgets {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .footer-bottom .container {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .footer-menu {
+        justify-content: center;
+    }
+    
+    .social-menu {
+        justify-content: center;
+    }
+    
+    /* Comments */
+    .comment .children {
+        margin-left: 1rem;
+    }
+    
+    .comment-author .avatar {
+        width: 40px;
+        height: 40px;
+    }
+    
+    /* Forms */
+    .comment-form {
+        grid-template-columns: 1fr;
+    }
+    
+    /* 404 Page */
+    .error-404 .page-title {
+        font-size: 4rem;
+    }
+    
+    .error-404 .page-subtitle {
+        font-size: 1.25rem;
+    }
+    
+    /* Scroll to Top */
+    .scroll-to-top {
+        bottom: 1rem;
+        right: 1rem;
+        width: 40px;
+        height: 40px;
+    }
+    
+    /* Buttons */
+    .button,
+    .btn,
+    button[type="submit"],
+    input[type="submit"] {
+        width: 100%;
+        padding: 0.875rem 1rem;
+    }
+    
+    /* Tables */
+    table {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+/* ==========================================================================
+   SMALL DEVICES (Landscape phones, 576px and up)
+   ========================================================================== */
+
+@media (min-width: 576px) {
+    /* Container */
+    .container {
+        max-width: 540px;
+    }
+    
+    /* Posts Grid */
+    .posts-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    /* Footer Widgets */
+    .footer-widgets {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    /* Comments */
+    .comment-form {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ==========================================================================
+   MEDIUM DEVICES (Tablets, 768px and up)
+   ========================================================================== */
+
+@media (min-width: 768px) {
+    /* Typography */
+    html {
+        font-size: 16px;
+    }
+    
+    /* Container */
+    .container {
+        max-width: 720px;
+    }
+    
+    /* Header */
+    .site-header .container,
+    .site-header .header-inner {
+        min-height: 70px;
+    }
+    
+    .site-branding .custom-logo {
+        max-height: 45px;
+    }
+    
+    .site-title {
+        font-size: 1.25rem;
+    }
+    
+    .site-description {
+        display: block;
+    }
+    
+    /* Content */
+    .site-content {
+        padding-top: 2rem;
+        padding-bottom: 3rem;
+    }
+    
+    .entry-title {
+        font-size: 2rem;
+    }
+    
+    .entry-meta {
+        flex-direction: row;
+    }
+    
+    /* Sidebar - Still full width on tablets */
+    .has-sidebar .site-content > .container {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Footer */
+    .footer-main {
+        padding: 3rem 0;
+    }
+    
+    /* Comments */
+    .comment .children {
+        margin-left: 2rem;
+    }
+    
+    /* 404 */
+    .error-404 .page-title {
+        font-size: 5rem;
+    }
+    
+    /* Buttons - Reset width */
+    .button,
+    .btn,
+    button[type="submit"],
+    input[type="submit"] {
+        width: auto;
+    }
+}
+
+/* ==========================================================================
+   LARGE DEVICES (Desktops, 992px and up)
+   ========================================================================== */
+
+@media (min-width: 992px) {
+    /* Container */
+    .container {
+        max-width: 960px;
+    }
+    
+    /* Header */
+    .site-header .container,
+    .site-header .header-inner {
+        min-height: var(--nosfir-header-height);
+    }
+    
+    .site-branding .custom-logo {
+        max-height: 50px;
+    }
+    
+    /* Navigation - Desktop Menu */
+    .menu-toggle {
+        display: none;
+    }
+    
+    .main-navigation .nav-menu,
+    .main-navigation .primary-menu,
+    .main-navigation #primary-menu {
+        position: static;
+        width: auto;
+        max-width: none;
+        height: auto;
+        padding: 0;
+        background: transparent;
+        flex-direction: row;
+        transform: none;
+        box-shadow: none;
+        overflow: visible;
+    }
+    
+    .nav-menu > li,
+    .primary-menu > li {
+        border-bottom: none;
+    }
+    
+    .nav-menu > li > a,
+    .primary-menu > li > a {
+        padding: 0.5rem 1rem;
+        justify-content: center;
+    }
+    
+    /* Desktop Dropdowns */
+    .sub-menu,
+    .nav-menu ul,
+    .primary-menu ul {
+        position: absolute;
+        display: block;
+        padding: 0.5rem 0;
+        background-color: var(--nosfir-bg);
+        border: 1px solid var(--nosfir-border-color);
+        border-radius: var(--nosfir-border-radius);
+        box-shadow: var(--nosfir-shadow-lg);
+    }
+    
+    .sub-menu a,
+    .nav-menu ul a {
+        padding: 0.5rem 1rem;
+    }
+    
+    .dropdown-toggle {
+        position: static;
+        width: auto;
+        height: auto;
+        border: none;
+        margin-left: 0.25rem;
+    }
+    
+    /* Sidebar */
+    .has-sidebar .site-content > .container {
+        grid-template-columns: 1fr var(--nosfir-sidebar-width);
+    }
+    
+    .has-sidebar.sidebar-left .site-content > .container {
+        grid-template-columns: var(--nosfir-sidebar-width) 1fr;
+    }
+    
+    /* Posts Grid */
+    .posts-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    /* Footer Widgets */
+    .footer-widgets {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    /* Footer Bottom */
+    .footer-bottom .container {
+        flex-direction: row;
+    }
+    
+    /* Hide Mobile Menu Overlay on Desktop */
+    .menu-overlay,
+    .mobile-menu-overlay {
+        display: none;
+    }
+    
+    body.menu-open,
+    body.nav-open {
+        overflow: visible;
+    }
+}
+
+/* ==========================================================================
+   EXTRA LARGE DEVICES (Large desktops, 1200px and up)
+   ========================================================================== */
+
+@media (min-width: 1200px) {
+    /* Container */
+    .container {
+        max-width: 1140px;
+    }
+    
+    /* Typography */
+    h1 { font-size: 2.5rem; }
+    h2 { font-size: 2rem; }
+    
+    /* Navigation */
+    .nav-menu > li > a,
+    .primary-menu > li > a {
+        padding: 0.75rem 1.25rem;
+    }
+    
+    /* Content */
+    .entry-title {
+        font-size: 2.25rem;
+    }
+    
+    /* Sidebar */
+    .has-sidebar .site-content > .container {
+        gap: 3rem;
+    }
+}
+
+/* ==========================================================================
+   XXL DEVICES (Extra large desktops, 1400px and up)
+   ========================================================================== */
+
+@media (min-width: 1400px) {
+    /* Container */
+    .container {
+        max-width: 1320px;
+    }
+    
+    /* Content */
+    .site-content {
+        padding-top: 3rem;
+        padding-bottom: 4rem;
+    }
+    
+    /* Sidebar */
+    .has-sidebar .site-content > .container {
+        --nosfir-sidebar-width: 350px;
+    }
+}
+
+/* ==========================================================================
+   LANDSCAPE ORIENTATION ADJUSTMENTS
+   ========================================================================== */
+
+@media (max-height: 500px) and (orientation: landscape) {
+    /* Reduce header height */
+    .site-header .container,
+    .site-header .header-inner {
+        min-height: 50px;
+    }
+    
+    /* Mobile menu adjustments */
+    .main-navigation .nav-menu,
+    .main-navigation .primary-menu {
+        padding-top: 60px;
+    }
+    
+    .nav-menu > li > a,
+    .primary-menu > li > a {
+        padding: 0.5rem 1rem;
+    }
+}
+
+/* ==========================================================================
+   HIGH RESOLUTION DISPLAYS (Retina)
+   ========================================================================== */
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    /* Thinner borders on high-res displays */
+    .site-header,
+    .widget,
+    .sub-menu,
+    .comment-body {
+        border-width: 0.5px;
+    }
+}
+
+/* ==========================================================================
+   REDUCED MOTION
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    
+    .site-header.is-sticky {
+        animation: none;
+    }
+    
+    .scroll-to-top {
+        transition: none;
+    }
+}
+
+/* ==========================================================================
+   DARK MODE PREFERENCES
+   ========================================================================== */
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+        --nosfir-text: #e9ecef;
+        --nosfir-text-light: #adb5bd;
+        --nosfir-text-dark: #f8f9fa;
+        --nosfir-heading: #ffffff;
+        --nosfir-bg: #1a1a1a;
+        --nosfir-bg-alt: #2d2d2d;
+        --nosfir-border-color: #404040;
+        --nosfir-link: #6ea8fe;
+        --nosfir-link-hover: #9ec5fe;
+    }
+}
+
+/* ==========================================================================
+   TOUCH DEVICE OPTIMIZATIONS
+   ========================================================================== */
+
+@media (hover: none) and (pointer: coarse) {
+    /* Larger touch targets */
+    .nav-menu > li > a,
+    .primary-menu > li > a {
+        min-height: 44px;
+    }
+    
+    .sub-menu a,
+    .nav-menu ul a {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+    }
+    
+    .dropdown-toggle {
+        min-width: 44px;
+        min-height: 44px;
+    }
+    
+    /* Remove hover effects */
+    .menu-item-has-children:hover > .sub-menu,
+    .page_item_has_children:hover > ul {
+        opacity: 0;
+        visibility: hidden;
+    }
+    
+    .sub-menu.is-open,
+    .sub-menu.toggled-on {
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    /* Prevent hover states from sticking */
+    .nav-menu > li > a:hover,
+    .primary-menu > li > a:hover {
+        color: var(--nosfir-text);
+    }
+    
+    .nav-menu > li.current-menu-item > a,
+    .primary-menu > li.current-menu-item > a {
+        color: var(--nosfir-primary);
+    }
+}
+
+/* ==========================================================================
+   HOVER CAPABLE DEVICES
+   ========================================================================== */
+
+@media (hover: hover) and (pointer: fine) {
+    /* Enhanced hover effects */
+    .nav-menu > li > a::after,
+    .primary-menu > li > a::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background-color: var(--nosfir-primary);
+        transition: width var(--nosfir-transition), left var(--nosfir-transition);
+    }
+    
+    .nav-menu > li > a:hover::after,
+    .nav-menu > li.current-menu-item > a::after,
+    .primary-menu > li > a:hover::after,
+    .primary-menu > li.current-menu-item > a::after {
+        width: 100%;
+        left: 0;
+    }
+    
+    /* Smooth dropdown transitions */
+    .sub-menu {
+        transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+    }
+}
+
+/* ==========================================================================
+   CONTAINER QUERIES (Modern browsers)
+   ========================================================================== */
+
+@supports (container-type: inline-size) {
+    .posts-grid {
+        container-type: inline-size;
+    }
+    
+    @container (min-width: 400px) {
+        .posts-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+    
+    @container (min-width: 700px) {
+        .posts-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+}
+
+/* ==========================================================================
+   WIDGET AREA RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 991px) {
+    .widget-area {
+        margin-top: var(--nosfir-spacing-2xl);
+        padding-top: var(--nosfir-spacing-xl);
+        border-top: 1px solid var(--nosfir-border-color);
+    }
+    
+    /* Two column widgets on tablets */
+    @media (min-width: 576px) {
+        .widget-area {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--nosfir-spacing-lg);
+        }
+        
+        .widget-area .widget {
+            margin-bottom: 0;
+        }
+    }
+}
+
+/* ==========================================================================
+   WOOCOMMERCE RESPONSIVE (if WooCommerce is active)
+   ========================================================================== */
+
+@media (max-width: 767px) {
+    /* Products Grid */
+    .woocommerce ul.products[class*="columns-"] {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    /* Product Page */
+    .woocommerce div.product div.images,
+    .woocommerce div.product div.summary {
+        width: 100%;
+        float: none;
+    }
+    
+    /* Cart Table */
+    .woocommerce table.cart,
+    .woocommerce-cart table.cart {
+        display: block;
+    }
+    
+    .woocommerce table.cart thead,
+    .woocommerce-cart table.cart thead {
+        display: none;
+    }
+    
+    .woocommerce table.cart tr,
+    .woocommerce-cart table.cart tr {
+        display: block;
+        margin-bottom: 1rem;
+        padding: 1rem;
+        border: 1px solid var(--nosfir-border-color);
+        border-radius: var(--nosfir-border-radius);
+    }
+    
+    .woocommerce table.cart td,
+    .woocommerce-cart table.cart td {
+        display: block;
+        text-align: right;
+        border: none;
+        padding: 0.5rem 0;
+    }
+    
+    .woocommerce table.cart td::before,
+    .woocommerce-cart table.cart td::before {
+        content: attr(data-title) ": ";
+        float: left;
+        font-weight: 600;
+    }
+    
+    /* Checkout */
+    .woocommerce-checkout .col2-set .col-1,
+    .woocommerce-checkout .col2-set .col-2 {
+        width: 100%;
+        float: none;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .woocommerce ul.products[class*="columns-"] {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 992px) {
+    .woocommerce ul.products.columns-4 {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .woocommerce ul.products.columns-5 {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+/* ==========================================================================
+   GUTENBERG BLOCKS RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 767px) {
+    /* Full width blocks */
+    .wp-block-cover,
+    .wp-block-image.alignwide,
+    .wp-block-image.alignfull,
+    .wp-block-gallery.alignwide,
+    .wp-block-gallery.alignfull {
+        margin-left: -1rem;
+        margin-right: -1rem;
+        max-width: calc(100% + 2rem);
+        width: calc(100% + 2rem);
+    }
+    
+    /* Columns */
+    .wp-block-columns {
+        flex-wrap: wrap;
+    }
+    
+    .wp-block-column {
+        flex-basis: 100% !important;
+        margin-left: 0 !important;
+    }
+    
+    /* Gallery */
+    .wp-block-gallery.columns-3 .blocks-gallery-item,
+    .wp-block-gallery.columns-4 .blocks-gallery-item,
+    .wp-block-gallery.columns-5 .blocks-gallery-item {
+        width: calc(50% - 1rem);
+    }
+    
+    /* Media & Text */
+    .wp-block-media-text {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .wp-block-media-text .wp-block-media-text__media {
+        grid-row: 1;
+    }
+    
+    .wp-block-media-text .wp-block-media-text__content {
+        grid-row: 2;
+        padding: 1rem 0;
+    }
+}
+
+@media (min-width: 768px) {
+    /* Wide alignment */
+    .alignwide {
+        margin-left: -2rem;
+        margin-right: -2rem;
+        max-width: calc(100% + 4rem);
+        width: calc(100% + 4rem);
+    }
+}
+
+@media (min-width: 1200px) {
+    .alignwide {
+        margin-left: calc(-100vw / 2 + 100% / 2 + 570px);
+        margin-right: calc(-100vw / 2 + 100% / 2 + 570px);
+        max-width: 100vw;
+        width: 100vw;
+    }
+    
+    .alignfull {
+        margin-left: calc(-100vw / 2 + 100% / 2);
+        margin-right: calc(-100vw / 2 + 100% / 2);
+        max-width: 100vw;
+        width: 100vw;
+    }
+}
+
+/* ==========================================================================
+   HERO SECTION RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 767px) {
+    .hero-section {
+        min-height: 60vh;
+        padding: 3rem 1rem;
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .hero-buttons .button {
+        width: 100%;
+    }
+}
+
+@media (min-width: 768px) {
+    .hero-section {
+        min-height: 70vh;
+        padding: 4rem 2rem;
+    }
+    
+    .hero-title {
+        font-size: 3rem;
+    }
+}
+
+@media (min-width: 992px) {
+    .hero-section {
+        min-height: 80vh;
+    }
+    
+    .hero-title {
+        font-size: 3.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.25rem;
+    }
+}
+
+/* ==========================================================================
+   AUTHOR BOX RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 575px) {
+    .author-box {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .author-avatar {
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+}
+
+/* ==========================================================================
+   RELATED POSTS RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 575px) {
+    .related-posts-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+    .related-posts-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 768px) {
+    .related-posts-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* ==========================================================================
+   SOCIAL SHARE RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 575px) {
+    .social-share {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .social-share .share-label {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 0.5rem;
+    }
+}
+
+/* ==========================================================================
+   IE11 FALLBACKS (if needed)
+   ========================================================================== */
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    /* IE11 specific styles */
+    .site-content > .container {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    }
+    
+    .content-area {
+        -ms-flex: 1;
+        flex: 1;
+        min-width: 0;
+    }
+    
+    .widget-area {
+        -ms-flex: 0 0 300px;
+        flex: 0 0 300px;
+        width: 300px;
+    }
+    
+    .posts-grid {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    }
+    
+    .posts-grid article {
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%;
+    }
+    
+    @media (min-width: 576px) {
+        .posts-grid article {
+            -ms-flex: 0 0 calc(50% - 1rem);
+            flex: 0 0 calc(50% - 1rem);
+        }
+    }
+    
+    @media (min-width: 992px) {
+        .posts-grid article {
+            -ms-flex: 0 0 calc(33.333% - 1rem);
+            flex: 0 0 calc(33.333% - 1rem);
+        }
+    }
+}

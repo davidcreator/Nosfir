@@ -1,75 +1,101 @@
 <?php
 /**
- * The template for displaying all pages.
+ * The template for displaying all pages
  *
  * This is the template that displays all pages by default.
  * Please note that this is the WordPress construct of pages
- * and that other 'pages' on your WordPress site will use a
+ * and that other 'pages' on your WordPress site may use a
  * different template.
  *
- * Learn more: https://developer.wordpress.org/themes/basics/template-hierarchy/
+ * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
  * @package Nosfir
  * @since 1.0.0
  */
 
-// Impede acesso direto ao arquivo
+// Prevent direct access
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+    exit;
 }
 
 get_header();
 ?>
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
+<main id="primary" class="content-area">
 
-			<?php
-			/**
-			 * Hook: nosfir_before_main_content
-			 *
-			 * @hooked nosfir_main_content_wrapper_start - 10
-			 */
-			do_action( 'nosfir_before_main_content' );
+    <?php do_action( 'nosfir_before_page_content' ); ?>
 
-			while ( have_posts() ) :
-				the_post();
+    <?php
+    while ( have_posts() ) :
+        the_post();
+        ?>
 
-				/**
-				 * Hook: nosfir_page_before
-				 *
-				 * @hooked nosfir_page_header - 10
-				 */
-				do_action( 'nosfir_page_before' );
+        <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+            
+            <header class="entry-header">
+                <?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+            </header><!-- .entry-header -->
 
-				get_template_part( 'content', 'page' );
+            <?php
+            // Featured Image
+            if ( has_post_thumbnail() ) :
+                ?>
+                <div class="post-thumbnail">
+                    <?php the_post_thumbnail( 'large' ); ?>
+                </div>
+            <?php endif; ?>
 
-				/**
-				 * Hook: nosfir_page_after
-				 *
-				 * @hooked nosfir_display_comments - 10
-				 */
-				do_action( 'nosfir_page_after' );
+            <div class="entry-content">
+                <?php
+                the_content();
 
-			endwhile; // End of the loop.
+                wp_link_pages(
+                    array(
+                        'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'nosfir' ),
+                        'after'  => '</div>',
+                    )
+                );
+                ?>
+            </div><!-- .entry-content -->
 
-			/**
-			 * Hook: nosfir_after_main_content
-			 *
-			 * @hooked nosfir_main_content_wrapper_close - 10
-			 */
-			do_action( 'nosfir_after_main_content' );
-			?>
+            <?php if ( get_edit_post_link() ) : ?>
+                <footer class="entry-footer">
+                    <?php
+                    edit_post_link(
+                        sprintf(
+                            wp_kses(
+                                /* translators: %s: Name of current post. Only visible to screen readers */
+                                __( 'Edit <span class="screen-reader-text">%s</span>', 'nosfir' ),
+                                array(
+                                    'span' => array(
+                                        'class' => array(),
+                                    ),
+                                )
+                            ),
+                            wp_kses_post( get_the_title() )
+                        ),
+                        '<span class="edit-link">',
+                        '</span>'
+                    );
+                    ?>
+                </footer><!-- .entry-footer -->
+            <?php endif; ?>
+            
+        </article><!-- #post-<?php the_ID(); ?> -->
 
-		</main><!-- #main -->
-	</div><!-- #primary -->
+        <?php
+        // Comments
+        if ( comments_open() || get_comments_number() ) :
+            comments_template();
+        endif;
+
+    endwhile;
+    ?>
+
+    <?php do_action( 'nosfir_after_page_content' ); ?>
+
+</main><!-- #primary -->
 
 <?php
-/**
- * Hook: nosfir_sidebar
- *
- * @hooked nosfir_get_sidebar - 10
- */
-do_action( 'nosfir_sidebar' );
-
+get_sidebar();
 get_footer();

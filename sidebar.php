@@ -1,58 +1,35 @@
 <?php
 /**
- * The sidebar containing the main widget area.
+ * The sidebar containing the main widget area
+ *
+ * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
  *
  * @package Nosfir
  * @since 1.0.0
  */
 
-// Impede acesso direto ao arquivo
+// Prevent direct access
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+    exit;
 }
 
-// Não exibe se não houver widgets ativos
+// Don't show sidebar on full-width templates
+if ( is_page_template( 'template-fullwidth.php' ) ) {
+    return;
+}
+
+// Check if sidebar is active
 if ( ! is_active_sidebar( 'sidebar-1' ) ) {
-	return;
+    return;
 }
-
-/**
- * Hook: nosfir_before_sidebar
- *
- * @hooked nosfir_sidebar_wrapper_start - 10
- */
-do_action( 'nosfir_before_sidebar' );
 ?>
 
-<aside id="secondary" class="widget-area sidebar" role="complementary" aria-label="<?php esc_attr_e( 'Primary Sidebar', 'nosfir' ); ?>">
-
-	<?php
-	/**
-	 * Hook: nosfir_sidebar_top
-	 *
-	 * @hooked nosfir_sidebar_search - 10
-	 */
-	do_action( 'nosfir_sidebar_top' );
-
-	/**
-	 * Main sidebar widgets
-	 */
-	dynamic_sidebar( 'sidebar-1' );
-
-	/**
-	 * Hook: nosfir_sidebar_bottom
-	 *
-	 * @hooked nosfir_sidebar_cta - 10
-	 */
-	do_action( 'nosfir_sidebar_bottom' );
-	?>
-
+<aside id="secondary" class="widget-area" role="complementary" aria-label="<?php esc_attr_e( 'Sidebar', 'nosfir' ); ?>">
+    
+    <?php do_action( 'nosfir_before_sidebar' ); ?>
+    
+    <?php dynamic_sidebar( 'sidebar-1' ); ?>
+    
+    <?php do_action( 'nosfir_after_sidebar' ); ?>
+    
 </aside><!-- #secondary -->
-
-<?php
-/**
- * Hook: nosfir_after_sidebar
- *
- * @hooked nosfir_sidebar_wrapper_close - 10
- */
-do_action( 'nosfir_after_sidebar' );

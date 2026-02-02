@@ -1,100 +1,90 @@
 <?php
 /**
- * The template for displaying search results pages.
+ * The template for displaying search results pages
  *
- * Learn more: https://developer.wordpress.org/themes/basics/template-hierarchy/#search-result
+ * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#search-result
  *
  * @package Nosfir
  * @since 1.0.0
  */
 
-// Impede acesso direto ao arquivo
+// Prevent direct access
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+    exit;
 }
 
 get_header();
 ?>
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
+<main id="primary" class="content-area">
 
-			<?php
-			/**
-			 * Hook: nosfir_before_main_content
-			 *
-			 * @hooked nosfir_main_content_wrapper_start - 10
-			 */
-			do_action( 'nosfir_before_main_content' );
+    <?php do_action( 'nosfir_before_search_content' ); ?>
 
-			if ( have_posts() ) :
-				?>
+    <?php if ( have_posts() ) : ?>
 
-				<?php
-				/**
-				 * Hook: nosfir_search_before
-				 *
-				 * @hooked nosfir_search_header - 10
-				 * @hooked nosfir_search_filters - 20
-				 */
-				do_action( 'nosfir_search_before' );
-				?>
+        <header class="page-header">
+            <h1 class="page-title">
+                <?php
+                printf(
+                    /* translators: %s: search query */
+                    esc_html__( 'Search Results for: %s', 'nosfir' ),
+                    '<span>' . get_search_query() . '</span>'
+                );
+                ?>
+            </h1>
+            
+            <div class="search-results-count">
+                <?php
+                printf(
+                    /* translators: %d: number of results */
+                    esc_html( _n( '%d result found', '%d results found', $wp_query->found_posts, 'nosfir' ) ),
+                    (int) $wp_query->found_posts
+                );
+                ?>
+            </div>
+        </header><!-- .page-header -->
 
-				<?php
-				/**
-				 * Hook: nosfir_before_loop
-				 *
-				 * @hooked nosfir_posts_loop_wrapper_start - 10
-				 */
-				do_action( 'nosfir_before_loop' );
+        <div class="search-form-container">
+            <?php get_search_form(); ?>
+        </div>
 
-				get_template_part( 'loop' );
+        <div class="posts-loop">
+            
+            <?php
+            while ( have_posts() ) :
+                the_post();
+                
+                get_template_part( 'template-parts/content', 'search' );
+                
+            endwhile;
+            ?>
+            
+        </div><!-- .posts-loop -->
 
-				/**
-				 * Hook: nosfir_after_loop
-				 *
-				 * @hooked nosfir_posts_loop_wrapper_close - 10
-				 * @hooked nosfir_paging_nav - 20
-				 */
-				do_action( 'nosfir_after_loop' );
-				?>
+        <?php
+        nosfir_pagination();
+        ?>
 
-				<?php
-				/**
-				 * Hook: nosfir_search_after
-				 */
-				do_action( 'nosfir_search_after' );
+    <?php else : ?>
 
-			else :
+        <header class="page-header">
+            <h1 class="page-title">
+                <?php esc_html_e( 'Nothing Found', 'nosfir' ); ?>
+            </h1>
+        </header><!-- .page-header -->
 
-				/**
-				 * Hook: nosfir_search_no_results
-				 *
-				 * @hooked nosfir_search_no_results_content - 10
-				 */
-				do_action( 'nosfir_search_no_results' );
+        <div class="page-content">
+            <p><?php esc_html_e( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'nosfir' ); ?></p>
+            
+            <?php get_search_form(); ?>
+        </div><!-- .page-content -->
 
-				get_template_part( 'content', 'none' );
+    <?php endif; ?>
 
-			endif;
+    <?php do_action( 'nosfir_after_search_content' ); ?>
 
-			/**
-			 * Hook: nosfir_after_main_content
-			 *
-			 * @hooked nosfir_main_content_wrapper_close - 10
-			 */
-			do_action( 'nosfir_after_main_content' );
-			?>
-
-		</main><!-- #main -->
-	</div><!-- #primary -->
+</main><!-- #primary -->
 
 <?php
-/**
- * Hook: nosfir_sidebar
- *
- * @hooked nosfir_get_sidebar - 10
- */
-do_action( 'nosfir_sidebar' );
-
+get_sidebar();
 get_footer();
