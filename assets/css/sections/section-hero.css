@@ -1,0 +1,166 @@
+/**
+ * Section: Hero Styles
+ * 
+ * @package Nosfir
+ */
+
+/* ========================================
+   Hero Section
+   ======================================== */
+
+.nosfir-hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--nosfir-color-primary, #1a1a2e);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    overflow: hidden;
+}
+
+/* Overlay */
+.nosfir-hero__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+/* Container */
+.nosfir-hero .nosfir-container {
+    position: relative;
+    z-index: 2;
+}
+
+/* Content */
+.nosfir-hero__content {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Title */
+.nosfir-hero__title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    color: var(--nosfir-color-white, #ffffff);
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Subtitle */
+.nosfir-hero__subtitle {
+    font-size: clamp(1.125rem, 2vw, 1.5rem);
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+}
+
+/* Buttons */
+.nosfir-hero__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.nosfir-hero__buttons .nosfir-btn {
+    min-width: 180px;
+}
+
+/* Scroll Indicator */
+.nosfir-hero__scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+}
+
+.scroll-down {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: var(--nosfir-color-white, #ffffff);
+    transition: transform 0.3s ease;
+}
+
+.scroll-down:hover {
+    transform: translateY(5px);
+}
+
+.scroll-down__arrow {
+    width: 30px;
+    height: 50px;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    border-radius: 25px;
+    position: relative;
+}
+
+.scroll-down__arrow::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    width: 6px;
+    height: 6px;
+    background: var(--nosfir-color-white, #ffffff);
+    border-radius: 50%;
+    transform: translateX(-50%);
+    animation: scrollDown 2s infinite;
+}
+
+@keyframes scrollDown {
+    0% {
+        opacity: 1;
+        top: 10px;
+    }
+    100% {
+        opacity: 0;
+        top: 30px;
+    }
+}
+
+/* ========================================
+   Responsive
+   ======================================== */
+
+@media (max-width: 768px) {
+    .nosfir-hero {
+        min-height: 100svh; /* Safari viewport fix */
+        background-attachment: scroll; /* Melhor performance mobile */
+    }
+    
+    .nosfir-hero__content {
+        padding: 1rem;
+    }
+    
+    .nosfir-hero__buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .nosfir-hero__buttons .nosfir-btn {
+        width: 100%;
+        max-width: 280px;
+    }
+}
+
+@media (max-width: 480px) {
+    .nosfir-hero__title {
+        font-size: 2rem;
+    }
+    
+    .nosfir-hero__subtitle {
+        font-size: 1rem;
+    }
+}

@@ -1,77 +1,114 @@
 <?php
 /**
- * Homepage Section: Features
- *
+ * Section: Features
+ * 
  * @package Nosfir
- * @since 1.0.0
  */
 
-// Prevent direct access
-if ( ! defined( 'ABSPATH' ) ) {
+if (!defined('ABSPATH')) {
     exit;
 }
 
-// Get section settings
-$title       = get_theme_mod( 'nosfir_homepage_features_title', __( 'Our Features', 'nosfir' ) );
-$subtitle    = get_theme_mod( 'nosfir_homepage_features_subtitle', '' );
-$description = get_theme_mod( 'nosfir_homepage_features_description', '' );
+// Dados do Customizer
+$section_title    = get_theme_mod('nosfir_features_title', __('Nossos Recursos', 'nosfir'));
+$section_subtitle = get_theme_mod('nosfir_features_subtitle', __('O que oferecemos', 'nosfir'));
+$features_count   = get_theme_mod('nosfir_features_count', 6);
 
-// Get features (example - you can customize this to use repeater fields, widgets, etc.)
-$features = apply_filters( 'nosfir_homepage_features', array() );
-
+// Features padrão
+$default_features = array(
+    array(
+        'icon'  => 'fas fa-rocket',
+        'title' => __('Rápido', 'nosfir'),
+        'desc'  => __('Performance otimizada para carregamento rápido.', 'nosfir'),
+    ),
+    array(
+        'icon'  => 'fas fa-mobile-alt',
+        'title' => __('Responsivo', 'nosfir'),
+        'desc'  => __('Adapta-se perfeitamente a todos os dispositivos.', 'nosfir'),
+    ),
+    array(
+        'icon'  => 'fas fa-shield-alt',
+        'title' => __('Seguro', 'nosfir'),
+        'desc'  => __('Código limpo seguindo melhores práticas.', 'nosfir'),
+    ),
+    array(
+        'icon'  => 'fas fa-cogs',
+        'title' => __('Customizável', 'nosfir'),
+        'desc'  => __('Fácil personalização via Customizer.', 'nosfir'),
+    ),
+    array(
+        'icon'  => 'fas fa-headset',
+        'title' => __('Suporte', 'nosfir'),
+        'desc'  => __('Suporte técnico dedicado.', 'nosfir'),
+    ),
+    array(
+        'icon'  => 'fas fa-sync',
+        'title' => __('Atualizações', 'nosfir'),
+        'desc'  => __('Atualizações regulares com novidades.', 'nosfir'),
+    ),
+);
 ?>
 
-<section id="homepage-features" class="homepage-section homepage-features">
-    <div class="container">
+<section id="features" class="nosfir-section nosfir-features" data-section="features">
+    <div class="nosfir-container">
         
-        <header class="section-header">
-            <?php if ( $subtitle ) : ?>
-                <span class="section-subtitle"><?php echo esc_html( $subtitle ); ?></span>
-            <?php endif; ?>
-            
-            <?php if ( $title ) : ?>
-                <h2 class="section-title"><?php echo esc_html( $title ); ?></h2>
-            <?php endif; ?>
-            
-            <?php if ( $description ) : ?>
-                <p class="section-description"><?php echo wp_kses_post( $description ); ?></p>
-            <?php endif; ?>
-        </header>
-        
-        <?php if ( ! empty( $features ) ) : ?>
-            <div class="features-grid">
-                <?php foreach ( $features as $feature ) : ?>
-                    <div class="feature-item">
-                        <?php if ( ! empty( $feature['icon'] ) ) : ?>
-                            <div class="feature-icon">
-                                <?php echo wp_kses_post( $feature['icon'] ); ?>
-                            </div>
-                        <?php endif; ?>
-                        
-                        <?php if ( ! empty( $feature['title'] ) ) : ?>
-                            <h3 class="feature-title"><?php echo esc_html( $feature['title'] ); ?></h3>
-                        <?php endif; ?>
-                        
-                        <?php if ( ! empty( $feature['description'] ) ) : ?>
-                            <p class="feature-description"><?php echo wp_kses_post( $feature['description'] ); ?></p>
-                        <?php endif; ?>
-                        
-                        <?php if ( ! empty( $feature['link'] ) ) : ?>
-                            <a href="<?php echo esc_url( $feature['link'] ); ?>" class="feature-link">
-                                <?php esc_html_e( 'Learn More', 'nosfir' ); ?>
-                            </a>
-                        <?php endif; ?>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-        <?php else : ?>
-            <?php
-            // Fallback: use widget area or default content
-            if ( is_active_sidebar( 'homepage-features' ) ) {
-                dynamic_sidebar( 'homepage-features' );
-            }
-            ?>
+        <?php if ($section_title || $section_subtitle) : ?>
+            <header class="nosfir-section__header animate-on-scroll" data-animation="fadeInUp">
+                
+                <?php if ($section_subtitle) : ?>
+                    <span class="nosfir-section__subtitle">
+                        <?php echo esc_html($section_subtitle); ?>
+                    </span>
+                <?php endif; ?>
+                
+                <?php if ($section_title) : ?>
+                    <h2 class="nosfir-section__title">
+                        <?php echo wp_kses_post($section_title); ?>
+                    </h2>
+                <?php endif; ?>
+                
+            </header>
         <?php endif; ?>
+        
+        <div class="nosfir-features__grid">
+            
+            <?php 
+            for ($i = 0; $i < min($features_count, count($default_features)); $i++) :
+                $feature = $default_features[$i];
+                
+                // Pegar dados customizados se existirem
+                $feature_icon  = get_theme_mod("nosfir_feature_{$i}_icon", $feature['icon']);
+                $feature_title = get_theme_mod("nosfir_feature_{$i}_title", $feature['title']);
+                $feature_desc  = get_theme_mod("nosfir_feature_{$i}_desc", $feature['desc']);
+                
+                $delay = ($i + 1) * 100;
+            ?>
+                
+                <div class="nosfir-feature animate-on-scroll" data-animation="fadeInUp" data-delay="<?php echo esc_attr($delay); ?>">
+                    
+                    <?php if ($feature_icon) : ?>
+                        <div class="nosfir-feature__icon">
+                            <i class="<?php echo esc_attr($feature_icon); ?>"></i>
+                        </div>
+                    <?php endif; ?>
+                    
+                    <?php if ($feature_title) : ?>
+                        <h3 class="nosfir-feature__title">
+                            <?php echo esc_html($feature_title); ?>
+                        </h3>
+                    <?php endif; ?>
+                    
+                    <?php if ($feature_desc) : ?>
+                        <p class="nosfir-feature__description">
+                            <?php echo esc_html($feature_desc); ?>
+                        </p>
+                    <?php endif; ?>
+                    
+                </div>
+                
+            <?php endfor; ?>
+            
+        </div>
         
     </div>
 </section>

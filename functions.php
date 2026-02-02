@@ -191,6 +191,80 @@ $nosfir = (object) array(
 );
 
 /**
+ * Enqueue Customizer Scripts and Styles
+ */
+function nosfir_customize_controls_enqueue() {
+    $theme_version = wp_get_theme()->get('Version');
+    $suffix = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '' : '.min';
+    
+    // Radio Image Control CSS
+    wp_enqueue_style(
+        'nosfir-radio-image-control',
+        get_template_directory_uri() . '/assets/css/customizer/radio-image-control.css',
+        array(),
+        $theme_version
+    );
+    
+    // Customizer Controls JS
+    wp_enqueue_script(
+        'nosfir-customizer-controls',
+        get_template_directory_uri() . '/assets/js/customizer/customizer-controls.js',
+        array('jquery', 'customize-controls'),
+        $theme_version,
+        true
+    );
+    
+    // Radio Image Control JS
+    wp_enqueue_script(
+        'nosfir-radio-image-control',
+        get_template_directory_uri() . '/assets/js/customizer/radio-image-control.js',
+        array('jquery', 'customize-controls'),
+        $theme_version,
+        true
+    );
+    
+    // WooCommerce Customizer (only if WooCommerce is active)
+    if (class_exists('WooCommerce')) {
+        wp_enqueue_script(
+            'nosfir-woocommerce-customizer',
+            get_template_directory_uri() . '/assets/js/customizer/woocommerce-customizer.js',
+            array('jquery', 'customize-controls'),
+            $theme_version,
+            true
+        );
+    }
+}
+add_action('customize_controls_enqueue_scripts', 'nosfir_customize_controls_enqueue');
+
+/**
+ * Enqueue Customizer Preview Scripts
+ */
+function nosfir_customize_preview_enqueue() {
+    $theme_version = wp_get_theme()->get('Version');
+    
+    // Customizer Preview JS
+    wp_enqueue_script(
+        'nosfir-customizer-preview',
+        get_template_directory_uri() . '/assets/js/customizer/customizer-preview.js',
+        array('jquery', 'customize-preview'),
+        $theme_version,
+        true
+    );
+    
+    // WooCommerce Customizer Preview (only if WooCommerce is active)
+    if (class_exists('WooCommerce')) {
+        wp_enqueue_script(
+            'nosfir-woocommerce-customizer-preview',
+            get_template_directory_uri() . '/assets/js/customizer/woocommerce-customizer.js',
+            array('jquery', 'customize-preview'),
+            $theme_version,
+            true
+        );
+    }
+}
+add_action('customize_preview_init', 'nosfir_customize_preview_enqueue');
+
+/**
  * Load core theme files
  *
  * @since 1.0.0
