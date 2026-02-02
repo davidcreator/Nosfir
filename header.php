@@ -2,148 +2,119 @@
 /**
  * The header for our theme
  *
- * This is the template that displays all of the <head> section and everything up until <div id="content">
- *
- * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
- *
  * @package Nosfir
- * @since 1.0.0
  */
 
-// Prevent direct access
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
-
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
     <meta charset="<?php bloginfo( 'charset' ); ?>">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    
-    <?php // Preconnect to external resources ?>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="profile" href="https://gmpg.org/xfn/11">
-
-    <?php if ( is_singular() && pings_open( get_queried_object() ) ) : ?>
-        <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
-    <?php endif; ?>
-
     <?php wp_head(); ?>
 </head>
 
 <body <?php body_class(); ?>>
-
-<?php
-// WordPress 5.2+ wp_body_open hook
-if ( function_exists( 'wp_body_open' ) ) {
-    wp_body_open();
-} else {
-    do_action( 'wp_body_open' );
-}
-?>
-
-<?php do_action( 'nosfir_before_site' ); ?>
+<?php wp_body_open(); ?>
 
 <div id="page" class="site">
-
-    <a class="skip-link screen-reader-text" href="#content">
+    
+    <a class="skip-link screen-reader-text" href="#primary">
         <?php esc_html_e( 'Skip to content', 'nosfir' ); ?>
     </a>
 
-    <?php do_action( 'nosfir_before_header' ); ?>
+    <header id="masthead" class="site-header">
+        <div class="container">
+            <div class="header-inner">
+                
+                <!-- Site Branding -->
+                <div class="site-branding">
+                    <?php if ( has_custom_logo() ) : ?>
+                        <?php the_custom_logo(); ?>
+                    <?php endif; ?>
+                    
+                    <div class="site-branding-text">
+                        <?php if ( is_front_page() && is_home() ) : ?>
+                            <h1 class="site-title">
+                                <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+                                    <?php bloginfo( 'name' ); ?>
+                                </a>
+                            </h1>
+                        <?php else : ?>
+                            <p class="site-title">
+                                <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+                                    <?php bloginfo( 'name' ); ?>
+                                </a>
+                            </p>
+                        <?php endif; ?>
+                        
+                        <?php
+                        $nosfir_description = get_bloginfo( 'description', 'display' );
+                        if ( $nosfir_description || is_customize_preview() ) :
+                        ?>
+                            <p class="site-description"><?php echo esc_html( $nosfir_description ); ?></p>
+                        <?php endif; ?>
+                    </div>
+                </div><!-- .site-branding -->
 
-    <header id="masthead" class="site-header" role="banner">
-        
-        <?php
-        /**
-         * Top bar (optional)
-         * 
-         * @hooked nosfir_top_bar_container - 0
-         * @hooked nosfir_top_bar_left - 10
-         * @hooked nosfir_top_bar_right - 20
-         * @hooked nosfir_top_bar_container_close - 100
-         */
-        do_action( 'nosfir_top_bar' );
-        ?>
-        
-        <div class="header-inner container">
-            
-            <?php
-            /**
-             * Site branding (logo/title)
-             */
-            nosfir_site_branding();
-            ?>
-            
-            <nav id="site-navigation" class="main-navigation" role="navigation" aria-label="<?php esc_attr_e( 'Primary Menu', 'nosfir' ); ?>">
+                <!-- Main Navigation -->
+                <nav id="site-navigation" class="main-navigation" aria-label="<?php esc_attr_e( 'Primary Menu', 'nosfir' ); ?>">
+                    <?php
+                    if ( has_nav_menu( 'primary' ) ) {
+                        wp_nav_menu(
+                            array(
+                                'theme_location' => 'primary',
+                                'menu_id'        => 'primary-menu',
+                                'menu_class'     => 'nav-menu',
+                                'container'      => false,
+                            )
+                        );
+                    } else {
+                        // Fallback menu
+                        echo '<ul class="nav-menu">';
+                        wp_list_pages( array(
+                            'title_li' => '',
+                            'depth'    => 2,
+                        ) );
+                        echo '</ul>';
+                    }
+                    ?>
+                </nav><!-- #site-navigation -->
+
+                <!-- Header Actions -->
+                <div class="header-actions">
+                    <?php
+                    // Header search
+                    if ( function_exists( 'nosfir_header_search' ) ) {
+                        nosfir_header_search();
+                    }
+                    
+                    // WooCommerce cart
+                    if ( function_exists( 'nosfir_wc_header_cart' ) ) {
+                        nosfir_wc_header_cart();
+                    }
+                    ?>
+                    
+                    <!-- Mobile Menu Toggle -->
+                    <button class="menu-toggle" aria-controls="site-navigation" aria-expanded="false" aria-label="<?php esc_attr_e( 'Menu', 'nosfir' ); ?>">
+                        <svg class="icon-menu" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <line x1="3" y1="12" x2="21" y2="12"></line>
+                            <line x1="3" y1="18" x2="21" y2="18"></line>
+                        </svg>
+                        <svg class="icon-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
+                </div><!-- .header-actions -->
                 
-                <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
-                    <span class="hamburger" aria-hidden="true">
-                        <span class="hamburger-line"></span>
-                        <span class="hamburger-line"></span>
-                        <span class="hamburger-line"></span>
-                    </span>
-                    <span class="screen-reader-text"><?php esc_html_e( 'Menu', 'nosfir' ); ?></span>
-                </button>
-                
-                <?php
-                if ( has_nav_menu( 'primary' ) ) {
-                    wp_nav_menu(
-                        array(
-                            'theme_location'  => 'primary',
-                            'menu_id'         => 'primary-menu',
-                            'menu_class'      => 'nav-menu primary-menu',
-                            'container'       => false,
-                            'depth'           => 3,
-                            'fallback_cb'     => 'nosfir_primary_menu_fallback',
-                        )
-                    );
-                } else {
-                    nosfir_primary_menu_fallback();
-                }
-                ?>
-                
-            </nav><!-- #site-navigation -->
-            
-            <div class="header-actions">
-                <?php
-                /**
-                 * Header actions
-                 * 
-                 * @hooked nosfir_header_search - 10
-                 * @hooked nosfir_header_account - 20
-                 * @hooked nosfir_header_cart - 30
-                 */
-                do_action( 'nosfir_header_actions' );
-                
-                // Default header search if no hooks
-                if ( ! has_action( 'nosfir_header_actions' ) ) {
-                    nosfir_header_search();
-                }
-                ?>
-            </div><!-- .header-actions -->
-            
-        </div><!-- .header-inner -->
-        
+            </div><!-- .header-inner -->
+        </div><!-- .container -->
     </header><!-- #masthead -->
 
-    <?php do_action( 'nosfir_after_header' ); ?>
-
-    <?php
-    /**
-     * Before content area
-     * 
-     * @hooked nosfir_breadcrumb - 10
-     * @hooked nosfir_hero_section - 20
-     */
-    do_action( 'nosfir_before_content' );
-    ?>
-
     <div id="content" class="site-content">
-        <div class="container">
-            
-            <?php do_action( 'nosfir_content_top' ); ?>

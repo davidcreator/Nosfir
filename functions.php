@@ -79,7 +79,7 @@ function nosfir_get_version() {
         $version = $theme->get( 'Version' );
     }
     
-    return $version;
+    return $version ? $version : '1.0.0';
 }
 
 /**
@@ -111,12 +111,6 @@ nosfir_define_constants();
  * @global int $content_width
  */
 function nosfir_content_width() {
-    /**
-     * Filter the content width in pixels.
-     *
-     * @since 1.0.0
-     * @param int $width Content width in pixels. Default 1200.
-     */
     $GLOBALS['content_width'] = apply_filters( 'nosfir_content_width', 1200 );
 }
 add_action( 'after_setup_theme', 'nosfir_content_width', 0 );
@@ -134,23 +128,17 @@ function nosfir_require_file( $file ) {
     }
     
     if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-        // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
-        error_log( 
-            sprintf( 
-                '[Nosfir Theme] Required file not found: %s', 
-                esc_html( $file )
-            ) 
-        );
+        error_log( sprintf( '[Nosfir Theme] Required file not found: %s', $file ) );
     }
     
     return false;
 }
 
 /**
- * Safely require multiple files
+ * Safely require multiple files from inc directory
  *
  * @since 1.0.0
- * @param array $files Array of file paths.
+ * @param array $files Array of file paths relative to inc/.
  */
 function nosfir_require_files( array $files ) {
     foreach ( $files as $file ) {
@@ -159,13 +147,7 @@ function nosfir_require_files( array $files ) {
         if ( file_exists( $full_path ) ) {
             require_once $full_path;
         } elseif ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-            // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
-            error_log( 
-                sprintf( 
-                    '[Nosfir Theme] File not found: %s', 
-                    esc_html( $full_path )
-                ) 
-            );
+            error_log( sprintf( '[Nosfir Theme] File not found: %s', $full_path ) );
         }
     }
 }
@@ -178,97 +160,113 @@ function nosfir_require_files( array $files ) {
  */
 $nosfir = (object) array(
     'version' => nosfir_get_version(),
-    
-    /**
-     * Initialize the main class.
-     */
-    'main' => nosfir_require_file( NOSFIR_INC_DIR . '/class-nosfir.php' ),
-    
-    /**
-     * Initialize the customizer class.
-     */
-    'customizer' => nosfir_require_file( NOSFIR_INC_DIR . '/customizer/class-nosfir-customizer.php' ),
 );
 
+// Load main class
+$main_class = NOSFIR_INC_DIR . '/class-nosfir.php';
+if ( file_exists( $main_class ) ) {
+    $nosfir->main = require_once $main_class;
+}
+
+// Load customizer class
+$customizer_class = NOSFIR_INC_DIR . '/customizer/class-nosfir-customizer.php';
+if ( file_exists( $customizer_class ) ) {
+    $nosfir->customizer = require_once $customizer_class;
+}
+
 /**
- * Enqueue Customizer Scripts and Styles
+ * ============================================
+ * CUSTOMIZER SCRIPTS - CORRIGIDO
+ * ============================================
+ */
+
+/**
+ * Enqueue Customizer Controls Scripts (Admin Side)
  */
 function nosfir_customize_controls_enqueue() {
-    $theme_version = wp_get_theme()->get('Version');
-    $suffix = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '' : '.min';
+    $version = NOSFIR_VERSION;
+    $assets_uri = NOSFIR_ASSETS_URI;
+    $assets_dir = NOSFIR_DIR . '/assets';
     
     // Radio Image Control CSS
-    wp_enqueue_style(
-        'nosfir-radio-image-control',
-        get_template_directory_uri() . '/assets/css/customizer/radio-image-control.css',
-        array(),
-        $theme_version
-    );
+    $radio_css = $assets_dir . '/css/customizer/radio-image-control.css';
+    if ( file_exists( $radio_css ) ) {
+        wp_enqueue_style(
+            'nosfir-radio-image-control',
+            $assets_uri . '/css/customizer/radio-image-control.css',
+            array(),
+            $version
+        );
+    }
     
     // Customizer Controls JS
-    wp_enqueue_script(
-        'nosfir-customizer-controls',
-        get_template_directory_uri() . '/assets/js/customizer/customizer-controls.js',
-        array('jquery', 'customize-controls'),
-        $theme_version,
-        true
-    );
+    $controls_js = $assets_dir . '/js/customizer/customizer-controls.js';
+    if ( file_exists( $controls_js ) ) {
+        wp_enqueue_script(
+            'nosfir-customizer-controls',
+            $assets_uri . '/js/customizer/customizer-controls.js',
+            array( 'jquery', 'customize-controls' ),
+            $version,
+            true
+        );
+    }
     
     // Radio Image Control JS
-    wp_enqueue_script(
-        'nosfir-radio-image-control',
-        get_template_directory_uri() . '/assets/js/customizer/radio-image-control.js',
-        array('jquery', 'customize-controls'),
-        $theme_version,
-        true
-    );
+    $radio_js = $assets_dir . '/js/customizer/radio-image-control.js';
+    if ( file_exists( $radio_js ) ) {
+        wp_enqueue_script(
+            'nosfir-radio-image-control',
+            $assets_uri . '/js/customizer/radio-image-control.js',
+            array( 'jquery', 'customize-controls' ),
+            $version,
+            true
+        );
+    }
     
     // WooCommerce Customizer (only if WooCommerce is active)
-    if (class_exists('WooCommerce')) {
-        wp_enqueue_script(
-            'nosfir-woocommerce-customizer',
-            get_template_directory_uri() . '/assets/js/customizer/woocommerce-customizer.js',
-            array('jquery', 'customize-controls'),
-            $theme_version,
-            true
-        );
+    if ( class_exists( 'WooCommerce' ) ) {
+        $wc_js = $assets_dir . '/js/customizer/woocommerce-customizer.js';
+        if ( file_exists( $wc_js ) ) {
+            wp_enqueue_script(
+                'nosfir-woocommerce-customizer',
+                $assets_uri . '/js/customizer/woocommerce-customizer.js',
+                array( 'jquery', 'customize-controls' ),
+                $version,
+                true
+            );
+        }
     }
 }
-add_action('customize_controls_enqueue_scripts', 'nosfir_customize_controls_enqueue');
+add_action( 'customize_controls_enqueue_scripts', 'nosfir_customize_controls_enqueue' );
 
 /**
- * Enqueue Customizer Preview Scripts
+ * Enqueue Customizer Preview Scripts (Frontend Preview)
  */
 function nosfir_customize_preview_enqueue() {
-    $theme_version = wp_get_theme()->get('Version');
+    $version = NOSFIR_VERSION;
+    $assets_uri = NOSFIR_ASSETS_URI;
+    $assets_dir = NOSFIR_DIR . '/assets';
     
     // Customizer Preview JS
-    wp_enqueue_script(
-        'nosfir-customizer-preview',
-        get_template_directory_uri() . '/assets/js/customizer/customizer-preview.js',
-        array('jquery', 'customize-preview'),
-        $theme_version,
-        true
-    );
-    
-    // WooCommerce Customizer Preview (only if WooCommerce is active)
-    if (class_exists('WooCommerce')) {
+    $preview_js = $assets_dir . '/js/customizer/customizer-preview.js';
+    if ( file_exists( $preview_js ) ) {
         wp_enqueue_script(
-            'nosfir-woocommerce-customizer-preview',
-            get_template_directory_uri() . '/assets/js/customizer/woocommerce-customizer.js',
-            array('jquery', 'customize-preview'),
-            $theme_version,
+            'nosfir-customizer-preview',
+            $assets_uri . '/js/customizer/customizer-preview.js',
+            array( 'jquery', 'customize-preview' ),
+            $version,
             true
         );
     }
 }
-add_action('customize_preview_init', 'nosfir_customize_preview_enqueue');
+add_action( 'customize_preview_init', 'nosfir_customize_preview_enqueue' );
 
 /**
- * Load core theme files
- *
- * @since 1.0.0
+ * ============================================
+ * LOAD CORE THEME FILES
+ * ============================================
  */
+
 nosfir_require_files( array(
     '/nosfir-functions.php',
     '/nosfir-template-hooks.php',
@@ -280,47 +278,38 @@ nosfir_require_files( array(
 
 /**
  * Jetpack compatibility
- *
- * @since 1.0.0
  */
 if ( class_exists( 'Jetpack' ) ) {
-    $nosfir->jetpack = nosfir_require_file( NOSFIR_INC_DIR . '/jetpack/class-nosfir-jetpack.php' );
+    nosfir_require_file( NOSFIR_INC_DIR . '/jetpack/class-nosfir-jetpack.php' );
 }
 
 /**
  * WooCommerce compatibility
- *
- * @since 1.0.0
+ * CORRIGIDO: Caminho estava duplicado (/inc/woocommerce dentro de NOSFIR_INC_DIR que já é /inc)
  */
-if ( function_exists( 'nosfir_is_woocommerce_activated' ) && nosfir_is_woocommerce_activated() ) {
-    $nosfir->woocommerce            = nosfir_require_file( NOSFIR_INC_DIR . '/inc/woocommerce/class-nosfir-woocommerce.php' );
-    $nosfir->woocommerce_customizer = nosfir_require_file( NOSFIR_INC_DIR . '/inc/woocommerce/class-nosfir-woocommerce-customizer.php' );
+if ( class_exists( 'WooCommerce' ) ) {
+    // Carregar classe principal WooCommerce
+    nosfir_require_file( NOSFIR_INC_DIR . '/woocommerce/class-nosfir-woocommerce.php' );
     
+    // Carregar arquivos de template e funções
     nosfir_require_files( array(
         '/woocommerce/nosfir-woocommerce-template-hooks.php',
         '/woocommerce/nosfir-woocommerce-template-functions.php',
         '/woocommerce/nosfir-woocommerce-functions.php',
+        '/woocommerce/nosfir-woocommerce-hooks.php',
     ) );
 }
 
 /**
  * Admin specific functionality
- *
- * @since 1.0.0
  */
 if ( is_admin() ) {
-    $nosfir->admin = nosfir_require_file( NOSFIR_INC_DIR . '/admin/class-nosfir-admin.php' );
-    
-    nosfir_require_files( array(
-        '/admin/class-nosfir-plugin-install.php',
-    ) );
+    nosfir_require_file( NOSFIR_INC_DIR . '/admin/class-nosfir-admin.php' );
+    nosfir_require_file( NOSFIR_INC_DIR . '/admin/class-nosfir-plugin-install.php' );
 }
 
 /**
  * Starter Content & Guided Tour
- * Only load if WP version supports it
- *
- * @since 1.0.0
  */
 if ( version_compare( $GLOBALS['wp_version'], '5.0', '>=' ) && 
      ( is_admin() || is_customize_preview() ) ) {
@@ -333,15 +322,11 @@ if ( version_compare( $GLOBALS['wp_version'], '5.0', '>=' ) &&
 
 /**
  * Widgets
- *
- * @since 1.0.0
  */
 nosfir_require_file( NOSFIR_INC_DIR . '/widgets/class-nosfir-widgets.php' );
 
 /**
  * Block Editor (Gutenberg) support
- *
- * @since 1.0.0
  */
 if ( function_exists( 'register_block_type' ) ) {
     nosfir_require_file( NOSFIR_INC_DIR . '/blocks/class-nosfir-blocks.php' );
@@ -350,6 +335,4 @@ if ( function_exists( 'register_block_type' ) ) {
 /**
  * Note: Do not add any custom code here. Please use a child theme or
  * a custom plugin so that your customizations aren't lost during updates.
- *
- * @link https://developer.wordpress.org/themes/advanced-topics/child-themes/
  */
