@@ -192,7 +192,7 @@ class Nosfir_Customizer_Control_More extends WP_Customize_Control {
         // CSS do controle
         wp_enqueue_style(
             'nosfir-customizer-more-control',
-            get_template_directory_uri() . '/assets/css/customizer/more-control.css',
+            get_template_directory_uri() . '/assets/css/admin/customizer/customizer.css',
             array(),
             wp_get_theme()->get('Version')
         );
@@ -200,7 +200,7 @@ class Nosfir_Customizer_Control_More extends WP_Customize_Control {
         // JavaScript do controle
         wp_enqueue_script(
             'nosfir-customizer-more-control',
-            get_template_directory_uri() . '/assets/js/customizer/more-control.js',
+            get_template_directory_uri() . '/assets/js/admin/customizer.js',
             array('jquery', 'customize-base'),
             wp_get_theme()->get('Version'),
             true

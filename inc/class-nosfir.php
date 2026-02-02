@@ -504,14 +504,14 @@ if ( ! class_exists( 'Nosfir' ) ) :
 			wp_enqueue_style( 'nosfir-style', get_stylesheet_uri(), array(), $this->version );
 			wp_style_add_data( 'nosfir-style', 'rtl', 'replace' );
 
-			// Icons
-			wp_enqueue_style( 'nosfir-icons', get_template_directory_uri() . '/assets/css/base/icons' . $suffix . '.css', array(), $this->version );
-
 			// Main styles
 			// Fonts
 			wp_enqueue_style( 'nosfir-fonts', $this->google_fonts(), array(), null );
 
 			// Scripts
+			if ( ! is_admin() ) {
+				wp_add_inline_script( 'jquery-migrate', 'jQuery.migrateMute = true;', 'before' );
+			}
 			wp_enqueue_script( 'nosfir-navigation', get_template_directory_uri() . '/assets/js/navigation' . $suffix . '.js', array(), $this->version, true );
 			wp_enqueue_script( 'nosfir-navigation', get_template_directory_uri() . '/assets/js/navigation' . $suffix . '.js', array(), $this->version, true );
 			wp_enqueue_script( 'nosfir-skip-link-focus-fix', get_template_directory_uri() . '/assets/js/skip-link-focus-fix' . $suffix . '.js', array(), $this->version, true );
