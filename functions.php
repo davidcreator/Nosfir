@@ -7,66 +7,187 @@
  *
  * @package Nosfir
  * @since 1.0.0
+ * @author David Creator
  */
 
 // Impede acesso direto ao arquivo
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+    exit;
 }
 
 /**
- * Assign the Nosfir version to a var
+ * Check PHP version compatibility
+ *
+ * @since 1.0.0
+ * @return bool
  */
-$theme           = wp_get_theme( 'nosfir' );
-$nosfir_version  = $theme['Version'];
+function nosfir_check_requirements() {
+    $min_php = '7.4';
+    $min_wp  = '5.0';
+    
+    // Check PHP version
+    if ( version_compare( PHP_VERSION, $min_php, '<' ) ) {
+        add_action( 'admin_notices', function() use ( $min_php ) {
+            printf(
+                '<div class="notice notice-error"><p>%s</p></div>',
+                sprintf(
+                    /* translators: 1: Required PHP version 2: Current PHP version */
+                    esc_html__( 'Nosfir requires PHP %1$s or higher. Current version: %2$s', 'nosfir' ),
+                    $min_php,
+                    PHP_VERSION
+                )
+            );
+        });
+        return false;
+    }
+    
+    // Check WordPress version
+    if ( version_compare( $GLOBALS['wp_version'], $min_wp, '<' ) ) {
+        add_action( 'admin_notices', function() use ( $min_wp ) {
+            printf(
+                '<div class="notice notice-error"><p>%s</p></div>',
+                sprintf(
+                    /* translators: 1: Required WP version 2: Current WP version */
+                    esc_html__( 'Nosfir requires WordPress %1$s or higher. Current version: %2$s', 'nosfir' ),
+                    $min_wp,
+                    $GLOBALS['wp_version']
+                )
+            );
+        });
+        return false;
+    }
+    
+    return true;
+}
+
+// Halt if requirements not met
+if ( ! nosfir_check_requirements() ) {
+    return;
+}
 
 /**
- * Set the content width based on the theme's design and stylesheet.
+ * Get theme version safely
+ *
+ * @since 1.0.0
+ * @return string
  */
-if ( ! isset( $content_width ) ) {
-	$content_width = 1200; /* pixels */
+function nosfir_get_version() {
+    static $version = null;
+    
+    if ( null === $version ) {
+        $theme   = wp_get_theme( 'nosfir' );
+        $version = $theme->get( 'Version' );
+    }
+    
+    return $version;
 }
 
 /**
  * Define theme constants
+ *
+ * @since 1.0.0
  */
-if ( ! defined( 'NOSFIR_VERSION' ) ) {
-	define( 'NOSFIR_VERSION', $nosfir_version );
+function nosfir_define_constants() {
+    $constants = array(
+        'NOSFIR_VERSION'    => nosfir_get_version(),
+        'NOSFIR_DIR'        => get_template_directory(),
+        'NOSFIR_URI'        => get_template_directory_uri(),
+        'NOSFIR_INC_DIR'    => get_template_directory() . '/inc',
+        'NOSFIR_ASSETS_URI' => get_template_directory_uri() . '/assets',
+    );
+    
+    foreach ( $constants as $name => $value ) {
+        if ( ! defined( $name ) ) {
+            define( $name, $value );
+        }
+    }
+}
+nosfir_define_constants();
+
+/**
+ * Set the content width based on the theme's design and stylesheet.
+ *
+ * @since 1.0.0
+ * @global int $content_width
+ */
+function nosfir_content_width() {
+    /**
+     * Filter the content width in pixels.
+     *
+     * @since 1.0.0
+     * @param int $width Content width in pixels. Default 1200.
+     */
+    $GLOBALS['content_width'] = apply_filters( 'nosfir_content_width', 1200 );
+}
+add_action( 'after_setup_theme', 'nosfir_content_width', 0 );
+
+/**
+ * Safely require a file
+ *
+ * @since 1.0.0
+ * @param string $file File path.
+ * @return mixed|false File return value or false if not found.
+ */
+function nosfir_require_file( $file ) {
+    if ( file_exists( $file ) ) {
+        return require $file;
+    }
+    
+    if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+        // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
+        error_log( 
+            sprintf( 
+                '[Nosfir Theme] Required file not found: %s', 
+                esc_html( $file )
+            ) 
+        );
+    }
+    
+    return false;
 }
 
-if ( ! defined( 'NOSFIR_DIR' ) ) {
-	define( 'NOSFIR_DIR', get_template_directory() );
-}
-
-if ( ! defined( 'NOSFIR_URI' ) ) {
-	define( 'NOSFIR_URI', get_template_directory_uri() );
-}
-
-if ( ! defined( 'NOSFIR_INC_DIR' ) ) {
-	define( 'NOSFIR_INC_DIR', NOSFIR_DIR . '/inc' );
-}
-
-if ( ! defined( 'NOSFIR_ASSETS_URI' ) ) {
-	define( 'NOSFIR_ASSETS_URI', NOSFIR_URI . '/assets' );
+/**
+ * Safely require multiple files
+ *
+ * @since 1.0.0
+ * @param array $files Array of file paths.
+ */
+function nosfir_require_files( array $files ) {
+    foreach ( $files as $file ) {
+        $full_path = NOSFIR_INC_DIR . $file;
+        
+        if ( file_exists( $full_path ) ) {
+            require_once $full_path;
+        } elseif ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+            // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
+            error_log( 
+                sprintf( 
+                    '[Nosfir Theme] File not found: %s', 
+                    esc_html( $full_path )
+                ) 
+            );
+        }
+    }
 }
 
 /**
  * Initialize theme object with all components
  *
  * @since 1.0.0
+ * @global object $nosfir Theme object containing all components.
  */
 $nosfir = (object) array(
-	'version' => $nosfir_version,
-
-	/**
-	 * Initialize the main class.
-	 */
-	'main' => require NOSFIR_INC_DIR . '/class-nosfir.php',
-
-	/**
-	 * Initialize the customizer class.
-	 */
-	'customizer' => require NOSFIR_INC_DIR . '/customizer/class-nosfir-customizer.php',
+    'version' => nosfir_get_version(),
+    
+    /**
+     * Initialize the main class.
+     */
+    'main' => nosfir_require_file( NOSFIR_INC_DIR . '/class-nosfir.php' ),
+    
+    /**
+     * Initialize the customizer class.
+     */
+    'customizer' => nosfir_require_file( NOSFIR_INC_DIR . '/customizer/class-nosfir-customizer.php' ),
 );
 
 /**
@@ -74,18 +195,14 @@ $nosfir = (object) array(
  *
  * @since 1.0.0
  */
-require NOSFIR_INC_DIR . '/nosfir-functions.php';
-require NOSFIR_INC_DIR . '/nosfir-template-hooks.php';
-require NOSFIR_INC_DIR . '/nosfir-template-functions.php';
-require NOSFIR_INC_DIR . '/wordpress-shims.php';
-
-/**
- * Load helper functions
- *
- * @since 1.0.0
- */
-require NOSFIR_INC_DIR . '/helpers/template-tags.php';
-require NOSFIR_INC_DIR . '/helpers/extras.php';
+nosfir_require_files( array(
+    '/nosfir-functions.php',
+    '/nosfir-template-hooks.php',
+    '/nosfir-template-functions.php',
+    '/wordpress-shims.php',
+    '/helpers/template-tags.php',
+    '/helpers/extras.php',
+) );
 
 /**
  * Jetpack compatibility
@@ -93,7 +210,7 @@ require NOSFIR_INC_DIR . '/helpers/extras.php';
  * @since 1.0.0
  */
 if ( class_exists( 'Jetpack' ) ) {
-	$nosfir->jetpack = require NOSFIR_INC_DIR . '/jetpack/class-nosfir-jetpack.php';
+    $nosfir->jetpack = nosfir_require_file( NOSFIR_INC_DIR . '/jetpack/class-nosfir-jetpack.php' );
 }
 
 /**
@@ -101,13 +218,15 @@ if ( class_exists( 'Jetpack' ) ) {
  *
  * @since 1.0.0
  */
-if ( nosfir_is_woocommerce_activated() ) {
-	$nosfir->woocommerce            = require NOSFIR_INC_DIR . '/woocommerce/class-nosfir-woocommerce.php';
-	$nosfir->woocommerce_customizer = require NOSFIR_INC_DIR . '/woocommerce/class-nosfir-woocommerce-customizer.php';
-
-	require NOSFIR_INC_DIR . '/woocommerce/nosfir-woocommerce-template-hooks.php';
-	require NOSFIR_INC_DIR . '/woocommerce/nosfir-woocommerce-template-functions.php';
-	require NOSFIR_INC_DIR . '/woocommerce/nosfir-woocommerce-functions.php';
+if ( function_exists( 'nosfir_is_woocommerce_activated' ) && nosfir_is_woocommerce_activated() ) {
+    $nosfir->woocommerce            = nosfir_require_file( NOSFIR_INC_DIR . '/woocommerce/class-nosfir-woocommerce.php' );
+    $nosfir->woocommerce_customizer = nosfir_require_file( NOSFIR_INC_DIR . '/woocommerce/class-nosfir-woocommerce-customizer.php' );
+    
+    nosfir_require_files( array(
+        '/woocommerce/nosfir-woocommerce-template-hooks.php',
+        '/woocommerce/nosfir-woocommerce-template-functions.php',
+        '/woocommerce/nosfir-woocommerce-functions.php',
+    ) );
 }
 
 /**
@@ -116,21 +235,26 @@ if ( nosfir_is_woocommerce_activated() ) {
  * @since 1.0.0
  */
 if ( is_admin() ) {
-	$nosfir->admin = require NOSFIR_INC_DIR . '/admin/class-nosfir-admin.php';
-
-	require NOSFIR_INC_DIR . '/admin/class-nosfir-plugin-install.php';
+    $nosfir->admin = nosfir_require_file( NOSFIR_INC_DIR . '/admin/class-nosfir-admin.php' );
+    
+    nosfir_require_files( array(
+        '/admin/class-nosfir-plugin-install.php',
+    ) );
 }
 
 /**
  * Starter Content & Guided Tour
- * Only load if WP version is 4.7.3 or above
+ * Only load if WP version supports it
  *
  * @since 1.0.0
  */
-if ( version_compare( get_bloginfo( 'version' ), '4.7.3', '>=' ) && ( is_admin() || is_customize_preview() ) ) {
-	require NOSFIR_INC_DIR . '/nux/class-nosfir-nux-admin.php';
-	require NOSFIR_INC_DIR . '/nux/class-nosfir-nux-guided-tour.php';
-	require NOSFIR_INC_DIR . '/nux/class-nosfir-nux-starter-content.php';
+if ( version_compare( $GLOBALS['wp_version'], '5.0', '>=' ) && 
+     ( is_admin() || is_customize_preview() ) ) {
+    nosfir_require_files( array(
+        '/nux/class-nosfir-nux-admin.php',
+        '/nux/class-nosfir-nux-guided-tour.php',
+        '/nux/class-nosfir-nux-starter-content.php',
+    ) );
 }
 
 /**
@@ -138,7 +262,7 @@ if ( version_compare( get_bloginfo( 'version' ), '4.7.3', '>=' ) && ( is_admin()
  *
  * @since 1.0.0
  */
-require NOSFIR_INC_DIR . '/widgets/class-nosfir-widgets.php';
+nosfir_require_file( NOSFIR_INC_DIR . '/widgets/class-nosfir-widgets.php' );
 
 /**
  * Block Editor (Gutenberg) support
@@ -146,7 +270,7 @@ require NOSFIR_INC_DIR . '/widgets/class-nosfir-widgets.php';
  * @since 1.0.0
  */
 if ( function_exists( 'register_block_type' ) ) {
-	require NOSFIR_INC_DIR . '/blocks/class-nosfir-blocks.php';
+    nosfir_require_file( NOSFIR_INC_DIR . '/blocks/class-nosfir-blocks.php' );
 }
 
 /**

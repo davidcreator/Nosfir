@@ -563,6 +563,100 @@ if ( ! function_exists( 'nosfir_homepage_header' ) ) {
 	}
 }
 
+if ( ! function_exists('nosfir_header_attributes')) {
+	/**
+	 * Output header attributes safely
+	 * 
+	 * @since 1.0.0
+	 */
+	function nosfir_header_attributes() {
+    $attributes = array();
+    
+    // Adicionar estilos inline se existirem
+    $styles = apply_filters( 'nosfir_header_inline_styles', '' );
+    if ( ! empty( $styles ) ) {
+        $attributes[] = 'style="' . esc_attr( $styles ) . '"';
+    }
+    
+    // Adicionar data attributes
+    $header_layout = get_theme_mod( 'nosfir_header_layout', 'default' );
+    $attributes[] = 'data-layout="' . esc_attr( $header_layout ) . '"';
+    
+    // Sticky header
+    if ( get_theme_mod( 'nosfir_sticky_header', false ) ) {
+        $attributes[] = 'data-sticky="true"';
+    }
+    
+    echo ' ' . implode( ' ', $attributes );
+}
+
+/**
+ * Fallback header content when no hooks are registered
+ *
+ * @since 1.0.0
+ */
+function nosfir_fallback_header() {
+    ?>
+    <div class="nosfir-header-fallback">
+        <div class="container">
+            <div class="site-branding">
+                <?php
+                if ( has_custom_logo() ) {
+                    the_custom_logo();
+                } else {
+                    ?>
+                    <h1 class="site-title">
+                        <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+                            <?php bloginfo( 'name' ); ?>
+                        </a>
+                    </h1>
+                    <?php
+                    $description = get_bloginfo( 'description', 'display' );
+                    if ( $description || is_customize_preview() ) {
+                        ?>
+                        <p class="site-description"><?php echo esc_html( $description ); ?></p>
+                        <?php
+                    }
+                }
+                ?>
+            </div><!-- .site-branding -->
+
+            <nav id="site-navigation" class="main-navigation" aria-label="<?php esc_attr_e( 'Primary Menu', 'nosfir' ); ?>">
+                <?php
+                if ( has_nav_menu( 'primary' ) ) {
+                    wp_nav_menu(
+                        array(
+                            'theme_location' => 'primary',
+                            'menu_id'        => 'primary-menu',
+                            'menu_class'     => 'primary-menu-list',
+                            'container'      => false,
+                        )
+                    );
+                } else {
+                    ?>
+                    <ul class="primary-menu-list">
+                        <?php wp_list_pages( array( 'title_li' => '' ) ); ?>
+                    </ul>
+                    <?php
+                }
+                ?>
+            </nav><!-- #site-navigation -->
+        </div><!-- .container -->
+    </div><!-- .nosfir-header-fallback -->
+    <?php
+}
+
+	/**
+	 * Check if nosfir_header has any callbacks
+	 *
+	 * @since 1.0.0
+	 * @return bool
+	 */
+	function nosfir_header_has_content() {
+		return has_action( 'nosfir_header' );
+	}
+}
+
 if ( ! function_exists( 'nosfir_page_header' ) ) {
 	/**
 	 * Display the page header
