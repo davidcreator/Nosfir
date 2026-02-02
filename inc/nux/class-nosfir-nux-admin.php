@@ -850,6 +850,67 @@ if (!class_exists('Nosfir_NUX_Admin')) :
             exit;
         }
 
+        public function save_plugins() {
+            check_admin_referer('nosfir-wizard-plugins');
+            $plugins = isset($_POST['plugins']) ? array_map('sanitize_text_field', (array) $_POST['plugins']) : array();
+            update_option('nosfir_selected_plugins', $plugins);
+            $this->mark_step_complete('plugins');
+            wp_safe_redirect($this->get_step_url('content'));
+            exit;
+        }
+
+        public function save_content() {
+            check_admin_referer('nosfir-wizard-content');
+            $content_option = isset($_POST['content_option']) ? sanitize_text_field($_POST['content_option']) : 'blank';
+            if ($content_option === 'demo') {
+                $demo_type = isset($_POST['demo_type']) ? sanitize_text_field($_POST['demo_type']) : '';
+                $import_widgets = isset($_POST['import_widgets']) ? (bool) $_POST['import_widgets'] : false;
+                $import_customizer = isset($_POST['import_customizer']) ? (bool) $_POST['import_customizer'] : false;
+                $import_media = isset($_POST['import_media']) ? (bool) $_POST['import_media'] : false;
+                update_option('nosfir_nux_content_demo', array(
+                    'demo_type' => $demo_type,
+                    'import_widgets' => $import_widgets,
+                    'import_customizer' => $import_customizer,
+                    'import_media' => $import_media,
+                ));
+            } elseif ($content_option === 'starter') {
+                $starter = isset($_POST['starter_content']) ? array_map('sanitize_text_field', (array) $_POST['starter_content']) : array();
+                update_option('nosfir_nux_starter_content', $starter);
+            } else {
+                update_option('nosfir_nux_content_demo', array());
+                update_option('nosfir_nux_starter_content', array());
+            }
+            update_option('nosfir_nux_content_option', $content_option);
+            $this->mark_step_complete('content');
+            wp_safe_redirect($this->get_step_url('customize'));
+            exit;
+        }
+
+        public function save_customize() {
+            check_admin_referer('nosfir-wizard-customize');
+            if (isset($_POST['show_on_front'])) {
+                $show_on_front = sanitize_text_field($_POST['show_on_front']);
+                update_option('show_on_front', $show_on_front === 'page' ? 'page' : 'posts');
+            }
+            if (isset($_POST['header_layout'])) {
+                set_theme_mod('nosfir_header_layout', sanitize_text_field($_POST['header_layout']));
+            }
+            if (isset($_POST['footer_widgets'])) {
+                set_theme_mod('nosfir_footer_widgets_columns', absint($_POST['footer_widgets']));
+            }
+            $enable_sticky_header = isset($_POST['enable_sticky_header']) ? true : false;
+            set_theme_mod('nosfir_enable_sticky_header', $enable_sticky_header);
+            $enable_back_to_top = isset($_POST['enable_back_to_top']) ? true : false;
+            set_theme_mod('nosfir_enable_back_to_top', $enable_back_to_top);
+            if (class_exists('WooCommerce')) {
+                $enable_shop_sidebar = isset($_POST['enable_shop_sidebar']) ? true : false;
+                set_theme_mod('nosfir_enable_shop_sidebar', $enable_shop_sidebar);
+            }
+            $this->mark_step_complete('customize');
+            wp_safe_redirect($this->get_step_url('ready'));
+            exit;
+        }
+
         /**
          * Enqueue scripts
          */
@@ -1082,6 +1143,45 @@ if (!class_exists('Nosfir_NUX_Admin')) :
         }
 
         // Mais métodos AJAX...
+
+        /**
+         * Track onboarding progress.
+         *
+         * @since 1.0.0
+         */
+        public function track_onboarding_progress() {
+            // Logic for tracking progress could go here.
+        }
+
+        /**
+         * Guided tour markup.
+         *
+         * @since 1.0.0
+         */
+        public function guided_tour_markup() {
+             // Logic for guided tour markup.
+        }
+
+        /**
+         * Check if inbox is available.
+         *
+         * @return bool
+         */
+        public function is_inbox_available() {
+            return class_exists( 'WooCommerce' ) && class_exists( 'Automattic\WooCommerce\Admin\Notes\Note' );
+        }
+
+        /**
+         * Initialize inbox messages.
+         */
+        public function admin_inbox_messages() {
+            if ( file_exists( NOSFIR_INC_DIR . '/nux/class-nosfir-nux-admin-inbox-messages-customize.php' ) ) {
+                require_once NOSFIR_INC_DIR . '/nux/class-nosfir-nux-admin-inbox-messages-customize.php';
+                if ( class_exists( 'Nosfir_NUX_Admin_Inbox' ) ) {
+                    Nosfir_NUX_Admin_Inbox::get_instance();
+                }
+            }
+        }
     }
 
 endif;

@@ -77,6 +77,7 @@ $nosfir = (object) array(
 require NOSFIR_INC_DIR . '/nosfir-functions.php';
 require NOSFIR_INC_DIR . '/nosfir-template-hooks.php';
 require NOSFIR_INC_DIR . '/nosfir-template-functions.php';
+require NOSFIR_INC_DIR . '/wordpress-shims.php';
 
 /**
  * Load helper functions

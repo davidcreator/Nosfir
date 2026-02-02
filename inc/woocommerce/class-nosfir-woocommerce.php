@@ -325,7 +325,7 @@ if ( ! class_exists( 'Nosfir_WooCommerce' ) ) :
 				return;
 			}
 
-			$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
+			$suffix = '';
 
 			// Styles
 			wp_enqueue_style( 
@@ -762,6 +762,8 @@ if ( ! class_exists( 'Nosfir_WooCommerce' ) ) :
 		 * Quick View AJAX handler
 		 */
 		public function quick_view_ajax() {
+			check_ajax_referer( 'nosfir-woocommerce', 'nonce' );
+
 			if ( ! isset( $_POST['product_id'] ) ) {
 				wp_die();
 			}
@@ -788,6 +790,8 @@ if ( ! class_exists( 'Nosfir_WooCommerce' ) ) :
 		 * Add to Wishlist AJAX handler
 		 */
 		public function add_to_wishlist_ajax() {
+			check_ajax_referer( 'nosfir-woocommerce', 'nonce' );
+
 			if ( ! isset( $_POST['product_id'] ) ) {
 				wp_die();
 			}

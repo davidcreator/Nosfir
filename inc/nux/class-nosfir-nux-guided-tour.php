@@ -797,50 +797,54 @@ if (!class_exists('Nosfir_NUX_Guided_Tour')) :
          */
         public function render_tours_page() {
             ?>
-            <div class="wrap">
-                <h1><?php _e('Guided Tours', 'nosfir'); ?></h1>
-                <p><?php _e('Take interactive tours to learn about different features of your site.', 'nosfir'); ?></p>
+            <div class="nosfir-admin-wrap">
+                <header class="nosfir-dashboard-header">
+                    <div class="nosfir-dashboard-brand">
+                        <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/logo.png'); ?>" alt="Nosfir">
+                        <div class="nosfir-dashboard-titles">
+                            <h1><?php _e('Guided Tours', 'nosfir'); ?></h1>
+                        </div>
+                    </div>
+                    <div class="nosfir-dashboard-actions">
+                        <a class="button" href="<?php echo esc_url($this->get_tour_start_url('dashboard')); ?>">
+                            <?php _e('Start Dashboard Tour', 'nosfir'); ?>
+                        </a>
+                        <a class="button" href="<?php echo esc_url($this->get_tour_start_url('customizer')); ?>">
+                            <?php _e('Start Customizer Tour', 'nosfir'); ?>
+                        </a>
+                    </div>
+                </header>
 
-                <div class="nosfir-tours-grid">
+                <section class="nosfir-dashboard-grid">
                     <?php foreach ($this->tours as $tour_id => $tour) : ?>
                         <?php
-                        // Verifica condição
                         if (isset($tour['condition'])) {
                             if ($tour['condition'] === 'woocommerce_active' && !class_exists('WooCommerce')) {
                                 continue;
                             }
                         }
-
                         $is_completed = $this->is_tour_completed($tour_id);
+                        $tour_url = $this->get_tour_start_url($tour_id);
                         ?>
-                        <div class="nosfir-tour-card <?php echo $is_completed ? 'completed' : ''; ?>">
-                            <h3><?php echo esc_html($tour['name']); ?></h3>
+                        <article class="nosfir-card <?php echo $is_completed ? 'completed' : ''; ?>">
+                            <h2><?php echo esc_html($tour['name']); ?></h2>
                             <p><?php echo esc_html($tour['description']); ?></p>
-                            
                             <?php if ($is_completed) : ?>
-                                <p class="tour-status">
-                                    <span class="dashicons dashicons-yes-alt"></span>
-                                    <?php _e('Completed', 'nosfir'); ?>
-                                </p>
+                                <p class="tour-status"><span class="dashicons dashicons-yes-alt"></span> <?php _e('Completed', 'nosfir'); ?></p>
                             <?php endif; ?>
-                            
-                            <div class="tour-actions">
-                                <?php
-                                $tour_url = $this->get_tour_start_url($tour_id);
-                                ?>
+                            <div class="nosfir-quick-actions">
                                 <a href="<?php echo esc_url($tour_url); ?>" class="button button-primary">
                                     <?php echo $is_completed ? __('Restart Tour', 'nosfir') : __('Start Tour', 'nosfir'); ?>
                                 </a>
-                                
                                 <?php if ($is_completed) : ?>
                                     <button type="button" class="button nosfir-reset-tour" data-tour="<?php echo esc_attr($tour_id); ?>">
                                         <?php _e('Reset', 'nosfir'); ?>
                                     </button>
                                 <?php endif; ?>
                             </div>
-                        </div>
+                        </article>
                     <?php endforeach; ?>
-                </div>
+                </section>
             </div>
             <?php
         }

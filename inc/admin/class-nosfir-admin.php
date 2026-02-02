@@ -108,8 +108,6 @@ if (!class_exists('Nosfir_Admin')) :
             
             // AJAX handlers
             add_action('wp_ajax_nosfir_dismiss_notice', array($this, 'dismiss_notice'));
-            add_action('wp_ajax_nosfir_install_plugin', array($this, 'ajax_install_plugin'));
-            add_action('wp_ajax_nosfir_activate_plugin', array($this, 'ajax_activate_plugin'));
             add_action('wp_ajax_nosfir_import_demo', array($this, 'ajax_import_demo'));
             
             // Customização do admin
@@ -142,7 +140,7 @@ if (!class_exists('Nosfir_Admin')) :
             // Carrega classes auxiliares se existirem
             $dependencies = array(
                 'class-nosfir-dashboard.php',
-                'class-nosfir-plugin-installer.php',
+                'class-nosfir-plugin-install.php',
                 'class-nosfir-demo-importer.php',
                 'class-nosfir-system-status.php',
                 'class-nosfir-theme-updater.php'
@@ -170,6 +168,66 @@ if (!class_exists('Nosfir_Admin')) :
             
             // Adiciona capacidades customizadas
             $this->add_theme_caps();
+        }
+
+        /**
+         * Registra configurações do tema
+         *
+         * @since 1.0.0
+         */
+        public function register_settings() {
+            register_setting('nosfir_options_group', 'nosfir_options');
+            
+            add_settings_section(
+                'nosfir_general_section',
+                __('General Settings', 'nosfir'),
+                array($this, 'general_section_callback'),
+                'nosfir-settings'
+            );
+            
+            add_settings_field(
+                'nosfir_field_example',
+                __('Example Field', 'nosfir'),
+                array($this, 'field_example_callback'),
+                'nosfir-settings',
+                'nosfir_general_section'
+            );
+        }
+
+        /**
+         * Callback da seção geral
+         */
+        public function general_section_callback() {
+            echo '<p>' . __('General settings for the Nosfir theme.', 'nosfir') . '</p>';
+        }
+
+        /**
+         * Callback do campo de exemplo
+         */
+        public function field_example_callback() {
+            $options = get_option('nosfir_options');
+            $value = isset($options['example_field']) ? $options['example_field'] : '';
+            echo '<input type="text" id="example_field" name="nosfir_options[example_field]" value="' . esc_attr($value) . '" />';
+        }
+
+        /**
+         * Verifica requisitos do sistema
+         *
+         * @since 1.0.0
+         */
+        private function check_system_requirements() {
+            // Implementação básica
+            return true;
+        }
+
+        /**
+         * Adiciona capacidades customizadas
+         *
+         * @since 1.0.0
+         */
+        private function add_theme_caps() {
+            // Implementação básica
+            return true;
         }
 
         /**
@@ -259,17 +317,7 @@ if (!class_exists('Nosfir_Admin')) :
                 array($this, 'render_support_page')
             );
 
-            // Licença e atualizações
-            if ($this->is_premium()) {
-                add_submenu_page(
-                    'nosfir-dashboard',
-                    __('License', 'nosfir'),
-                    __('License', 'nosfir'),
-                    'manage_options',
-                    'nosfir-license',
-                    array($this, 'render_license_page')
-                );
-            }
+            // Licença removida
 
             // Hook para adicionar menus customizados
             do_action('nosfir_admin_menu', 'nosfir-dashboard');
@@ -295,13 +343,15 @@ if (!class_exists('Nosfir_Admin')) :
                 $this->version
             );
 
-            // CSS específico por página
             $page_styles = array(
-                'nosfir-dashboard' => 'dashboard.css',
-                'nosfir-welcome' => 'welcome.css',
-                'nosfir-demo-import' => 'demo-import.css',
-                'nosfir-plugins' => 'plugins.css',
-                'nosfir-settings' => 'settings.css'
+                'nosfir-dashboard'     => 'dashboard.css',
+                'nosfir-welcome'       => 'dashboard.css',
+                'nosfir-demo-import'   => 'dashboard.css',
+                'nosfir-plugins'       => 'plugin-install.css',
+                'nosfir-settings'      => 'dashboard.css',
+                'nosfir-system-status' => 'dashboard.css',
+                'nosfir-support'       => 'dashboard.css',
+                'nosfir-tours'         => 'dashboard.css'
             );
 
             $current_page = isset($_GET['page']) ? sanitize_text_field($_GET['page']) : '';
@@ -324,12 +374,8 @@ if (!class_exists('Nosfir_Admin')) :
                 true
             );
 
-            // JavaScript específico por página
             $page_scripts = array(
-                'nosfir-dashboard' => 'dashboard.js',
-                'nosfir-demo-import' => 'demo-import.js',
-                'nosfir-plugins' => 'plugin-installer.js',
-                'nosfir-settings' => 'settings.js'
+                'nosfir-plugins' => 'plugin-install.js'
             );
 
             if (isset($page_scripts[$current_page])) {
@@ -382,8 +428,211 @@ if (!class_exists('Nosfir_Admin')) :
          *
          * @since 1.0.0
          */
+        public function render_admin_page($page) {
+            if ($page === 'dashboard') {
+                ?>
+                <div class="nosfir-admin-wrap">
+                    <header class="nosfir-dashboard-header">
+                        <div class="nosfir-dashboard-brand">
+                            <img src="<?php echo esc_url($this->theme_url . '/assets/images/logo.png'); ?>" alt="Nosfir">
+                            <div class="nosfir-dashboard-titles">
+                                <h1>Nosfir</h1>
+                                <span class="nosfir-version">v<?php echo esc_html($this->version); ?></span>
+                            </div>
+                        </div>
+                        <div class="nosfir-dashboard-actions">
+                            <a class="button button-primary" href="<?php echo esc_url(admin_url('customize.php')); ?>"><?php _e('Customize', 'nosfir'); ?></a>
+                            <a class="button" href="<?php echo esc_url(admin_url('admin.php?page=nosfir-plugins')); ?>"><?php _e('Plugins', 'nosfir'); ?></a>
+                            <a class="button" href="<?php echo esc_url(admin_url('admin.php?page=nosfir-demo-import')); ?>"><?php _e('Import Demo', 'nosfir'); ?></a>
+                        </div>
+                    </header>
+                    
+                    <section class="nosfir-dashboard-grid">
+                        <article class="nosfir-card nosfir-card--wide">
+                            <h2><?php _e('Visão Geral do Tema', 'nosfir'); ?></h2>
+                            <div class="nosfir-features-grid">
+                                <?php foreach ($this->get_theme_features() as $feature) : ?>
+                                    <div class="nosfir-feature-item">
+                                        <span class="dashicons dashicons-<?php echo esc_attr($feature['icon']); ?>"></span>
+                                        <div>
+                                            <h3><?php echo esc_html($feature['title']); ?></h3>
+                                            <p><?php echo esc_html($feature['description']); ?></p>
+                                        </div>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                        </article>
+                        
+                        <article class="nosfir-card">
+                            <h2><?php _e('Status do Sistema', 'nosfir'); ?></h2>
+                            <?php $sys = $this->get_system_info(); ?>
+                            <ul class="nosfir-status-list">
+                                <li><strong>WordPress:</strong> <?php echo esc_html($sys['wp_version']); ?></li>
+                                <li><strong>PHP:</strong> <?php echo esc_html($sys['php_version']); ?></li>
+                                <li><strong>Memória:</strong> <?php echo esc_html($sys['memory_limit']); ?></li>
+                                <li><strong>Execução Máx.:</strong> <?php echo esc_html($sys['max_execution_time']); ?>s</li>
+                            </ul>
+                            <a class="button" href="<?php echo esc_url(admin_url('admin.php?page=nosfir-system-status')); ?>"><?php _e('Ver Detalhes', 'nosfir'); ?></a>
+                        </article>
+                        
+                        <article class="nosfir-card">
+                            <h2><?php _e('Integrações', 'nosfir'); ?></h2>
+                            <ul class="nosfir-integrations">
+                                <li>WooCommerce: <?php echo class_exists('WooCommerce') ? '<span class="ok">Ativo</span>' : '<span class="warn">Inativo</span>'; ?></li>
+                                <li>Jetpack: <?php echo class_exists('Jetpack') ? '<span class="ok">Ativo</span>' : '<span class="warn">Inativo</span>'; ?></li>
+                                <li>Elementor: <?php echo class_exists('\\Elementor\\Plugin') ? '<span class="ok">Ativo</span>' : '<span class="warn">Inativo</span>'; ?></li>
+                            </ul>
+                            <a class="button" href="<?php echo esc_url(admin_url('admin.php?page=nosfir-plugins')); ?>"><?php _e('Gerenciar Plugins', 'nosfir'); ?></a>
+                        </article>
+                        
+                        <article class="nosfir-card">
+                            <h2><?php _e('Ações Rápidas', 'nosfir'); ?></h2>
+                            <div class="nosfir-quick-actions">
+                                <a class="button button-primary" href="<?php echo esc_url(admin_url('customize.php')); ?>"><?php _e('Abrir Customizer', 'nosfir'); ?></a>
+                                <a class="button" href="<?php echo esc_url(admin_url('post-new.php')); ?>"><?php _e('Novo Post', 'nosfir'); ?></a>
+                                <a class="button" href="<?php echo esc_url(admin_url('post-new.php?post_type=page')); ?>"><?php _e('Nova Página', 'nosfir'); ?></a>
+                            </div>
+                        </article>
+                        
+                        <article class="nosfir-card nosfir-card--wide">
+                            <h2><?php _e('Recursos e Suporte', 'nosfir'); ?></h2>
+                            <div class="nosfir-resources-grid">
+                                <a class="nosfir-resource" href="<?php echo esc_url($this->get_documentation_url()); ?>" target="_blank">
+                                    <span class="dashicons dashicons-book"></span>
+                                    <div>
+                                        <h3><?php _e('Documentação', 'nosfir'); ?></h3>
+                                        <p><?php _e('Guias detalhados para cada recurso do tema.', 'nosfir'); ?></p>
+                                    </div>
+                                </a>
+                                <a class="nosfir-resource" href="<?php echo esc_url($this->get_videos_url()); ?>" target="_blank">
+                                    <span class="dashicons dashicons-video-alt3"></span>
+                                    <div>
+                                        <h3><?php _e('Tutoriais em Vídeo', 'nosfir'); ?></h3>
+                                        <p><?php _e('Passo a passo visual para configurar o site.', 'nosfir'); ?></p>
+                                    </div>
+                                </a>
+                                <a class="nosfir-resource" href="<?php echo esc_url($this->get_support_url()); ?>" target="_blank">
+                                    <span class="dashicons dashicons-sos"></span>
+                                    <div>
+                                        <h3><?php _e('Suporte', 'nosfir'); ?></h3>
+                                        <p><?php _e('Acesso ao suporte e comunidade.', 'nosfir'); ?></p>
+                                    </div>
+                                </a>
+                                <a class="nosfir-resource" href="<?php echo esc_url($this->get_changelog_url()); ?>" target="_blank">
+                                    <span class="dashicons dashicons-clipboard"></span>
+                                    <div>
+                                        <h3><?php _e('Changelog', 'nosfir'); ?></h3>
+                                        <p><?php _e('Histórico de versões e melhorias.', 'nosfir'); ?></p>
+                                    </div>
+                                </a>
+                            </div>
+                        </article>
+                    </section>
+                </div>
+                <?php
+            }
+        }
         public function render_dashboard_page() {
-            $this->render_admin_page('dashboard');
+            ?>
+            <div class="nosfir-admin-wrap">
+                <header class="nosfir-dashboard-header">
+                    <div class="nosfir-dashboard-brand">
+                        <img src="<?php echo esc_url($this->theme_url . '/assets/images/logo.png'); ?>" alt="Nosfir">
+                        <div class="nosfir-dashboard-titles">
+                            <h1>Nosfir</h1>
+                            <span class="nosfir-version">v<?php echo esc_html($this->version); ?></span>
+                        </div>
+                    </div>
+                    <div class="nosfir-dashboard-actions">
+                        <a class="button button-primary" href="<?php echo esc_url(admin_url('customize.php')); ?>"><?php _e('Customize', 'nosfir'); ?></a>
+                        <a class="button" href="<?php echo esc_url(admin_url('admin.php?page=nosfir-plugins')); ?>"><?php _e('Plugins', 'nosfir'); ?></a>
+                        <a class="button" href="<?php echo esc_url(admin_url('admin.php?page=nosfir-demo-import')); ?>"><?php _e('Import Demo', 'nosfir'); ?></a>
+                    </div>
+                </header>
+                
+                <section class="nosfir-dashboard-grid">
+                    <article class="nosfir-card nosfir-card--wide">
+                        <h2><?php _e('Visão Geral do Tema', 'nosfir'); ?></h2>
+                        <div class="nosfir-features-grid">
+                            <?php foreach ($this->get_theme_features() as $feature) : ?>
+                                <div class="nosfir-feature-item">
+                                    <span class="dashicons dashicons-<?php echo esc_attr($feature['icon']); ?>"></span>
+                                    <div>
+                                        <h3><?php echo esc_html($feature['title']); ?></h3>
+                                        <p><?php echo esc_html($feature['description']); ?></p>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </article>
+                    
+                    <article class="nosfir-card">
+                        <h2><?php _e('Status do Sistema', 'nosfir'); ?></h2>
+                        <?php $sys = $this->get_system_info(); ?>
+                        <ul class="nosfir-status-list">
+                            <li><strong>WordPress:</strong> <?php echo esc_html($sys['wp_version']); ?></li>
+                            <li><strong>PHP:</strong> <?php echo esc_html($sys['php_version']); ?></li>
+                            <li><strong>Memória:</strong> <?php echo esc_html($sys['memory_limit']); ?></li>
+                            <li><strong>Execução Máx.:</strong> <?php echo esc_html($sys['max_execution_time']); ?>s</li>
+                        </ul>
+                        <a class="button" href="<?php echo esc_url(admin_url('admin.php?page=nosfir-system-status')); ?>"><?php _e('Ver Detalhes', 'nosfir'); ?></a>
+                    </article>
+                    
+                    <article class="nosfir-card">
+                        <h2><?php _e('Integrações', 'nosfir'); ?></h2>
+                        <ul class="nosfir-integrations">
+                            <li>WooCommerce: <?php echo class_exists('WooCommerce') ? '<span class="ok">Ativo</span>' : '<span class="warn">Inativo</span>'; ?></li>
+                            <li>Jetpack: <?php echo class_exists('Jetpack') ? '<span class="ok">Ativo</span>' : '<span class="warn">Inativo</span>'; ?></li>
+                            <li>Elementor: <?php echo class_exists('\\Elementor\\Plugin') ? '<span class="ok">Ativo</span>' : '<span class="warn">Inativo</span>'; ?></li>
+                        </ul>
+                        <a class="button" href="<?php echo esc_url(admin_url('admin.php?page=nosfir-plugins')); ?>"><?php _e('Gerenciar Plugins', 'nosfir'); ?></a>
+                    </article>
+                    
+                    <article class="nosfir-card">
+                        <h2><?php _e('Ações Rápidas', 'nosfir'); ?></h2>
+                        <div class="nosfir-quick-actions">
+                            <a class="button button-primary" href="<?php echo esc_url(admin_url('customize.php')); ?>"><?php _e('Abrir Customizer', 'nosfir'); ?></a>
+                            <a class="button" href="<?php echo esc_url(admin_url('post-new.php')); ?>"><?php _e('Novo Post', 'nosfir'); ?></a>
+                            <a class="button" href="<?php echo esc_url(admin_url('post-new.php?post_type=page')); ?>"><?php _e('Nova Página', 'nosfir'); ?></a>
+                        </div>
+                    </article>
+                    
+                    <article class="nosfir-card nosfir-card--wide">
+                        <h2><?php _e('Recursos e Suporte', 'nosfir'); ?></h2>
+                        <div class="nosfir-resources-grid">
+                            <a class="nosfir-resource" href="<?php echo esc_url($this->get_documentation_url()); ?>" target="_blank">
+                                <span class="dashicons dashicons-book"></span>
+                                <div>
+                                    <h3><?php _e('Documentação', 'nosfir'); ?></h3>
+                                    <p><?php _e('Guias detalhados para cada recurso do tema.', 'nosfir'); ?></p>
+                                </div>
+                            </a>
+                            <a class="nosfir-resource" href="<?php echo esc_url($this->get_videos_url()); ?>" target="_blank">
+                                <span class="dashicons dashicons-video-alt3"></span>
+                                <div>
+                                    <h3><?php _e('Tutoriais em Vídeo', 'nosfir'); ?></h3>
+                                    <p><?php _e('Passo a passo visual para configurar o site.', 'nosfir'); ?></p>
+                                </div>
+                            </a>
+                            <a class="nosfir-resource" href="<?php echo esc_url($this->get_support_url()); ?>" target="_blank">
+                                <span class="dashicons dashicons-sos"></span>
+                                <div>
+                                    <h3><?php _e('Suporte', 'nosfir'); ?></h3>
+                                    <p><?php _e('Acesso ao suporte e comunidade.', 'nosfir'); ?></p>
+                                </div>
+                            </a>
+                            <a class="nosfir-resource" href="<?php echo esc_url($this->get_changelog_url()); ?>" target="_blank">
+                                <span class="dashicons dashicons-clipboard"></span>
+                                <div>
+                                    <h3><?php _e('Changelog', 'nosfir'); ?></h3>
+                                    <p><?php _e('Histórico de versões e melhorias.', 'nosfir'); ?></p>
+                                </div>
+                            </a>
+                        </div>
+                    </article>
+                </section>
+            </div>
+            <?php
         }
 
         /**
@@ -394,150 +643,96 @@ if (!class_exists('Nosfir_Admin')) :
         public function render_welcome_page() {
             ?>
             <div class="nosfir-admin-wrap">
-                <div class="nosfir-welcome-header">
-                    <div class="nosfir-welcome-header__logo">
+                <header class="nosfir-dashboard-header">
+                    <div class="nosfir-dashboard-brand">
                         <img src="<?php echo esc_url($this->theme_url . '/assets/images/logo.png'); ?>" alt="Nosfir">
+                        <div class="nosfir-dashboard-titles">
+                            <h1>Nosfir</h1>
+                            <span class="nosfir-version">v<?php echo esc_html($this->version); ?></span>
+                        </div>
                     </div>
-                    <div class="nosfir-welcome-header__info">
-                        <h1><?php printf(__('Welcome to Nosfir %s', 'nosfir'), $this->version); ?></h1>
-                        <p class="nosfir-welcome-header__tagline">
-                            <?php _e('Thank you for choosing Nosfir - the most powerful and flexible WordPress theme.', 'nosfir'); ?>
-                        </p>
+                    <div class="nosfir-dashboard-actions">
+                        <a class="button button-primary" href="<?php echo esc_url(admin_url('customize.php')); ?>"><?php _e('Customize', 'nosfir'); ?></a>
+                        <a class="button" href="<?php echo esc_url(admin_url('admin.php?page=nosfir-plugins')); ?>"><?php _e('Plugins', 'nosfir'); ?></a>
+                        <a class="button" href="<?php echo esc_url(admin_url('admin.php?page=nosfir-demo-import')); ?>"><?php _e('Import Demo', 'nosfir'); ?></a>
                     </div>
-                    <div class="nosfir-welcome-header__nav">
-                        <span class="nosfir-version-badge"><?php echo esc_html('v' . $this->version); ?></span>
-                        <nav class="nosfir-welcome-nav">
-                            <a href="<?php echo esc_url($this->get_support_url()); ?>" target="_blank">
-                                <?php _e('Support', 'nosfir'); ?>
-                            </a>
-                            <a href="<?php echo esc_url($this->get_documentation_url()); ?>" target="_blank">
-                                <?php _e('Documentation', 'nosfir'); ?>
-                            </a>
-                            <a href="<?php echo esc_url($this->get_changelog_url()); ?>" target="_blank">
-                                <?php _e('Changelog', 'nosfir'); ?>
-                            </a>
-                        </nav>
-                    </div>
-                </div>
+                </header>
 
-                <div class="nosfir-welcome-content">
-                    <!-- Guia de início rápido -->
-                    <div class="nosfir-welcome-section">
-                        <h2><?php _e('Quick Start Guide', 'nosfir'); ?></h2>
+                <section class="nosfir-dashboard-grid">
+                    <article class="nosfir-card">
+                        <h2><?php _e('Quick Start', 'nosfir'); ?></h2>
                         <div class="nosfir-steps">
                             <div class="nosfir-step">
                                 <div class="nosfir-step__number">1</div>
                                 <div class="nosfir-step__content">
                                     <h3><?php _e('Install Required Plugins', 'nosfir'); ?></h3>
                                     <p><?php _e('Install and activate the required and recommended plugins.', 'nosfir'); ?></p>
-                                    <a href="<?php echo esc_url(admin_url('admin.php?page=nosfir-plugins')); ?>" class="button button-primary">
-                                        <?php _e('Install Plugins', 'nosfir'); ?>
-                                    </a>
+                                    <a href="<?php echo esc_url(admin_url('admin.php?page=nosfir-plugins')); ?>" class="button button-primary"><?php _e('Install Plugins', 'nosfir'); ?></a>
                                 </div>
                             </div>
-
                             <div class="nosfir-step">
                                 <div class="nosfir-step__number">2</div>
                                 <div class="nosfir-step__content">
                                     <h3><?php _e('Import Demo Content', 'nosfir'); ?></h3>
                                     <p><?php _e('Import pre-built demos with just one click.', 'nosfir'); ?></p>
-                                    <a href="<?php echo esc_url(admin_url('admin.php?page=nosfir-demo-import')); ?>" class="button button-primary">
-                                        <?php _e('Import Demo', 'nosfir'); ?>
-                                    </a>
+                                    <a href="<?php echo esc_url(admin_url('admin.php?page=nosfir-demo-import')); ?>" class="button button-primary"><?php _e('Import Demo', 'nosfir'); ?></a>
                                 </div>
                             </div>
-
                             <div class="nosfir-step">
                                 <div class="nosfir-step__number">3</div>
                                 <div class="nosfir-step__content">
                                     <h3><?php _e('Customize Your Site', 'nosfir'); ?></h3>
                                     <p><?php _e('Use the WordPress Customizer to personalize your site.', 'nosfir'); ?></p>
-                                    <a href="<?php echo esc_url(admin_url('customize.php')); ?>" class="button button-primary">
-                                        <?php _e('Open Customizer', 'nosfir'); ?>
-                                    </a>
+                                    <a href="<?php echo esc_url(admin_url('customize.php')); ?>" class="button button-primary"><?php _e('Open Customizer', 'nosfir'); ?></a>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </article>
 
-                    <!-- Features -->
-                    <div class="nosfir-welcome-section">
+                    <article class="nosfir-card">
                         <h2><?php _e('Theme Features', 'nosfir'); ?></h2>
-                        <div class="nosfir-features">
-                            <?php
-                            $features = $this->get_theme_features();
-                            foreach ($features as $feature) : ?>
-                                <div class="nosfir-feature">
-                                    <div class="nosfir-feature__icon">
-                                        <span class="dashicons dashicons-<?php echo esc_attr($feature['icon']); ?>"></span>
+                        <div class="nosfir-features-grid">
+                            <?php foreach ($this->get_theme_features() as $feature) : ?>
+                                <div class="nosfir-feature-item">
+                                    <span class="dashicons dashicons-<?php echo esc_attr($feature['icon']); ?>"></span>
+                                    <div>
+                                        <h3><?php echo esc_html($feature['title']); ?></h3>
+                                        <p><?php echo esc_html($feature['description']); ?></p>
                                     </div>
-                                    <h3><?php echo esc_html($feature['title']); ?></h3>
-                                    <p><?php echo esc_html($feature['description']); ?></p>
                                 </div>
                             <?php endforeach; ?>
                         </div>
-                    </div>
+                    </article>
 
-                    <!-- Recursos Premium -->
-                    <?php if (!$this->is_premium()) : ?>
-                        <div class="nosfir-welcome-section nosfir-premium-section">
-                            <h2><?php _e('Upgrade to Premium', 'nosfir'); ?></h2>
-                            <div class="nosfir-premium-features">
-                                <div class="nosfir-premium-content">
-                                    <h3><?php _e('Unlock Premium Features', 'nosfir'); ?></h3>
-                                    <ul class="nosfir-premium-list">
-                                        <li><?php _e('50+ Pre-built Demos', 'nosfir'); ?></li>
-                                        <li><?php _e('Advanced Theme Options', 'nosfir'); ?></li>
-                                        <li><?php _e('Premium Support', 'nosfir'); ?></li>
-                                        <li><?php _e('Custom Widgets', 'nosfir'); ?></li>
-                                        <li><?php _e('Advanced Typography', 'nosfir'); ?></li>
-                                        <li><?php _e('WooCommerce Integration', 'nosfir'); ?></li>
-                                        <li><?php _e('Lifetime Updates', 'nosfir'); ?></li>
-                                        <li><?php _e('And much more...', 'nosfir'); ?></li>
-                                    </ul>
-                                    <a href="<?php echo esc_url($this->get_premium_url()); ?>" class="button button-primary button-hero" target="_blank">
-                                        <?php _e('Get Premium Version', 'nosfir'); ?>
-                                    </a>
+                    <article class="nosfir-card nosfir-card--wide">
+                        <h2><?php _e('Resources', 'nosfir'); ?></h2>
+                        <div class="nosfir-resources-grid">
+                            <a class="nosfir-resource" href="<?php echo esc_url($this->get_documentation_url()); ?>" target="_blank">
+                                <span class="dashicons dashicons-book"></span>
+                                <div>
+                                    <h3><?php _e('Documentation', 'nosfir'); ?></h3>
+                                    <p><?php _e('Guides to use the theme.', 'nosfir'); ?></p>
                                 </div>
-                                <div class="nosfir-premium-image">
-                                    <img src="<?php echo esc_url($this->theme_url . '/assets/images/admin/premium-preview.jpg'); ?>" alt="Premium">
+                            </a>
+                            <a class="nosfir-resource" href="<?php echo esc_url($this->get_videos_url()); ?>" target="_blank">
+                                <span class="dashicons dashicons-video-alt3"></span>
+                                <div>
+                                    <h3><?php _e('Video Tutorials', 'nosfir'); ?></h3>
+                                    <p><?php _e('Step-by-step visual guides.', 'nosfir'); ?></p>
                                 </div>
-                            </div>
+                            </a>
+                            <a class="nosfir-resource" href="<?php echo esc_url($this->get_support_url()); ?>" target="_blank">
+                                <span class="dashicons dashicons-sos"></span>
+                                <div>
+                                    <h3><?php _e('Support', 'nosfir'); ?></h3>
+                                    <p><?php _e('Get help from our team.', 'nosfir'); ?></p>
+                                </div>
+                            </a>
                         </div>
-                    <?php endif; ?>
+                    </article>
+                </section>
 
-                    <!-- Links úteis -->
-                    <div class="nosfir-welcome-section">
-                        <h2><?php _e('Helpful Resources', 'nosfir'); ?></h2>
-                        <div class="nosfir-resources">
-                            <div class="nosfir-resource">
-                                <h3><?php _e('Documentation', 'nosfir'); ?></h3>
-                                <p><?php _e('Get started by reading our detailed documentation.', 'nosfir'); ?></p>
-                                <a href="<?php echo esc_url($this->get_documentation_url()); ?>" class="button" target="_blank">
-                                    <?php _e('View Documentation', 'nosfir'); ?>
-                                </a>
-                            </div>
-                            
-                            <div class="nosfir-resource">
-                                <h3><?php _e('Video Tutorials', 'nosfir'); ?></h3>
-                                <p><?php _e('Watch our video tutorials to learn how to use the theme.', 'nosfir'); ?></p>
-                                <a href="<?php echo esc_url($this->get_videos_url()); ?>" class="button" target="_blank">
-                                    <?php _e('Watch Videos', 'nosfir'); ?>
-                                </a>
-                            </div>
-                            
-                            <div class="nosfir-resource">
-                                <h3><?php _e('Support Forum', 'nosfir'); ?></h3>
-                                <p><?php _e('Need help? Visit our support forum for assistance.', 'nosfir'); ?></p>
-                                <a href="<?php echo esc_url($this->get_support_url()); ?>" class="button" target="_blank">
-                                    <?php _e('Get Support', 'nosfir'); ?>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="nosfir-welcome-footer">
+                <footer class="nosfir-welcome-footer">
                     <div class="nosfir-footer-info">
                         <p>
                             <?php
@@ -550,17 +745,11 @@ if (!class_exists('Nosfir_Admin')) :
                         </p>
                     </div>
                     <div class="nosfir-footer-social">
-                        <a href="<?php echo esc_url($this->get_social_url('facebook')); ?>" target="_blank">
-                            <span class="dashicons dashicons-facebook"></span>
-                        </a>
-                        <a href="<?php echo esc_url($this->get_social_url('twitter')); ?>" target="_blank">
-                            <span class="dashicons dashicons-twitter"></span>
-                        </a>
-                        <a href="<?php echo esc_url($this->get_social_url('instagram')); ?>" target="_blank">
-                            <span class="dashicons dashicons-instagram"></span>
-                        </a>
+                        <a href="<?php echo esc_url($this->get_social_url('facebook')); ?>" target="_blank"><span class="dashicons dashicons-facebook"></span></a>
+                        <a href="<?php echo esc_url($this->get_social_url('twitter')); ?>" target="_blank"><span class="dashicons dashicons-twitter"></span></a>
+                        <a href="<?php echo esc_url($this->get_social_url('instagram')); ?>" target="_blank"><span class="dashicons dashicons-instagram"></span></a>
                     </div>
-                </div>
+                </footer>
             </div>
             <?php
         }
@@ -740,8 +929,16 @@ if (!class_exists('Nosfir_Admin')) :
          * @since 1.0.0
          */
         private function render_plugin_card($plugin) {
-            $is_installed = $this->is_plugin_installed($plugin['slug']);
-            $is_active = $is_installed && is_plugin_active($plugin['file']);
+            if (!function_exists('get_plugins')) {
+                require_once ABSPATH . 'wp-admin/includes/plugin.php';
+            }
+            $plugin_file = isset($plugin['file']) ? $plugin['file'] : '';
+            if ($plugin_file && strpos($plugin_file, '/') === false) {
+                $plugin_file = $plugin['slug'] . '/' . $plugin_file;
+            }
+            $plugins = get_plugins();
+            $is_installed = file_exists(WP_PLUGIN_DIR . '/' . $plugin_file) || isset($plugins[$plugin_file]);
+            $is_active = $is_installed && $plugin_file && is_plugin_active($plugin_file);
             ?>
             <div class="nosfir-plugin-card">
                 <?php if (!empty($plugin['thumbnail'])) : ?>
@@ -781,14 +978,14 @@ if (!class_exists('Nosfir_Admin')) :
                         </button>
                     <?php elseif ($is_installed) : ?>
                         <button class="button button-primary nosfir-activate-plugin" 
-                                data-plugin="<?php echo esc_attr($plugin['file']); ?>"
+                                data-plugin="<?php echo esc_attr($plugin_file); ?>"
                                 data-slug="<?php echo esc_attr($plugin['slug']); ?>">
                             <?php _e('Activate', 'nosfir'); ?>
                         </button>
                     <?php else : ?>
                         <button class="button button-primary nosfir-install-plugin" 
                                 data-slug="<?php echo esc_attr($plugin['slug']); ?>"
-                                data-file="<?php echo esc_attr($plugin['file']); ?>">
+                                data-file="<?php echo esc_attr($plugin_file ?: ($plugin['slug'] . '/' . ($plugin['file'] ?? $plugin['slug'] . '.php'))); ?>">
                             <?php _e('Install & Activate', 'nosfir'); ?>
                         </button>
                     <?php endif; ?>
@@ -1249,7 +1446,7 @@ if (!class_exists('Nosfir_Admin')) :
                 'nosfir_page_nosfir-settings',
                 'nosfir_page_nosfir-system-status',
                 'nosfir_page_nosfir-support',
-                'nosfir_page_nosfir-license'
+                'nosfir_page_nosfir-tours'
             );
 
             return in_array($hook_suffix, $nosfir_pages);
@@ -1434,7 +1631,7 @@ if (!class_exists('Nosfir_Admin')) :
          * Verifica se é versão premium
          */
         private function is_premium() {
-            return defined('NOSFIR_PREMIUM') && NOSFIR_PREMIUM;
+            return false;
         }
 
         /**
@@ -1456,6 +1653,67 @@ if (!class_exists('Nosfir_Admin')) :
                 );
             }
             return $text;
+        }
+
+        /**
+         * Executa no head do admin
+         */
+        public function admin_head() {
+            // Código customizado para o head do admin
+        }
+
+        /**
+         * Dismiss admin notice
+         */
+        public function dismiss_notice() {
+            check_ajax_referer('nosfir-admin-nonce', 'nonce');
+            // Logic to dismiss notice
+            wp_send_json_success();
+        }
+
+        /**
+         * AJAX import demo
+         */
+        public function ajax_import_demo() {
+            check_ajax_referer('nosfir-admin-nonce', 'nonce');
+            // Logic to import demo
+            wp_send_json_success();
+        }
+
+        /**
+         * Add dashboard widgets
+         */
+        public function add_dashboard_widgets() {
+            // Logic to add dashboard widgets
+        }
+
+        /**
+         * Check for updates
+         */
+        public function check_for_updates($transient) {
+            // Logic to check for updates
+            return $transient;
+        }
+
+        /**
+         * Redirect on activation
+         */
+        public function redirect_on_activation() {
+            // Logic to redirect after activation
+        }
+
+        /**
+         * Add meta boxes
+         */
+        public function add_meta_boxes() {
+            // Logic to add meta boxes
+        }
+
+        /**
+         * Save meta boxes
+         */
+        public function save_meta_boxes($post_id, $post) {
+            // Logic to save meta boxes
         }
 
         // Mais métodos conforme necessário...

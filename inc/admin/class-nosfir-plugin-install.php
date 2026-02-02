@@ -489,7 +489,7 @@ if (!class_exists('Nosfir_Plugin_Installer')) :
                 $plugin_file = $this->find_plugin_file($plugin_slug);
             }
             
-            if ($plugin_file) {
+            if ($plugin_file && file_exists($this->plugins_dir . '/' . $plugin_file)) {
                 // Plugin está instalado
                 if (is_plugin_active($plugin_file)) {
                     $status['status'] = 'active';

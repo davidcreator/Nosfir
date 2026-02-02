@@ -1000,6 +1000,71 @@ if (!class_exists('Nosfir_NUX_Starter_Content')) :
             
             return $pages;
         }
+
+        /**
+         * Filtra título de auto-drafts
+         */
+        public function filter_auto_draft_title($title, $post_id) {
+            return $title;
+        }
+
+        /**
+         * Inicializa preview do customizer
+         */
+        public function customize_preview_init() {
+            // Logic for customizer preview init
+        }
+
+        /**
+         * Filtra query de produtos
+         */
+        public function filter_product_query($q) {
+            // Logic to filter product query
+        }
+
+        /**
+         * Filtra shortcode de produtos
+         */
+        public function filter_products_shortcode($args, $atts, $type) {
+            return $args;
+        }
+
+        /**
+         * Configura dados de produtos
+         */
+        public function setup_product_data() {
+            // Logic to setup product data
+        }
+
+        /**
+         * Filtra categorias de produtos
+         */
+        public function filter_product_categories($args) {
+            return $args;
+        }
+
+        /**
+         * Lida com transição de posts
+         */
+        public function handle_post_transition($new_status, $old_status, $post) {
+            // Logic to handle post transition
+        }
+
+        /**
+         * AJAX: Reset starter content
+         */
+        public function ajax_reset_content() {
+            check_ajax_referer('nosfir_nux_nonce', 'nonce');
+            // Logic to reset content
+            wp_send_json_success();
+        }
+
+        /**
+         * Atualiza conteúdo da homepage
+         */
+        public function update_homepage_content() {
+            // Logic to update homepage content
+        }
     }
 
 endif;

@@ -461,6 +461,7 @@ if (!class_exists('Nosfir_Customizer')) :
             $this->register_color_settings($wp_customize);
             $this->register_typography_settings($wp_customize);
             $this->register_header_settings($wp_customize);
+            $this->register_navigation_settings($wp_customize);
             $this->register_footer_settings($wp_customize);
             $this->register_layout_settings($wp_customize);
             
@@ -643,6 +644,119 @@ if (!class_exists('Nosfir_Customizer')) :
                 'type' => 'checkbox',
                 'priority' => 20,
             ));
+
+            // Header Width
+            $wp_customize->add_setting('nosfir_header_width', array(
+                'default' => $this->get_default('nosfir_header_width'),
+                'sanitize_callback' => 'sanitize_key',
+                'transport' => 'refresh',
+            ));
+            $wp_customize->add_control('nosfir_header_width', array(
+                'label' => __('Header Width', 'nosfir'),
+                'section' => 'nosfir_header',
+                'type' => 'select',
+                'choices' => array(
+                    'container' => __('Contained', 'nosfir'),
+                    'full' => __('Full Width', 'nosfir'),
+                ),
+                'priority' => 30,
+            ));
+
+            // Transparent Header
+            $wp_customize->add_setting('nosfir_header_transparent', array(
+                'default' => $this->get_default('nosfir_header_transparent'),
+                'sanitize_callback' => 'nosfir_sanitize_checkbox',
+                'transport' => 'refresh',
+            ));
+            $wp_customize->add_control('nosfir_header_transparent', array(
+                'label' => __('Transparent Header', 'nosfir'),
+                'section' => 'nosfir_header',
+                'type' => 'checkbox',
+                'priority' => 40,
+            ));
+
+            // Header Colors
+            $wp_customize->add_setting('nosfir_header_background', array(
+                'default' => $this->get_default('nosfir_header_background'),
+                'sanitize_callback' => 'sanitize_hex_color',
+                'transport' => 'postMessage',
+            ));
+            $wp_customize->add_control(new WP_Customize_Color_Control(
+                $wp_customize,
+                'nosfir_header_background',
+                array(
+                    'label' => __('Header Background', 'nosfir'),
+                    'section' => 'nosfir_header',
+                    'priority' => 50,
+                )
+            ));
+
+            $wp_customize->add_setting('nosfir_header_text_color', array(
+                'default' => $this->get_default('nosfir_header_text_color'),
+                'sanitize_callback' => 'sanitize_hex_color',
+                'transport' => 'postMessage',
+            ));
+            $wp_customize->add_control(new WP_Customize_Color_Control(
+                $wp_customize,
+                'nosfir_header_text_color',
+                array(
+                    'label' => __('Header Text Color', 'nosfir'),
+                    'section' => 'nosfir_header',
+                    'priority' => 55,
+                )
+            ));
+
+            $wp_customize->add_setting('nosfir_header_link_color', array(
+                'default' => $this->get_default('nosfir_header_link_color'),
+                'sanitize_callback' => 'sanitize_hex_color',
+                'transport' => 'postMessage',
+            ));
+            $wp_customize->add_control(new WP_Customize_Color_Control(
+                $wp_customize,
+                'nosfir_header_link_color',
+                array(
+                    'label' => __('Header Link Color', 'nosfir'),
+                    'section' => 'nosfir_header',
+                    'priority' => 60,
+                )
+            ));
+
+            // Header Components
+            $wp_customize->add_setting('nosfir_header_search', array(
+                'default' => $this->get_default('nosfir_header_search'),
+                'sanitize_callback' => 'nosfir_sanitize_checkbox',
+                'transport' => 'refresh',
+            ));
+            $wp_customize->add_control('nosfir_header_search', array(
+                'label' => __('Show Header Search', 'nosfir'),
+                'section' => 'nosfir_header',
+                'type' => 'checkbox',
+                'priority' => 70,
+            ));
+
+            $wp_customize->add_setting('nosfir_header_cart', array(
+                'default' => $this->get_default('nosfir_header_cart'),
+                'sanitize_callback' => 'nosfir_sanitize_checkbox',
+                'transport' => 'refresh',
+            ));
+            $wp_customize->add_control('nosfir_header_cart', array(
+                'label' => __('Show Header Cart', 'nosfir'),
+                'section' => 'nosfir_header',
+                'type' => 'checkbox',
+                'priority' => 75,
+            ));
+
+            $wp_customize->add_setting('nosfir_header_account', array(
+                'default' => $this->get_default('nosfir_header_account'),
+                'sanitize_callback' => 'nosfir_sanitize_checkbox',
+                'transport' => 'refresh',
+            ));
+            $wp_customize->add_control('nosfir_header_account', array(
+                'label' => __('Show Header Account', 'nosfir'),
+                'section' => 'nosfir_header',
+                'type' => 'checkbox',
+                'priority' => 80,
+            ));
         }
 
         /**
@@ -704,6 +818,165 @@ if (!class_exists('Nosfir_Customizer')) :
                 'section' => 'nosfir_footer',
                 'type' => 'textarea',
                 'priority' => 30,
+            ));
+
+            // Footer Colors
+            $wp_customize->add_setting('nosfir_footer_background', array(
+                'default' => $this->get_default('nosfir_footer_background'),
+                'sanitize_callback' => 'sanitize_hex_color',
+                'transport' => 'postMessage',
+            ));
+            $wp_customize->add_control(new WP_Customize_Color_Control(
+                $wp_customize,
+                'nosfir_footer_background',
+                array(
+                    'label' => __('Footer Background', 'nosfir'),
+                    'section' => 'nosfir_footer',
+                    'priority' => 40,
+                )
+            ));
+
+            $wp_customize->add_setting('nosfir_footer_text_color', array(
+                'default' => $this->get_default('nosfir_footer_text_color'),
+                'sanitize_callback' => 'sanitize_hex_color',
+                'transport' => 'postMessage',
+            ));
+            $wp_customize->add_control(new WP_Customize_Color_Control(
+                $wp_customize,
+                'nosfir_footer_text_color',
+                array(
+                    'label' => __('Footer Text Color', 'nosfir'),
+                    'section' => 'nosfir_footer',
+                    'priority' => 45,
+                )
+            ));
+
+            $wp_customize->add_setting('nosfir_footer_heading_color', array(
+                'default' => $this->get_default('nosfir_footer_heading_color'),
+                'sanitize_callback' => 'sanitize_hex_color',
+                'transport' => 'postMessage',
+            ));
+            $wp_customize->add_control(new WP_Customize_Color_Control(
+                $wp_customize,
+                'nosfir_footer_heading_color',
+                array(
+                    'label' => __('Footer Heading Color', 'nosfir'),
+                    'section' => 'nosfir_footer',
+                    'priority' => 50,
+                )
+            ));
+
+            $wp_customize->add_setting('nosfir_footer_link_color', array(
+                'default' => $this->get_default('nosfir_footer_link_color'),
+                'sanitize_callback' => 'sanitize_hex_color',
+                'transport' => 'postMessage',
+            ));
+            $wp_customize->add_control(new WP_Customize_Color_Control(
+                $wp_customize,
+                'nosfir_footer_link_color',
+                array(
+                    'label' => __('Footer Link Color', 'nosfir'),
+                    'section' => 'nosfir_footer',
+                    'priority' => 55,
+                )
+            ));
+        }
+
+        /**
+         * Registra settings de navegação
+         */
+        private function register_navigation_settings($wp_customize) {
+            // Navigation Background
+            $wp_customize->add_setting('nosfir_nav_background', array(
+                'default' => $this->get_default('nosfir_nav_background'),
+                'sanitize_callback' => 'sanitize_hex_color',
+                'transport' => 'postMessage',
+            ));
+            $wp_customize->add_control(new WP_Customize_Color_Control(
+                $wp_customize,
+                'nosfir_nav_background',
+                array(
+                    'label' => __('Navigation Background', 'nosfir'),
+                    'section' => 'nosfir_navigation',
+                    'priority' => 10,
+                )
+            ));
+
+            // Navigation Link Color
+            $wp_customize->add_setting('nosfir_nav_link_color', array(
+                'default' => $this->get_default('nosfir_nav_link_color'),
+                'sanitize_callback' => 'sanitize_hex_color',
+                'transport' => 'postMessage',
+            ));
+            $wp_customize->add_control(new WP_Customize_Color_Control(
+                $wp_customize,
+                'nosfir_nav_link_color',
+                array(
+                    'label' => __('Navigation Link Color', 'nosfir'),
+                    'section' => 'nosfir_navigation',
+                    'priority' => 15,
+                )
+            ));
+
+            // Navigation Link Hover Color
+            $wp_customize->add_setting('nosfir_nav_link_hover_color', array(
+                'default' => $this->get_default('nosfir_nav_link_hover_color'),
+                'sanitize_callback' => 'sanitize_hex_color',
+                'transport' => 'postMessage',
+            ));
+            $wp_customize->add_control(new WP_Customize_Color_Control(
+                $wp_customize,
+                'nosfir_nav_link_hover_color',
+                array(
+                    'label' => __('Navigation Link Hover Color', 'nosfir'),
+                    'section' => 'nosfir_navigation',
+                    'priority' => 20,
+                )
+            ));
+
+            // Dropdown Background
+            $wp_customize->add_setting('nosfir_nav_dropdown_background', array(
+                'default' => $this->get_default('nosfir_nav_dropdown_background'),
+                'sanitize_callback' => 'sanitize_hex_color',
+                'transport' => 'postMessage',
+            ));
+            $wp_customize->add_control(new WP_Customize_Color_Control(
+                $wp_customize,
+                'nosfir_nav_dropdown_background',
+                array(
+                    'label' => __('Dropdown Background', 'nosfir'),
+                    'section' => 'nosfir_navigation',
+                    'priority' => 25,
+                )
+            ));
+
+            // Dropdown Link Color
+            $wp_customize->add_setting('nosfir_nav_dropdown_link_color', array(
+                'default' => $this->get_default('nosfir_nav_dropdown_link_color'),
+                'sanitize_callback' => 'sanitize_hex_color',
+                'transport' => 'postMessage',
+            ));
+            $wp_customize->add_control(new WP_Customize_Color_Control(
+                $wp_customize,
+                'nosfir_nav_dropdown_link_color',
+                array(
+                    'label' => __('Dropdown Link Color', 'nosfir'),
+                    'section' => 'nosfir_navigation',
+                    'priority' => 30,
+                )
+            ));
+
+            // Mobile Breakpoint
+            $wp_customize->add_setting('nosfir_mobile_menu_breakpoint', array(
+                'default' => $this->get_default('nosfir_mobile_menu_breakpoint'),
+                'sanitize_callback' => 'absint',
+                'transport' => 'refresh',
+            ));
+            $wp_customize->add_control('nosfir_mobile_menu_breakpoint', array(
+                'label' => __('Mobile Menu Breakpoint (px)', 'nosfir'),
+                'section' => 'nosfir_navigation',
+                'type' => 'number',
+                'priority' => 35,
             ));
         }
 
@@ -781,32 +1054,7 @@ if (!class_exists('Nosfir_Customizer')) :
                     'sanitize_callback' => 'sanitize_text_field',
                 ));
                 
-                $wp_customize->add_control(new Nosfir_Customizer_Control_More(
-                    $wp_customize,
-                    'nosfir_more',
-                    array(
-                        'section' => 'nosfir_more',
-                        'priority' => 10,
-                        'subtype' => 'premium',
-                        'card_title' => __('Unlock Premium Features', 'nosfir'),
-                        'card_description' => __('Get access to advanced customization options, premium support, and regular updates.', 'nosfir'),
-                        'features' => array(
-                            __('100+ Pre-built Templates', 'nosfir'),
-                            __('Advanced Typography Controls', 'nosfir'),
-                            __('Custom Headers & Footers', 'nosfir'),
-                            __('WooCommerce Integration', 'nosfir'),
-                            __('Premium Support', 'nosfir'),
-                            __('Regular Updates', 'nosfir'),
-                        ),
-                        'buttons' => array(
-                            array(
-                                'text' => __('Get Premium Version', 'nosfir'),
-                                'url' => 'https://nosfir.com/premium',
-                                'primary' => true,
-                            ),
-                        ),
-                    )
-                ));
+                
             }
         }
 
@@ -1008,9 +1256,40 @@ if (!class_exists('Nosfir_Customizer')) :
             // Container
             $container_width = get_theme_mod('nosfir_container_width', $this->get_default('nosfir_container_width'));
             $css .= '--nosfir-container-width: ' . $container_width . ';';
+
+            // Header Variables
+            $css .= '--nosfir-header-bg: ' . get_theme_mod('nosfir_header_background', $this->get_default('nosfir_header_background')) . ';';
+            $css .= '--nosfir-header-text: ' . get_theme_mod('nosfir_header_text_color', $this->get_default('nosfir_header_text_color')) . ';';
+
+            // Footer Variables
+            $css .= '--nosfir-footer-bg: ' . get_theme_mod('nosfir_footer_background', $this->get_default('nosfir_footer_background')) . ';';
+            $css .= '--nosfir-footer-text: ' . get_theme_mod('nosfir_footer_text_color', $this->get_default('nosfir_footer_text_color')) . ';';
             
             $css .= '}';
             
+            // Navigation Colors
+            $nav_bg = get_theme_mod('nosfir_nav_background', $this->get_default('nosfir_nav_background'));
+            $nav_link = get_theme_mod('nosfir_nav_link_color', $this->get_default('nosfir_nav_link_color'));
+            $nav_link_hover = get_theme_mod('nosfir_nav_link_hover_color', $this->get_default('nosfir_nav_link_hover_color'));
+            $nav_dd_bg = get_theme_mod('nosfir_nav_dropdown_background', $this->get_default('nosfir_nav_dropdown_background'));
+            $nav_dd_link = get_theme_mod('nosfir_nav_dropdown_link_color', $this->get_default('nosfir_nav_dropdown_link_color'));
+
+            $css .= '.main-navigation{background-color:' . $nav_bg . ';}';
+            $css .= '.main-navigation a{color:' . $nav_link . ';}';
+            $css .= '.main-navigation a:hover{color:' . $nav_link_hover . ';}';
+            $css .= '.main-navigation ul ul{background-color:' . $nav_dd_bg . ';}';
+            $css .= '.main-navigation ul ul a{color:' . $nav_dd_link . ';}';
+
+            // Header link color
+            $header_link = get_theme_mod('nosfir_header_link_color', $this->get_default('nosfir_header_link_color'));
+            $css .= '.site-header a{color:' . $header_link . ';}';
+
+            // Footer detailed colors
+            $footer_heading = get_theme_mod('nosfir_footer_heading_color', $this->get_default('nosfir_footer_heading_color'));
+            $footer_link = get_theme_mod('nosfir_footer_link_color', $this->get_default('nosfir_footer_link_color'));
+            $css .= '.site-footer h1, .site-footer h2, .site-footer h3, .site-footer h4, .site-footer h5, .site-footer h6{color:' . $footer_heading . ';}';
+            $css .= '.site-footer a{color:' . $footer_link . ';}';
+
             // Custom CSS
             $custom_css = get_theme_mod('nosfir_custom_css', '');
             if (!empty($custom_css)) {
@@ -1054,6 +1333,10 @@ if (!class_exists('Nosfir_Customizer')) :
             if (get_theme_mod('nosfir_header_sticky', $this->get_default('nosfir_header_sticky'))) {
                 $classes[] = 'has-sticky-header';
             }
+            if (get_theme_mod('nosfir_header_transparent', $this->get_default('nosfir_header_transparent'))) {
+                $classes[] = 'header-transparent';
+            }
+            $classes[] = 'header-width-' . get_theme_mod('nosfir_header_width', $this->get_default('nosfir_header_width'));
             
             return $classes;
         }
@@ -1080,6 +1363,30 @@ if (!class_exists('Nosfir_Customizer')) :
             }
             
             return isset($this->defaults[$key]) ? $this->defaults[$key] : $value;
+        }
+
+        /**
+         * Registra seção de Export/Import
+         */
+        public function register_export_import($wp_customize) {
+            $wp_customize->add_section('nosfir_export_import', array(
+                'title' => __('Export/Import', 'nosfir'),
+                'priority' => 999,
+                'panel' => 'nosfir_panel',
+            ));
+
+            $wp_customize->add_setting('nosfir_export_import_data', array(
+                'default' => '',
+                'transport' => 'postMessage',
+                'sanitize_callback' => 'sanitize_text_field',
+            ));
+
+            $wp_customize->add_control('nosfir_export_import_data', array(
+                'label' => __('Export/Import Settings', 'nosfir'),
+                'description' => __('Use the buttons below to export or import your customizer settings.', 'nosfir'),
+                'section' => 'nosfir_export_import',
+                'type' => 'text', // Placeholder since we don't have the custom control class handy
+            ));
         }
 
         /**

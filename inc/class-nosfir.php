@@ -509,23 +509,23 @@ if ( ! class_exists( 'Nosfir' ) ) :
 
 			// Main styles
 			wp_enqueue_style( 'nosfir-main', get_template_directory_uri() . '/assets/css/main' . $suffix . '.css', array(), $this->version );
-
 			// Fonts
 			wp_enqueue_style( 'nosfir-fonts', $this->google_fonts(), array(), null );
 
 			// Scripts
 			wp_enqueue_script( 'nosfir-navigation', get_template_directory_uri() . '/assets/js/navigation' . $suffix . '.js', array(), $this->version, true );
+			wp_enqueue_script( 'nosfir-navigation', get_template_directory_uri() . '/assets/js/navigation' . $suffix . '.js', array(), $this->version, true );
 			wp_enqueue_script( 'nosfir-skip-link-focus-fix', get_template_directory_uri() . '/assets/js/skip-link-focus-fix' . $suffix . '.js', array(), $this->version, true );
 			wp_enqueue_script( 'nosfir-main', get_template_directory_uri() . '/assets/js/main' . $suffix . '.js', array( 'jquery' ), $this->version, true );
-
 			// Localize scripts
 			wp_localize_script(
+				'nosfir-navigation',
 				'nosfir-main',
-				'nosfir_params',
 				array(
 					'ajax_url'    => admin_url( 'admin-ajax.php' ),
 					'nonce'       => wp_create_nonce( 'nosfir-nonce' ),
 					'is_mobile'   => wp_is_mobile(),
+					'is_rtl'      => is_rtl(),
 					'is_rtl'      => is_rtl(),
 					'strings'     => array(
 						'loading'     => __( 'Loading...', 'nosfir' ),
