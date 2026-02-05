@@ -1,90 +1,39 @@
 <?php
 /**
- * The template for displaying search results pages
- *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#search-result
- *
- * @package Nosfir
- * @since 1.0.0
+ * Header Search
  */
-
-// Prevent direct access
-if ( ! defined( 'ABSPATH' ) ) {
-    exit;
-}
-
-get_header();
-?>
-
-<main id="primary" class="content-area">
-
-    <?php do_action( 'nosfir_before_search_content' ); ?>
-
-    <?php if ( have_posts() ) : ?>
-
-        <header class="page-header">
-            <h1 class="page-title">
-                <?php
-                printf(
-                    /* translators: %s: search query */
-                    esc_html__( 'Search Results for: %s', 'nosfir' ),
-                    '<span>' . get_search_query() . '</span>'
-                );
-                ?>
-            </h1>
-            
-            <div class="search-results-count">
-                <?php
-                printf(
-                    /* translators: %d: number of results */
-                    esc_html( _n( '%d result found', '%d results found', $wp_query->found_posts, 'nosfir' ) ),
-                    (int) $wp_query->found_posts
-                );
-                ?>
-            </div>
-        </header><!-- .page-header -->
-
-        <div class="search-form-container">
-            <?php get_search_form(); ?>
-        </div>
-
-        <div class="posts-loop">
-            
-            <?php
-            while ( have_posts() ) :
-                the_post();
-                
-                get_template_part( 'template-parts/content', 'search' );
-                
-            endwhile;
-            ?>
-            
-        </div><!-- .posts-loop -->
-
-        <?php
-        nosfir_pagination();
+if ( ! function_exists( 'nosfir_header_search' ) ) {
+    function nosfir_header_search() {
+        static $rendered = false;
+        if ( $rendered ) return;
+        $rendered = true;
+        
+        if ( ! get_theme_mod( 'nosfir_header_search', true ) ) {
+            return;
+        }
         ?>
-
-    <?php else : ?>
-
-        <header class="page-header">
-            <h1 class="page-title">
-                <?php esc_html_e( 'Nothing Found', 'nosfir' ); ?>
-            </h1>
-        </header><!-- .page-header -->
-
-        <div class="page-content">
-            <p><?php esc_html_e( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'nosfir' ); ?></p>
+        <div class="header-search" id="header-search">
+            <button type="button" class="search-toggle" aria-expanded="false">
+                <svg class="icon-search" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="9" cy="9" r="7"/><path d="M14 14l4 4"/>
+                </svg>
+                <svg class="icon-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
             
-            <?php get_search_form(); ?>
-        </div><!-- .page-content -->
-
-    <?php endif; ?>
-
-    <?php do_action( 'nosfir_after_search_content' ); ?>
-
-</main><!-- #primary -->
-
-<?php
-get_sidebar();
-get_footer();
+            <div class="search-dropdown" aria-hidden="true">
+                <!-- FORMULÁRIO INLINE - NÃO USA get_search_form() -->
+                <form role="search" method="get" class="search-form" action="<?php echo esc_url( home_url( '/' ) ); ?>">
+                    <input type="search" class="search-field" placeholder="<?php esc_attr_e( 'Search...', 'nosfir' ); ?>" value="<?php echo get_search_query(); ?>" name="s" required />
+                    <button type="submit" class="search-submit">
+                        <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="9" cy="9" r="7"/><path d="M14 14l4 4"/>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+        <?php
+    }
+}

@@ -74,49 +74,56 @@ if ( ! function_exists( 'nosfir_primary_menu_fallback' ) ) {
 }
 
 /**
- * Header Search - Versão Final Corrigida
+ * Header Search - Versão Final
  * 
- * Renderiza apenas 1 botão de busca com dropdown
+ * NÃO usa get_search_form() para evitar duplicação
  */
 if ( ! function_exists( 'nosfir_header_search' ) ) {
     function nosfir_header_search() {
-        // Prevenir execução duplicada
+        // Prevenir execução múltipla
         static $rendered = false;
         if ( $rendered ) {
             return;
         }
         $rendered = true;
         
-        // Verificar se está habilitado
+        // Verificar se habilitado no Customizer
         if ( ! get_theme_mod( 'nosfir_header_search', true ) ) {
             return;
         }
         ?>
-        <div class="header-search" id="nosfir-header-search">
+        <div class="header-search" id="header-search">
+            <!-- Botão Toggle -->
             <button type="button" 
                     class="search-toggle" 
-                    id="nosfir-search-toggle"
-                    aria-label="<?php esc_attr_e( 'Open search', 'nosfir' ); ?>" 
-                    aria-expanded="false">
-                <svg class="search-icon-open" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    id="search-toggle-btn"
+                    aria-expanded="false" 
+                    aria-controls="search-dropdown"
+                    aria-label="<?php esc_attr_e( 'Toggle search', 'nosfir' ); ?>">
+                <svg class="icon-search" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                     <circle cx="9" cy="9" r="7"/>
                     <path d="M14 14l4 4"/>
                 </svg>
-                <svg class="search-icon-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <svg class="icon-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                     <line x1="18" y1="6" x2="6" y2="18"/>
                     <line x1="6" y1="6" x2="18" y2="18"/>
                 </svg>
             </button>
-            <div class="search-dropdown" id="nosfir-search-dropdown" aria-hidden="true">
-                <form role="search" method="get" class="search-form" action="<?php echo esc_url( home_url( '/' ) ); ?>">
+            
+            <!-- Dropdown com Formulário -->
+            <div class="search-dropdown" id="search-dropdown" aria-hidden="true">
+                <form role="search" method="get" class="header-search-form" action="<?php echo esc_url( home_url( '/' ) ); ?>">
+                    <label for="header-search-field" class="screen-reader-text">
+                        <?php esc_html_e( 'Search for:', 'nosfir' ); ?>
+                    </label>
                     <input type="search" 
+                           id="header-search-field"
                            class="search-field" 
                            placeholder="<?php esc_attr_e( 'Type to search...', 'nosfir' ); ?>" 
                            value="<?php echo get_search_query(); ?>" 
                            name="s" 
-                           autocomplete="off"
-                           aria-label="<?php esc_attr_e( 'Search', 'nosfir' ); ?>" />
-                    <button type="submit" class="search-submit" aria-label="<?php esc_attr_e( 'Submit search', 'nosfir' ); ?>">
+                           autocomplete="off" />
+                    <button type="submit" class="search-submit" aria-label="<?php esc_attr_e( 'Search', 'nosfir' ); ?>">
                         <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                             <circle cx="9" cy="9" r="7"/>
                             <path d="M14 14l4 4"/>

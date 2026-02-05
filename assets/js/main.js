@@ -236,3 +236,64 @@
     }
 
 })();
+
+/**
+ * Header Search
+ */
+(function() {
+    'use strict';
+    
+    document.addEventListener('DOMContentLoaded', initHeaderSearch);
+    
+    function initHeaderSearch() {
+        const container = document.getElementById('header-search');
+        const toggle = document.getElementById('search-toggle-btn');
+        const dropdown = document.getElementById('search-dropdown');
+        
+        if (!container || !toggle) return;
+        
+        const searchField = dropdown ? dropdown.querySelector('.search-field') : null;
+        
+        // Toggle
+        toggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            if (container.classList.contains('is-open')) {
+                close();
+            } else {
+                open();
+            }
+        });
+        
+        // Click outside
+        document.addEventListener('click', function(e) {
+            if (!container.contains(e.target)) {
+                close();
+            }
+        });
+        
+        // ESC key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                close();
+            }
+        });
+        
+        function open() {
+            container.classList.add('is-open');
+            toggle.setAttribute('aria-expanded', 'true');
+            dropdown.setAttribute('aria-hidden', 'false');
+            
+            setTimeout(function() {
+                if (searchField) searchField.focus();
+            }, 150);
+        }
+        
+        function close() {
+            container.classList.remove('is-open');
+            toggle.setAttribute('aria-expanded', 'false');
+            dropdown.setAttribute('aria-hidden', 'true');
+        }
+    }
+})();
