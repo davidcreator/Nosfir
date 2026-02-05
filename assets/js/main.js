@@ -71,6 +71,69 @@
     }
 
     /**
+ * Header Search Toggle
+ */
+(function() {
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchContainer = document.getElementById('nosfir-header-search');
+        const searchToggle = document.getElementById('nosfir-search-toggle');
+        const searchDropdown = document.getElementById('nosfir-search-dropdown');
+        
+        if (!searchToggle || !searchContainer) return;
+        
+        const searchField = searchDropdown ? searchDropdown.querySelector('.search-field') : null;
+        
+        // Toggle ao clicar no botão
+        searchToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const isOpen = searchContainer.classList.contains('is-open');
+            
+            if (isOpen) {
+                closeSearch();
+            } else {
+                openSearch();
+            }
+        });
+        
+        // Fechar ao clicar fora
+        document.addEventListener('click', function(e) {
+            if (!searchContainer.contains(e.target)) {
+                closeSearch();
+            }
+        });
+        
+        // Fechar com ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeSearch();
+            }
+        });
+        
+        function openSearch() {
+            searchContainer.classList.add('is-open');
+            searchToggle.setAttribute('aria-expanded', 'true');
+            if (searchDropdown) {
+                searchDropdown.setAttribute('aria-hidden', 'false');
+            }
+            // Focar no campo de busca
+            setTimeout(function() {
+                if (searchField) searchField.focus();
+            }, 100);
+        }
+        
+        function closeSearch() {
+            searchContainer.classList.remove('is-open');
+            searchToggle.setAttribute('aria-expanded', 'false');
+            if (searchDropdown) {
+                searchDropdown.setAttribute('aria-hidden', 'true');
+            }
+        }
+    });
+})();
+
+    /**
      * Sticky Header
      */
     function initStickyHeader() {

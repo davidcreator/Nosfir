@@ -175,6 +175,34 @@ if ( file_exists( $customizer_class ) ) {
 }
 
 /**
+ * =============================================
+ * SEARCH
+ * ---------------------------------------------
+ */
+
+/**
+ * Enqueue Header Search Script
+ */
+function nosfir_enqueue_header_search_script() {
+    $theme_uri = get_template_directory_uri();
+    $theme_dir = get_template_directory();
+    $version   = defined( 'NOSFIR_VERSION' ) ? NOSFIR_VERSION : '1.0.0';
+    
+    // Header Search JS
+    $search_js = '/assets/js/components/header-search.js';
+    if ( file_exists( $theme_dir . $search_js ) ) {
+        wp_enqueue_script(
+            'nosfir-header-search',
+            $theme_uri . $search_js,
+            array(),
+            $version,
+            true
+        );
+    }
+}
+add_action( 'wp_enqueue_scripts', 'nosfir_enqueue_header_search_script' );
+
+/**
  * ============================================
  * CUSTOMIZER SCRIPTS - CORRIGIDO
  * ============================================
