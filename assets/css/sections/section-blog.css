@@ -1,0 +1,312 @@
+/**
+ * Section: Blog Styles
+ *
+ * @package Nosfir
+ * @since 1.0.0
+ */
+
+/* ============================================
+   BLOG SECTION
+   ============================================ */
+
+.homepage-blog,
+.nosfir-blog {
+    padding: 80px 0;
+    background: var(--nosfir-bg-alt, #f9fafb);
+}
+
+/* Section Header */
+.homepage-blog .section-header,
+.nosfir-blog .nosfir-section__header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 50px;
+}
+
+.homepage-blog .section-subtitle,
+.nosfir-blog .nosfir-section__subtitle {
+    display: inline-block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--nosfir-primary, #2563eb);
+    margin-bottom: 10px;
+}
+
+.homepage-blog .section-title,
+.nosfir-blog .nosfir-section__title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--nosfir-heading, #111827);
+    margin: 0 0 15px;
+}
+
+/* ============================================
+   BLOG GRID
+   ============================================ */
+
+.blog-grid,
+.nosfir-blog__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+/* ============================================
+   BLOG POST CARD
+   ============================================ */
+
+.blog-post,
+.nosfir-blog__post {
+    position: relative;
+    background: var(--nosfir-bg, #ffffff);
+    border-radius: var(--nosfir-radius-lg, 12px);
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.blog-post:hover,
+.nosfir-blog__post:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
+}
+
+/* Post Thumbnail */
+.blog-thumbnail,
+.nosfir-blog__thumbnail {
+    position: relative;
+    aspect-ratio: 16/10;
+    overflow: hidden;
+}
+
+.blog-thumbnail img,
+.nosfir-blog__thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.blog-post:hover .blog-thumbnail img,
+.nosfir-blog__post:hover .nosfir-blog__thumbnail img {
+    transform: scale(1.1);
+}
+
+/* Post Category Badge */
+.blog-category,
+.nosfir-blog__category {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    padding: 6px 14px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--nosfir-primary, #2563eb);
+    border-radius: var(--nosfir-radius-full, 50px);
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+.blog-category:hover,
+.nosfir-blog__category:hover {
+    background: var(--nosfir-primary-dark, #1d4ed8);
+    color: #fff;
+}
+
+/* Post Content */
+.blog-content,
+.nosfir-blog__content {
+    padding: 25px;
+}
+
+/* Post Meta */
+.blog-meta,
+.nosfir-blog__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 12px;
+    font-size: 0.8125rem;
+    color: var(--nosfir-text-light, #6b7280);
+}
+
+.blog-meta span,
+.nosfir-blog__meta span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.blog-meta svg {
+    width: 14px;
+    height: 14px;
+}
+
+/* Post Title */
+.blog-title,
+.nosfir-blog__title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.4;
+    margin: 0 0 12px;
+}
+
+.blog-title a,
+.nosfir-blog__title a {
+    color: var(--nosfir-heading, #111827);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.blog-title a:hover,
+.nosfir-blog__title a:hover {
+    color: var(--nosfir-primary, #2563eb);
+}
+
+/* Post Excerpt */
+.blog-excerpt,
+.nosfir-blog__excerpt {
+    font-size: 0.9375rem;
+    color: var(--nosfir-text-light, #6b7280);
+    line-height: 1.7;
+    margin: 0 0 20px;
+}
+
+/* Read More Link */
+.blog-read-more,
+.nosfir-blog__read-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--nosfir-primary, #2563eb);
+    text-decoration: none;
+    transition: gap 0.3s ease;
+}
+
+.blog-read-more:hover,
+.nosfir-blog__read-more:hover {
+    gap: 10px;
+}
+
+.blog-read-more svg {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.3s ease;
+}
+
+.blog-read-more:hover svg {
+    transform: translateX(4px);
+}
+
+/* ============================================
+   SECTION FOOTER
+   ============================================ */
+
+.homepage-blog .section-footer,
+.nosfir-blog__footer {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.homepage-blog .section-footer .button,
+.nosfir-blog__footer .nosfir-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 32px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--nosfir-primary, #2563eb);
+    background: transparent;
+    border: 2px solid var(--nosfir-primary, #2563eb);
+    border-radius: var(--nosfir-radius, 8px);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.homepage-blog .section-footer .button:hover,
+.nosfir-blog__footer .nosfir-btn:hover {
+    background: var(--nosfir-primary, #2563eb);
+    color: #fff;
+}
+
+/* ============================================
+   STYLE VARIATIONS
+   ============================================ */
+
+/* List Style */
+.blog-style-list .blog-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.blog-style-list .blog-post {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+}
+
+.blog-style-list .blog-thumbnail {
+    aspect-ratio: auto;
+    height: 100%;
+}
+
+/* Featured First Post */
+.blog-featured-first .blog-post:first-child {
+    grid-column: span 2;
+}
+
+.blog-featured-first .blog-post:first-child .blog-title {
+    font-size: 1.5rem;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 1024px) {
+    .blog-grid,
+    .nosfir-blog__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .blog-featured-first .blog-post:first-child {
+        grid-column: span 2;
+    }
+}
+
+@media (max-width: 768px) {
+    .homepage-blog,
+    .nosfir-blog {
+        padding: 60px 0;
+    }
+    
+    .homepage-blog .section-title,
+    .nosfir-blog .nosfir-section__title {
+        font-size: 1.75rem;
+    }
+    
+    .blog-grid,
+    .nosfir-blog__grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .blog-featured-first .blog-post:first-child {
+        grid-column: span 1;
+    }
+    
+    .blog-style-list .blog-post {
+        grid-template-columns: 1fr;
+    }
+    
+    .blog-content,
+    .nosfir-blog__content {
+        padding: 20px;
+    }
+}

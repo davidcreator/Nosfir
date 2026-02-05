@@ -262,6 +262,46 @@ function nosfir_customize_preview_enqueue() {
 add_action( 'customize_preview_init', 'nosfir_customize_preview_enqueue' );
 
 /**
+ * Enqueue Section Styles
+ */
+function nosfir_enqueue_section_styles() {
+    $theme_uri = get_template_directory_uri();
+    $theme_dir = get_template_directory();
+    $version   = defined( 'NOSFIR_VERSION' ) ? NOSFIR_VERSION : '1.0.0';
+    
+    // Carregar CSS das seções apenas na front-page
+    if ( is_front_page() ) {
+        
+        // About Section CSS
+        $about_css = '/assets/css/sections/section-about.css';
+        if ( file_exists( $theme_dir . $about_css ) ) {
+            wp_enqueue_style(
+                'nosfir-section-about',
+                $theme_uri . $about_css,
+                array(),
+                $version
+            );
+        }
+        
+        // Adicionar outras seções aqui...
+        $sections = array( 'hero', 'features', 'services', 'portfolio', 'testimonials', 'team', 'blog', 'contact', 'cta' );
+        
+        foreach ( $sections as $section ) {
+            $section_css = '/assets/css/sections/section-' . $section . '.css';
+            if ( file_exists( $theme_dir . $section_css ) ) {
+                wp_enqueue_style(
+                    'nosfir-section-' . $section,
+                    $theme_uri . $section_css,
+                    array(),
+                    $version
+                );
+            }
+        }
+    }
+}
+add_action( 'wp_enqueue_scripts', 'nosfir_enqueue_section_styles' );
+
+/**
  * ============================================
  * LOAD CORE THEME FILES
  * ============================================

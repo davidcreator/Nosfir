@@ -1,0 +1,250 @@
+/**
+ * Section: Team Styles
+ *
+ * @package Nosfir
+ * @since 1.0.0
+ */
+
+/* ============================================
+   TEAM SECTION
+   ============================================ */
+
+.homepage-team,
+.nosfir-team {
+    padding: 80px 0;
+    background: var(--nosfir-bg, #ffffff);
+}
+
+/* Section Header */
+.homepage-team .section-header,
+.nosfir-team .nosfir-section__header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 50px;
+}
+
+.homepage-team .section-subtitle,
+.nosfir-team .nosfir-section__subtitle {
+    display: inline-block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--nosfir-primary, #2563eb);
+    margin-bottom: 10px;
+}
+
+.homepage-team .section-title,
+.nosfir-team .nosfir-section__title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--nosfir-heading, #111827);
+    margin: 0 0 15px;
+}
+
+/* ============================================
+   TEAM GRID
+   ============================================ */
+
+.team-grid,
+.nosfir-team__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+/* ============================================
+   TEAM MEMBER
+   ============================================ */
+
+.team-member,
+.nosfir-team__member {
+    position: relative;
+    text-align: center;
+}
+
+.team-member-inner {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--nosfir-radius-lg, 12px);
+    background: var(--nosfir-bg-alt, #f9fafb);
+    transition: all 0.3s ease;
+}
+
+.team-member:hover .team-member-inner {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
+}
+
+/* Team Photo */
+.team-photo,
+.nosfir-team__photo {
+    position: relative;
+    aspect-ratio: 1/1;
+    overflow: hidden;
+}
+
+.team-photo img,
+.nosfir-team__photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.team-member:hover .team-photo img,
+.nosfir-team__member:hover .nosfir-team__photo img {
+    transform: scale(1.1);
+}
+
+/* Team Overlay with Social */
+.team-overlay,
+.nosfir-team__overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.team-member:hover .team-overlay,
+.nosfir-team__member:hover .nosfir-team__overlay {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Team Social Links */
+.team-social,
+.nosfir-team__social {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.team-social a,
+.nosfir-team__social a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: var(--nosfir-primary, #2563eb);
+    color: #fff;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    transform: translateY(20px);
+}
+
+.team-member:hover .team-social a {
+    transform: translateY(0);
+}
+
+.team-social a:nth-child(1) { transition-delay: 0.05s; }
+.team-social a:nth-child(2) { transition-delay: 0.1s; }
+.team-social a:nth-child(3) { transition-delay: 0.15s; }
+.team-social a:nth-child(4) { transition-delay: 0.2s; }
+
+.team-social a:hover,
+.nosfir-team__social a:hover {
+    background: #fff;
+    color: var(--nosfir-primary, #2563eb);
+}
+
+.team-social svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* Team Info */
+.team-info,
+.nosfir-team__info {
+    padding: 25px 20px;
+}
+
+.team-name,
+.nosfir-team__name {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--nosfir-heading, #111827);
+    margin: 0 0 5px;
+}
+
+.team-position,
+.nosfir-team__position {
+    font-size: 0.875rem;
+    color: var(--nosfir-primary, #2563eb);
+    margin: 0 0 10px;
+}
+
+.team-bio,
+.nosfir-team__bio {
+    font-size: 0.875rem;
+    color: var(--nosfir-text-light, #6b7280);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* ============================================
+   STYLE VARIATIONS
+   ============================================ */
+
+/* Rounded Photos */
+.team-style-rounded .team-photo {
+    border-radius: 50%;
+    margin: 20px auto;
+    width: 180px;
+    height: 180px;
+    aspect-ratio: auto;
+}
+
+/* Card Style */
+.team-style-card .team-member-inner {
+    background: var(--nosfir-bg, #ffffff);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 1024px) {
+    .team-grid,
+    .nosfir-team__grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .homepage-team,
+    .nosfir-team {
+        padding: 60px 0;
+    }
+    
+    .homepage-team .section-title,
+    .nosfir-team .nosfir-section__title {
+        font-size: 1.75rem;
+    }
+    
+    .team-grid,
+    .nosfir-team__grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .team-grid,
+    .nosfir-team__grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .team-info,
+    .nosfir-team__info {
+        padding: 20px 15px;
+    }
+}

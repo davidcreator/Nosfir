@@ -1,0 +1,393 @@
+/**
+ * Section: Contact Styles
+ *
+ * @package Nosfir
+ * @since 1.0.0
+ */
+
+/* ============================================
+   CONTACT SECTION
+   ============================================ */
+
+.homepage-contact,
+.nosfir-contact {
+    padding: 80px 0;
+    background: var(--nosfir-bg, #ffffff);
+}
+
+/* Section Header */
+.homepage-contact .section-header,
+.nosfir-contact .nosfir-section__header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 50px;
+}
+
+.homepage-contact .section-subtitle,
+.nosfir-contact .nosfir-section__subtitle {
+    display: inline-block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--nosfir-primary, #2563eb);
+    margin-bottom: 10px;
+}
+
+.homepage-contact .section-title,
+.nosfir-contact .nosfir-section__title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--nosfir-heading, #111827);
+    margin: 0 0 15px;
+}
+
+/* ============================================
+   CONTACT WRAPPER
+   ============================================ */
+
+.contact-wrapper,
+.nosfir-contact__wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 50px;
+    align-items: start;
+}
+
+/* ============================================
+   CONTACT INFO
+   ============================================ */
+
+.contact-info,
+.nosfir-contact__info {
+    padding: 40px;
+    background: var(--nosfir-bg-alt, #f9fafb);
+    border-radius: var(--nosfir-radius-lg, 12px);
+}
+
+.contact-info-title,
+.nosfir-contact__info-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--nosfir-heading, #111827);
+    margin: 0 0 25px;
+}
+
+/* Contact Info List */
+.contact-info-list,
+.nosfir-contact__info-list {
+    list-style: none;
+    margin: 0 0 30px;
+    padding: 0;
+}
+
+.contact-info-item,
+.nosfir-contact__info-item {
+    display: flex;
+    gap: 15px;
+    padding: 15px 0;
+    border-bottom: 1px solid var(--nosfir-border, #e5e7eb);
+}
+
+.contact-info-item:last-child,
+.nosfir-contact__info-item:last-child {
+    border-bottom: none;
+}
+
+.contact-info-icon,
+.nosfir-contact__info-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background: var(--nosfir-primary, #2563eb);
+    color: #fff;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.contact-info-icon svg,
+.nosfir-contact__info-icon svg,
+.contact-info-icon i,
+.nosfir-contact__info-icon i {
+    width: 20px;
+    height: 20px;
+    font-size: 1.125rem;
+}
+
+.contact-info-content,
+.nosfir-contact__info-content {
+    flex: 1;
+}
+
+.contact-info-content strong {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--nosfir-heading, #111827);
+    margin-bottom: 4px;
+}
+
+.contact-info-content a,
+.contact-info-content span,
+.nosfir-contact__info-content a,
+.nosfir-contact__info-content span {
+    font-size: 0.9375rem;
+    color: var(--nosfir-text, #374151);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-info-content a:hover,
+.nosfir-contact__info-content a:hover {
+    color: var(--nosfir-primary, #2563eb);
+}
+
+/* Contact Social */
+.contact-social,
+.nosfir-contact__social {
+    margin-top: 25px;
+}
+
+.contact-social h4,
+.nosfir-contact__social h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--nosfir-heading, #111827);
+    margin: 0 0 15px;
+}
+
+.contact-social-links,
+.nosfir-social-links {
+    display: flex;
+    gap: 10px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.contact-social-links a,
+.nosfir-social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: var(--nosfir-bg, #ffffff);
+    color: var(--nosfir-text, #374151);
+    border-radius: 50%;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.contact-social-links a:hover,
+.nosfir-social-links a:hover {
+    background: var(--nosfir-primary, #2563eb);
+    color: #fff;
+    transform: translateY(-3px);
+}
+
+/* ============================================
+   CONTACT FORM
+   ============================================ */
+
+.contact-form,
+.nosfir-contact__form {
+    padding: 40px;
+    background: var(--nosfir-bg-alt, #f9fafb);
+    border-radius: var(--nosfir-radius-lg, 12px);
+}
+
+.nosfir-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.nosfir-form__group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.nosfir-form__label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--nosfir-heading, #111827);
+}
+
+.nosfir-form__label .required {
+    color: var(--nosfir-error, #ef4444);
+}
+
+.nosfir-form__input,
+.nosfir-form__textarea {
+    width: 100%;
+    padding: 14px 18px;
+    font-size: 1rem;
+    font-family: inherit;
+    color: var(--nosfir-text, #374151);
+    background: var(--nosfir-bg, #ffffff);
+    border: 1px solid var(--nosfir-border, #e5e7eb);
+    border-radius: var(--nosfir-radius, 8px);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.nosfir-form__input:focus,
+.nosfir-form__textarea:focus {
+    outline: none;
+    border-color: var(--nosfir-primary, #2563eb);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.nosfir-form__input.has-error,
+.nosfir-form__textarea.has-error {
+    border-color: var(--nosfir-error, #ef4444);
+}
+
+.nosfir-form__textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.error-message {
+    font-size: 0.8125rem;
+    color: var(--nosfir-error, #ef4444);
+}
+
+/* Submit Button */
+.nosfir-form__group .nosfir-btn,
+.contact-form .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 16px 32px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    background: var(--nosfir-primary, #2563eb);
+    border: none;
+    border-radius: var(--nosfir-radius, 8px);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.nosfir-form__group .nosfir-btn:hover,
+.contact-form .button:hover {
+    background: var(--nosfir-primary-dark, #1d4ed8);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
+}
+
+.nosfir-form__group .nosfir-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Button Loading State */
+.btn-loader {
+    display: none;
+}
+
+.nosfir-btn.is-loading .btn-text {
+    display: none;
+}
+
+.nosfir-btn.is-loading .btn-loader {
+    display: inline-flex;
+}
+
+/* Form Message */
+.nosfir-form__message {
+    padding: 15px 20px;
+    border-radius: var(--nosfir-radius, 8px);
+    font-size: 0.9375rem;
+}
+
+.nosfir-form__message.success {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.nosfir-form__message.error {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+/* ============================================
+   CONTACT MAP
+   ============================================ */
+
+.contact-map,
+.nosfir-contact__map {
+    margin-top: 50px;
+    border-radius: var(--nosfir-radius-lg, 12px);
+    overflow: hidden;
+    height: 400px;
+}
+
+.contact-map iframe,
+.nosfir-contact__map iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 1024px) {
+    .contact-wrapper,
+    .nosfir-contact__wrapper {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .homepage-contact,
+    .nosfir-contact {
+        padding: 60px 0;
+    }
+    
+    .homepage-contact .section-title,
+    .nosfir-contact .nosfir-section__title {
+        font-size: 1.75rem;
+    }
+    
+    .contact-info,
+    .nosfir-contact__info,
+    .contact-form,
+    .nosfir-contact__form {
+        padding: 30px;
+    }
+    
+    .contact-map,
+    .nosfir-contact__map {
+        height: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-info,
+    .nosfir-contact__info,
+    .contact-form,
+    .nosfir-contact__form {
+        padding: 25px 20px;
+    }
+    
+    .contact-info-item,
+    .nosfir-contact__info-item {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .contact-info-icon,
+    .nosfir-contact__info-icon {
+        margin: 0 auto;
+    }
+}

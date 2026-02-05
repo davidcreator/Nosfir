@@ -1,0 +1,306 @@
+/**
+ * Section: CTA (Call to Action) Styles
+ *
+ * @package Nosfir
+ * @since 1.0.0
+ */
+
+/* ============================================
+   CTA SECTION
+   ============================================ */
+
+.homepage-cta,
+.nosfir-cta {
+    position: relative;
+    padding: 100px 0;
+    background: linear-gradient(135deg, var(--nosfir-primary, #2563eb) 0%, var(--nosfir-secondary, #7c3aed) 100%);
+    color: #fff;
+    overflow: hidden;
+}
+
+/* Background Pattern */
+.homepage-cta::before,
+.nosfir-cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+}
+
+/* Background Image Support */
+.homepage-cta.has-bg-image,
+.nosfir-cta.has-bg-image {
+    background-size: cover;
+    background-position: center;
+}
+
+.homepage-cta.has-bg-image::after,
+.nosfir-cta.has-bg-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(37, 99, 235, 0.9);
+}
+
+.homepage-cta > .container,
+.nosfir-cta > .nosfir-container {
+    position: relative;
+    z-index: 1;
+}
+
+/* ============================================
+   CTA CONTENT
+   ============================================ */
+
+.cta-wrapper,
+.nosfir-cta__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.cta-content,
+.nosfir-cta__content {
+    flex: 1;
+    max-width: 700px;
+}
+
+/* CTA Title */
+.cta-title,
+.nosfir-cta__title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #fff;
+    margin: 0 0 15px;
+    line-height: 1.2;
+}
+
+/* CTA Description */
+.cta-description,
+.nosfir-cta__description {
+    font-size: 1.125rem;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* ============================================
+   CTA BUTTONS
+   ============================================ */
+
+.cta-buttons,
+.nosfir-cta__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    flex-shrink: 0;
+}
+
+.cta-buttons .button,
+.nosfir-cta__buttons .nosfir-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 36px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: var(--nosfir-radius, 8px);
+    transition: all 0.3s ease;
+}
+
+/* Primary Button (White) */
+.cta-buttons .button-primary,
+.nosfir-cta__buttons .nosfir-btn--primary {
+    background: #fff;
+    color: var(--nosfir-primary, #2563eb);
+    border: 2px solid #fff;
+}
+
+.cta-buttons .button-primary:hover,
+.nosfir-cta__buttons .nosfir-btn--primary:hover {
+    background: transparent;
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Secondary Button (Outline) */
+.cta-buttons .button-outline,
+.nosfir-cta__buttons .nosfir-btn--secondary {
+    background: transparent;
+    color: #fff;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.cta-buttons .button-outline:hover,
+.nosfir-cta__buttons .nosfir-btn--secondary:hover {
+    background: #fff;
+    color: var(--nosfir-primary, #2563eb);
+    border-color: #fff;
+    transform: translateY(-3px);
+}
+
+/* ============================================
+   STYLE VARIATIONS
+   ============================================ */
+
+/* Centered Layout */
+.cta-style-centered .cta-wrapper,
+.nosfir-cta.cta-centered .nosfir-cta__wrapper {
+    flex-direction: column;
+    text-align: center;
+}
+
+.cta-style-centered .cta-content,
+.nosfir-cta.cta-centered .nosfir-cta__content {
+    max-width: 800px;
+}
+
+.cta-style-centered .cta-buttons,
+.nosfir-cta.cta-centered .nosfir-cta__buttons {
+    justify-content: center;
+    margin-top: 30px;
+}
+
+/* Dark Theme */
+.cta-style-dark,
+.nosfir-cta.cta-dark {
+    background: var(--nosfir-bg-dark, #111827);
+}
+
+.cta-style-dark::before,
+.nosfir-cta.cta-dark::before {
+    opacity: 0.03;
+}
+
+/* Minimal */
+.cta-style-minimal,
+.nosfir-cta.cta-minimal {
+    background: var(--nosfir-bg-alt, #f9fafb);
+    color: var(--nosfir-text, #374151);
+}
+
+.cta-style-minimal .cta-title,
+.nosfir-cta.cta-minimal .nosfir-cta__title {
+    color: var(--nosfir-heading, #111827);
+}
+
+.cta-style-minimal .cta-description,
+.nosfir-cta.cta-minimal .nosfir-cta__description {
+    color: var(--nosfir-text, #374151);
+}
+
+.cta-style-minimal .button-primary,
+.nosfir-cta.cta-minimal .nosfir-btn--primary {
+    background: var(--nosfir-primary, #2563eb);
+    color: #fff;
+    border-color: var(--nosfir-primary, #2563eb);
+}
+
+.cta-style-minimal .button-primary:hover,
+.nosfir-cta.cta-minimal .nosfir-btn--primary:hover {
+    background: var(--nosfir-primary-dark, #1d4ed8);
+    border-color: var(--nosfir-primary-dark, #1d4ed8);
+    color: #fff;
+}
+
+/* ============================================
+   DECORATIVE ELEMENTS
+   ============================================ */
+
+.cta-decoration {
+    position: absolute;
+    pointer-events: none;
+}
+
+.cta-decoration-1 {
+    top: -50px;
+    right: 10%;
+    width: 200px;
+    height: 200px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+}
+
+.cta-decoration-2 {
+    bottom: -80px;
+    left: 5%;
+    width: 300px;
+    height: 300px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 1024px) {
+    .cta-wrapper,
+    .nosfir-cta__wrapper {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .cta-buttons,
+    .nosfir-cta__buttons {
+        justify-content: center;
+        margin-top: 25px;
+    }
+}
+
+@media (max-width: 768px) {
+    .homepage-cta,
+    .nosfir-cta {
+        padding: 70px 0;
+    }
+    
+    .cta-title,
+    .nosfir-cta__title {
+        font-size: 2rem;
+    }
+    
+    .cta-description,
+    .nosfir-cta__description {
+        font-size: 1rem;
+    }
+    
+    .cta-buttons,
+    .nosfir-cta__buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .cta-buttons .button,
+    .nosfir-cta__buttons .nosfir-btn {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .homepage-cta,
+    .nosfir-cta {
+        padding: 50px 0;
+    }
+    
+    .cta-title,
+    .nosfir-cta__title {
+        font-size: 1.75rem;
+    }
+    
+    .cta-buttons .button,
+    .nosfir-cta__buttons .nosfir-btn {
+        padding: 14px 28px;
+    }
+}

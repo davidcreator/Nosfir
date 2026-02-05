@@ -1,0 +1,288 @@
+/**
+ * Section: Portfolio Styles
+ *
+ * @package Nosfir
+ * @since 1.0.0
+ */
+
+/* ============================================
+   PORTFOLIO SECTION
+   ============================================ */
+
+.homepage-portfolio,
+.nosfir-portfolio {
+    padding: 80px 0;
+    background: var(--nosfir-bg, #ffffff);
+}
+
+/* Section Header */
+.homepage-portfolio .section-header,
+.nosfir-portfolio .nosfir-section__header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 40px;
+}
+
+.homepage-portfolio .section-subtitle,
+.nosfir-portfolio .nosfir-section__subtitle {
+    display: inline-block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--nosfir-primary, #2563eb);
+    margin-bottom: 10px;
+}
+
+.homepage-portfolio .section-title,
+.nosfir-portfolio .nosfir-section__title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--nosfir-heading, #111827);
+    margin: 0 0 15px;
+}
+
+/* ============================================
+   PORTFOLIO FILTER
+   ============================================ */
+
+.portfolio-filter,
+.nosfir-portfolio__filter {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 40px;
+}
+
+.nosfir-filter-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.filter-button,
+.nosfir-filter-btn {
+    padding: 10px 24px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--nosfir-text, #374151);
+    background: var(--nosfir-bg-alt, #f3f4f6);
+    border: none;
+    border-radius: var(--nosfir-radius-full, 50px);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-button:hover,
+.nosfir-filter-btn:hover {
+    color: var(--nosfir-primary, #2563eb);
+    background: rgba(37, 99, 235, 0.1);
+}
+
+.filter-button.is-active,
+.nosfir-filter-btn.is-active {
+    color: #fff;
+    background: var(--nosfir-primary, #2563eb);
+}
+
+/* ============================================
+   PORTFOLIO GRID
+   ============================================ */
+
+.portfolio-grid,
+.nosfir-portfolio__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+/* ============================================
+   PORTFOLIO ITEM
+   ============================================ */
+
+.portfolio-item,
+.nosfir-portfolio__item {
+    position: relative;
+    border-radius: var(--nosfir-radius-lg, 12px);
+    overflow: hidden;
+    background: var(--nosfir-bg-alt, #f9fafb);
+}
+
+.portfolio-item-inner,
+.nosfir-portfolio__item-inner {
+    position: relative;
+    display: block;
+    overflow: hidden;
+}
+
+/* Portfolio Thumbnail */
+.portfolio-thumbnail,
+.nosfir-portfolio__thumbnail {
+    position: relative;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+}
+
+.portfolio-thumbnail img,
+.nosfir-portfolio__thumbnail img,
+.nosfir-portfolio__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.portfolio-item:hover img,
+.nosfir-portfolio__item:hover img {
+    transform: scale(1.1);
+}
+
+/* Portfolio Overlay */
+.portfolio-overlay,
+.nosfir-portfolio__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(17, 24, 39, 0.85);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.portfolio-item:hover .portfolio-overlay,
+.nosfir-portfolio__item:hover .nosfir-portfolio__overlay {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Portfolio Content */
+.portfolio-content,
+.nosfir-portfolio__content {
+    text-align: center;
+    padding: 20px;
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+}
+
+.portfolio-item:hover .portfolio-content,
+.nosfir-portfolio__item:hover .nosfir-portfolio__content {
+    transform: translateY(0);
+}
+
+.portfolio-title,
+.nosfir-portfolio__title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 8px;
+}
+
+.portfolio-category,
+.nosfir-portfolio__category {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 15px;
+}
+
+/* Portfolio Actions */
+.portfolio-actions,
+.nosfir-portfolio__actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.portfolio-link,
+.nosfir-portfolio__link,
+.nosfir-portfolio__lightbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: var(--nosfir-primary, #2563eb);
+    color: #fff;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.portfolio-link:hover,
+.nosfir-portfolio__link:hover,
+.nosfir-portfolio__lightbox:hover {
+    background: #fff;
+    color: var(--nosfir-primary, #2563eb);
+    transform: scale(1.1);
+}
+
+/* ============================================
+   PORTFOLIO EMPTY STATE
+   ============================================ */
+
+.nosfir-portfolio__empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--nosfir-text-light, #6b7280);
+}
+
+/* ============================================
+   SECTION FOOTER
+   ============================================ */
+
+.homepage-portfolio .section-footer {
+    text-align: center;
+    margin-top: 50px;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 1024px) {
+    .portfolio-grid,
+    .nosfir-portfolio__grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+}
+
+@media (max-width: 768px) {
+    .homepage-portfolio,
+    .nosfir-portfolio {
+        padding: 60px 0;
+    }
+    
+    .homepage-portfolio .section-title,
+    .nosfir-portfolio .nosfir-section__title {
+        font-size: 1.75rem;
+    }
+    
+    .portfolio-filter,
+    .nosfir-portfolio__filter {
+        margin-bottom: 30px;
+    }
+    
+    .filter-button,
+    .nosfir-filter-btn {
+        padding: 8px 18px;
+        font-size: 0.8125rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .portfolio-grid,
+    .nosfir-portfolio__grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
